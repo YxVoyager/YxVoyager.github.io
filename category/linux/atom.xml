@@ -3,18 +3,18 @@
     <id>http://example.com</id>
     <title> • Posts by &#34;linux&#34; category</title>
     <link href="http://example.com" />
-    <updated>2023-03-06T14:03:56.000Z</updated>
+    <updated>2023-03-08T14:03:56.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
     <category term="Linux" />
+    <category term="STL" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="STL" />
     <category term="设计模式" />
     <entry>
-        <id>http://example.com/2023/03/06/Linux/</id>
+        <id>http://example.com/2023/03/08/Linux/</id>
         <title>Linux</title>
-        <link rel="alternate" href="http://example.com/2023/03/06/Linux/"/>
+        <link rel="alternate" href="http://example.com/2023/03/08/Linux/"/>
         <content type="html">&lt;h1 id=&#34;linux-配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-配置&#34;&gt;#&lt;/a&gt; Linux 配置&lt;/h1&gt;
 &lt;p&gt;windows powershell&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新软件包&lt;/p&gt;
@@ -498,6 +498,6 @@ cat: f3: No such file or directory
 &lt;p&gt;&lt;code&gt;apt&lt;/code&gt;  命令执行需要超级管理员权限 (root)。&lt;/p&gt;
 </content>
         <category term="Linux" />
-        <updated>2023-03-06T14:03:56.000Z</updated>
+        <updated>2023-03-08T14:03:56.000Z</updated>
     </entry>
 </feed>
