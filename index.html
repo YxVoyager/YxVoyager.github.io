@@ -1,807 +1,744 @@
 
+
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Adventure</title>
-        <meta name="author" content="AdventureYX" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-        <link rel="icon" href="/images/avatar.jpg" />
-        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
-<link rel="stylesheet" href="/css/fonts.min.css" />
-<script> const mixins = {}; </script>
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
-<link
-    rel="stylesheet"
-    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
-/>
-<script src="/js/lib/highlight.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Adventure" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Adventure" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Adventure" href="http://example.com/feed.json" />
 
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
-<script src="/js/lib/preview.js"></script>
+  
+
+<link rel="canonical" href="http://example.com/">
 
 
 
+  <title>Yume Shoka = Adventure = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+            <a href="/" class="logo" rel="start"><p class="artboard">Yume Shoka</p>
+              <h1 itemprop="name headline" class="title">Adventure</h1>
+            </a>
+            <p class="meta" itemprop="description">= 心有所向。日复一日，必有精进 =</p>
+          
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-
-<script src="/js/lib/home.js"></script>
-
-<link rel="stylesheet" href="/css/main.css" />
-
-    <meta name="generator" content="Hexo 6.3.0"></head>
-    <body>
-        <div id="layout">
-            <transition name="fade">
-            <div id="loading" v-show="loading">
-                <div id="loading-circle">
-                    <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="/images/loading.gif" />
-                </div>
-            </div>
-            </transition>
-            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
-    <div class="desktop-menu">
-        <a class="title" href="/">
-            <span>ADVENTURE</span>
-        </a>
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclwrdwyaj20zk0m8are.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="index wrap">
+    <h2 class="divider">文章列表</h2>
+    <div class="segments posts">
         
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
-        </a>
+<article class="item">
+  <div class="cover">
+    <a href="/2023/04/02/C++11/" itemprop="url" title="C++11"><img data-src="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-04-02 20:10:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-04-02T20:10:08+08:00">2023-04-02</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/04/02/C++11/" itemprop="url" title="C++11">C++11</a></h3>
+    <div class="excerpt">
+        # 安全性 —— 智能指针
+** 内存泄漏：** 由于疏忽或错误导致的程序未能释放已经不再使用的内存。
+进一步解释：
+
+并非指内存从物理上消失，而是指程序在运行过程中，由于疏忽或错误而失去了对该内存的控制，从而造成了内存的浪费。
+
+常指堆内存泄漏，因为堆是动态分配的，而且是用户来控制的，如果使用不当，会产生内存泄漏。
+
+使用 malloc、calloc、realloc、new 等分配内存时，使用完后要调用相应的 free 或 delete 释放内存，否则这块内存就会造成内存泄漏。
+
+指针重新赋值
+char *p = (char *)malloc(10);char *p1 = (char...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/04/02/C++11/" itemprop="url" title="C++11" class="btn">more...</a>
+  </div>
+</article>
+
         
-        <a href="/about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;About</span>
-        </a>
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/26/QML&QtQuick/" itemprop="url" title="QML &amp; Qt Quick"><img data-src="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-26 10:12:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-26T10:12:08+08:00">2023-03-26</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/26/QML&QtQuick/" itemprop="url" title="QML &amp; Qt Quick">QML & Qt Quick</a></h3>
+    <div class="excerpt">
+        # QML 基础
+QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的声明式脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。
+Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Qt/" itemprop="url" title="Qt"><i class="ic i-flag"></i>Qt</a>
+      </span>
+    </div>
+    <a href="/2023/03/26/QML&QtQuick/" itemprop="url" title="QML &amp; Qt Quick" class="btn">more...</a>
+  </div>
+</article>
+
         
-        <a href="/archives">
-            <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;Archives</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;Categories</span>
-        </a>
-        
-        <a href="/tags">
-            <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;Tags</span>
-        </a>
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" title="设计模式"><img data-src="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-20 20:10:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-20T20:10:48+08:00">2023-03-20</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" title="设计模式">设计模式</a></h3>
+    <div class="excerpt">
         
     </div>
-    <div id="mobile-menu">
-        <div class="curtain" @click="shouMenuItems = !shouMenuItems" v-show="shouMenuItems"></div>
-        <div class="title" @click="shouMenuItems = !shouMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;ADVENTURE</span>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" title="设计模式" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/12/QtStudy/" itemprop="url" title="Qt Study"><img data-src="https://img.picgo.net/2023/04/02/cover-576372bdfbbed3ec4.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-12 23:12:16">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-12T23:12:16+08:00">2023-03-12</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/12/QtStudy/" itemprop="url" title="Qt Study">Qt Study</a></h3>
+    <div class="excerpt">
+        # Qt 核心
+# 元对象系统
+Qt 元对象系统提供了对象间的通信机制（信号和槽）、运行时类型信息和动态属性系统的支持，是标准 C++ 的一个扩展，它使 Qt 能够更好的实现 GUI 用户图形界面编程。Qt 的元对象系统不支持 C++ 模板。
+Qt 元对象系统基于以下三个事实：
+
+基类 QObject ：任何需要使用元对象系统功能的类必须继承自 QObject 。 QObject 是 Qt 中最基本的类，是所有 Qt 对象的基类。
+Q_OBJECT 宏：Q_OBJECT 宏必须出现在类的私有声明区，用于启动元对象的特性。
+元对象编译器（moc, Meta-Object Compiler）：为...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Qt/" itemprop="url" title="Qt"><i class="ic i-flag"></i>Qt</a>
+      </span>
+    </div>
+    <a href="/2023/03/12/QtStudy/" itemprop="url" title="Qt Study" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数"><img data-src="https://img.picgo.net/2023/04/02/cover-102c17c8481350f883.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-12 20:42:19">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-12T20:42:19+08:00">2023-03-12</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数">STL函数</a></h3>
+    <div class="excerpt">
+        # accumulate
+
+accumulate(beg, end, init)
+
+** 复杂度：**O (N)
+
+作用：对一个序列的元素求和
+
+init 为对序列元素求和的初始值
+
+返回值类型：与 init 一致
+
+基础累加求和：
+pint a[]=&amp;#123;1,3,5,9,10&amp;#125;;// 对 [0,2] 区间求和，初始值为 0，结果为 0+1+3+5=9int res1 = accumulate(a, a + 3, 0);// 对 [0,3] 区间求和，初始值为 5，结果为 5+1+3+5+9=23int res2 = accumulate(a, a + 4,...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器"><img data-src="https://img.picgo.net/2023/04/02/cover-102c17c8481350f883.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-10 20:42:19">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-10T20:42:19+08:00">2023-03-10</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器">STL容器</a></h3>
+    <div class="excerpt">
+        # vector
+vector 为可变长数组（动态数组），定义的 vector 数组可以随时添加数值和删除元素。
+在局部函数中开 vector 数组，是在堆空间里面开的，与开全局变量比较类似，所以经常见到在局部函数中开大容量数组。
+
+头文件
+#include &amp;lt;vector&gt;
+
+初始化
+
+一维初始化
+vector&amp;lt;int&gt; a; // 定义了一个名为 num 的存 int 数据的一维数组vector&amp;lt;double&gt; b;// 定义了一个名为 num 的存 double 数据的一维数组vector&amp;lt;node&gt;...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/10/CMU15-445/" itemprop="url" title="CMU15-445"><img data-src="https://img.picgo.net/2023/04/02/cover-3d001679d9230e286.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-10 00:03:56">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-10T00:03:56+08:00">2023-03-10</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/10/CMU15-445/" itemprop="url" title="CMU15-445">CMU15-445</a></h3>
+    <div class="excerpt">
+        Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2022)](https://15445.courses.cs.cmu.edu/fall2022/schedule.html)
+# Lesson#01. 关系模型 &amp;amp; 关系代数（Relational Model &amp;amp; Relational Algebra）
+# 1. Database
+数据库 (Database,DB)...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/DataBase/" itemprop="url" title="DataBase"><i class="ic i-flag"></i>DataBase</a>
+      </span>
+    </div>
+    <a href="/2023/03/10/CMU15-445/" itemprop="url" title="CMU15-445" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/09/STL/" itemprop="url" title="STL"><img data-src="https://tva1.sinaimg.cn/mw690/6833939bly1giclfdu6exj20zk0m87hw.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-09 20:42:19">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-09T20:42:19+08:00">2023-03-09</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/09/STL/" itemprop="url" title="STL">STL</a></h3>
+    <div class="excerpt">
+        C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。
+
+STL 从广义上讲分为三类: algorithm (算法) 、container (容器)、iterator (迭代器)。容器和算法可以通过迭代器进行无缝的连接。
+
+STL 提供了六大组件，彼此组合套用协同工作。这六大组件分别是：
+
+容器（Containers）：各种数据结构，如 vector、list、deque、set、map 等。从实现的角度来看，容器是一种 class...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/03/09/STL/" itemprop="url" title="STL" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/06/Linux/" itemprop="url" title="Linux"><img data-src="https://img.picgo.net/2023/04/02/cover-28d1c78c70833bb4b.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-06 22:03:56">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-06T22:03:56+08:00">2023-03-06</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/06/Linux/" itemprop="url" title="Linux">Linux</a></h3>
+    <div class="excerpt">
+        # Linux 配置
+windows powershell
+wsl --installl -d Ubuntu-20.04更新软件包
+apt-get update安装最常用 linux 桌面程序 gedit
+apt install gedit安装编译工具 gcc+cmake
+apt install build-essentialapt install cmakeapt-get install vim# Linux 系统目录结构
+ls /
+树状目录结构：
+
+系统启动必须：
+
+/boot ：存放的启动 Linux 时使用的内核文件，包括连接文件以及镜像文件。
+
+/etc...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Linux/" itemprop="url" title="Linux"><i class="ic i-flag"></i>Linux</a>
+      </span>
+    </div>
+    <a href="/2023/03/06/Linux/" itemprop="url" title="Linux" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" itemprop="url" title="C++面经"><img data-src="https://img.picgo.net/2023/04/02/cover-1d90d05a777899e8d.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-05 22:19:16">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-05T22:19:16+08:00">2023-03-05</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" itemprop="url" title="C++面经">C++面经</a></h3>
+    <div class="excerpt">
+        # 1. 编译内存相关
+# 1.1. C++ 程序编译过程
+编译过程分为四个过程：编译（编译预处理、编译、优化），汇编，链接。
+编译预处理：处理以 # 开头的指令，产生 .i 文件；
+主要的处理操作如下：
+
+对全部的 #define 进行宏展开。
+处理全部的条件编译指令，比方 #if、#ifdef、#elif、#else、#endif;
+处理 #include 指令，这个过程是递归的，也就是说被包括的文件可能还包括其它文件；
+删除全部的注释 // 和 /**/
+加入行号和文件标识
+保留全部的 #pragma 编译器指令
+
+ps: 经过预处理后的 .i...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" itemprop="url" title="C++面经" class="btn">more...</a>
+  </div>
+</article>
+
+    </div>
+
+  </div>
+
+  
+  <nav class="pagination">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
+    </div>
+  </nav>
+
+
+
         </div>
-        <transition name="slide">
-        <div class="items" v-show="shouMenuItems">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-house fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-box-archive fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
-                </div>
-            </a>
-            
-            <a href="/categories">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-bookmark fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
-                </div>
-            </a>
-            
-            <a href="/tags">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
-                </div>
-            </a>
-            
-        </div>
-        </transition>
+        <div id="sidebar">
+          
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">11</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">7</span>
+        <span class="name">标签</span>
+      </a>
     </div>
 </nav>
 
-            <transition name="into">
-            <div id="main" v-show="!loading">
-                <div id="home-head">
-    <div
-        id="home-background"
-        ref="homeBackground"
-        data-images="/images/background.jpg"
-    ></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>Adventure</h1>
-                <h3>心有所向。日复一日，必有精进</h3>
-                <h5></h5>
-            </div>
-        </span>
-    </div>
-</div>
-<div id="home-posts-wrap"  ref="homePostsWrap">
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2023/04/02/C++11/">
-        <h2 class="post-title">C++11</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/4/2
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00a596">
-                C++
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/04/02/C++11/" class="go-post">阅读全文</a>
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
 </div>
 
-<div class="post">
-    <a href="/2023/03/26/QML&QtQuick/">
-        <h2 class="post-title">QML &amp; Qt Quick</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Qt/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Qt
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/26
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00bcd4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Qt/" style="color: #03a9f4">
-                Qt
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/QML/" style="color: #00bcd4">
-                QML
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/26/QML&QtQuick/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-        <h2 class="post-title">设计模式</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/20
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00a596">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #00a596">
-                设计模式
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/12/QtStudy/">
-        <h2 class="post-title">Qt Study</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Qt/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Qt
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/12
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00bcd4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Qt/" style="color: #03a9f4">
-                Qt
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/12/QtStudy/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/">
-        <h2 class="post-title">STL函数</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/12
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #03a9f4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/STL/" style="color: #ffa2c4">
-                STL
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/">
-        <h2 class="post-title">STL容器</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ff7d73">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/STL/" style="color: #ffa2c4">
-                STL
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/10/CMU15-445/">
-        <h2 class="post-title">CMU15-445</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/DataBase/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                DataBase
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/DataBase/" style="color: #03a9f4">
-                DataBase
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/10/CMU15-445/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/09/STL/">
-        <h2 class="post-title">STL</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/9
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ff7d73">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/STL/" style="color: #ffa2c4">
-                STL
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/09/STL/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/06/Linux/">
-        <h2 class="post-title">Linux</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Linux/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Linux
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Linux/" style="color: #ff7d73">
-                Linux
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/06/Linux/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/">
-        <h2 class="post-title">C++面经</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/C/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                C++
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Normal <em>Italic</em> <strong>Strong</strong></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #03a9f4">
-                C++
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
-    <div class="prev">
-        
-    </div>
-    <div class="page-index">
-        
-        <span class="current">1</span>
-        
-        <span>
-            <a class="page-num" href="/page/2/">2</a>
-            
-            
-        </span>
-        
-    </div>
-    <div class="next">
-        
-        <a class="page-num" href="/page/2/">
-            <i class="fa-solid fa-caret-right fa-fw"></i>
-        </a>
-        
-    </div>
-</div>
-
-    </div>
+<ul class="menu">
+  
     
-    <div id="home-card">
-        <div id="card-div">
-    <div class="card-style">
-        <div class="avatar">
-            <img src="/images/avatar.jpg" alt="avatar" />
-        </div>
-        <div class="name">AdventureYX</div>
-        <div class="description">
-            <p>Description<br>…</p>
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
 
-        </div>
-        
-        <div class="icon-links">
-            
-            <span class="icon-link">
-                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
-                    <i
-                        class="fa- fa- fa-fw"
-                    ></i>
-                </a>
-            </span>
-            
-        </div>
-        
-        
+
+</ul>
+
+      </div>
     </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/page/2/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
 </div>
 
-    </div>
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
     
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-                <footer id="footer">
-    <div id="footer-wrap">
-        <div>
-            &copy;
-            2022 - 2023 Adventure
-            <span id="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            &commat;AdventureYX
-        </div>
-        <div>
-            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
-        </div>
-        
-    </div>
-</footer>
+    <span><a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" title="STL函数">STL函数</a></span>
+  </li>
 
-            </div>
-            </transition>
-            
-            <transition name="fade">
-            <div id="preview" ref="preview" v-show="previewShow">
-                <img id="preview-content" ref="previewContent" />
-            </div>
-            </transition>
-            
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" title="STL容器">STL容器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/10/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/06/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
         </div>
-        <script src="/js/main.js"></script>
-        
-    </body>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
 </html>

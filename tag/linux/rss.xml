@@ -1,0 +1,507 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Adventure • Posts by &#34;linux&#34; tag</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 06 Mar 2023 22:03:56 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Mar 2023 22:03:56 +0800</lastBuildDate>
+        <category>C++</category>
+        <category>DataBase</category>
+        <category>Linux</category>
+        <category>Qt</category>
+        <category>QML</category>
+        <category>STL</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/03/06/Linux/</guid>
+            <title>Linux</title>
+            <link>http://example.com/2023/03/06/Linux/</link>
+            <category>Linux</category>
+            <pubDate>Mon, 06 Mar 2023 22:03:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;linux-配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-配置&#34;&gt;#&lt;/a&gt; Linux 配置&lt;/h1&gt;
+&lt;p&gt;windows powershell&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新软件包&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装最常用 linux 桌面程序 gedit&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; gedit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装编译工具 gcc+cmake&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; build-essential&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; cmake&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;linux-系统目录结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-系统目录结构&#34;&gt;#&lt;/a&gt; Linux 系统目录结构&lt;/h1&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ls&lt;/span&gt; /&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;image-20230309080718084.png&#34; alt=&#34;image-20230309080718084&#34;&gt;&lt;/p&gt;
+&lt;p&gt;树状目录结构：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;d0c50-linux2bfile2bsystem2bhierarchy.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统启动必须：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/boot&lt;/code&gt; ：存放的启动 Linux 时使用的内核文件，包括连接文件以及镜像文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/etc&lt;/code&gt; ：&lt;strong&gt;存放&lt;/strong&gt;所有&lt;strong&gt;的系统需要的&lt;/strong&gt;配置文件&lt;strong&gt;和&lt;/strong&gt;子目录列表，** 更改目录下的文件可能会导致系统不能启动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/lib&lt;/code&gt; ：存放基本代码库（比如 c++ 库），其作用类似于 Windows 里的 DLL 文件。几乎所有的应用程序都需要用到这些共享库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/sys&lt;/code&gt; ： 这是 linux2.6 内核的一个很大的变化。该目录下安装了 2.6 内核中新出现的一个文件系统 sysfs 。sysfs 文件系统集成了下面 3 种文件系统的信息：针对进程信息的 proc 文件系统、针对设备的 devfs 文件系统以及针对伪终端的 devpts 文件系统。该文件系统是内核设备树的一个直观反映。当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;指令集合：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/bin&lt;/code&gt; ：存放着最常用的程序和指令&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/sbin&lt;/code&gt; ：只有系统管理员能使用的程序和指令。是 Superuser Binaries (超级用户的二进制文件) 的缩写，这里存放的是系统管理员使用的系统管理程序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;外部文件管理：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/dev&lt;/code&gt;  ：Device (设备) 的缩写，存放的是 Linux 的外部设备。** 注意：** 在 Linux 中访问设备和访问文件的方式是相同的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/media&lt;/code&gt; ：类 windows 的 ** 其他设备，** 例如 U 盘、光驱等等，识别后 linux 会把设备放到这个目录下。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/mnt&lt;/code&gt; ：临时挂载别的文件系统的，我们可以将光驱挂载在 /mnt/ 上，然后进入该目录就可以查看光驱里的内容了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;临时文件：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/run&lt;/code&gt; ：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/lost+found&lt;/code&gt; ：一般情况下为空的，系统非法关机后，这里就存放一些文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/tmp&lt;/code&gt; ：这个目录是用来存放一些临时文件的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;账户：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/root&lt;/code&gt; ：系统管理员的用户主目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/home&lt;/code&gt; ：用户的主目录，以用户的账号命名的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/usr&lt;/code&gt; ： usr 是 unix shared resources (共享资源) 的缩写，这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于 windows 下的 program files 目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/usr/bin&lt;/code&gt; ：系统用户使用的应用程序与指令。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/usr/sbin&lt;/code&gt; ：超级用户使用的比较高级的管理程序和系统守护程序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/usr/src&lt;/code&gt; ：内核源代码默认的放置目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;运行过程中要用：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/var&lt;/code&gt; ：存放经常修改的数据，比如程序运行的日志文件（/var/log 目录下）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/proc&lt;/code&gt; ：管理 ** 内存空间！** 虚拟的目录，是系统内存的映射，我们可以直接访问这个目录来，获取系统信息。这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件来做修改。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;扩展用的：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/opt&lt;/code&gt; ：默认是空的，我们安装额外软件可以放在这个里面。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/srv&lt;/code&gt; ：存放服务启动后需要提取的数据 **（不用服务器就是空）**&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;linux-文件基本属性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-文件基本属性&#34;&gt;#&lt;/a&gt; Linux 文件基本属性&lt;/h1&gt;
+&lt;p&gt;Linux 系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。&lt;/p&gt;
+&lt;p&gt;为了保护系统的安全性，Linux 系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。&lt;/p&gt;
+&lt;p&gt;在 Linux 中我们通常使用以下两个命令来修改文件或目录的所属用户与权限：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;chown&lt;/code&gt;  (change owner) ： 修改所属用户与组。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chmod&lt;/code&gt;  (change mode) ： 修改用户的权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 Linux 中我们可以使用  &lt;code&gt;ll&lt;/code&gt;  或者  &lt;code&gt;ls –l&lt;/code&gt;  命令来显示一个文件的属性以及文件所属的用户和组，如：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;root@LAPTOP-G8CK4FEN:/&lt;span class=&#34;token comment&#34;&gt;# ll&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;total &lt;span class=&#34;token number&#34;&gt;1480&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwxr-xr-x  &lt;span class=&#34;token number&#34;&gt;19&lt;/span&gt; root root    &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Mar  &lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt; 08:01 ./&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwxr-xr-x  &lt;span class=&#34;token number&#34;&gt;19&lt;/span&gt; root root    &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Mar  &lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt; 08:01 &lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;lrwxrwxrwx   &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; root root       &lt;span class=&#34;token number&#34;&gt;7&lt;/span&gt; Apr &lt;span class=&#34;token number&#34;&gt;23&lt;/span&gt;  &lt;span class=&#34;token number&#34;&gt;2020&lt;/span&gt; bin -&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; usr/bin/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwxr-xr-x   &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; root root    &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Apr &lt;span class=&#34;token number&#34;&gt;23&lt;/span&gt;  &lt;span class=&#34;token number&#34;&gt;2020&lt;/span&gt; boot/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;实例中，&lt;strong&gt;boot&lt;/strong&gt; 文件的第一个属性用 &lt;strong&gt;d&lt;/strong&gt; 表示。&lt;strong&gt;d&lt;/strong&gt; 在 Linux 中代表该文件是一个目录文件。&lt;/p&gt;
+&lt;p&gt;在 Linux 中第一个字符代表这个文件是目录、文件或链接文件等等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当为 &lt;strong&gt;d&lt;/strong&gt; 则是目录&lt;/li&gt;
+&lt;li&gt;当为 &lt;strong&gt;-&lt;/strong&gt; 则是文件；&lt;/li&gt;
+&lt;li&gt;若是 &lt;strong&gt;l&lt;/strong&gt; 则表示为链接文档 (link file)；&lt;/li&gt;
+&lt;li&gt;若是 &lt;strong&gt;b&lt;/strong&gt; 则表示为装置文件里面的可供储存的接口设备 (可随机存取装置)；&lt;/li&gt;
+&lt;li&gt;若是 &lt;strong&gt;c&lt;/strong&gt; 则表示为装置文件里面的串行端口设备，例如键盘、鼠标 (一次性读取装置)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接下来的字符中，以三个为一组，且均为 &lt;strong&gt;rwx&lt;/strong&gt; 的三个参数的组合。其中， &lt;strong&gt;r&lt;/strong&gt; 代表可读 (read)、 &lt;strong&gt;w&lt;/strong&gt; 代表可写 (write)、 &lt;strong&gt;x&lt;/strong&gt; 代表可执行 (execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号 &lt;strong&gt;-&lt;/strong&gt; 而已。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;file-llls22.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;363003_1227493859FdXT.png&#34; alt=&#34;363003_1227493859FdXT&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从左至右用 &lt;strong&gt;0-9&lt;/strong&gt; 这些数字来表示。&lt;/p&gt;
+&lt;p&gt;第 &lt;strong&gt;0&lt;/strong&gt; 位确定文件类型，第 &lt;strong&gt;1-3&lt;/strong&gt; 位确定属主（该文件的所有者）拥有该文件的权限。&lt;/p&gt;
+&lt;p&gt;第 4-6 位确定属组（所有者的同组用户）拥有该文件的权限，第 7-9 位确定其他用户拥有该文件的权限。&lt;/p&gt;
+&lt;p&gt;其中，第 &lt;strong&gt;1、4、7&lt;/strong&gt; 位表示读权限，如果用 &lt;strong&gt;r&lt;/strong&gt; 字符表示，则有读权限，如果用 &lt;strong&gt;-&lt;/strong&gt; 字符表示，则没有读权限；第 &lt;strong&gt;2、5、8&lt;/strong&gt; 位表示写权限，如果用 &lt;strong&gt;w&lt;/strong&gt; 字符表示，则有写权限，如果用 &lt;strong&gt;-&lt;/strong&gt; 字符表示没有写权限；第 &lt;strong&gt;3、6、9&lt;/strong&gt; 位表示可执行权限，如果用 &lt;strong&gt;x&lt;/strong&gt; 字符表示，则有执行权限，如果用 &lt;strong&gt;-&lt;/strong&gt; 字符表示，则没有执行权限。&lt;/p&gt;
+&lt;h1 id=&#34;linux-文件与目录管理&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-文件与目录管理&#34;&gt;#&lt;/a&gt; Linux 文件与目录管理&lt;/h1&gt;
+&lt;p&gt;我们知道 Linux 的目录结构为树状结构，最顶级的目录为根目录 &lt;strong&gt;/&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;绝对路径：&lt;/strong&gt;&lt;br&gt;
+路径的写法，由根目录 &lt;strong&gt;/&lt;/strong&gt; 写起，例如： &lt;code&gt;/usr/share/doc&lt;/code&gt;  这个目录。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相对路径：&lt;/strong&gt;&lt;br&gt;
+路径的写法，不是由 &lt;strong&gt;/&lt;/strong&gt; 写起，例如由  &lt;code&gt;/usr/share/doc&lt;/code&gt;  要到  &lt;code&gt;/usr/share/man&lt;/code&gt;  底下时，可以写成：  &lt;code&gt;cd ../man&lt;/code&gt;  这就是相对路径的写法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;“/” 在系统文件中表示绝对路径；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;“/” 处于 Linux 文件系统&lt;strong&gt;树形结构&lt;/strong&gt;的最顶端，我们称它为 Linux 文件系统的 root，&lt;strong&gt;它是 Linux 文件系统的入口&lt;/strong&gt;；&lt;br&gt;
+所有的目录、文件、设备都在 “/” 之下，它是 Linux 文件系统最顶层的唯一的目录；&lt;br&gt;
+一般建议在根目录下面只有目录，不要直接存放文件；&lt;br&gt;
+根目录是 linux 系统启动时系统第一个载入的分区，所以启动过程中用到的文件应该都放在这个分区中；&lt;br&gt;
+其中 &lt;code&gt;/etc&lt;/code&gt; 、 &lt;code&gt;/bin&lt;/code&gt; 、 &lt;code&gt;/dev&lt;/code&gt; 、 &lt;code&gt;/lib&lt;/code&gt; 、 &lt;code&gt;/sbin&lt;/code&gt;  这 5 个子目录都应该要与根目录连在一起，不可独立成为某个分区。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“./” 代表的意思是：&lt;/strong&gt; ./ 代表当前文件目录，某一个文件（或者目录）的查找路径是从当前目录 “.” 下面开始进行查找。&lt;/p&gt;
+&lt;p&gt;**“~” 代表的意思是：** 表示代码主目录，也就是当前登录用户的用户目录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“…” 代表的意思是：&lt;/strong&gt;“…” 表示上级目录&lt;/p&gt;
+&lt;h2 id=&#34;处理目录的常用命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理目录的常用命令&#34;&gt;#&lt;/a&gt; 处理目录的常用命令&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ls&lt;/code&gt; （英文全拼：list files）: 列出目录及文件名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd&lt;/code&gt; （英文全拼：change directory）：切换目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pwd&lt;/code&gt; （英文全拼：print work directory）：显示目前的目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkdir&lt;/code&gt; （英文全拼：make directory）：创建一个新的目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rmdir&lt;/code&gt; （英文全拼：remove directory）：删除一个空的目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp&lt;/code&gt; （英文全拼：copy file）: 复制文件或目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rm&lt;/code&gt; （英文全拼：remove）: 删除文件或目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mv&lt;/code&gt; （英文全拼：move file）: 移动文件与目录，或修改文件与目录的名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以使用 &lt;em&gt;man [命令]&lt;/em&gt; 来查看各个命令的使用文档，如 ：man cp。&lt;/p&gt;
+&lt;h3 id=&#34;ls-列出目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ls-列出目录&#34;&gt;#&lt;/a&gt; ls (列出目录)&lt;/h3&gt;
+&lt;p&gt;在 Linux 系统当中， ls 命令可能是最常被运行的。&lt;/p&gt;
+&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-a ：全部的文件，连同隐藏文件 (开头为。的文件) 一起列出来 (常用)&lt;/li&gt;
+&lt;li&gt;-d ：仅列出目录本身，而不是列出目录内的文件数据 (常用)&lt;/li&gt;
+&lt;li&gt;-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cd-切换目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cd-切换目录&#34;&gt;#&lt;/a&gt; cd (切换目录)&lt;/h3&gt;
+&lt;p&gt;cd 是 Change Directory 的缩写，这是用来变换工作目录的命令。&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;相对路径或绝对路径&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#使用 mkdir 命令创建 runoob 目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mkdir runoob&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#使用绝对路径切换到 runoob 目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd /root/runoob/&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#使用相对路径切换到 runoob 目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd ./runoob/&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 表示回到自己的家目录，亦即是 /root 这个目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www runoob&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd ~&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 表示去到目前的上一级目录，亦即是 /root 的上一级目录的意思；&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd ..&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;pwd-显示目前所在的目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pwd-显示目前所在的目录&#34;&gt;#&lt;/a&gt; pwd (显示目前所在的目录)&lt;/h3&gt;
+&lt;p&gt;pwd 是 &lt;strong&gt;Print Working Directory&lt;/strong&gt; 的缩写，也就是显示目前所在目录的命令。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# pwd [-P]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;-P&lt;/strong&gt; ：显示出确实的路径，而非使用链接 (link) 路径。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mkdir-创建新目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mkdir-创建新目录&#34;&gt;#&lt;/a&gt; mkdir (创建新目录)&lt;/h3&gt;
+&lt;p&gt;如果想要创建新的目录的话，那么就使用 mkdir (make directory) 吧。&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-mp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 目录名称&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～&lt;/li&gt;
+&lt;li&gt;-p ：帮助你直接将所需要的目录 (包含上一级目录) 递归创建起来！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实例：请到 /tmp 底下尝试创建数个新目录看看：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd /tmp&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mkdir test    &amp;lt;== 创建一名为 test 的新目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mkdir test1/test2/test3/test4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mkdir: cannot create directory `test1/test2/test3/test4&#39;: &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;No such &lt;span class=&#34;token function&#34;&gt;file&lt;/span&gt; or directory       &lt;span class=&#34;token operator&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; 没办法直接创建此目录啊！&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mkdir -p test1/test2/test3/test4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;rmdir-删除空的目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rmdir-删除空的目录&#34;&gt;#&lt;/a&gt; rmdir (删除空的目录)&lt;/h3&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;rmdir&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-p&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 目录名称&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**-p ：** 从该目录起，一次删除多级空目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;删除 runoob 目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[root@www tmp]# rmdir runoob/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将 mkdir 实例中创建的目录 (/tmp 底下) 删除掉！&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -l   &amp;lt;== 看看有多少目录存在？&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwxr-xr-x  &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt; root  root &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Jul &lt;span class=&#34;token number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;12&lt;/span&gt;:50 &lt;span class=&#34;token builtin class-name&#34;&gt;test&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwxr-xr-x  &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt; root  root &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Jul &lt;span class=&#34;token number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;12&lt;/span&gt;:53 test1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwx--x--x  &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; root  root &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Jul &lt;span class=&#34;token number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;12&lt;/span&gt;:54 test2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# rmdir test   &amp;lt;== 可直接删除掉，没问题&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# rmdir test1  &amp;lt;== 因为尚有内容，所以无法删除！&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;rmdir: `test1&#39;: Directory not empty&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# rmdir -p test1/test2/test3/test4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -l        &amp;lt;== 您看看，底下的输出中 test 与 test1 不见了！&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;drwx--x--x  &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; root  root &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt; Jul &lt;span class=&#34;token number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;12&lt;/span&gt;:54 test2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 一次删除。&lt;/p&gt;
+&lt;p&gt;不过要注意的是，这个 &lt;strong&gt;rmdir 仅能删除空的目录&lt;/strong&gt;，你可以使用 &lt;strong&gt;rm 命令来删除非空目录&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;cp-复制文件或目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cp-复制文件或目录&#34;&gt;#&lt;/a&gt; cp (复制文件或目录)&lt;/h3&gt;
+&lt;p&gt;cp 即拷贝文件和目录。&lt;/p&gt;
+&lt;p&gt;语法:&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cp [-adfilprsu] 来源档 (source) 目标档 (destination)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cp [options] source1 source2 source3 .... directory&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**-a：** 相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)&lt;/li&gt;
+&lt;li&gt;**-d：** 若来源档为链接档的属性 (link file)，则复制链接档属性而非文件本身；&lt;/li&gt;
+&lt;li&gt;**-f：** 为强制 (force) 的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；&lt;/li&gt;
+&lt;li&gt;**-i：** 若目标档 (destination) 已经存在时，在覆盖时会先询问动作的进行 (常用)&lt;/li&gt;
+&lt;li&gt;**-l：** 进行硬式链接 (hard link) 的链接档创建，而非复制文件本身；&lt;/li&gt;
+&lt;li&gt;**-p：** 连同文件的属性一起复制过去，而非使用默认属性 (备份常用)；&lt;/li&gt;
+&lt;li&gt;**-r：** 递归持续复制，用於目录的复制行为；(常用)&lt;/li&gt;
+&lt;li&gt;**-s：** 复制成为符号链接档 (symbolic link)，亦即『捷径』文件；&lt;/li&gt;
+&lt;li&gt;**-u：** 若 destination 比 source 旧才升级 destination ！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用 root 身份，将 root 目录下的 .bashrc 复制到 /tmp 下，并命名为 bashrc&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cp ~/.bashrc /tmp/bashrc&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cp -i ~/.bashrc /tmp/bashrc&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cp: overwrite `/tmp/bashrc&#39;? n  &lt;span class=&#34;token operator&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;n不覆盖，y为覆盖&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;rm-移除文件或目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rm-移除文件或目录&#34;&gt;#&lt;/a&gt; rm (移除文件或目录)&lt;/h3&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-fir&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 文件或目录&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；&lt;/li&gt;
+&lt;li&gt;-i ：互动模式，在删除前会询问使用者是否动作&lt;/li&gt;
+&lt;li&gt;-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将刚刚在 cp 的实例中创建的 bashrc 删除掉！&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# rm -i bashrc&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;rm: remove regular &lt;span class=&#34;token function&#34;&gt;file&lt;/span&gt; `bashrc&#39;? y&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;如果加上 -i 的选项就会主动询问喔，避免你删除到错误的档名！&lt;/p&gt;
+&lt;h3 id=&#34;mv-移动文件与目录或修改名称&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mv-移动文件与目录或修改名称&#34;&gt;#&lt;/a&gt; mv (移动文件与目录，或修改名称)&lt;/h3&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mv [-fiu] source destination&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mv [options] source1 source2 source3 .... directory&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；&lt;/li&gt;
+&lt;li&gt;-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！&lt;/li&gt;
+&lt;li&gt;-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复制一文件，创建一目录，将文件移动到目录中&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cd /tmp&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cp ~/.bashrc bashrc&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mkdir mvtest&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mv bashrc mvtest&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;将某个文件移动到某个目录去，就是这样做！&lt;/p&gt;
+&lt;p&gt;将刚刚的目录名称更名为 mvtest2&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www tmp&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# mv mvtest mvtest2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;linux-文件内容查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-文件内容查看&#34;&gt;#&lt;/a&gt; Linux 文件内容查看&lt;/h2&gt;
+&lt;p&gt;Linux 系统中使用以下命令来查看文件的内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cat&lt;/code&gt;  由第一行开始显示文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tac&lt;/code&gt;  从最后一行开始显示，可以看出 tac 是 cat 的倒着写！&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nl&lt;/code&gt;   显示的时候，顺道输出行号！&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;more&lt;/code&gt;  一页一页的显示文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;less&lt;/code&gt;  与  &lt;code&gt;more&lt;/code&gt;  类似，但是比 more 更好的是，他可以往前翻页！&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;head&lt;/code&gt;  只看头几行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tail&lt;/code&gt;  只看尾巴几行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;你可以使用 *man [命令]* 来查看各个命令的使用文档，如 ：man cp。&lt;/p&gt;
+&lt;h3 id=&#34;cat&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cat&#34;&gt;#&lt;/a&gt; cat&lt;/h3&gt;
+&lt;p&gt;由第一行开始显示文件内容&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-AbEnTv&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；&lt;/li&gt;
+&lt;li&gt;-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！&lt;/li&gt;
+&lt;li&gt;-E ：将结尾的断行字节 $ 显示出来；&lt;/li&gt;
+&lt;li&gt;-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；&lt;/li&gt;
+&lt;li&gt;-T ：将 [tab] 按键以 ^I 显示出来；&lt;/li&gt;
+&lt;li&gt;-v ：列出一些看不出来的特殊字符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;检看 /etc/issue 这个文件的内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# cat /etc/issue&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CentOS release &lt;span class=&#34;token number&#34;&gt;6.4&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Final&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Kernel &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;r on an &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;m&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;tac&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tac&#34;&gt;#&lt;/a&gt; tac&lt;/h3&gt;
+&lt;p&gt;tac 与 cat 命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# tac /etc/issue&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Kernel &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;r on an &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;m&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CentOS release &lt;span class=&#34;token number&#34;&gt;6.4&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Final&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;nl&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nl&#34;&gt;#&lt;/a&gt; nl&lt;/h3&gt;
+&lt;p&gt;显示行号&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;nl&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-bnw&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 文件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-b ：指定行号指定的方式，主要有两种：&lt;br&gt;
+-b a ：表示不论是否为空行，也同样列出行号 (类似 cat -n)；&lt;br&gt;
+-b t ：如果有空行，空的那一行不要列出行号 (默认值)；&lt;/li&gt;
+&lt;li&gt;-n ：列出行号表示的方法，主要有三种：&lt;br&gt;
+-n ln ：行号在荧幕的最左方显示；&lt;br&gt;
+-n rn ：行号在自己栏位的最右方显示，且不加 0 ；&lt;br&gt;
+-n rz ：行号在自己栏位的最右方显示，且加 0 ；&lt;/li&gt;
+&lt;li&gt;-w ：行号栏位的占用的位数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实例一：用 nl 列出 /etc/issue 的内容&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# nl /etc/issue&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;  CentOS release &lt;span class=&#34;token number&#34;&gt;6.4&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Final&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;  Kernel &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;r on an &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;m&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;more&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#more&#34;&gt;#&lt;/a&gt; more&lt;/h3&gt;
+&lt;p&gt;一页一页翻动&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# more /etc/man_db.config &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Generated automatically from man.conf.in by the&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# configure script.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# man.conf from man-1.6d&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;中间省略&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;--More--&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;28&lt;/span&gt;%&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token operator&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; 重点在这一行喔！你的光标也会在这里等待你的命令&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在 more 这个程序的运行过程中，你有几个按键可以按的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;空白键 (space)：代表向下翻一页；&lt;/li&gt;
+&lt;li&gt;Enter     ：代表向下翻『一行』；&lt;/li&gt;
+&lt;li&gt;/ 字串     ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；&lt;/li&gt;
+&lt;li&gt;:f      ：立刻显示出档名以及目前显示的行数；&lt;/li&gt;
+&lt;li&gt;q      ：代表立刻离开 more ，不再显示该文件内容。&lt;/li&gt;
+&lt;li&gt;b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;less&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#less&#34;&gt;#&lt;/a&gt; less&lt;/h3&gt;
+&lt;p&gt;一页一页翻动，以下实例输出 /etc/man.config 文件的内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[root@www ~]# less /etc/man.config
+#
+# Generated automatically from man.conf.in by the
+# configure script.
+#
+# man.conf from man-1.6d
+....(中间省略)....
+:   &amp;lt;== 这里可以等待你输入命令！
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;less 运行时可以输入的命令有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;空白键  ：向下翻动一页；&lt;/li&gt;
+&lt;li&gt;[pagedown]：向下翻动一页；&lt;/li&gt;
+&lt;li&gt;[pageup] ：向上翻动一页；&lt;/li&gt;
+&lt;li&gt;/ 字串   ：向下搜寻『字串』的功能；&lt;/li&gt;
+&lt;li&gt;? 字串   ：向上搜寻『字串』的功能；&lt;/li&gt;
+&lt;li&gt;n     ：重复前一个搜寻 (与 / 或？有关！)&lt;/li&gt;
+&lt;li&gt;N     ：反向的重复前一个搜寻 (与 / 或？有关！)&lt;/li&gt;
+&lt;li&gt;q     ：离开 less 这个程序；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;head&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#head&#34;&gt;#&lt;/a&gt; head&lt;/h3&gt;
+&lt;p&gt;取出文件前面几行&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;head&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-n number&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 文件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-n ：后面接数字，代表显示几行的意思&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# head /etc/man.config&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# head -n 20 /etc/man.config&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;tail&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tail&#34;&gt;#&lt;/a&gt; tail&lt;/h3&gt;
+&lt;p&gt;取出文件后面几行&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tail&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-n number&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 文件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-n ：后面接数字，代表显示几行的意思&lt;/li&gt;
+&lt;li&gt;-f ：表示持续侦测后面所接的档名，要等到按下 [ctrl]-c 才会结束 tail 的侦测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# tail /etc/man.config&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 默认的情况中，显示最后的十行！若要显示最后的 20 行，就得要这样：&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@www ~&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# tail -n 20 /etc/man.config&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;linux-链接概念&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-链接概念&#34;&gt;#&lt;/a&gt; Linux 链接概念&lt;/h1&gt;
+&lt;p&gt;Linux 链接分两种，一种被称为&lt;strong&gt;硬链接（Hard Link）&lt;/strong&gt;，另一种被称为&lt;strong&gt;符号链接（Symbolic Link）&lt;/strong&gt;。默认情况下，&lt;strong&gt;ln&lt;/strong&gt; 命令产生硬链接。&lt;/p&gt;
+&lt;h2 id=&#34;硬连接&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#硬连接&#34;&gt;#&lt;/a&gt; 硬连接&lt;/h2&gt;
+&lt;p&gt;硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号 (Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。&lt;/p&gt;
+&lt;p&gt;硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止 “误删” 的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。&lt;/p&gt;
+&lt;h2 id=&#34;软连接&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#软连接&#34;&gt;#&lt;/a&gt; 软连接&lt;/h2&gt;
+&lt;p&gt;另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是 “主从” 关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通过实验加深理解&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[oracle@Linux]$ touch f1          #创建一个测试文件f1
+[oracle@Linux]$ ln f1 f2          #创建f1的一个硬连接文件f2
+[oracle@Linux]$ ln -s f1 f3       #创建f1的一个符号连接文件f3
+[oracle@Linux]$ ls -li            # -i参数显示文件的inode节点信息
+total 0
+9797648 -rw-r--r--  2 oracle oinstall 0 Apr 21 08:11 f1
+9797648 -rw-r--r--  2 oracle oinstall 0 Apr 21 08:11 f2
+9797649 lrwxrwxrwx  1 oracle oinstall 2 Apr 21 08:11 f3 -&amp;gt; f1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从上面的结果中可以看出，硬连接文件 f2 与原文件 f1 的 inode 节点相同，均为 9797648，然而符号连接文件的 inode 节点不同。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[oracle@Linux]$ echo &amp;quot;I am f1 file&amp;quot; &amp;gt;&amp;gt;f1
+[oracle@Linux]$ cat f1
+I am f1 file
+[oracle@Linux]$ cat f2
+I am f1 file
+[oracle@Linux]$ cat f3
+I am f1 file
+[oracle@Linux]$ rm -f f1
+[oracle@Linux]$ cat f2
+I am f1 file
+[oracle@Linux]$ cat f3
+cat: f3: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过上面的测试可以看出：当删除原始文件 f1 后，硬连接 f2 不受影响，但是符号连接 f3 文件无效&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;依此您可以做一些相关的测试，可以得到以下全部结论：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1). 删除符号连接 f3, 对 f1,f2 无影响；&lt;/li&gt;
+&lt;li&gt;2). 删除硬连接 f2，对 f1,f3 也无影响；&lt;/li&gt;
+&lt;li&gt;3). 删除原文件 f1，对硬连接 f2 没有影响，导致符号连接 f3 失效；&lt;/li&gt;
+&lt;li&gt;4). 同时删除原文件 f1, 硬连接 f2，整个文件会真正的被删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;linux-用户和用户组管理&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-用户和用户组管理&#34;&gt;#&lt;/a&gt; Linux 用户和用户组管理&lt;/h1&gt;
+&lt;p&gt;Linux 系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。&lt;/p&gt;
+&lt;p&gt;用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。&lt;/p&gt;
+&lt;p&gt;每个用户账号都拥有一个唯一的用户名和各自的口令。&lt;/p&gt;
+&lt;p&gt;用户在登录时键入正确的用户名和口令后，就能够进入系统和自己的主目录。&lt;/p&gt;
+&lt;p&gt;实现用户账号的管理，要完成的工作主要有如下几个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户账号的添加、删除与修改。&lt;/li&gt;
+&lt;li&gt;用户口令的管理。&lt;/li&gt;
+&lt;li&gt;用户组的管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;linux-磁盘管理&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-磁盘管理&#34;&gt;#&lt;/a&gt; Linux 磁盘管理&lt;/h1&gt;
+&lt;p&gt;Linux 磁盘管理好坏直接关系到整个系统的性能问题。&lt;/p&gt;
+&lt;p&gt;Linux 磁盘管理常用三个命令为  &lt;code&gt;df&lt;/code&gt; 、 &lt;code&gt;du&lt;/code&gt;  和  &lt;code&gt;fdisk&lt;/code&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;df&lt;/code&gt; （英文全称：disk free）：列出文件系统的整体磁盘使用量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;du&lt;/code&gt; （英文全称：disk used）：检查磁盘空间使用量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fdisk&lt;/code&gt; ：用于磁盘分区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;df&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#df&#34;&gt;#&lt;/a&gt; df&lt;/h2&gt;
+&lt;p&gt;df 命令参数功能：检查文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-ahikHTm&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;目录或文件名&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-a&lt;/code&gt;  ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-k&lt;/code&gt;  ：以 KBytes 的容量显示各文件系统；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-m&lt;/code&gt;  ：以 MBytes 的容量显示各文件系统；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-h&lt;/code&gt;  ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-H&lt;/code&gt;  ：以 M=1000K 取代 M=1024K 的进位方式；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-T&lt;/code&gt;  ：显示文件系统类型，连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-i&lt;/code&gt;  ：不用硬盘容量，而以 inode 的数量来显示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;du&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#du&#34;&gt;#&lt;/a&gt; du&lt;/h2&gt;
+&lt;p&gt;Linux du 命令也是查看使用空间的，但是与 df 命令不同的是 Linux du 命令是对文件和目录磁盘使用的空间的查看，还是和 df 命令有一些区别的，这里介绍 Linux du 命令。&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;du [-ahskm] 文件或目录名称
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-a&lt;/code&gt;  ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-h&lt;/code&gt;  ：以人们较易读的容量格式 (G/M) 显示；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-s&lt;/code&gt;  ：列出总量而已，而不列出每个各别的目录占用容量；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-S&lt;/code&gt;  ：不包括子目录下的总计，与 -s 有点差别。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-k&lt;/code&gt;  ：以 KBytes 列出容量显示；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-m&lt;/code&gt;  ：以 MBytes 列出容量显示；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;fdisk&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#fdisk&#34;&gt;#&lt;/a&gt; fdisk&lt;/h2&gt;
+&lt;p&gt;fdisk 是 Linux 的磁盘分区表操作工具。&lt;/p&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;fdisk&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;-l&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; 装置名称&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;选项与参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;  ：输出后面接的装置所有的分区内容。若仅有 fdisk -l 时， 则系统将会把整个系统内能够搜寻到的装置的分区均列出来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;linux-vivim&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-vivim&#34;&gt;#&lt;/a&gt; Linux vi/vim&lt;/h1&gt;
+&lt;p&gt;所有的 Unix Like 系统都会内建 vi 文书编辑器，其他的文书编辑器则不一定会存在。&lt;/p&gt;
+&lt;p&gt;但是目前我们使用比较多的是 vim 编辑器。&lt;/p&gt;
+&lt;p&gt;vim 具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。&lt;/p&gt;
+&lt;h2 id=&#34;什么是-vim&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是-vim&#34;&gt;#&lt;/a&gt; 什么是 vim？&lt;/h2&gt;
+&lt;p&gt;Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。&lt;/p&gt;
+&lt;p&gt;简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。&lt;/p&gt;
+&lt;p&gt;连 vim 的官方网站 (&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cudmltLm9yZy8=&#34;&gt;https://www.vim.org/&lt;/span&gt;) 自己也说 vim 是一个程序开发工具而不是文字处理软件。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;vi-vim-cheat-sheet-sch.gif&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;vivim-的使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#vivim-的使用&#34;&gt;#&lt;/a&gt; vi/vim 的使用&lt;/h2&gt;
+&lt;p&gt;基本上 vi/vim 共分为三种模式，分别是&lt;strong&gt;命令模式（Command mode）&lt;/strong&gt;，&lt;strong&gt;输入模式（Insert mode）&lt;strong&gt;和&lt;/strong&gt;底线命令模式（Last line mode）&lt;/strong&gt;。 这三种模式的作用分别是：&lt;/p&gt;
+&lt;h3 id=&#34;命令模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令模式&#34;&gt;#&lt;/a&gt; 命令模式：&lt;/h3&gt;
+&lt;p&gt;用户刚刚启动 vi/vim，便进入了命令模式。&lt;/p&gt;
+&lt;p&gt;此状态下敲击键盘动作会被 Vim 识别为命令，而非输入字符。比如我们此时按下 i，并不会输入一个字符，i 被当作了一个命令。&lt;/p&gt;
+&lt;p&gt;以下是常用的几个命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt;  切换到输入模式，以输入字符。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt;  删除当前光标所在处的字符。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:&lt;/code&gt;  切换到底线命令模式，以在最底一行输入命令。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;若想要编辑文本：启动 Vim，进入了命令模式，按下 i，切换到输入模式。&lt;/p&gt;
+&lt;p&gt;命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令。&lt;/p&gt;
+&lt;h3 id=&#34;输入模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输入模式&#34;&gt;#&lt;/a&gt; 输入模式&lt;/h3&gt;
+&lt;p&gt;在命令模式下按下 i 就进入了输入模式。&lt;/p&gt;
+&lt;p&gt;在输入模式中，可以使用以下按键：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;字符按键以及 Shift 组合&lt;/strong&gt;，输入字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ENTER&lt;/strong&gt;，回车键，换行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BACK SPACE&lt;/strong&gt;，退格键，删除光标前一个字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DEL&lt;/strong&gt;，删除键，删除光标后一个字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方向键&lt;/strong&gt;，在文本中移动光标&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HOME&lt;/strong&gt;/&lt;strong&gt;END&lt;/strong&gt;，移动光标到行首 / 行尾&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Page Up&lt;/strong&gt;/&lt;strong&gt;Page Down&lt;/strong&gt;，上 / 下翻页&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Insert&lt;/strong&gt;，切换光标为输入 / 替换模式，光标将变成竖线 / 下划线&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ESC&lt;/strong&gt;，退出输入模式，切换到命令模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;底线命令模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#底线命令模式&#34;&gt;#&lt;/a&gt; 底线命令模式&lt;/h3&gt;
+&lt;p&gt;在命令模式下按下:（英文冒号）就进入了底线命令模式。&lt;/p&gt;
+&lt;p&gt;底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。&lt;/p&gt;
+&lt;p&gt;在底线命令模式中，基本的命令有（已经省略了冒号）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt;  退出程序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;w&lt;/code&gt;  保存文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按 ESC 键可随时退出底线命令模式。&lt;/p&gt;
+&lt;p&gt;简单的说，我们可以将这三个模式想成底下的图标来表示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;vim-vi-workmodel.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;vivim-使用实例&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#vivim-使用实例&#34;&gt;#&lt;/a&gt; vi/vim 使用实例&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;使用 vi/vim 进入一般模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你想要使用 vi 来建立一个名为 runoob.txt 的文件时，你可以这样做：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; runoob.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;直接输入 &lt;strong&gt;vi 文件名&lt;/strong&gt; 就能够进入 vi 的一般模式了。请注意，记得 &lt;strong&gt;vi 后面一定要加文件名，不管该文件存在与否！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;078207F0-B204-4464-AAEF-982F45EDDAE9.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;按下 i 进入输入模式 (也称为编辑模式)，开始编辑文字&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在一般模式之中，只要按下 i, o, a 等字符就可以进入输入模式了！&lt;/p&gt;
+&lt;p&gt;在编辑模式当中，你可以发现在左下角状态栏中会出现 –INSERT- 的字样，那就是可以输入任意字符的提示。&lt;/p&gt;
+&lt;p&gt;这个时候，键盘上除了 &lt;strong&gt;Esc&lt;/strong&gt; 这个按键之外，其他的按键都可以视作为一般的输入按钮了，所以你可以进行任何的编辑。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;1C928383-471E-4AF1-A61E-9E2CCBD5A913.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;按下 ESC 按钮回到一般模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;好了，假设我已经按照上面的样式给他编辑完毕了，那么应该要如何退出呢？是的！没错！就是给他按下 &lt;strong&gt;Esc&lt;/strong&gt; 这个按钮即可！马上你就会发现画面左下角的 – INSERT – 不见了！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在一般模式中按下 :wq 储存后离开 vi&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OK，我们要存档了，存盘并离开的指令很简单，输入  &lt;code&gt;:wq&lt;/code&gt;  即可保存离开！&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;B2FB5146-327C-4019-AC96-DD7A8EE7460C.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;OK! 这样我们就成功创建了一个 runoob.txt 的文件。&lt;/p&gt;
+&lt;h1 id=&#34;linux-yum-命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-yum-命令&#34;&gt;#&lt;/a&gt; Linux yum 命令&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;yum&lt;/code&gt; （ Yellow dog Updater, Modified）是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。&lt;/p&gt;
+&lt;p&gt;基于 RPM 包管理，能够从指定的服务器自动下载 RPM 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum&lt;/code&gt;  提供了查找、安装、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。&lt;/p&gt;
+&lt;h1 id=&#34;linux-apt-命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-apt-命令&#34;&gt;#&lt;/a&gt; Linux apt 命令&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;apt&lt;/code&gt; （Advanced Packaging Tool）是一个在 Debian 和 Ubuntu 中的 Shell 前端软件包管理器。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt&lt;/code&gt;  命令提供了查找、安装、升级、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt&lt;/code&gt;  命令执行需要超级管理员权限 (root)。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

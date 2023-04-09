@@ -1,601 +1,390 @@
 
+
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Archives | Adventure</title>
-        <meta name="author" content="AdventureYX" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-        <link rel="icon" href="/images/avatar.jpg" />
-        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
-<link rel="stylesheet" href="/css/fonts.min.css" />
-<script> const mixins = {}; </script>
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
-<link
-    rel="stylesheet"
-    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
-/>
-<script src="/js/lib/highlight.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Adventure" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Adventure" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Adventure" href="http://example.com/feed.json" />
 
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
-<script src="/js/lib/preview.js"></script>
+  
+
+<link rel="canonical" href="http://example.com/archives/2023/02/">
 
 
 
+  <title>
+2023 年 / 02 月 -
 
-
-<link rel="stylesheet" href="/css/main.css" />
-
-    <meta name="generator" content="Hexo 6.3.0"></head>
-    <body>
-        <div id="layout">
-            <transition name="fade">
-            <div id="loading" v-show="loading">
-                <div id="loading-circle">
-                    <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="/images/loading.gif" />
-                </div>
-            </div>
-            </transition>
-            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
-    <div class="desktop-menu">
-        <a class="title" href="/">
-            <span>ADVENTURE</span>
-        </a>
-        
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
-        </a>
-        
-        <a href="/about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;About</span>
-        </a>
-        
-        <a href="/archives">
-            <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;Archives</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;Categories</span>
-        </a>
-        
-        <a href="/tags">
-            <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;Tags</span>
-        </a>
-        
+归档 |
+Yume Shoka = Adventure = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
     </div>
-    <div id="mobile-menu">
-        <div class="curtain" @click="shouMenuItems = !shouMenuItems" v-show="shouMenuItems"></div>
-        <div class="title" @click="shouMenuItems = !shouMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;ADVENTURE</span>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">
+      发表于"2023年02月"的文章
+  </h1>
+
+          </div>
         </div>
-        <transition name="slide">
-        <div class="items" v-show="shouMenuItems">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-house fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-box-archive fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
-                </div>
-            </a>
-            
-            <a href="/categories">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-bookmark fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
-                </div>
-            </a>
-            
-            <a href="/tags">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
-                </div>
-            </a>
-            
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="collapse wrap">
+    <h2 class="item header">
+          <a href="/archives">全部</a> <small>/</small> <a href="/archives/2023">2023 年</a> <small>/</small> 02 月<small>归档</small>
+        
+    </h2>
+
+        <article class="item normal" itemscope itemtype="http://schema.org/Article">
+          <div class="meta">
+            <time itemprop="dateCreated"
+                  datetime="2023-02-24T23:59:16+08:00"
+                  content="2023-02-24">
+              02-24
+            </time>
+                <span><a href="/categories/C/">C++</a></span>
+          </div>
+
+          <div class="title">
+              <a href="/2023/02/24/C++Study/" itemprop="url">
+                <span itemprop="name">C++ Study</span>
+              </a>
+          </div>
+        </article>
+  </div>
+
+  
+
+
+
         </div>
-        </transition>
+        <div id="sidebar">
+          
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">11</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">7</span>
+        <span class="name">标签</span>
+      </a>
     </div>
 </nav>
 
-            <transition name="into">
-            <div id="main" v-show="!loading">
-                
-<div id="archives">
-    
-    <div id="timeline-wrap" ref="timeline">
-        
-        <div class="timeline" data-title="c++study">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/2/24</div>
-                <a href="/2023/02/24/C++Study/">
-                    <h3>C++ Study</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #03a9f4">C++</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="c++面经">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/5</div>
-                <a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/">
-                    <h3>C++面经</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #03a9f4">C++</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="linux">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/6</div>
-                <a href="/2023/03/06/Linux/">
-                    <h3>Linux</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Linux/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Linux
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Linux/" style="color: #ffa2c4">Linux</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="stl">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/9</div>
-                <a href="/2023/03/09/STL/">
-                    <h3>STL</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #00a596">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/STL/" style="color: #00a596">STL</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="cmu15-445">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/10</div>
-                <a href="/2023/03/10/CMU15-445/">
-                    <h3>CMU15-445</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/DataBase/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            DataBase
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/DataBase/" style="color: #ff7d73">DataBase</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="stl容器">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/10</div>
-                <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/">
-                    <h3>STL容器</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #00a596">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/STL/" style="color: #00bcd4">STL</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="stl函数">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/12</div>
-                <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/">
-                    <h3>STL函数</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #ffa2c4">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/STL/" style="color: #00a596">STL</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="qtstudy">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/12</div>
-                <a href="/2023/03/12/QtStudy/">
-                    <h3>Qt Study</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Qt/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Qt
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #ff7d73">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Qt/" style="color: #00bcd4">Qt</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="设计模式">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/20</div>
-                <a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                    <h3>设计模式</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #ff7d73">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="qml&qtquick">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/26</div>
-                <a href="/2023/03/26/QML&QtQuick/">
-                    <h3>QML &amp; Qt Quick</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Qt/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Qt
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #ff7d73">C++</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Qt/" style="color: #03a9f4">Qt</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/QML/" style="color: #03a9f4">QML</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="c++11">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/4/2</div>
-                <a href="/2023/04/02/C++11/">
-                    <h3>C++11</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/C/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            C++
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/C/" style="color: #03a9f4">C++</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-    </div>
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
 </div>
 
-                <footer id="footer">
-    <div id="footer-wrap">
-        <div>
-            &copy;
-            2022 - 2023 Adventure
-            <span id="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            &commat;AdventureYX
-        </div>
-        <div>
-            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
-        </div>
-        
-    </div>
-</footer>
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
 
-            </div>
-            </transition>
-            
-            <transition name="fade">
-            <div id="preview" ref="preview" v-show="previewShow">
-                <img id="preview-content" ref="previewContent" />
-            </div>
-            </transition>
-            
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
         </div>
-        <script src="/js/main.js"></script>
-        
-    </body>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/06/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" title="STL函数">STL函数</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" title="STL容器">STL容器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'archives/2023/02/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
 </html>

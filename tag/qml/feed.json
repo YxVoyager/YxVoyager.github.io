@@ -1,0 +1,20 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Adventure • All posts by \"qml\" tag",
+    "description": "",
+    "home_page_url": "http://example.com",
+    "items": [
+        {
+            "id": "http://example.com/2023/03/26/QML&QtQuick/",
+            "url": "http://example.com/2023/03/26/QML&QtQuick/",
+            "title": "QML & Qt Quick",
+            "date_published": "2023-03-26T02:12:08.000Z",
+            "content_html": "<h1 id=\"qml-基础\"><a class=\"markdownIt-Anchor\" href=\"#qml-基础\">#</a> QML 基础</h1>\n<p>QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的<strong>声明式</strong>脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。</p>\n<p>Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI 界面，从而开发出具有视觉吸引力的应用程序。</p>\n<h2 id=\"基本语法\"><a class=\"markdownIt-Anchor\" href=\"#基本语法\">#</a> 基本语法</h2>\n<ul>\n<li><code>import</code>  语句导入一个模块。Qt6 可以不写版本号，自动加载最高版本模块。</li>\n<li>每个 QML 文件都需要有一个唯一的根元素（像 HTML 一样</li>\n<li>元素声明形式： <code>type&#123;  &#125;</code></li>\n<li>元素属性： <code>name:value</code></li>\n<li>QML 文档中的任意元素可以通过使用其 id 进行访问</li>\n<li>元素可以嵌套，父元素可以有子元素。子元素可以使用 parent 关键字访问父元素。</li>\n</ul>\n",
+            "tags": [
+                "C++",
+                "Qt",
+                "QML"
+            ]
+        }
+    ]
+}

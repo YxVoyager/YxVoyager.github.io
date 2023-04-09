@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Adventure • Posts by &#34;qml&#34; tag</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 26 Mar 2023 10:12:08 +0800</pubDate>
+        <lastBuildDate>Sun, 26 Mar 2023 10:12:08 +0800</lastBuildDate>
+        <category>C++</category>
+        <category>DataBase</category>
+        <category>Linux</category>
+        <category>Qt</category>
+        <category>QML</category>
+        <category>STL</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/03/26/QML&amp;QtQuick/</guid>
+            <title>QML &amp; Qt Quick</title>
+            <link>http://example.com/2023/03/26/QML&amp;QtQuick/</link>
+            <category>C++</category>
+            <category>Qt</category>
+            <category>QML</category>
+            <pubDate>Sun, 26 Mar 2023 10:12:08 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;qml-基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#qml-基础&#34;&gt;#&lt;/a&gt; QML 基础&lt;/h1&gt;
+&lt;p&gt;QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的&lt;strong&gt;声明式&lt;/strong&gt;脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。&lt;/p&gt;
+&lt;p&gt;Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI 界面，从而开发出具有视觉吸引力的应用程序。&lt;/p&gt;
+&lt;h2 id=&#34;基本语法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#基本语法&#34;&gt;#&lt;/a&gt; 基本语法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;import&lt;/code&gt;  语句导入一个模块。Qt6 可以不写版本号，自动加载最高版本模块。&lt;/li&gt;
+&lt;li&gt;每个 QML 文件都需要有一个唯一的根元素（像 HTML 一样&lt;/li&gt;
+&lt;li&gt;元素声明形式： &lt;code&gt;type&amp;#123;  &amp;#125;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;元素属性： &lt;code&gt;name:value&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;QML 文档中的任意元素可以通过使用其 id 进行访问&lt;/li&gt;
+&lt;li&gt;元素可以嵌套，父元素可以有子元素。子元素可以使用 parent 关键字访问父元素。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
