@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>C++11 | Adventure</title>
+        <meta name="author" content="AdventureYX" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>ADVENTURE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="shouMenuItems = !shouMenuItems" v-show="shouMenuItems"></div>
+        <div class="title" @click="shouMenuItems = !shouMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;ADVENTURE</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="shouMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>C++11</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/C/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                C++
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #ffa2c4">C++</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="安全性——智能指针"><a href="#安全性——智能指针" class="headerlink" title="安全性——智能指针"></a>安全性——智能指针</h1><p><strong>内存泄漏：</strong>由于疏忽或错误导致的程序未能释放已经不再使用的内存。</p>
+<p>进一步解释：</p>
+<ul>
+<li><p>并非指内存从物理上消失，而是指程序在运行过程中，由于疏忽或错误而失去了对该内存的控制，从而造成了内存的浪费。</p>
+</li>
+<li><p>常指堆内存泄漏，因为堆是动态分配的，而且是用户来控制的，如果使用不当，会产生内存泄漏。</p>
+</li>
+<li><p>使用 malloc、calloc、realloc、new 等分配内存时，使用完后要调用相应的 free 或 delete释放内存，否则这块内存就会造成内存泄漏。</p>
+</li>
+<li><p>指针重新赋值</p>
+<pre><code class="cpp">char *p = (char *)malloc(10);
+char *p1 = (char *)malloc(10);
+p = np;
+</code></pre>
+<p>开始时，指针 p 和 p1 分别指向一块内存空间，但指针 p 被重新赋值，导致 p 初始时指向的那块内存空间无法找到，从而发生了内存泄漏。</p>
+</li>
+</ul>
+<p>解决内存泄漏最有效的方法是使用<strong>智能指针（smart pointer）</strong>。</p>
+<p>智能指针是存储指向动态分配（堆）对象指针的类，用于生存期的控制，能够确保在<strong>离开指针所在作用域时，自动地销毁动态分配的对象</strong>，防止内存泄露。</p>
+<p>智能指针的核心实现技术是<strong>引用计数</strong>，每使用它一次，内部引用计数加1，每析构一次内部的引用计数减1，减为0时，删除所指向的堆内存。</p>
+<p>C++11中提供了三种智能指针，使用这些智能指针时需要引用头文件<code> &lt;memory&gt;</code>:</p>
+<ul>
+<li><code> std::shared_ptr</code>：共享的智能指针</li>
+<li><code> std::unique_ptr</code>：独占的智能指针</li>
+<li><code> std::weak_ptr</code>：弱引用的智能指针，它不共享指针，不能操作资源，是用来监视<code>shared_ptr</code>的。</li>
+</ul>
+<h2 id="共享智能指针（shared-ptr）"><a href="#共享智能指针（shared-ptr）" class="headerlink" title="共享智能指针（shared_ptr）"></a>共享智能指针（shared_ptr）</h2><h3 id="shared-ptr的初始化"><a href="#shared-ptr的初始化" class="headerlink" title="shared_ptr的初始化"></a>shared_ptr的初始化</h3><p>共享智能指针是指<strong>多个智能指针可以同时管理同一块有效的内存</strong>，共享智能指针 <code>shared_ptr</code> 是一个<strong>模板类</strong>，如果要进行初始化有三种方式：</p>
+<ul>
+<li>构造函数</li>
+<li><code>std::make_shared</code> 辅助函数</li>
+<li>reset 方法</li>
+</ul>
+<p>共享智能指针对象初始化完毕之后就指向了要管理的那块堆内存，如果想要查看当前有多少个智能指针同时管理着这块内存可以使用共享智能指针提供的一个成员函数 use_count，函数原型如下：</p>
+<pre><code class="cpp">// 管理当前对象的 shared_ptr 实例数量，或若无被管理对象则为 0。
+long use_count() const noexcept;
+</code></pre>
+<h3 id="通过构造函数初始化"><a href="#通过构造函数初始化" class="headerlink" title="通过构造函数初始化"></a>通过构造函数初始化</h3><pre><code class="cpp">// shared_ptr&lt;T&gt; 类模板中，提供了多种实用的构造函数, 语法格式如下:
+std::shared_ptr&lt;T&gt; 智能指针名字(创建堆内存);
+</code></pre>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+int main()
+&#123;
+    // 使用智能指针管理一块 int 型的堆内存
+    shared_ptr&lt;int&gt; ptr1(new int(520));
+    cout &lt;&lt; &quot;ptr1管理的内存引用计数: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; endl;
+    // 使用智能指针管理一块字符数组对应的堆内存
+    shared_ptr&lt;char&gt; ptr2(new char[12]);
+    cout &lt;&lt; &quot;ptr2管理的内存引用计数: &quot; &lt;&lt; ptr2.use_count() &lt;&lt; endl;
+    // 创建智能指针对象, 不管理任何内存
+    shared_ptr&lt;int&gt; ptr3;
+    cout &lt;&lt; &quot;ptr3管理的内存引用计数: &quot; &lt;&lt; ptr3.use_count() &lt;&lt; endl;
+    // 创建智能指针对象, 初始化为空
+    shared_ptr&lt;int&gt; ptr4(nullptr);
+    cout &lt;&lt; &quot;ptr4管理的内存引用计数: &quot; &lt;&lt; ptr4.use_count() &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p>测试结果：</p>
+<pre><code class="cpp">ptr1管理的内存引用计数: 1
+ptr2管理的内存引用计数: 1
+ptr3管理的内存引用计数: 0
+ptr4管理的内存引用计数: 0
+</code></pre>
+<blockquote>
+<p>如果智能指针被初始化了一块有效内存，那么这块内存的引用计数 + 1，如果智能指针没有被初始化或者被初始化为 nullptr 空指针，引用计数不会 + 1。另外，不要使用一个原始指针初始化多个 shared_ptr。</p>
+</blockquote>
+<pre><code class="cpp">int *p = new int;
+shared_ptr&lt;int&gt; p1(p);
+shared_ptr&lt;int&gt; p2(p);		// error, 编译不会报错, 运行会出错
+</code></pre>
+<h3 id="通过拷贝和移动构造函数初始化"><a href="#通过拷贝和移动构造函数初始化" class="headerlink" title="通过拷贝和移动构造函数初始化"></a>通过拷贝和移动构造函数初始化</h3><p>当一个智能指针被初始化之后，就可以通过这个智能指针初始化其他新对象。在创建新对象的时候，对应的拷贝构造函数或者移动构造函数就被自动调用了。</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+int main()
+&#123;
+    // 使用智能指针管理一块 int 型的堆内存, 内部引用计数为 1
+    shared_ptr&lt;int&gt; ptr1(new int(520));
+    cout &lt;&lt; &quot;ptr1管理的内存引用计数: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; endl;
+    //调用拷贝构造函数
+    shared_ptr&lt;int&gt; ptr2(ptr1);
+    cout &lt;&lt; &quot;ptr2管理的内存引用计数: &quot; &lt;&lt; ptr2.use_count() &lt;&lt; endl;
+    shared_ptr&lt;int&gt; ptr3 = ptr1;
+    cout &lt;&lt; &quot;ptr3管理的内存引用计数: &quot; &lt;&lt; ptr3.use_count() &lt;&lt; endl;
+    //调用移动构造函数
+    shared_ptr&lt;int&gt; ptr4(std::move(ptr1));
+    cout &lt;&lt; &quot;ptr4管理的内存引用计数: &quot; &lt;&lt; ptr4.use_count() &lt;&lt; endl;
+    std::shared_ptr&lt;int&gt; ptr5 = std::move(ptr2);
+    cout &lt;&lt; &quot;ptr5管理的内存引用计数: &quot; &lt;&lt; ptr5.use_count() &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p>测试结果：</p>
+<pre><code class="cpp">ptr1管理的内存引用计数: 1
+ptr2管理的内存引用计数: 2
+ptr3管理的内存引用计数: 3
+ptr4管理的内存引用计数: 3
+ptr5管理的内存引用计数: 3
+</code></pre>
+<blockquote>
+<p>如果使用拷贝的方式初始化共享智能指针对象，这两个对象会同时管理同一块堆内存，堆内存对应的引用计数也会增加；如果使用移动的方式初始智能指针对象，只是转让了内存的所有权，管理内存的对象并不会增加，因此内存的引用计数不会变化。</p>
+</blockquote>
+<h3 id="通过-std-make-shared-初始化"><a href="#通过-std-make-shared-初始化" class="headerlink" title="通过 std::make_shared 初始化"></a>通过 std::make_shared 初始化</h3><p>通过 C++ 提供的 std::make_shared() 就可以完成内存对象的创建并将其初始化给智能指针，函数原型如下：</p>
+<pre><code class="cpp">template&lt; class T, class... Args &gt;
+shared_ptr&lt;T&gt; make_shared( Args&amp;&amp;... args );
+</code></pre>
+<ul>
+<li><code>T</code>：模板参数的数据类型</li>
+<li><code>Args&amp;&amp;... args</code> ：要初始化的数据，如果是通过 make_shared 创建对象，需按照构造函数的参数列表指定</li>
+</ul>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+class Test
+&#123;
+public:
+    Test() 
+    &#123;
+        cout &lt;&lt; &quot;construct Test...&quot; &lt;&lt; endl;
+    &#125;
+    Test(int x) 
+    &#123;
+        cout &lt;&lt; &quot;construct Test, x = &quot; &lt;&lt; x &lt;&lt; endl;
+    &#125;
+    Test(string str) 
+    &#123;
+        cout &lt;&lt; &quot;construct Test, str = &quot; &lt;&lt; str &lt;&lt; endl;
+    &#125;
+    ~Test()
+    &#123;
+        cout &lt;&lt; &quot;destruct Test ...&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+
+int main()
+&#123;
+    // 使用智能指针管理一块 int 型的堆内存, 内部引用计数为 1
+    shared_ptr&lt;int&gt; ptr1 = make_shared&lt;int&gt;(520);
+    cout &lt;&lt; &quot;ptr1管理的内存引用计数: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; endl;
+
+    shared_ptr&lt;Test&gt; ptr2 = make_shared&lt;Test&gt;();
+    cout &lt;&lt; &quot;ptr2管理的内存引用计数: &quot; &lt;&lt; ptr2.use_count() &lt;&lt; endl;
+
+    shared_ptr&lt;Test&gt; ptr3 = make_shared&lt;Test&gt;(520);
+    cout &lt;&lt; &quot;ptr3管理的内存引用计数: &quot; &lt;&lt; ptr3.use_count() &lt;&lt; endl;
+
+    shared_ptr&lt;Test&gt; ptr4 = make_shared&lt;Test&gt;(&quot;ptr_test&quot;);
+    cout &lt;&lt; &quot;ptr4管理的内存引用计数: &quot; &lt;&lt; ptr4.use_count() &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<blockquote>
+<p>使用 std::make_shared() 模板函数可以完成内存地址的创建，并将最终得到的内存地址传递给共享智能指针对象管理。如果申请的内存是普通类型，通过函数的（）可完成地址的初始化，如果要创建一个类对象，函数的（）内部需要指定构造对象需要的参数，也就是类构造函数的参数。</p>
+</blockquote>
+<h3 id="通过-reset-方法初始化"><a href="#通过-reset-方法初始化" class="headerlink" title="通过 reset 方法初始化"></a>通过 reset 方法初始化</h3><p>共享智能指针类提供的 std::shared_ptr::reset 方法函数原型如下：</p>
+<pre><code class="cpp">void reset() noexcept;
+
+template&lt; class Y &gt;
+void reset( Y* ptr );
+
+template&lt; class Y, class Deleter &gt;
+void reset( Y* ptr, Deleter d );
+
+template&lt; class Y, class Deleter, class Alloc &gt;
+void reset( Y* ptr, Deleter d, Alloc alloc );
+</code></pre>
+<ul>
+<li>ptr：指向要取得所有权的对象的指针</li>
+<li>d：指向要取得所有权的对象的指针</li>
+<li>aloc：内部存储所用的分配器</li>
+</ul>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+int main()
+&#123;
+    // 使用智能指针管理一块 int 型的堆内存, 内部引用计数为 1
+    shared_ptr&lt;int&gt; ptr1 = make_shared&lt;int&gt;(520);
+    shared_ptr&lt;int&gt; ptr2 = ptr1;
+    shared_ptr&lt;int&gt; ptr3 = ptr1;
+    shared_ptr&lt;int&gt; ptr4 = ptr1;
+    cout &lt;&lt; &quot;ptr1管理的内存引用计数: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr2管理的内存引用计数: &quot; &lt;&lt; ptr2.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr3管理的内存引用计数: &quot; &lt;&lt; ptr3.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr4管理的内存引用计数: &quot; &lt;&lt; ptr4.use_count() &lt;&lt; endl;
+
+    ptr4.reset();
+    cout &lt;&lt; &quot;ptr1管理的内存引用计数: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr2管理的内存引用计数: &quot; &lt;&lt; ptr2.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr3管理的内存引用计数: &quot; &lt;&lt; ptr3.use_count() &lt;&lt; endl;
+    cout &lt;&lt; &quot;ptr4管理的内存引用计数: &quot; &lt;&lt; ptr4.use_count() &lt;&lt; endl;
+
+    shared_ptr&lt;int&gt; ptr5;
+    ptr5.reset(new int(250));
+    cout &lt;&lt; &quot;ptr5管理的内存引用计数: &quot; &lt;&lt; ptr5.use_count() &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p>测试结果：</p>
+<pre><code class="cpp">ptr1管理的内存引用计数: 4
+ptr2管理的内存引用计数: 4
+ptr3管理的内存引用计数: 4
+ptr4管理的内存引用计数: 4
+    
+ptr1管理的内存引用计数: 3
+ptr2管理的内存引用计数: 3
+ptr3管理的内存引用计数: 3
+ptr4管理的内存引用计数: 0
+    
+ptr5管理的内存引用计数: 1
+</code></pre>
+<blockquote>
+<p>对于一个未初始化的共享智能指针，可以通过 reset 方法来初始化，当智能指针中有值的时候，调用 reset 会使引用计数减 1。</p>
+</blockquote>
+<h3 id="获取原始指针"><a href="#获取原始指针" class="headerlink" title="获取原始指针"></a>获取原始指针</h3><h2 id="独占智能指针（unique-ptr）"><a href="#独占智能指针（unique-ptr）" class="headerlink" title="独占智能指针（unique_ptr）"></a>独占智能指针（unique_ptr）</h2><h3 id="unique-ptr的初始化"><a href="#unique-ptr的初始化" class="headerlink" title="unique_ptr的初始化"></a>unique_ptr的初始化</h3><p>std::unique_ptr 是一个独占型的智能指针，它不允许其他的智能指针共享其内部的指针，可以通过它的构造函数初始化一个独占智能指针对象，但是不允许通过赋值将一个 unique_ptr 赋值给另一个 unique_ptr。</p>
+<pre><code class="cpp">// 通过构造函数初始化对象
+unique_ptr&lt;int&gt; ptr1(new int(10));
+// error, 不允许将一个unique_ptr赋值给另一个unique_ptr
+unique_ptr&lt;int&gt; ptr2 = ptr1;
+</code></pre>
+<p>std::unique_ptr 不允许复制，但是可以通过函数返回给其他的 std::unique_ptr，还可以通过 <code>std::move</code> 来转译给其他的 std::unique_ptr，这样原始指针的所有权就被转移了，这个原始指针还是被独占的。</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+unique_ptr&lt;int&gt; func()
+&#123;
+    return unique_ptr&lt;int&gt;(new int(520));
+&#125;
+
+int main()
+&#123;
+    // 通过构造函数初始化
+    unique_ptr&lt;int&gt; ptr1(new int(10));
+    // 通过转移所有权的方式初始化
+    unique_ptr&lt;int&gt; ptr2 = move(ptr1);
+    unique_ptr&lt;int&gt; ptr3 = func();
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="弱引用智能指针（weak-ptr）"><a href="#弱引用智能指针（weak-ptr）" class="headerlink" title="弱引用智能指针（weak_ptr）"></a>弱引用智能指针（weak_ptr）</h2><p>弱引用智能指针 std::weak_ptr 可以看做是 shared_ptr 的助手，它不管理 shared_ptr 内部的指针。std::weak_ptr 没有重载操作符 * 和 -&gt;，因为它不共享指针，不能操作资源，所以它的构造不会增加引用计数，析构也不会减少引用计数，它的主要作用就是作为一个旁观者监视 shared_ptr 中管理的资源是否存在。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 Adventure
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;AdventureYX
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>

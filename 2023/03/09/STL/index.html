@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>STL | Adventure</title>
+        <meta name="author" content="AdventureYX" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>ADVENTURE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="shouMenuItems = !shouMenuItems" v-show="shouMenuItems"></div>
+        <div class="title" @click="shouMenuItems = !shouMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;ADVENTURE</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="shouMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>STL</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/9
+        </span>
+        
+        <span class="category">
+            <a href="/categories/C/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                C++
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #03a9f4">C++</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/STL/" style="color: #03a9f4">STL</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。</p>
+<blockquote>
+<p>STL从广义上讲分为三类: algorithm(算法) 、container(容器)、iterator(迭代器)。容器和算法可以通过迭代器进行无缝的连接。</p>
+</blockquote>
+<p>STL 提供了六大组件，彼此组合套用协同工作。这六大组件分别是：</p>
+<ul>
+<li>容器（Containers）：各种数据结构，如 vector、list、deque、set、map 等。从实现的角度来看，容器是一种 class template。</li>
+<li>算法（Algorithms）：各种常用算法，提供了执行各种操作的方式，包括对容器内容执行初始化、排序、搜索和转换等操作，比如 sort、search、copy、erase。从实现的角度来看，<strong>STL 算法是一种 function template</strong>。</li>
+<li>迭代器（Iterators）：迭代器用于遍历对象集合的元素，扮演容器与算法之间的胶合剂，是所谓的“泛型指针”，共有 5 种类型，以及其他衍生变化。从实现角度来看，迭代器是一种将 operator*、operator-&gt;、operator++、operator– 等指针操作予以重载的 class template。所有的 STL 容器附带有自己专属的迭代器，因为只有容器设计者才知道如何遍历自己的元素。</li>
+<li>仿函数（Functors）：也称为函数对象（Function object），行为类似函数，可作为算法的某种策略。从实现角度来看，仿函数是一种重载了 operator() 的 class 或者 class template。</li>
+<li>适配器（Adaptors）：一种用来修饰容器或者仿函数或迭代器接口的东西。例如 STL 提供的 queue 和 stack，就是一种空间配接器，因为它们的底部完全借助于 deque。</li>
+<li>分配器（Allocators）：也称为空间配置器，负责空间的配置与管理。从实现的角度来看，配置器是一个实现了动态配置空间、空间管理、空间释放的 class template。</li>
+</ul>
+<p>STL 六大组件的交互关系</p>
+<p><img src="/picturestl1.png" alt="img"></p>
+<p>使用STL的好处：</p>
+<ul>
+<li>STL是C++的一部分，因此不用额外安装什么，它被内建在你的编译器之内。</li>
+<li>STL的一个重要特点是数据结构和算法的分离。(内部使用的模板，或者说泛型编程)</li>
+<li>程序员可以不用思考STL具体的实现过程，只要能够熟练使用STL。比精力用在开发上</li>
+<li>STL具有高可重用性、高性能、高移植性、跨平台等优点<ul>
+<li>高可重用性: STL中几乎所有的代码的采用了模板类和模板函数的方式实现，这相当于传统的由函数和类组成的库来说提供了更好的代码重用机会。</li>
+<li>高性能：底层使用的数据结构和算法比较优秀，如map的红黑树</li>
+<li>高移植性：因为是内建在编译器之内，项目A中用STL编写的模块可以直接移植到项目B上。</li>
+<li>跨平台：windows上写的可以在Linux上运行(反之一同)</li>
+</ul>
+</li>
+</ul>
+<p>一．</p>
+<p>二 vector扩容原理<br>1新增元素：Vector通过一个连续的数组存放元素，如果集合已满，在新增数据的时候，就会分配一块更大的内存，将原来的数据复制过来，释放之前的内存，在插入新增的元素。注意不是在原来空间后直接增加空间<br>2对vector的任何操作，一旦引起空间重新配置，指向原vector的所有迭代器就都失效了。<br>3不同的编译器实现的扩容方式不一样，VS2015中以1.5倍扩容，GCC以2倍扩容。</p>
+<p>三 vector扩容为什么以2倍增长<br>1时间和空间的权衡，简单来说， 空间分配的多，平摊时间复杂度低，但浪费空间也多。<br>2 均摊添加每个元素的开销最小。</p>
+<p>四 vector扩容为什么以1.5倍增长<br>理想分配方案是是在第N次分配的时候能重用之前N-1次释放的内存，如果按照1.5分配，1，1.5，3，4.5……当你需要分配4.5时，前面已分配5.5，你可以直接利用，把旧数据move过去。但选择两倍的增长比如像这样：1，2，4，8，16，32，… 每次需要申请的空间都大于用到前面释放的内存(4&gt;2+1)，无法重用。</p>
+<p>五 vector常用接口：<br>• 清空vector可以使用成员函数c.clear()<br>• 判断vector是否为空，可以使用成员函数empty()，如果为空返回true，否则返回false<br>• vector输出最后一个元素的引用可以用back()成员函数，如果容器为空，则行为未定义<br>• vector输出第一个元素的引用可以用front()成员函数，如果容器为空，则行为未定义<br>• vector支持用下标访问元素，类似数组一样c[n]其中n是一个无符号整数，如果n大于容器的长度，那么行为未定义<br>• vector为了防止越界访问，其中有成员函数c.at(n)，返回下标为n的元素的引用。如果下标越界，那么抛出out_of_range的异常<br>• pop_back()成员函数用来删除vector中的最后一个元素，如果容器为空会出现未定义行为。<br>• c.erase(it)成员函数，删除迭代器it所指向的元素，返回一个指向被删除元素之后的迭代器，如果it指向最后一个元素，那么返回以为尾后迭代器（通常是end()）。若it就是end()，那么行为未定义。<br>• c.erase(beg,ed)删除[beg,ed)范围的元素，同时返回最后一个元素的后面的迭代器，如果ed就是尾后迭代器，那么还返回一个尾后迭代器。<br>• vector中begin和end函数返回的是什么？<br>begin返回的是第一个元素的迭代器，end返回的是最后一个元素后面位置的迭代器。前闭后开区间【）<br>• vector中的reserve和resize的区别<br>reserve是直接扩充到已经确定的大小，可以减少多次开辟、释放空间的问题（优化push_back），就可以 提高效率，其次还可以减少多次要拷贝数据的问题。reserve只是保证vector中的空间大小（capacity）最少 达到参数所指定的大小n。reserve()只有一个参数。<br>resize()可以改变有效空间的大小，也有改变默认值的功能。capacity的大小也会随着改变。resize()可以有 多个参数。<br>• vector中的size和capacity的区别<br>size表示当前vector中有多少个元素（finish - start）;<br>capacity函数则表示它已经分配的内存中可以容纳多少元素（end_of_storage - start）;<br>• vector迭代器失效的情况<br>当插入一个元素到vector中，由于引起了内存重新分配，所以指向原内存的迭代器全部失效。 当删除容器中一个元素后,该迭代器所指向的元素已经被删除，那么也造成迭代器失效。erase方法会返回下 一个有效的迭代器，所以当我们要删除某个元素时，需要it&#x3D;vec.erase(it)。<br>• 正确释放vector的内存(clear(), swap(), shrink_to_fit())<br>vec.clear()：清空内容，但是不释放内存。<br>vector().swap(vec)：清空内容，且释放内存，想得到一个全新的vector。 vec.shrink_to_fit()：请求容器降低其capacity和size匹配。 vec.clear();vec.shrink_to_fit();：清空内容，且释放内存。<br>• vector中erase方法与algorithn中的remove方法区别<br>vector中erase方法真正删除了元素，迭代器不能访问了。<br>remove只是简单地将元素移到了容器的最后面，迭代器还是可以访问到。因为algorithm通过迭代器进行操作，不知道容器的内部结构，所以无法进行真正的删除。</p>
+<p>六 List原理</p>
+<p>list是由双向链表实现的，因此内存空间是不连续的。<br>list的随机访问效率不好，需要遍历元素，时间复杂度为o(n)。<br>3.底层是双向链表，所以每个元素有两个指针的额外空间开销。<br>4.在任何位置都能高效地插入和删除元素。只要改变元素的指针值，不需要拷贝元素。<br>七 vector、list、queue选择原则：<br>1需要对数据高效地随机访问(存取)，而不在乎插入和删除的效率，采用vector<br>2需要大量插入、删除数据，而不关心随机访问数据，采用list<br>3需要随机访问数据，而且关心前后增删数据的能力，采用deque<br>4对数据中间的增删操作比较多:采用list，建议在排序的基础上，批量进行增删可以对运行效率提供最大的保证</p>
+<p>八 map的底层实现<br>容器的数据结构是采用红黑树进行管理，插入的元素健位不允许重复，所使用的节点元素的比较函数，只对元素的健值进行比较，元素的各项数据可通过健值检索出来。map容器是一种关联容器。</p>
+<p>九map和unordered_map的实现机理：<br>map:是基于红黑树来实现的（红黑树是非常严格的平衡二叉搜索树），红黑树具有自动排序功能，红黑树的每一个节点都代表着map中的一个元素，因此对于map的查找，删除和插入操作都是对红黑树的操作。<br>unordered_map:是基于哈希表来实现的，查找的时间复杂度是O(1),在海量数据处理中有着广泛的应用。</p>
+<p>十 map和unordered_map的优缺点<br>map的优点：（1）map是有序的（2）基于红黑树实现，查找的时间复杂度是O(n)<br>map的缺点：空间占用率比较高，因为内部实现了红黑树，虽然提高了运行效率，但是每个节点都要保存父亲节点和孩子节点和红黑树的性质，使得每一个节点都占用大量的空间。<br>适用的情况：对于要有序的结构，适用map<br>unordered_map的优点：因为内部是哈希表来实现的，所以查找效率会非常高<br>unordered_map的缺点：哈希表的建立比较费时<br>适用的情况：对于查找问题，适用unordered_map会更好一点。</p>
+<p>十一 Map插入元素方法<br>map&lt;int, string&gt; mapStudent;<br>1 mapStudent.insert(pair&lt;int, string&gt;(1, “student_one”));<br>2 mapStudent.insert(map&lt;int, string&gt;::value_type (1, “student_one”));<br>3 mapStudent[1] &#x3D; “student_one”;<br>以上三种用法，虽然都可以实现数据的插入，但是它们是有区别的，当然了第一种和第二种在效果上是完成一样的，用insert函数插入数据，在数据的插入上涉及到集合的唯一性这个概念，即当map中有这个关键字时，insert操作是插入数据不了的，但是用数组方式就不同了，它可以覆盖以前该关键字对应的值</p>
+<p>十二 为何map和set的插入删除效率比其他序列容器高<br>因为不需要内存拷贝和内存移动</p>
+<p>十三 当数据元素增多时（从10000到20000），map的set的查找速度会怎样 变化？<br>RB-TREE用二分查找法，时间复杂度为logn，所以从10000增到20000时，查找次数从log10000&#x3D;14次到 log20000&#x3D;15次，多了1次而已。</p>
+<p>十四 map 、set、multiset、multimap的特点<br>set和multiset会根据特定的排序准则自动将元素排序，set中元素不允许重复，multiset可以重复。 map和multimap将key和value组成的pair作为元素，根据key的排序准则自动将元素排序（因为红黑树也是 二叉搜索树，所以map默认是按key排序的），map中元素的key不允许重复，multimap可以重复。 map和set的增删改查速度为都是logn，是比较高效的。</p>
+<p>十五 为何map和set每次insert之后， 以前保存的iterator不会失效？<br>存储的是结点，不需要内存拷贝和内存移动。 插入操作只是结点指针换来换去，结点内存没有改变。而iterator就像指向结点的指针，内存没变，指向内 存的指针也不会变。 6</p>
+<p>十六 为何map和set不能像vector一样有个reserve函数来预分配数据?<br>在map和set内部存储的已经不是元素本身了，而是包含元素的结点。也就是说map内部使用的Alloc并不是 map声明的时候从参数中传入的Alloc。</p>
+<p>十七 set底层实现<br>底层是红黑树，set会根据待定的排序准则，自动将元素排序。不允许元素重复。</p>
+<p>十八 set, multiset (map,multimap)<br>set和multiset会根据特定的排序准则自动将元素排序，set中元素不允许重复，multiset可以重复。因为是排序的，所以set中的元素不能被修改，只能删除后再添加。</p>
+<p>十九 set的底层实现实现为什么不用哈希表而使用红黑树？<br>set中元素是经过排序的，红黑树也是有序的，哈希是无序的 如果只是单纯的查找元素的话，那么肯定要选哈希表了，因为哈希表在的最好查找时间复杂度为O(1)，并且 如果用到set中那么查找时间复杂度的一直是O（1），因为set中是不允许有元素重复的。而红黑树的查找时 间复杂度为O(lgn)</p>
+<p>二十 hash表<br>hash表的实现，包括STL中的哈希桶长度常数。<br>hash表的实现主要涉及两个问题：散列函数和碰撞处理。<br>1）hash function （散列函数）。最常见的散列函数：f(x) &#x3D; x % TableSize .<br>2）碰撞问题（不同元素的散列值相同）。解决碰撞问题的方法有许多种，包括线性探测、二次探测、开链等做法。SGL版本使用开链法，使用一个链表保持相同散列值的元素。</p>
+<p>二十一 你怎样理解迭代器？<br>Iterator(迭代器)用于提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示，相当于智能指针。</p>
+<p>二十二 迭代器失效问题<br>vector 迭代器<br>当插入一个元素后，插入点之前的迭代器如果未扩容则不受影响，插入点之后的迭代器失效；<br>当插入一个元素后，capacity 如果有变化，则容器需要重新分配内存，所有迭代器都会失效；<br>当进行删除操作后，指向删除点及之后元素的迭代器全部失效。<br>deque 迭代器<br>在容器 begin&#x2F;end 插入操作所有迭代器不受影响；<br>在容器非 begin&#x2F;end 的位置插入和删除操作都会使指向该容器元素的所有迭代器失效。<br>在容器 begin&#x2F;end 删除元素会使指向被删除元素的迭代器失效；<br>List&#x2F;forward_list 迭代器<br>list insert 操作不会使 list 迭代器失效；<br>list erase 操作会使当前指向被删除元素的迭代器失效，其它迭代器正常。<br>set 迭代器<br>set 的 insert 操作不会使 set 迭代器失效；<br>set erase操作会使当前指向被删除元素的迭代器失效，其它迭代器正常。<br>map 迭代器<br>map 的 insert 操作不会使 map 迭代器失效；<br>map erase 删除操作会使当前指向被删除元素的迭代器失效</p>
+<p>二十三 vector为何每次insert之后，以前保存的iterator不会失效?<br>答:iterator这里就相当于指向节点的指针，内存没有变，指向内存的指针怎么会失效呢(当然被删除的那个元素本身已经失效了)。相对于vector来说，每一次删除和插入，指针都有可能失效，调用push_back在尾部插入也是如此。因为为了保证内部数据的连续存放，iterator指向的那块内存在删除和插入过程中可能已经被其他内存覆盖或者内存已经被释放了。即使时push_back的时候，容器内部空间可能不够，需要一块新的更大的内存，只有把以前的内存释放，申请新的更大的内存，复制已有的数据元素到新的内存，最后把需要插入的元素放到最后，那么以前的内存指针自然就不可用了。特别时在和find等算法在一起使用的时候，牢记这个原则:不要使用过期的iterator。</p>
+<p>二十四 vector、list、map、deque用erase（it）后，迭代器的变化。<br>vector和deque是序列式容器，其内存分别是连续空间和分段连续空间，删除迭代器it后，其后面的迭代器都失效了，此时it及其后面的迭代器会自动加1，使it指向被删除元素的下一个元素。<br>list删除迭代器it时，其后面的迭代器都不会失效，将前面和后面连接起来即可。<br>map也是只能使当前删除的迭代器失效，其后面的迭代器依然有效。</p>
+<p>二十五 不允许有遍历行为的容器有哪些（不提供迭代器）？<br>1）queue，除了头部外，没有其他方法存取deque的其他元素。<br>2）stack（底层以deque实现），除了最顶端外，没有任何其他方法可以存取stack的其他元素。<br>3）heap，所有元素都必须遵循特别的排序规则，不提供遍历功能。</p>
+<p>二十六 stl中alloc<br>SGI 版本STL的默认配置器std::alloc。参见：《STL源码剖析》<br>1）考虑到小型区块所可能造成的内存碎片问题，SGI设计了双层配置器。第一级配置器直接使用malloc()和free()；第二级则视情况采取不同的策略：当配置区块超过128bytes时，视为“足够大”，便调用第一级配置器；当配置区块小于128bytes时，视之为“过小”，为了降低额外负担，便采用memory pool（内存池）整理方式，而不在求助于第一级配置器。<br>2）内存池的核心：内存池和16个自由链表（各自管理8,16，…，128bytes的小额区块）。在分配一个小区块时，首先在所属自由链表中寻找，如果找到，直接抽出分配；若所属自由链表为空，则请求内存池为所属自由链表分配空间；默认情况下，为该自由链表分配20个区块，若内存池剩余容量不足，则分配可分配的最大容量；若内存池连一个区块都无法分配，则调用chunk_alloc为内存池分配一大块区块；若内存不足，则尝试调用malloc分配，否则返回bad_alloc异常。</p>
+<p>二十七 STL线程不安全的情况<br>在对同一个容器进行多线程的读写、写操作时；<br>在每次调用容器的成员函数期间都要锁定该容器；<br>在每个容器返回的迭代器（例如通过调用begin或end）的生存期之内都要锁定该容器； 在每个在容器上调用的算法执行期间锁定该容器。</p>
+<p>二十八 priority_queue的底层原理<br>priority_queue：优先队列，其底层是用堆来实现的。在优先队列中，队首元素一定是当前队列中优先级最 高的那一个。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 Adventure
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;AdventureYX
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>
