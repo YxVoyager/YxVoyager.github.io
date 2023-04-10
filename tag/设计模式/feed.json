@@ -2,11 +2,11 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "null • All posts by \"设计模式\" tag",
     "description": "",
-    "home_page_url": "http://example.com",
+    "home_page_url": "https://adventure-yx.github.io",
     "items": [
         {
-            "id": "http://example.com/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-            "url": "http://example.com/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
+            "id": "https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
+            "url": "https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
             "title": "设计模式",
             "date_published": "2023-03-20T12:10:48.000Z",
             "content_html": "",

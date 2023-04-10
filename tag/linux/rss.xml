@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title> • Posts by &#34;linux&#34; tag</title>
-        <link>http://example.com</link>
+        <link>https://adventure-yx.github.io</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Wed, 08 Mar 2023 22:03:56 +0800</pubDate>
@@ -16,9 +16,9 @@
         <category>算法</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">http://example.com/2023/03/08/Linux/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/03/08/Linux/</guid>
             <title>Linux</title>
-            <link>http://example.com/2023/03/08/Linux/</link>
+            <link>https://adventure-yx.github.io/2023/03/08/Linux/</link>
             <category>Linux</category>
             <pubDate>Wed, 08 Mar 2023 22:03:56 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;linux-配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-配置&#34;&gt;#&lt;/a&gt; Linux 配置&lt;/h1&gt;

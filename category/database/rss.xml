@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title> • Posts by &#34;database&#34; category</title>
-        <link>http://example.com</link>
+        <link>https://adventure-yx.github.io</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Mon, 06 Mar 2023 00:03:56 +0800</pubDate>
@@ -16,9 +16,9 @@
         <category>算法</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">http://example.com/2023/03/06/CMU15-445/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/03/06/CMU15-445/</guid>
             <title>CMU15-445</title>
-            <link>http://example.com/2023/03/06/CMU15-445/</link>
+            <link>https://adventure-yx.github.io/2023/03/06/CMU15-445/</link>
             <category>DataBase</category>
             <pubDate>Mon, 06 Mar 2023 00:03:56 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2022)](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly8xNTQ0NS5jb3Vyc2VzLmNzLmNtdS5lZHUvZmFsbDIwMjIvc2NoZWR1bGUuaHRtbA==&#34;&gt;https://15445.courses.cs.cmu.edu/fall2022/schedule.html&lt;/span&gt;)&lt;/p&gt;

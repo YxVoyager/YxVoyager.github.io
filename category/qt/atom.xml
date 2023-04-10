@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;qt&#34; category</title>
-    <link href="http://example.com" />
+    <link href="https://adventure-yx.github.io" />
     <updated>2023-03-26T02:12:08.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
@@ -13,9 +13,9 @@
     <category term="算法" />
     <category term="设计模式" />
     <entry>
-        <id>http://example.com/2023/03/26/QML&amp;QtQuick/</id>
+        <id>https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/</id>
         <title>QML &amp; Qt Quick</title>
-        <link rel="alternate" href="http://example.com/2023/03/26/QML&amp;QtQuick/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/"/>
         <content type="html">&lt;h1 id=&#34;qml-基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#qml-基础&#34;&gt;#&lt;/a&gt; QML 基础&lt;/h1&gt;
 &lt;p&gt;QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的&lt;strong&gt;声明式&lt;/strong&gt;脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。&lt;/p&gt;
 &lt;p&gt;Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI 界面，从而开发出具有视觉吸引力的应用程序。&lt;/p&gt;
@@ -35,9 +35,9 @@
         <updated>2023-03-26T02:12:08.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2023/03/12/QtStudy/</id>
+        <id>https://adventure-yx.github.io/2023/03/12/QtStudy/</id>
         <title>Qt Study</title>
-        <link rel="alternate" href="http://example.com/2023/03/12/QtStudy/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/12/QtStudy/"/>
         <content type="html">&lt;h1 id=&#34;qt-核心&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#qt-核心&#34;&gt;#&lt;/a&gt; Qt 核心&lt;/h1&gt;
 &lt;h2 id=&#34;元对象系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#元对象系统&#34;&gt;#&lt;/a&gt; 元对象系统&lt;/h2&gt;
 &lt;p&gt;Qt 元对象系统提供了对象间的通信机制（信号和槽）、运行时类型信息和动态属性系统的支持，是标准 &lt;code&gt;C++&lt;/code&gt;  的一个扩展，它使 Qt 能够更好的实现 GUI 用户图形界面编程。Qt 的元对象系统不支持 C++ 模板。&lt;/p&gt;

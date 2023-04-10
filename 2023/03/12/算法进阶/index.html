@@ -15,9 +15,9 @@
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://example.com/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="" href="http://example.com/atom.xml" />
-<link rel="alternate" type="application/json" title="" href="http://example.com/feed.json" />
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
@@ -27,7 +27,7 @@
   <meta name="keywords" content="C++,STL,算法" />
 
 
-<link rel="canonical" href="http://example.com/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/">
+<link rel="canonical" href="https://adventure-yx.github.io/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/">
 
 
 
@@ -131,7 +131,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -283,9 +283,93 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>空间复杂度：一个排序算法在运行过程中临时占用存储空间大小的度量；</li>
 </ul>
 <h2 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序">#</a> 冒泡排序</h2>
-<p>遍历所有的数据，每次对相邻元素进行两两比较，如果顺序和预先规定的顺序不一致，则进行位置交换；这样一次遍历会将最大或最小的数据上浮至顶端，之后再重复同样的操作，直到所有的数据有序。数据反序时，耗时最长 O (n²)；数据正序时耗时最短 O (n)。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 冒泡排序</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">void</span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span>T data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">int</span> flag<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        flag<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token operator">-</span>i<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                flag<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>                T t<span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>t<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            <span class="token keyword">return</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="算法性能分析"><a class="markdownIt-Anchor" href="#算法性能分析">#</a> 算法性能分析</h1>
+<p>遍历所有的数据，每次对相邻元素进行两两比较，如果顺序和预先规定的顺序不一致，则进行位置交换；这样一次遍历会将最大或最小的数据上浮至顶端，之后再重复同样的操作，直到所有的数据有序。数据反序时，耗时最长 O (n²)；数据正序时，耗时最短 O (n)。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 冒泡排序</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">void</span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span>T data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">int</span> flag<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        flag<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token operator">-</span>i<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                flag<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>                T t<span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                data<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>t<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            <span class="token keyword">return</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="快速排序"><a class="markdownIt-Anchor" href="#快速排序">#</a> 快速排序</h2>
+<p>快速排序采用分治法。首先从数列中挑出一个元素作为中间值。依次遍历数据，所有比中间值小的元素放在左边，所有比中间值大的元素放在右边。然后按此方法对左右两个子序列分别进行递归操作，直到所有数据有序。最理想的情况是，每次划分所选择的中间数恰好将当前序列几乎等分（均匀排布），整个算法的时间复杂度为 O (n logn)。 最坏的情况是，每次所选的中间数是当前序列中的最大或最小元素（正序和逆序都是最坏），整个排序算法的时间复杂度为 O (n²)。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 快速排序</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">int</span> <span class="token function">Partition</span><span class="token punctuation">(</span>T data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> left<span class="token punctuation">,</span><span class="token keyword">int</span> right<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    T pivot<span class="token operator">=</span>data<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token operator">&amp;&amp;</span>data<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">></span>pivot<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            right<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        data<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token operator">&amp;&amp;</span>data<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">&lt;=</span>pivot<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            left<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        data<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    data<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">=</span>pivot<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">return</span> left<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">void</span> <span class="token function">QuickSort</span><span class="token punctuation">(</span>T data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> left<span class="token punctuation">,</span><span class="token keyword">int</span> right<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token function">Partition</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token function">QuickSort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>left<span class="token punctuation">,</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">QuickSort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="算法性能分析"><a class="markdownIt-Anchor" href="#算法性能分析">#</a> 算法性能分析</h1>
+<h2 id="时间复杂度分析"><a class="markdownIt-Anchor" href="#时间复杂度分析">#</a> 时间复杂度分析</h2>
+<h3 id="什么是时间复杂度"><a class="markdownIt-Anchor" href="#什么是时间复杂度">#</a> 什么是时间复杂度</h3>
+<p><strong>时间复杂度是一个函数，它定性描述该算法的运行时间</strong>。</p>
+<p>我们在软件开发中，时间复杂度就是用来方便开发者估算出程序运行的答题时间。</p>
+<p>那么该如何估计程序运行时间呢，通常会估算算法的操作单元数量来代表程序消耗的时间，这里默认 CPU 的每个单元运行消耗的时间都是相同的。</p>
+<p>假设算法的问题规模为 n，那么操作单元数量便用函数 f (n) 来表示，随着数据规模 n 的增大，算法执行时间的增长率和 f (n) 的增长率相同，这称作为算法的渐近时间复杂度，简称时间复杂度，记为 O (f (n))。</p>
+<h3 id="什么是大o"><a class="markdownIt-Anchor" href="#什么是大o">#</a> 什么是大 O</h3>
+<p>算法导论给出的解释：<strong>大 O 用来表示上界的</strong>，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。</p>
+<p>同样算法导论给出了例子：拿插入排序来说，插入排序的时间复杂度我们都说是 O (n^2) 。</p>
+<p>输入数据的形式对程序运算时间是有很大影响的，在数据本来有序的情况下时间复杂度是 O (n)，但如果数据是逆序的话，插入排序的时间复杂度就是 O (n<sup>2)，也就对于所有输入情况来说，最坏是 O (n</sup>2) 的时间复杂度，所以称插入排序的时间复杂度为 O (n^2)。</p>
+<p>同样的同理再看一下快速排序，都知道快速排序是 O (nlogn)，但是当数据已经有序情况下，快速排序的时间复杂度是 O (n^2) 的，<strong>所以严格从大 O 的定义来讲，快速排序的时间复杂度应该是 O (n^2)</strong>。</p>
+<p><strong>但是我们依然说快速排序是 O (nlogn) 的时间复杂度，这个就是业内的一个默认规定，这里说的 O 代表的就是一般情况，而不是严格的上界</strong>。</p>
+<p>我们主要关心的还是一般情况下的数据形式。</p>
+<p><strong>面试中说道算法的时间复杂度是多少指的都是一般情况</strong>。但是如果面试官和我们深入探讨一个算法的实现以及性能的时候，就要时刻想着数据用例的不一样，时间复杂度也是不同的，这一点是一定要注意的。</p>
+<h3 id="不同数据规模的差异"><a class="markdownIt-Anchor" href="#不同数据规模的差异">#</a> 不同数据规模的差异</h3>
+<p><img data-src="20230310124015324.png" alt="时间复杂度，不同数据规模的差异"></p>
+<p>如图中可以看出不同算法的时间复杂度在不同数据输入规模下的差异。</p>
+<p>在决定使用哪些算法的时候，不是时间复杂越低的越好（因为简化后的时间复杂度忽略了常数项等等），要考虑数据规模，如果数据规模很小甚至可以用 O (n^2) 的算法比 O (n) 的更合适（在有常数项的时候）。</p>
+<p>就像上图中 O (5n^2) 和 O (100n) 在 n 为 20 之前 很明显 O (5n^2) 是更优的，所花费的时间也是最少的。</p>
+<p>那为什么在计算时间复杂度的时候要忽略常数项系数呢，也就说 O (100n) 就是 O (n) 的时间复杂度，O (5n^2) 就是 O (n^2) 的时间复杂度，而且要默认 O (n) 优于 O (n^2) 呢 ？</p>
+<p>这里就又涉及到大 O 的定义，<strong>因为大 O 就是数据量级突破一个点且数据量级非常大的情况下所表现出的时间复杂度，这个数据量也就是常数项系数已经不起决定性作用的数据量</strong>。</p>
+<p>例如上图中 20 就是那个点，n 只要大于 20 常数项系数已经不起决定性作用了。</p>
+<p><strong>所以我们说的时间复杂度都是省略常数项系数的，是因为一般情况下都是默认数据规模足够的大，基于这样的事实，给出的算法时间复杂的的一个排行如下所示</strong>：</p>
+<p>O (1) 常数阶 &lt; O (logn) 对数阶 &lt; O (n) 线性阶 &lt; O (nlogn) 线性对数阶 &lt; O (n^2) 平方阶 &lt; O (n^3) 立方阶 &lt; O (2^n) 指数阶</p>
+<p>但是也要注意大常数，如果这个常数非常大，例如 10^7 ，10^9 ，那么常数就是不得不考虑的因素了。</p>
 <h1 id="数组"><a class="markdownIt-Anchor" href="#数组">#</a> 数组</h1>
+<p>** 数组是存放在连续内存空间上的相同类型数据的集合。** 数组可以方便的通过下标索引的方式获取到下标下对应的数据。</p>
+<ul>
+<li><strong>数组下标都是从 0 开始的。</strong></li>
+<li><strong>数组内存空间的地址是连续的</strong></li>
+</ul>
+<p>正是<strong>因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。</strong></p>
+<p>使用 C++ 的话，要注意 vector 和 array 的区别，vector 的底层实现是 array，严格来讲 vector 是容器，不是数组。</p>
+<p><strong>数组的元素是不能删的，只能覆盖。</strong></p>
+<h2 id="二分查找"><a class="markdownIt-Anchor" href="#二分查找">#</a> 二分查找</h2>
+<p>[leetcode.704](<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9iaW5hcnktc2VhcmNoLw==">704. 二分查找 - 力扣（LeetCode）</span>)</p>
+<blockquote>
+<p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
+<p>示例 1:</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 9<br>
+ 输出: 4<br>
+ 解释: 9 出现在 nums 中并且下标为 4</p>
+<p>示例 2:</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 2<br>
+ 输出: -1<br>
+ 解释: 2 不存在 nums 中因此返回 -1</p>
+<p>提示：你可以假设 nums 中的所有元素是不重复的。<br>
+n 将在 [1, 10000] 之间。<br>
+nums 的每个元素都将在 [-9999, 9999] 之间。</p>
+</blockquote>
+<p><strong>这道题目的前提是数组为有序数组</strong>，同时题目还强调<strong>数组中无重复元素</strong>，因为一旦有重复元素，使用二分查找法返回的元素下标可能不是唯一的，这些都是使用二分法的前提条件。</p>
+<p>二分查找涉及的很多的边界条件，逻辑比较简单，但就是写不好。例如到底是  <code>while(left &lt; right)</code>  还是  <code>while(left &lt;= right)</code> ，到底是 <code>right = middle</code>  呢，还是要 <code>right = middle - 1</code>  呢？</p>
+<p>大家写二分法经常写乱，主要是因为<strong>对区间的定义没有想清楚，区间的定义就是不变量</strong>。要在二分查找的过程中，保持不变量，就是在 while 寻找中每一次边界的处理都要坚持根据区间的定义来操作，这就是<strong>循环不变量</strong>规则。</p>
+<p>写二分法，区间的定义一般为两种，左闭右闭即 [left, right]，或者左闭右开即 [left, right)。</p>
+<h3 id="二分法第一种写法"><a class="markdownIt-Anchor" href="#二分法第一种写法">#</a> 二分法第一种写法</h3>
+<p>第一种写法，我们定义 target 是在一个在左闭右闭的区间里，<strong>也就是 [left, right] （这个很重要非常重要）</strong>。</p>
+<p>区间的定义这就决定了二分法的代码应该如何写，<strong>因为定义 target 在 [left, right] 区间，所以有如下两点：</strong></p>
+<ul>
+<li>while (left &lt;= right) 要使用 &lt;= ，因为 left == right 是有意义的，所以使用 &lt;=</li>
+<li>if (nums [middle] &gt; target) right 要赋值为 middle - 1，因为当前这个 nums [middle] 一定不是 target，那么接下来要查找的左区间结束下标位置就是 middle - 1</li>
+</ul>
+<p>例如在数组：1,2,3,4,7,9,10 中查找元素 2，如图所示：</p>
+<p><img data-src="20210311153055723.jpg" alt="704.二分查找"></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">int</span> right <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 定义 target 在左闭右闭的区间里，[left, right]</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 当 left==right，区间 [left, right] 依然有效，所以用 &lt;=</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">int</span> middle <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 防止溢出 等同于 (left + right)/2</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>                right <span class="token operator">=</span> middle <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//target 在左区间，所以 [left, middle - 1]</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                left <span class="token operator">=</span> middle <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//target 在右区间，所以 [middle + 1, right]</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">// nums[middle] == target</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                <span class="token keyword">return</span> middle<span class="token punctuation">;</span> <span class="token comment">// 数组中找到目标值，直接返回下标</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token comment">// 未找到目标值</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>时间复杂度：O (log n)</li>
+<li>空间复杂度：O (1)</li>
+</ul>
+<h3 id="二分法第二种写法"><a class="markdownIt-Anchor" href="#二分法第二种写法">#</a> 二分法第二种写法</h3>
+<p>如果说定义 target 是在一个在左闭右开的区间里，也就是 [left, right) ，那么二分法的边界处理方式则截然不同。</p>
+<p>有如下两点：</p>
+<ul>
+<li>while (left &lt; right)，这里使用 &lt; , 因为 left == right 在区间 [left, right) 是没有意义的</li>
+<li>if (nums [middle] &gt; target) right 更新为 middle，因为当前 nums [middle] 不等于 target，去左区间继续寻找，而寻找区间是左闭右开区间，所以 right 更新为 middle，即：下一个查询区间不会去比较 nums [middle]</li>
+</ul>
+<p>在数组：1,2,3,4,7,9,10 中查找元素 2，如图所示：（<strong>注意和方法一的区别</strong>）</p>
+<p><img data-src="20210311153123632.jpg" alt="704.二分查找1"></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">int</span> right <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 定义 target 在左闭右开的区间里，即：[left, right)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 因为 left == right 的时候，在 [left, right) 是无效的空间，所以使用 &lt;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">int</span> middle <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>                right <span class="token operator">=</span> middle<span class="token punctuation">;</span> <span class="token comment">//target 在左区间，在 [left, middle) 中</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                left <span class="token operator">=</span> middle <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//target 在右区间，在 [middle + 1, right) 中</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">// nums[middle] == target</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                <span class="token keyword">return</span> middle<span class="token punctuation">;</span> <span class="token comment">// 数组中找到目标值，直接返回下标</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token comment">// 未找到目标值</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>时间复杂度：O (log n)</li>
+<li>空间复杂度：O (1)</li>
+</ul>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h3>
+<p>二分法是非常重要的基础算法，为什么会对二分法一看就会，一写就废？其实主要就是对区间的定义没有理解清楚，在循环中没有始终坚持根据查找区间的定义来做边界处理。</p>
+<p>区间的定义就是不变量，那么在循环中坚持根据查找区间的定义来做边界处理，就是循环不变量规则。</p>
 
       <div class="tags">
           <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
@@ -302,7 +386,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-10 10:01:10" itemprop="dateModified" datetime="2023-04-10T10:01:10+08:00">2023-04-10</time>
+    <time title="修改时间：2023-04-10 11:18:59" itemprop="dateModified" datetime="2023-04-10T11:18:59+08:00">2023-04-10</time>
   </span>
   <span id="2023/03/12/算法进阶/" class="item leancloud_visitors" data-flag-title="算法进阶" title="阅读次数">
       <span class="icon">
@@ -323,7 +407,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">http://example.com/2023/03/12/算法进阶/</a>
+    <a href="https://adventure-yx.github.io/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">https://adventure-yx.github.io/2023/03/12/算法进阶/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -342,7 +426,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     <div class="item left">
       
 
-  <a href="/2023/03/09/STL/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;cover-8a5b052ddb664bba9.jpeg" title="STL">
+  <a href="/2023/03/09/STL/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;10&#x2F;cover-165df1ad39e75388b4.jpeg" title="STL">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> C++</span>
   <h3>STL</h3>
@@ -374,7 +458,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 排序算法总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 冒泡排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> 算法性能分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text"> 数组</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 排序算法总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 快速排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> 算法性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text"> 时间复杂度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 什么是时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7o"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 什么是大 O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E8%A7%84%E6%A8%A1%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 不同数据规模的差异</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text"> 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">3.1.</span> <span class="toc-text"> 二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 二分法第一种写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%BA%8C%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 二分法第二种写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -493,10 +577,20 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
@@ -516,57 +610,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
     <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -587,6 +631,46 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </div>
 
     <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
   </li>
 
   </ul>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;设计模式&#34; tag</title>
-    <link href="http://example.com" />
+    <link href="https://adventure-yx.github.io" />
     <updated>2023-03-20T12:10:48.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
@@ -13,9 +13,9 @@
     <category term="算法" />
     <category term="设计模式" />
     <entry>
-        <id>http://example.com/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
+        <id>https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
         <title>设计模式</title>
-        <link rel="alternate" href="http://example.com/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
         <content type="html"></content>
         <category term="C++" />
         <category term="设计模式" />

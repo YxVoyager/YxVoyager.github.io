@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title> • Posts by &#34;qt&#34; tag</title>
-        <link>http://example.com</link>
+        <link>https://adventure-yx.github.io</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Sun, 26 Mar 2023 10:12:08 +0800</pubDate>
@@ -16,9 +16,9 @@
         <category>算法</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">http://example.com/2023/03/26/QML&amp;QtQuick/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/</guid>
             <title>QML &amp; Qt Quick</title>
-            <link>http://example.com/2023/03/26/QML&amp;QtQuick/</link>
+            <link>https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/</link>
             <category>C++</category>
             <category>Qt</category>
             <category>QML</category>
@@ -38,9 +38,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/03/12/QtStudy/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/03/12/QtStudy/</guid>
             <title>Qt Study</title>
-            <link>http://example.com/2023/03/12/QtStudy/</link>
+            <link>https://adventure-yx.github.io/2023/03/12/QtStudy/</link>
             <category>C++</category>
             <category>Qt</category>
             <pubDate>Sun, 12 Mar 2023 23:12:16 +0800</pubDate>
