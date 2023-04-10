@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
           <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
         </ul>
       </div>
     </header>
@@ -137,7 +137,7 @@
     <h3><a href="/2023/04/02/C++11/" itemprop="url" title="C++11">C++11</a></h3>
     <div class="excerpt">
         # 安全性 —— 智能指针
-** 内存泄漏：** 由于疏忽或错误导致的程序未能释放已经不再使用的内存。
+内存泄漏：由于疏忽或错误导致的程序未能释放已经不再使用的内存。
 进一步解释：
 
 并非指内存从物理上消失，而是指程序在运行过程中，由于疏忽或错误而失去了对该内存的控制，从而造成了内存的浪费。
@@ -257,7 +257,7 @@ Q_OBJECT 宏：Q_OBJECT 宏必须出现在类的私有声明区，用于启动�
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数"><img data-src="https://img.picgo.net/2023/04/02/cover-102c17c8481350f883.jpeg"></a>
+    <a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" itemprop="url" title="算法进阶"><img data-src="https://img.picgo.net/2023/04/10/coveer-13d844a9d0fafce422.jpeg"></a>
   </div>
   <div class="info">
     
@@ -270,75 +270,66 @@ Q_OBJECT 宏：Q_OBJECT 宏必须出现在类的私有声明区，用于启动�
   </span>
 </div>
 
-    <h3><a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数">STL函数</a></h3>
+    <h3><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" itemprop="url" title="算法进阶">算法进阶</a></h3>
     <div class="excerpt">
-        # accumulate
+        # 排序算法总结
 
-accumulate(beg, end, init)
+排序算法
+英文名称
+时间复杂度
+最佳情况
+最坏情况
+空间复杂度
+排序方式
+稳定性
+排序类型
 
-** 复杂度：**O (N)
+冒泡排序
+Bubble Sort
+O(n²)
+O(n)
+O(n²)
+O(1)
+In-place
+稳定
+比较
 
-作用：对一个序列的元素求和
+插入排序
+Insertion Sort
+O(n²)
+O(n)
+O(n²)
+O(1)
+In-place
+稳定
+比较
 
-init 为对序列元素求和的初始值
+选择排序
+Selection Sort
+O(n²)
+O(n²)
+O(n²)
+O(1)
+In-place
+不稳定
+比较
 
-返回值类型：与 init 一致
-
-基础累加求和：
-pint a[]=&amp;#123;1,3,5,9,10&amp;#125;;// 对 [0,2] 区间求和，初始值为 0，结果为 0+1+3+5=9int res1 = accumulate(a, a + 3, 0);// 对 [0,3] 区间求和，初始值为 5，结果为 5+1+3+5+9=23int res2 = accumulate(a, a + 4,...
+希尔排序
+Shell...
     </div>
     <div class="meta footer">
       <span>
         <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
       </span>
     </div>
-    <a href="/2023/03/12/STL%E5%87%BD%E6%95%B0/" itemprop="url" title="STL函数" class="btn">more...</a>
+    <a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" itemprop="url" title="算法进阶" class="btn">more...</a>
   </div>
 </article>
 
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器"><img data-src="https://img.picgo.net/2023/04/02/cover-9f15ac8cf2ec458e4.jpeg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-03-10 20:42:19">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-03-10T20:42:19+08:00">2023-03-10</time>
-  </span>
-</div>
-
-    <h3><a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器">STL容器</a></h3>
-    <div class="excerpt">
-        # vector
-vector 为可变长数组（动态数组），定义的 vector 数组可以随时添加数值和删除元素。
-在局部函数中开 vector 数组，是在堆空间里面开的，与开全局变量比较类似，所以经常见到在局部函数中开大容量数组。
-
-头文件
-#include &amp;lt;vector&gt;
-
-初始化
-
-一维初始化
-vector&amp;lt;int&gt; a; // 定义了一个名为 num 的存 int 数据的一维数组vector&amp;lt;double&gt; b;// 定义了一个名为 num 的存 double 数据的一维数组vector&amp;lt;node&gt;...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
-      </span>
-    </div>
-    <a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" itemprop="url" title="STL容器" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2023/03/09/STL/" itemprop="url" title="STL"><img data-src="https://img.picgo.net/2023/04/02/cover-110882539d7b51c636.jpeg"></a>
+    <a href="/2023/03/09/STL/" itemprop="url" title="STL"><img data-src="https://img.picgo.net/2023/04/10/cover-12a8ae146873b3f73d.jpeg"></a>
   </div>
   <div class="info">
     
@@ -353,13 +344,14 @@ vector&amp;lt;int&gt; a; // 定义了一个名为 num 的存 int 数据的一维
 
     <h3><a href="/2023/03/09/STL/" itemprop="url" title="STL">STL</a></h3>
     <div class="excerpt">
-        C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。
+        # STL 概述
+C++ STL（标准模板库，Standard Template Library）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。
 
 STL 从广义上讲分为三类: algorithm (算法) 、container (容器)、iterator (迭代器)。容器和算法可以通过迭代器进行无缝的连接。
 
 STL 提供了六大组件，彼此组合套用协同工作。这六大组件分别是：
 
-容器（Containers）：各种数据结构，如 vector、list、deque、set、map 等。从实现的角度来看，容器是一种 class...
+容器（Containers）：各种数据结构，如 vector、list、deque、set、map...
     </div>
     <div class="meta footer">
       <span>
@@ -486,16 +478,48 @@ ps: 经过预处理后的 .i...
   </div>
 </article>
 
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/02/24/C++Study/" itemprop="url" title="C++ Study"><img data-src="https://img.picgo.net/2023/04/02/cover-4eb532c64ce3f5188.jpeg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-02-24 23:59:16">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-02-24T23:59:16+08:00">2023-02-24</time>
+  </span>
+</div>
+
+    <h3><a href="/2023/02/24/C++Study/" itemprop="url" title="C++ Study">C++ Study</a></h3>
+    <div class="excerpt">
+        # Welcome to C++
+C++ 融合了 3 种不同的编程方式：
+
+C 语言代表的过程性语言（procedural）
+C++ 在 C 语言基础上添加的类代表的面向对象语言（OOP，Object Oriented Programming）
+C++ 模板支持的泛型编程（generic programming）
+
+IDE : Visual Studio
+解决方案 /solution : 一个包含多个相关 project 的集合，这些 projects 可以是不同类型的（dll,exe,lib 等）。solution...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/C/" itemprop="url" title="C++"><i class="ic i-flag"></i>C++</a>
+      </span>
+    </div>
+    <a href="/2023/02/24/C++Study/" itemprop="url" title="C++ Study" class="btn">more...</a>
+  </div>
+</article>
+
     </div>
 
   </div>
 
   
-  <nav class="pagination">
-    <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
-    </div>
-  </nav>
 
 
 
@@ -521,7 +545,7 @@ ps: 经过预处理后的 .i...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">11</span>
+        <span class="count">10</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -533,7 +557,7 @@ ps: 经过预处理后的 .i...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">7</span>
+        <span class="count">8</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -599,7 +623,6 @@ ps: 经过预处理后的 .i...
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/page/2/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -623,27 +646,17 @@ ps: 经过预处理后的 .i...
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/10/STL%E5%AE%B9%E5%99%A8/" title="STL容器">STL容器</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
     <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -670,16 +683,6 @@ ps: 经过预处理后的 .i...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
@@ -693,7 +696,27 @@ ps: 经过预处理后的 .i...
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
