@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
         </ul>
       </div>
     </header>
@@ -236,14 +236,14 @@ Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功
 
     <h3><a href="/2023/03/12/QtStudy/" itemprop="url" title="Qt Study">Qt Study</a></h3>
     <div class="excerpt">
-        # Qt 核心
+        # Qt 核心机制
 # 元对象系统
 Qt 元对象系统提供了对象间的通信机制（信号和槽）、运行时类型信息和动态属性系统的支持，是标准 C++ 的一个扩展，它使 Qt 能够更好的实现 GUI 用户图形界面编程。Qt 的元对象系统不支持 C++ 模板。
 Qt 元对象系统基于以下三个事实：
 
 基类 QObject ：任何需要使用元对象系统功能的类必须继承自 QObject 。 QObject 是 Qt 中最基本的类，是所有 Qt 对象的基类。
-Q_OBJECT 宏：Q_OBJECT 宏必须出现在类的私有声明区，用于启动元对象的特性。
-元对象编译器（moc, Meta-Object Compiler）：为...
+Q_OBJECT 宏： Q_OBJECT 宏必须出现在类的私有声明区，用于启动元对象的特性。
+元对象编译器（moc, Meta-Object...
     </div>
     <div class="meta footer">
       <span>
@@ -349,9 +349,7 @@ C++ STL（标准模板库，Standard Template Library）是一套功能强大的
 
 STL 从广义上讲分为三类: algorithm (算法) 、container (容器)、iterator (迭代器)。容器和算法可以通过迭代器进行无缝的连接。
 
-STL 提供了六大组件，彼此组合套用协同工作。这六大组件分别是：
-
-容器（Containers）：各种数据结构，如 vector、list、deque、set、map...
+在 C++ 标准中，STL 被组织为下面 13 个头文件 &amp;lt;vector&amp;gt; 、 &amp;lt;list&amp;gt; 、 &amp;lt;map&amp;gt;...
     </div>
     <div class="meta footer">
       <span>
@@ -646,6 +644,16 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
     <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
   </li>
 
@@ -656,7 +664,7 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -686,27 +694,7 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
   </li>
 
       
@@ -733,10 +721,20 @@ IDE : Visual Studio
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
   </ul>

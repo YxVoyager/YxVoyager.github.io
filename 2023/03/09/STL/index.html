@@ -151,12 +151,13 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <blockquote>
 <p>STL 从广义上讲分为三类: algorithm (算法) 、container (容器)、iterator (迭代器)。容器和算法可以通过迭代器进行无缝的连接。</p>
 </blockquote>
+<p>在 C++ 标准中，STL 被组织为下面 13 个头文件 <code> &lt;vector&gt;</code> 、 <code>&lt;list&gt;</code> 、 <code>&lt;map&gt;</code> 、 <code>&lt;set&gt;</code> 、 <code>&lt;queue&gt;</code> 、 <code>&lt;deque&gt;</code> 、 <code>&lt;stack&gt;</code> 、 <code>&lt;algorithm&gt;</code> 、 <code>&lt;iterator&gt;</code> 、 <code>&lt;functional&gt;</code> 、 <code>&lt;memory&gt;</code> 、 <code>&lt;numeric&gt;</code> 、 <code>&lt;utility&gt;</code></p>
 <p>STL 提供了六大组件，彼此组合套用协同工作。这六大组件分别是：</p>
 <ul>
 <li>容器（Containers）：各种数据结构，如 vector、list、deque、set、map 等。从实现的角度来看，<strong>容器是一种 class template</strong>。</li>
 <li>算法（Algorithms）：各种常用算法，提供了执行各种操作的方式，包括对容器内容执行初始化、排序、搜索和转换等操作，比如 sort、search、copy、erase。从实现的角度来看，<strong>STL 算法是一种 function template</strong>。</li>
-<li>迭代器（Iterators）：迭代器用于遍历对象集合的元素，扮演容器与算法之间的胶合剂，是所谓的 “泛型指针”，共有 5 种类型，以及其他衍生变化。从实现角度来看，迭代器是一种将 operator*、operator-&gt;、operator++、operator-- 等指针操作予以重载的 class template。所有的 STL 容器附带有自己专属的迭代器，因为只有容器设计者才知道如何遍历自己的元素。</li>
-<li>仿函数（Functors）：也称为函数对象（Function object），行为类似函数，可作为算法的某种策略。从实现角度来看，仿函数是一种重载了 operator () 的 class 或者 class template。</li>
+<li>迭代器（Iterators）：迭代器用于遍历对象集合的元素，扮演容器与算法之间的胶合剂，是所谓的 “泛型指针”，共有 5 种类型，以及其他衍生变化。从实现角度来看，<em><em>迭代器是一种将 operator</em>、operator-&gt;、operator++、operator-- 等指针操作予以重载的 class template</em>*。所有的 STL 容器附带有自己专属的迭代器，因为只有容器设计者才知道如何遍历自己的元素。</li>
+<li>仿函数（Functors）：也称为函数对象（Function object），行为类似函数，可作为算法的某种策略。从实现角度来看，<strong>仿函数是一种重载了 operator () 的 class 或者 class template</strong>。</li>
 <li>适配器（Adaptors）：一种用来修饰容器或者仿函数或迭代器接口的东西。例如 STL 提供的 queue 和 stack，就是一种空间配接器，因为它们的底部完全借助于 deque。</li>
 <li>分配器（Allocators）：也称为空间配置器，负责空间的配置与管理。从实现的角度来看，配置器是一个实现了动态配置空间、空间管理、空间释放的 class template。</li>
 </ul>
@@ -170,42 +171,119 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>STL 具有高可重用性、高性能、高移植性、跨平台等优点
 <ul>
 <li>高可重用性: STL 中几乎所有的代码的采用了模板类和模板函数的方式实现，这相当于传统的由函数和类组成的库来说提供了更好的代码重用机会。</li>
-<li>高性能：底层使用的数据结构和算法比较优秀，如 map 的红黑树</li>
+<li>高性能：底层使用的数据结构和算法比较优秀，如 map 是使用红黑树的变体实现的。（红黑树是平衡二叉树的一种）</li>
 <li>高移植性：因为是内建在编译器之内，项目 A 中用 STL 编写的模块可以直接移植到项目 B 上。</li>
-<li>跨平台：windows 上写的可以在 Linux 上运行 (反之一同)</li>
+<li>跨平台：windows 上写的可以在 Linux 上运行 (反之亦可)</li>
 </ul>
 </li>
 </ul>
 <h1 id="stl容器"><a class="markdownIt-Anchor" href="#stl容器">#</a> STL 容器</h1>
+<h2 id="容器的分类"><a class="markdownIt-Anchor" href="#容器的分类">#</a> 容器的分类</h2>
+<ol>
+<li>序列式容器（Sequence containers）
+<ul>
+<li>每个元素都有固定的位置，取决于插入的时机和地点，和元素值无关。</li>
+<li>vector、deque、list、stack、queue</li>
+</ul>
+</li>
+<li>关联式容器（Associated containers）
+<ul>
+<li>元素位置取决于特定的排序准则，和插入顺序无关。</li>
+<li>set、multiset、map、multimap</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>描述</th>
+<th>实现头文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>向量 (vector)</td>
+<td>连续存储的元素</td>
+<td><vector></td>
+</tr>
+<tr>
+<td>列表 (list)</td>
+<td>由节点组成的双向链表，每个结点包含着一个元素</td>
+<td><list></td>
+</tr>
+<tr>
+<td>栈 (stack)</td>
+<td>后进先出的值的排列</td>
+<td><stack></td>
+</tr>
+<tr>
+<td>队列 (queue)</td>
+<td>先进先出的值的排列</td>
+<td><queue></td>
+</tr>
+<tr>
+<td>优先队列 (priority_queue)</td>
+<td>元素的次序是由作用于所存储的值对上的某种谓词决定的一种队列</td>
+<td><queue></td>
+</tr>
+<tr>
+<td>双队列 (deque)</td>
+<td>连续存储的指向不同元素的指针所组成的数组</td>
+<td><deque></td>
+</tr>
+<tr>
+<td>集合 (set)</td>
+<td>由节点组成的红黑树，每个节点都包含着一个元素，节点之间以某种作用于元素对的谓词排列，没有两个不同的元素能够拥有相同的次序。</td>
+<td><set></td>
+</tr>
+<tr>
+<td>多重集合 (multiset)</td>
+<td>允许存在两个次序相等的元素的集合</td>
+<td><set></td>
+</tr>
+<tr>
+<td>映射 (map)</td>
+<td>由 {键，值} 对组成的集合，以某种作用于键上的谓词排列</td>
+<td><map></td>
+</tr>
+<tr>
+<td>多重映射 (multimap)</td>
+<td>允许键对有相等的次序的映射</td>
+<td><map></td>
+</tr>
+</tbody>
+</table>
 <h2 id="vector"><a class="markdownIt-Anchor" href="#vector">#</a> vector</h2>
-<p>vector 为可变长数组（动态数组），定义的 vector 数组可以随时添加数值和删除元素。</p>
-<p>在局部函数中开 vector 数组，是在堆空间里面开的，与开全局变量比较类似，所以经常见到在局部函数中开大容量数组。</p>
 <ul>
-<li>
-<p>头文件</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span></pre></td></tr></table></figure></li>
-<li>
-<p>初始化</p>
+<li>vector 是将元素置于一个动态数组中加以管理的容器。</li>
+<li>vector 可以随机存取元素（支持索引值直接存取，用 [] 操作符或者 at () 方法）</li>
+<li>vector 尾部添加或移除元素非常快速。但是在中部或头部插入元素或移动元素比较费时。</li>
+<li>在局部函数中开 vector 数组，是在堆空间里面开的，与开全局变量比较类似，所以经常见到在局部函数中开大容量数组。</li>
+</ul>
+<h3 id="vector的构造方法"><a class="markdownIt-Anchor" href="#vector的构造方法">#</a> vector 的构造方法</h3>
+<p><strong>vector 对象的默认构造</strong></p>
+<p>vector 采用模板类实现，vector 对象的默认构造形式：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span>T<span class="token operator">></span> vecT<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> vecInt<span class="token punctuation">;</span> <span class="token comment">// 定义了一个存 int 的 vector 容器</span></pre></td></tr><tr><td data-num="4"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> vecDouble<span class="token punctuation">;</span> <span class="token comment">// 定义了一个存 double 的 vector 容器</span></pre></td></tr><tr><td data-num="5"></td><td><pre>vector<span class="token operator">&lt;</span>string<span class="token operator">></span> vecString<span class="token punctuation">;</span> <span class="token comment">// 定义了一个存 String 的 vector 容器</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">CA</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>vector<span class="token operator">&lt;</span>CA<span class="token operator">*</span><span class="token operator">></span> vecpCA<span class="token punctuation">;</span> <span class="token comment">// 用于存放 CA 对象指针的 vector 容器</span></pre></td></tr><tr><td data-num="9"></td><td><pre>vector<span class="token operator">&lt;</span>CA<span class="token operator">></span> vecCA<span class="token punctuation">;</span> <span class="token comment">// 用于存放 CA 对象的 vector 容器</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment">// 由于容器元素的存放是按值复制的方式进行的，所以此时 CA 必须提供 CA 的拷贝构造函数，以保证 CA 对象间拷贝正常</span></pre></td></tr></table></figure><p><strong>vector 对象的带参构造</strong></p>
 <ul>
-<li>
-<p>一维初始化</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> a<span class="token punctuation">;</span> <span class="token comment">// 定义了一个名为 num 的存 int 数据的一维数组</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> b<span class="token punctuation">;</span><span class="token comment">// 定义了一个名为 num 的存 double 数据的一维数组</span></pre></td></tr><tr><td data-num="3"></td><td><pre>vector<span class="token operator">&lt;</span>node<span class="token operator">></span> c<span class="token punctuation">;</span><span class="token comment">//node 是结构体类型</span></pre></td></tr></table></figure><p>指定长度和初始值的初始化</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">v</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 定义一个长度为 n 的数组，初始值默认为 0</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">v</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 所有的元素初始值均为 1</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 注意：指定数组长度之后（指定长度后的数组就相当于正常的数组了）</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 就不能使用 push_back () 操作了</span></pre></td></tr></table></figure><p>初始化中有多个元素</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> a<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token comment">// 数组 a 中有五个元素</span></pre></td></tr></table></figure><p>拷贝初始化</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">a</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">b</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 两个数组中的类型必须相同，a 和 b 都是长度为 n+1，所有值都为 0 的数组</span></pre></td></tr></table></figure></li>
-<li>
-<p>二维初始化</p>
+<li><code>vector(begin, end);  //构造函数将[begin,end)区间的元素拷贝给自身</code></li>
+<li><code>vector(n,elem);  //构造函数将n个elem拷贝给自身</code></li>
+<li><code>vector(const vector &amp;vec);  //拷贝构造函数</code></li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> iArray<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vA</span><span class="token punctuation">(</span>iArray<span class="token punctuation">,</span> iArray<span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 定义一个长度为 n 的数组，初始值默认为 0</span></pre></td></tr><tr><td data-num="3"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vB</span><span class="token punctuation">(</span>vA<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vA<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vB</span><span class="token punctuation">(</span>vA<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vA<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vC</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 存放 3 个元素 9</span></pre></td></tr><tr><td data-num="6"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vD</span><span class="token punctuation">(</span>vA<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>二维初始化</p>
 <p>定义第一维固定长度为 5，第二维可变化的二维数组</p>
 <figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// 定义可变长二维数组</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 注意：行不可变（只有 5 行）, 而列可变，可以在指定行添加元素</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 第一维固定长度为 5，第二维长度可以改变</span></pre></td></tr></table></figure><p>行列均可变</p>
 <figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 初始化二维均可变长数组</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span>vectot<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> v<span class="token punctuation">;</span><span class="token comment">// 定义一个行和列均可变的二维数组</span></pre></td></tr></table></figure><p>行列长度均固定 n + 1 行 m + 1 列初始值为 0</p>
 <figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> <span class="token function">a</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token generic-function"><span class="token function">vector</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p><code>c++17</code>  或者 <code>c++20</code>  支持的形式（不常用）</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector <span class="token function">a</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">vector</span><span class="token punctuation">(</span>m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector <span class="token function">a</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">vector</span><span class="token punctuation">(</span>m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="vector的赋值"><a class="markdownIt-Anchor" href="#vector的赋值">#</a> vector 的赋值</h3>
+<ul>
+<li><code> vector.assign(begin, end);  //将[begin, end)区间中的数据拷贝赋值给本身</code></li>
+<li><code> vector.assign(n, elem);  //将n个elem拷贝赋值给本身</code></li>
+<li><code> vector&amp; operator = (const vector &amp;vec);  //重载等号操作符</code></li>
+<li><code> vector.swap(vec); //将vec和本身的元素互换</code></li>
 </ul>
-</li>
-</ul>
-<h3 id="方法函数"><a class="markdownIt-Anchor" href="#方法函数">#</a> 方法函数</h3>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> vecIntA<span class="token punctuation">,</span> vecIntB<span class="token punctuation">,</span> vecIntC<span class="token punctuation">,</span> vecIntD<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> iArray<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>vecIntA<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>iArray<span class="token punctuation">,</span> iArray<span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>vecIntB<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>vecIntA<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vecIntA<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 用其他容器的迭代器作为参数</span></pre></td></tr><tr><td data-num="5"></td><td><pre>vecIntC<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>vecIntD <span class="token operator">=</span> vecIntA<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>vecIntA<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span>vecIntD<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="方法函数"><a class="markdownIt-Anchor" href="#方法函数">#</a> 方法函数</h3>
 <p>知道了如何定义初始化可变数组，下面就需要知道如何添加，删除，修改数据。</p>
-<p><strong>c 指定为数组名称</strong>，含义中会注明算法复杂度。</p>
 <table>
 <thead>
 <tr>
@@ -236,7 +314,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </tr>
 <tr>
 <td style="text-align:left"><code>c.resize(n, v)</code></td>
-<td style="text-align:left">改变数组大小为 <code>n</code> , <code>n</code>  个空间数值赋为 <code>v</code> ，如果没有默认赋值为 <code>0</code></td>
+<td style="text-align:left">改变数组大小为 <code>n</code> ，新增空间数值赋为 <code>v</code> ，如果没有默认赋值为 <code>0</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>c.insert(it, x)</code></td>
@@ -265,21 +343,24 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </tbody>
 </table>
 <p>注意：  <code>end()</code>  返回的是最后一个元素的后一个位置的地址，不是最后一个元素的地址，<strong>所有 STL 容器均是如此</strong></p>
-<p>排序</p>
-<p>使用 sort 排序要：  <code>sort(c.begin(),c.end())</code> ;</p>
-<p>对所有元素进行排序，如果要对指定区间进行排序，可以对 sort () 里面的参数进行加减改动。</p>
 <h3 id="访问"><a class="markdownIt-Anchor" href="#访问">#</a> 访问</h3>
-<p><strong>下标法</strong>： 和普通数组一样</p>
-<p>注意：一维数组的下标是从 0 到 v.size ( ) − 1，访问之外的数会出现越界错误</p>
-<p>迭代器法： 类似指针一样的访问 ，首先需要声明迭代器变量，和声明指针变量一样，可以根据代码进行理解（附有注释）。</p>
-<p>代码如下：</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> vi<span class="token punctuation">;</span> <span class="token comment">// 定义一个 vi 数组</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 声明一个迭代器指向 vi 的初始位置</span></pre></td></tr></table></figure><p><strong>下标访问</strong></p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 添加元素</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	vi<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 下标访问 </span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	cout <span class="token operator">&lt;&lt;</span> vi<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p><strong>迭代器访问</strong></p>
-<p>类似指针。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 迭代器访问</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 相当于声明了一个迭代器类型的变量 it</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 通俗来说就是声明了一个指针变量</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">// 方式一：</span></pre></td></tr><tr><td data-num="7"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>it <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment">// 方式二：</span></pre></td></tr><tr><td data-num="13"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span>it <span class="token operator">=</span> vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> vi<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>it <span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token comment">//vi.end () 指向尾元素地址的下一个地址</span></pre></td></tr></table></figure><p><strong>智能指针</strong></p>
+<ol>
+<li>
+<p>下标访问</p>
+</li>
+<li>
+<p><code> at()</code>  访问</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vec<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 返回索引 idx 所指的数据，如果 idx 越界，运行直接报错。</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vec<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span>idx<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回索引 idx 所指的数据，如果 idx 越界，抛出 out_of_range 异常。</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 添加元素</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	vi<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 下标访问 </span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	cout <span class="token operator">&lt;&lt;</span> vi<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>迭代器访问</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 迭代器访问</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 相当于声明了一个迭代器类型的变量 it</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 通俗来说就是声明了一个指针变量</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">// 方式一：</span></pre></td></tr><tr><td data-num="7"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>it <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment">// 方式二：</span></pre></td></tr><tr><td data-num="13"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span>it <span class="token operator">=</span> vi<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> vi<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>it <span class="token operator">++</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token comment">//vi.end () 指向尾元素地址的下一个地址</span></pre></td></tr></table></figure></li>
+<li>
+<p>智能指针</p>
 <p><strong>只能遍历完数组</strong>，如果要指定的内容进行遍历，需要另选方法。<br>
 <strong>auto</strong> 能够自动识别并获取类型。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">241</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> val <span class="token operator">:</span> v<span class="token punctuation">)</span> </pre></td></tr><tr><td data-num="5"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> val <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment">// 12 241</span></pre></td></tr></table></figure><p><code>vector</code>  注意：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>v<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">241</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> val <span class="token operator">:</span> v<span class="token punctuation">)</span> </pre></td></tr><tr><td data-num="5"></td><td><pre>    cout <span class="token operator">&lt;&lt;</span> val <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment">// 12 241</span></pre></td></tr></table></figure></li>
+</ol>
+<p><code>vector</code>  注意：</p>
 <ul>
 <li><code>vi[i]</code>  和  <code>*(vi.begin() + i)</code>  等价</li>
 <li><code>vector</code>  和 <code>string</code>  的 <code>STL</code>  容器支持 <code>*(it + i)</code>  的元素访问，其它容器可能也可以支持这种方式访问，但用的不多，可自行尝试。</li>
@@ -647,27 +728,27 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <tbody>
 <tr>
 <td style="text-align:left"><code>s.begin()</code></td>
-<td style="text-align:left">返回 set 容器的第一个元素的地址（迭代器）O (1)�(1)</td>
+<td style="text-align:left">返回 set 容器的第一个元素的地址（迭代器）O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.end()</code></td>
-<td style="text-align:left">返回 set 容器的最后一个元素的下一个地址（迭代器）O (1)�(1)</td>
+<td style="text-align:left">返回 set 容器的最后一个元素的下一个地址（迭代器）O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.rbegin()</code></td>
-<td style="text-align:left">返回逆序迭代器，指向容器元素最后一个位置 O (1)�(1)</td>
+<td style="text-align:left">返回逆序迭代器，指向容器元素最后一个位置 O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.rend()</code></td>
-<td style="text-align:left">返回逆序迭代器，指向容器第一个元素前面的位置 O (1)�(1)</td>
+<td style="text-align:left">返回逆序迭代器，指向容器第一个元素前面的位置 O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.clear()</code></td>
-<td style="text-align:left">删除 set 容器中的所有的元素，返回 unsigned int 类型 O (N)�(�)</td>
+<td style="text-align:left">删除 set 容器中的所有的元素，返回 unsigned int 类型 O (N)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.empty()</code></td>
-<td style="text-align:left">判断 set 容器是否为空 O (1)�(1)</td>
+<td style="text-align:left">判断 set 容器是否为空 O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.insert()</code></td>
@@ -675,7 +756,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.size()</code></td>
-<td style="text-align:left">返回当前 set 容器中的元素个数 O (1)�(1)</td>
+<td style="text-align:left">返回当前 set 容器中的元素个数 O (1)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>erase(iterator)</code></td>
@@ -703,11 +784,11 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.lower_bound(k)</code></td>
-<td style="text-align:left">返回大于等于 k 的第一个元素的迭代器 O (logN)�(����)</td>
+<td style="text-align:left">返回大于等于 k 的第一个元素的迭代器 O (logN)</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>s.upper_bound(k)</code></td>
-<td style="text-align:left">返回大于 k 的第一个元素的迭代器 O (logN)�(����)</td>
+<td style="text-align:left">返回大于 k 的第一个元素的迭代器 O (logN)</td>
 </tr>
 </tbody>
 </table>
@@ -1510,7 +1591,7 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-10 11:20:49" itemprop="dateModified" datetime="2023-04-10T11:20:49+08:00">2023-04-10</time>
+    <time title="修改时间：2023-04-12 00:39:11" itemprop="dateModified" datetime="2023-04-12T00:39:11+08:00">2023-04-12</time>
   </span>
   <span id="2023/03/09/STL/" class="item leancloud_visitors" data-flag-title="STL" title="阅读次数">
       <span class="icon">
@@ -1582,7 +1663,7 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> STL 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E5%AE%B9%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> STL 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector"><span class="toc-number">2.1.</span> <span class="toc-text"> vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.3.</span> <span class="toc-text"> Vector 原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stack"><span class="toc-number">2.2.</span> <span class="toc-text"> stack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-2"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E9%81%8D%E5%8E%86"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 栈遍历</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-number">2.3.</span> <span class="toc-text"> queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-3"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 队列模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deque"><span class="toc-number">2.4.</span> <span class="toc-text"> deque</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-4"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority_queue"><span class="toc-number">2.5.</span> <span class="toc-text"> priority_queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 设置优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.5.2.1.</span> <span class="toc-text"> 基本数据类型的优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E4%BC%98%E5%85%88%E7%BA%A7%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.5.2.2.</span> <span class="toc-text"> 结构体优先级设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.5.2.3.</span> <span class="toc-text"> 存储特殊类型的优先级</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">2.6.</span> <span class="toc-text"> map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-2"><span class="toc-number">2.6.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-number">2.6.2.</span> <span class="toc-text"> 添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="toc-number">2.6.3.</span> <span class="toc-text"> 访问元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Eunordered_map%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">2.6.4.</span> <span class="toc-text"> 与 unordered_map 的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">2.6.4.1.</span> <span class="toc-text"> 内部实现原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%AF%94%E8%BE%83"><span class="toc-number">2.6.4.2.</span> <span class="toc-text"> 效率比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set"><span class="toc-number">2.7.</span> <span class="toc-text"> set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-3"><span class="toc-number">2.7.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-2"><span class="toc-number">2.7.2.</span> <span class="toc-text"> 访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pair"><span class="toc-number">2.8.</span> <span class="toc-text"> pair</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-3"><span class="toc-number">2.8.1.</span> <span class="toc-text"> 访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-number">2.9.</span> <span class="toc-text"> string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E5%AE%9A%E4%B9%89"><span class="toc-number">2.9.1.</span> <span class="toc-text"> 初始化及定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-%E7%89%B9%E6%80%A7"><span class="toc-number">2.9.2.</span> <span class="toc-text"> string 特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%85%A5%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.9.3.</span> <span class="toc-text"> 读入详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-4"><span class="toc-number">2.9.4.</span> <span class="toc-text"> 函数方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bitset"><span class="toc-number">2.10.</span> <span class="toc-text"> bitset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">2.10.1.</span> <span class="toc-text"> 初始化定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">2.10.2.</span> <span class="toc-text"> 特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-5"><span class="toc-number">2.10.3.</span> <span class="toc-text"> 方法函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">2.11.</span> <span class="toc-text"> array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.11.1.</span> <span class="toc-text"> 声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0"><span class="toc-number">2.11.2.</span> <span class="toc-text"> 存取元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">2.11.3.</span> <span class="toc-text"> 成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.11.4.</span> <span class="toc-text"> 部分用法示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple"><span class="toc-number">2.12.</span> <span class="toc-text"> tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.12.1.</span> <span class="toc-text"> 声明初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.12.2.</span> <span class="toc-text"> 元素操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.12.3.</span> <span class="toc-text"> 函数操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text"> STL 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#accumulate"><span class="toc-number">3.1.</span> <span class="toc-text"> accumulate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atoi"><span class="toc-number">3.2.</span> <span class="toc-text"> atoi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stoi"><span class="toc-number">3.3.</span> <span class="toc-text"> stoi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iota"><span class="toc-number">3.4.</span> <span class="toc-text"> iota</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#to_string"><span class="toc-number">3.5.</span> <span class="toc-text"> to_string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fill"><span class="toc-number">3.6.</span> <span class="toc-text"> fill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reverse"><span class="toc-number">3.7.</span> <span class="toc-text"> reverse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sort"><span class="toc-number">3.8.</span> <span class="toc-text"> sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stable_sort"><span class="toc-number">3.9.</span> <span class="toc-text"> stable_sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#is_sorted"><span class="toc-number">3.10.</span> <span class="toc-text"> is_sorted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique"><span class="toc-number">3.11.</span> <span class="toc-text"> unique</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform"><span class="toc-number">3.12.</span> <span class="toc-text"> transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lower_bound-upper_bound"><span class="toc-number">3.13.</span> <span class="toc-text"> lower_bound + upper_bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#max_elementmin_element"><span class="toc-number">3.14.</span> <span class="toc-text"> max_element+min_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#maxmin"><span class="toc-number">3.15.</span> <span class="toc-text"> max+min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minmax"><span class="toc-number">3.16.</span> <span class="toc-text"> minmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minmax_element"><span class="toc-number">3.17.</span> <span class="toc-text"> minmax_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nth_element"><span class="toc-number">3.18.</span> <span class="toc-text"> nth_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#next_permutation"><span class="toc-number">3.19.</span> <span class="toc-text"> next_permutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#partial_sort"><span class="toc-number">3.20.</span> <span class="toc-text"> partial_sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#random_shuffle"><span class="toc-number">3.21.</span> <span class="toc-text"> random_shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#__gcd"><span class="toc-number">3.22.</span> <span class="toc-text"> __gcd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#__lg"><span class="toc-number">3.23.</span> <span class="toc-text"> __lg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_builtin-%E5%86%85%E7%BD%AE%E4%BD%8D%E8%BF%90%E7%AE%97%E5%87%BD%E6%95%B0"><span class="toc-number">3.24.</span> <span class="toc-text"> _builtin 内置位运算函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_ffs"><span class="toc-number">3.24.1.</span> <span class="toc-text"> __builtin_ffs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_popcount"><span class="toc-number">3.24.2.</span> <span class="toc-text"> __builtin_popcount</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_ctz"><span class="toc-number">3.24.3.</span> <span class="toc-text"> __builtin_ctz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_clz"><span class="toc-number">3.24.4.</span> <span class="toc-text"> __builtin_clz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_parity"><span class="toc-number">3.24.5.</span> <span class="toc-text"> __builtin_parity</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> STL 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E5%AE%B9%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> STL 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text"> 容器的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector"><span class="toc-number">2.2.</span> <span class="toc-text"> vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vector%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text"> vector 的构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector%E7%9A%84%E8%B5%8B%E5%80%BC"><span class="toc-number">2.2.2.</span> <span class="toc-text"> vector 的赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.5.</span> <span class="toc-text"> Vector 原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stack"><span class="toc-number">2.3.</span> <span class="toc-text"> stack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-2"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E9%81%8D%E5%8E%86"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 栈遍历</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-number">2.4.</span> <span class="toc-text"> queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-3"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 队列模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deque"><span class="toc-number">2.5.</span> <span class="toc-text"> deque</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-4"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 方法函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority_queue"><span class="toc-number">2.6.</span> <span class="toc-text"> priority_queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.6.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.6.2.</span> <span class="toc-text"> 设置优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.6.2.1.</span> <span class="toc-text"> 基本数据类型的优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E4%BC%98%E5%85%88%E7%BA%A7%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.6.2.2.</span> <span class="toc-text"> 结构体优先级设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.6.2.3.</span> <span class="toc-text"> 存储特殊类型的优先级</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">2.7.</span> <span class="toc-text"> map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-2"><span class="toc-number">2.7.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-number">2.7.2.</span> <span class="toc-text"> 添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="toc-number">2.7.3.</span> <span class="toc-text"> 访问元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Eunordered_map%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">2.7.4.</span> <span class="toc-text"> 与 unordered_map 的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">2.7.4.1.</span> <span class="toc-text"> 内部实现原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%AF%94%E8%BE%83"><span class="toc-number">2.7.4.2.</span> <span class="toc-text"> 效率比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set"><span class="toc-number">2.8.</span> <span class="toc-text"> set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-3"><span class="toc-number">2.8.1.</span> <span class="toc-text"> 函数方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-2"><span class="toc-number">2.8.2.</span> <span class="toc-text"> 访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pair"><span class="toc-number">2.9.</span> <span class="toc-text"> pair</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-3"><span class="toc-number">2.9.1.</span> <span class="toc-text"> 访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-number">2.10.</span> <span class="toc-text"> string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E5%AE%9A%E4%B9%89"><span class="toc-number">2.10.1.</span> <span class="toc-text"> 初始化及定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-%E7%89%B9%E6%80%A7"><span class="toc-number">2.10.2.</span> <span class="toc-text"> string 特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%85%A5%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.10.3.</span> <span class="toc-text"> 读入详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-4"><span class="toc-number">2.10.4.</span> <span class="toc-text"> 函数方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bitset"><span class="toc-number">2.11.</span> <span class="toc-text"> bitset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">2.11.1.</span> <span class="toc-text"> 初始化定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">2.11.2.</span> <span class="toc-text"> 特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%87%BD%E6%95%B0-5"><span class="toc-number">2.11.3.</span> <span class="toc-text"> 方法函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">2.12.</span> <span class="toc-text"> array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.12.1.</span> <span class="toc-text"> 声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0"><span class="toc-number">2.12.2.</span> <span class="toc-text"> 存取元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">2.12.3.</span> <span class="toc-text"> 成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.12.4.</span> <span class="toc-text"> 部分用法示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple"><span class="toc-number">2.13.</span> <span class="toc-text"> tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.13.1.</span> <span class="toc-text"> 声明初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.13.2.</span> <span class="toc-text"> 元素操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.13.3.</span> <span class="toc-text"> 函数操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text"> STL 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#accumulate"><span class="toc-number">3.1.</span> <span class="toc-text"> accumulate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atoi"><span class="toc-number">3.2.</span> <span class="toc-text"> atoi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stoi"><span class="toc-number">3.3.</span> <span class="toc-text"> stoi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iota"><span class="toc-number">3.4.</span> <span class="toc-text"> iota</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#to_string"><span class="toc-number">3.5.</span> <span class="toc-text"> to_string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fill"><span class="toc-number">3.6.</span> <span class="toc-text"> fill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reverse"><span class="toc-number">3.7.</span> <span class="toc-text"> reverse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sort"><span class="toc-number">3.8.</span> <span class="toc-text"> sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stable_sort"><span class="toc-number">3.9.</span> <span class="toc-text"> stable_sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#is_sorted"><span class="toc-number">3.10.</span> <span class="toc-text"> is_sorted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique"><span class="toc-number">3.11.</span> <span class="toc-text"> unique</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform"><span class="toc-number">3.12.</span> <span class="toc-text"> transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lower_bound-upper_bound"><span class="toc-number">3.13.</span> <span class="toc-text"> lower_bound + upper_bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#max_elementmin_element"><span class="toc-number">3.14.</span> <span class="toc-text"> max_element+min_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#maxmin"><span class="toc-number">3.15.</span> <span class="toc-text"> max+min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minmax"><span class="toc-number">3.16.</span> <span class="toc-text"> minmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minmax_element"><span class="toc-number">3.17.</span> <span class="toc-text"> minmax_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nth_element"><span class="toc-number">3.18.</span> <span class="toc-text"> nth_element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#next_permutation"><span class="toc-number">3.19.</span> <span class="toc-text"> next_permutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#partial_sort"><span class="toc-number">3.20.</span> <span class="toc-text"> partial_sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#random_shuffle"><span class="toc-number">3.21.</span> <span class="toc-text"> random_shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#__gcd"><span class="toc-number">3.22.</span> <span class="toc-text"> __gcd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#__lg"><span class="toc-number">3.23.</span> <span class="toc-text"> __lg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_builtin-%E5%86%85%E7%BD%AE%E4%BD%8D%E8%BF%90%E7%AE%97%E5%87%BD%E6%95%B0"><span class="toc-number">3.24.</span> <span class="toc-text"> _builtin 内置位运算函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_ffs"><span class="toc-number">3.24.1.</span> <span class="toc-text"> __builtin_ffs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_popcount"><span class="toc-number">3.24.2.</span> <span class="toc-text"> __builtin_popcount</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_ctz"><span class="toc-number">3.24.3.</span> <span class="toc-text"> __builtin_ctz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_clz"><span class="toc-number">3.24.4.</span> <span class="toc-text"> __builtin_clz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#__builtin_parity"><span class="toc-number">3.24.5.</span> <span class="toc-text"> __builtin_parity</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -1701,6 +1782,36 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
@@ -1711,20 +1822,10 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
   </li>
 
       
@@ -1751,26 +1852,6 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
@@ -1781,10 +1862,10 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
@@ -1794,7 +1875,7 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》<b
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
   </li>
 
   </ul>
