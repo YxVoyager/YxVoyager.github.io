@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
         </ul>
       </div>
     </header>
@@ -176,9 +176,12 @@ char *p = (char *)malloc(10);char *p1 = (char...
 
     <h3><a href="/2023/03/26/QML&QtQuick/" itemprop="url" title="QML &amp; Qt Quick">QML & Qt Quick</a></h3>
     <div class="excerpt">
-        # QML 基础
-QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的声明式脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。
-Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI...
+        # 概述
+具体来说，Qt Quick 是框架，QML 是语言。Qt Quick 是用 C++ 搭建起来的一套 DirectUI/Immediate UI 框架，在这个框架上可以用和 js 语法一样的 QML 语言开发界面。
+
+和原来的 QWidgets 框架有什么关系：
+没有太大关系，实际上，Qt Quick 是一个新框架，它仅仅继承了 Qt 原有的元对象系统，也就是带信号槽的对象系统，其他的理念都是新的。
+类似 DirectUI 和经典的 GUI 库，如 MFC、WTL 的区别。DirectUI...
     </div>
     <div class="meta footer">
       <span>
@@ -644,26 +647,6 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
     <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
@@ -671,10 +654,40 @@ IDE : Visual Studio
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
   </li>
 
       
@@ -694,7 +707,7 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
   </li>
 
       
@@ -704,37 +717,27 @@ IDE : Visual Studio
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
   </li>
 
   </ul>
