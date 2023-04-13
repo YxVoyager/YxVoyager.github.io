@@ -276,7 +276,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>Primary key / 主键：唯一的定义了单个元组。</li>
 <li>Foreign key / 外键：指定一个关系中的属性必须映射到另一个关系中的元组。</li>
 </ul>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312011848991.png" alt="image-20230312011848991"></p>
+<p><img data-src="image-20230312011848991.png" alt="image-20230312011848991"></p>
 </li>
 </ul>
 <h2 id="5-data-manipulation-languages-dml"><a class="markdownIt-Anchor" href="#5-data-manipulation-languages-dml">#</a> 5. Data Manipulation Languages (DML)</h2>
@@ -294,21 +294,21 @@ The query specifies only what data is wanted and not how to find it. (<strong>re
 <h2 id="6-relational-algebra"><a class="markdownIt-Anchor" href="#6-relational-algebra">#</a> 6. Relational Algebra</h2>
 <p>关系代数 (Relational Algebra) 就是一组基本操作，用于检索和操作关系中的图元。</p>
 <p>每个操作符都需要一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以把这些运算符 &quot;链&quot; 在一起，以创建更复杂的操作。</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012338736.png" alt="image-20230312012338736"></p>
+<p><img data-src="image-20230312012338736.png" alt="image-20230312012338736"></p>
 <p><strong>Select</strong> takes in a relation and outputs a subset of the tuples from that relation that satisfy a selection predicate. The predicate acts like a filter, and we can combine multiple predicates using conjunctions and disjunctions.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012550025.png" alt="image-20230312012550025"></p>
+<p><img data-src="image-20230312012550025.png" alt="image-20230312012550025"></p>
 <p><strong>Projection</strong> takes in a relation and outputs a relation with tuples that contain only specified attributes. You can rearrange the ordering of the attributes in the input relation as well as manipulate the values.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012612509.png" alt="image-20230312012612509"></p>
+<p><img data-src="image-20230312012612509.png" alt="image-20230312012612509"></p>
 <p><strong>Union</strong> takes in two relations and outputs a relation that contains all tuples that appear in at least one of the input relations. Note: The two input relations have to have the exact same attributes.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012638191.png" alt="image-20230312012638191"></p>
+<p><img data-src="image-20230312012638191.png" alt="image-20230312012638191"></p>
 <p><strong>Intersection</strong> takes in two relations and outputs a relation that contains all tuples that appear in both of the input relations. Note: The two input relations have to have the exact same attributes.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012655770.png" alt="image-20230312012655770"></p>
+<p><img data-src="image-20230312012655770.png" alt="image-20230312012655770"></p>
 <p><strong>Difference</strong> takes in two relations and outputs a relation that contains all tuples that appear in the first relation but not the second relation. Note: The two input relations have to have the exact same attributes.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012712525.png" alt="image-20230312012712525"></p>
+<p><img data-src="image-20230312012712525.png" alt="image-20230312012712525"></p>
 <p><strong>Product</strong> (笛卡尔积) takes in two relations and outputs a relation that contains all possible combinations for tuples from the input relations.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012728132.png" alt="image-20230312012728132"></p>
+<p><img data-src="image-20230312012728132.png" alt="image-20230312012728132"></p>
 <p><strong>Join</strong> takes in two relations and outputs a relation that contains all the tuples that are a combination of two tuples where for each attribute that the two relations share, the values for that attribute of both tuples is the same.</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012750042.png" alt="image-20230312012750042"></p>
+<p><img data-src="image-20230312012750042.png" alt="image-20230312012750042"></p>
 <h1 id="lesson02-高级sqladvanced-sql"><a class="markdownIt-Anchor" href="#lesson02-高级sqladvanced-sql">#</a> Lesson#02. 高级 SQL（Advanced SQL）</h1>
 <p><strong>SQL</strong> (Structured Query Language: 结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
 <p>DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。</p>
@@ -509,7 +509,7 @@ WHERE column LIKE pattern;
 </li>
 <li>
 <p><strong>Concatenation:</strong><br>
-<img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230313134548756.png" alt="image-20230313134548756"></p>
+<img data-src="image-20230313134548756.png" alt="image-20230313134548756"></p>
 </li>
 </ul>
 <h2 id="5-date-and-time"><a class="markdownIt-Anchor" href="#5-date-and-time">#</a> 5. Date and Time</h2>
@@ -702,7 +702,7 @@ SELECT * FROM cteSource;
 </li>
 <li>
 <p>We will focus on hiding the latency of the disk rather than optimizations with registers and caches since getting data from disk is so slow. 我们将专注于隐藏磁盘的延迟，而不是使用寄存器和缓存进行优化，因为从磁盘获取数据非常缓慢。</p>
-<p><img data-src="C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230313140745881.png" alt="image-20230313140745881"></p>
+<p><img data-src="image-20230313140745881.png" alt="image-20230313140745881"></p>
 </li>
 </ul>
 <h2 id="2-disk-oriented-dbms-overview"><a class="markdownIt-Anchor" href="#2-disk-oriented-dbms-overview">#</a> 2. Disk-Oriented DBMS Overview</h2>
@@ -884,7 +884,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-09 22:09:41" itemprop="dateModified" datetime="2023-04-09T22:09:41+08:00">2023-04-09</time>
+    <time title="修改时间：2023-04-13 08:31:13" itemprop="dateModified" datetime="2023-04-13T08:31:13+08:00">2023-04-13</time>
   </span>
   <span id="2023/03/06/CMU15-445/" class="item leancloud_visitors" data-flag-title="CMU15-445" title="阅读次数">
       <span class="icon">
@@ -974,7 +974,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">10</span>
+        <span class="count">11</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -1075,20 +1075,10 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
   </li>
 
       
@@ -1098,7 +1088,27 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
   </li>
 
       
@@ -1115,10 +1125,9 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+    <span><a href="/2023/04/10/%E5%BB%BA%E8%A1%8C%E6%98%A5%E6%8B%9B%E7%A7%91%E6%8A%80%E4%B8%93%E9%A1%B9/" title="建行春招科技专项">建行春招科技专项</a></span>
   </li>
 
       
@@ -1128,27 +1137,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
   </li>
 
       
@@ -1168,7 +1157,17 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/09/STL/" title="STL">STL</a></span>
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
   </li>
 
   </ul>

@@ -9,12 +9,12 @@
         <lastBuildDate>Mon, 06 Mar 2023 00:03:56 +0800</lastBuildDate>
         <category>C++</category>
         <category>DataBase</category>
+        <category>Linux</category>
         <category>Qt</category>
         <category>QML</category>
-        <category>Linux</category>
-        <category>设计模式</category>
         <category>STL</category>
         <category>算法</category>
+        <category>设计模式</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/03/06/CMU15-445/</guid>
             <title>CMU15-445</title>
@@ -151,7 +151,7 @@
 &lt;li&gt;Primary key / 主键：唯一的定义了单个元组。&lt;/li&gt;
 &lt;li&gt;Foreign key / 外键：指定一个关系中的属性必须映射到另一个关系中的元组。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312011848991.png&#34; alt=&#34;image-20230312011848991&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312011848991.png&#34; alt=&#34;image-20230312011848991&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;5-data-manipulation-languages-dml&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#5-data-manipulation-languages-dml&#34;&gt;#&lt;/a&gt; 5. Data Manipulation Languages (DML)&lt;/h2&gt;
@@ -169,21 +169,21 @@ The query specifies only what data is wanted and not how to find it. (&lt;strong
 &lt;h2 id=&#34;6-relational-algebra&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#6-relational-algebra&#34;&gt;#&lt;/a&gt; 6. Relational Algebra&lt;/h2&gt;
 &lt;p&gt;关系代数 (Relational Algebra) 就是一组基本操作，用于检索和操作关系中的图元。&lt;/p&gt;
 &lt;p&gt;每个操作符都需要一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以把这些运算符 &amp;quot;链&amp;quot; 在一起，以创建更复杂的操作。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012338736.png&#34; alt=&#34;image-20230312012338736&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012338736.png&#34; alt=&#34;image-20230312012338736&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Select&lt;/strong&gt; takes in a relation and outputs a subset of the tuples from that relation that satisfy a selection predicate. The predicate acts like a filter, and we can combine multiple predicates using conjunctions and disjunctions.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012550025.png&#34; alt=&#34;image-20230312012550025&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012550025.png&#34; alt=&#34;image-20230312012550025&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Projection&lt;/strong&gt; takes in a relation and outputs a relation with tuples that contain only specified attributes. You can rearrange the ordering of the attributes in the input relation as well as manipulate the values.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012612509.png&#34; alt=&#34;image-20230312012612509&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012612509.png&#34; alt=&#34;image-20230312012612509&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Union&lt;/strong&gt; takes in two relations and outputs a relation that contains all tuples that appear in at least one of the input relations. Note: The two input relations have to have the exact same attributes.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012638191.png&#34; alt=&#34;image-20230312012638191&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012638191.png&#34; alt=&#34;image-20230312012638191&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Intersection&lt;/strong&gt; takes in two relations and outputs a relation that contains all tuples that appear in both of the input relations. Note: The two input relations have to have the exact same attributes.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012655770.png&#34; alt=&#34;image-20230312012655770&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012655770.png&#34; alt=&#34;image-20230312012655770&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Difference&lt;/strong&gt; takes in two relations and outputs a relation that contains all tuples that appear in the first relation but not the second relation. Note: The two input relations have to have the exact same attributes.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012712525.png&#34; alt=&#34;image-20230312012712525&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012712525.png&#34; alt=&#34;image-20230312012712525&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Product&lt;/strong&gt; (笛卡尔积) takes in two relations and outputs a relation that contains all possible combinations for tuples from the input relations.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012728132.png&#34; alt=&#34;image-20230312012728132&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012728132.png&#34; alt=&#34;image-20230312012728132&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Join&lt;/strong&gt; takes in two relations and outputs a relation that contains all the tuples that are a combination of two tuples where for each attribute that the two relations share, the values for that attribute of both tuples is the same.&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230312012750042.png&#34; alt=&#34;image-20230312012750042&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230312012750042.png&#34; alt=&#34;image-20230312012750042&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;lesson02-高级sqladvanced-sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#lesson02-高级sqladvanced-sql&#34;&gt;#&lt;/a&gt; Lesson#02. 高级 SQL（Advanced SQL）&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;SQL&lt;/strong&gt; (Structured Query Language: 结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。&lt;/p&gt;
 &lt;p&gt;DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。&lt;/p&gt;
@@ -384,7 +384,7 @@ WHERE column LIKE pattern;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Concatenation:&lt;/strong&gt;&lt;br&gt;
-&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230313134548756.png&#34; alt=&#34;image-20230313134548756&#34;&gt;&lt;/p&gt;
+&lt;img data-src=&#34;image-20230313134548756.png&#34; alt=&#34;image-20230313134548756&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;5-date-and-time&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#5-date-and-time&#34;&gt;#&lt;/a&gt; 5. Date and Time&lt;/h2&gt;
@@ -577,7 +577,7 @@ SELECT * FROM cteSource;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;We will focus on hiding the latency of the disk rather than optimizations with registers and caches since getting data from disk is so slow. 我们将专注于隐藏磁盘的延迟，而不是使用寄存器和缓存进行优化，因为从磁盘获取数据非常缓慢。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5Csatori%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230313140745881.png&#34; alt=&#34;image-20230313140745881&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230313140745881.png&#34; alt=&#34;image-20230313140745881&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;2-disk-oriented-dbms-overview&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2-disk-oriented-dbms-overview&#34;&gt;#&lt;/a&gt; 2. Disk-Oriented DBMS Overview&lt;/h2&gt;
