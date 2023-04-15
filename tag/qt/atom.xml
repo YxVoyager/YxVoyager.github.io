@@ -6,12 +6,12 @@
     <updated>2023-03-26T02:12:08.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
-    <category term="Linux" />
     <category term="Qt" />
     <category term="QML" />
+    <category term="Linux" />
+    <category term="设计模式" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/</id>
         <title>QML &amp; Qt Quick</title>
