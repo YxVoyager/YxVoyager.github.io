@@ -8,13 +8,13 @@
         <pubDate>Wed, 08 Mar 2023 22:03:56 +0800</pubDate>
         <lastBuildDate>Wed, 08 Mar 2023 22:03:56 +0800</lastBuildDate>
         <category>C++</category>
-        <category>DataBase</category>
         <category>Qt</category>
         <category>QML</category>
-        <category>设计模式</category>
+        <category>DataBase</category>
+        <category>Linux</category>
         <category>STL</category>
         <category>算法</category>
-        <category>Linux</category>
+        <category>设计模式</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/03/08/Linux/</guid>
             <title>Linux</title>
@@ -23,7 +23,27 @@
             <pubDate>Wed, 08 Mar 2023 22:03:56 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;linux-配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-配置&#34;&gt;#&lt;/a&gt; Linux 配置&lt;/h1&gt;
 &lt;p&gt;windows powershell&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新软件包&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;linux&lt;/p&gt;
+&lt;p&gt;uname -r ： 显示操作系统的发行版号&lt;br&gt;
+ uname -a ：显示系统名、节点名称、操作系统的发行版号、内核版本等等。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230420174648351.png&#34; alt=&#34;image-20230420174648351&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;系统名：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Linux&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;节点名称：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;LAPTOP-G8CK4FEN&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作系统的发行版号：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;5.10.16.3-microsoft-standard-WSL2&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;硬件平台：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;机器硬件名：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统处理器的体系结构：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作系统：&lt;/strong&gt;&lt;br&gt;
+GNU/Linux&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;更新软件包&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装最常用 linux 桌面程序 gedit&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; gedit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装编译工具 gcc+cmake&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; build-essential&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; cmake&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;linux-系统目录结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-系统目录结构&#34;&gt;#&lt;/a&gt; Linux 系统目录结构&lt;/h1&gt;
@@ -57,10 +77,10 @@
 &lt;p&gt;&lt;strong&gt;外部文件管理：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;/dev&lt;/code&gt;  ：Device (设备) 的缩写，存放的是 Linux 的外部设备。** 注意：** 在 Linux 中访问设备和访问文件的方式是相同的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/dev&lt;/code&gt;  ：Device (设备) 的缩写，存放的是 Linux 的外部设备。&lt;strong&gt;注意&lt;/strong&gt;：在 Linux 中访问设备和访问文件的方式是相同的。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;/media&lt;/code&gt; ：类 windows 的 ** 其他设备，** 例如 U 盘、光驱等等，识别后 linux 会把设备放到这个目录下。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/media&lt;/code&gt; ：类 windows 的&lt;strong&gt;其他设备&lt;/strong&gt;，例如 U 盘、光驱等等，识别后 linux 会把设备放到这个目录下。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;/mnt&lt;/code&gt; ：临时挂载别的文件系统的，我们可以将光驱挂载在 /mnt/ 上，然后进入该目录就可以查看光驱里的内容了。&lt;/p&gt;
@@ -157,9 +177,9 @@
 一般建议在根目录下面只有目录，不要直接存放文件；&lt;br&gt;
 根目录是 linux 系统启动时系统第一个载入的分区，所以启动过程中用到的文件应该都放在这个分区中；&lt;br&gt;
 其中 &lt;code&gt;/etc&lt;/code&gt; 、 &lt;code&gt;/bin&lt;/code&gt; 、 &lt;code&gt;/dev&lt;/code&gt; 、 &lt;code&gt;/lib&lt;/code&gt; 、 &lt;code&gt;/sbin&lt;/code&gt;  这 5 个子目录都应该要与根目录连在一起，不可独立成为某个分区。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;“./” 代表的意思是：&lt;/strong&gt; ./ 代表当前文件目录，某一个文件（或者目录）的查找路径是从当前目录 “.” 下面开始进行查找。&lt;/p&gt;
-&lt;p&gt;**“~” 代表的意思是：** 表示代码主目录，也就是当前登录用户的用户目录。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;“…” 代表的意思是：&lt;/strong&gt;“…” 表示上级目录&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“./” 代表的意思是&lt;/strong&gt;： ./ 代表当前文件目录，某一个文件（或者目录）的查找路径是从当前目录 “.” 下面开始进行查找。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“~” 代表的意思是&lt;/strong&gt;：表示代码主目录，也就是当前登录用户的用户目录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“…” 代表的意思是&lt;/strong&gt;：“…” 表示上级目录&lt;/p&gt;
 &lt;h2 id=&#34;处理目录的常用命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理目录的常用命令&#34;&gt;#&lt;/a&gt; 处理目录的常用命令&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;ls&lt;/code&gt; （英文全拼：list files）: 列出目录及文件名&lt;/li&gt;

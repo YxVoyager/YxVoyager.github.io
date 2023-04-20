@@ -3,15 +3,289 @@
     <id>https://adventure-yx.github.io</id>
     <title></title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-04-02T12:10:08.000Z</updated>
+    <updated>2023-04-20T09:56:33.000Z</updated>
     <category term="C++" />
-    <category term="DataBase" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="设计模式" />
+    <category term="DataBase" />
+    <category term="Linux" />
     <category term="STL" />
     <category term="算法" />
-    <category term="Linux" />
+    <category term="设计模式" />
+    <entry>
+        <id>https://adventure-yx.github.io/2023/04/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Linux%EF%BC%89/</id>
+        <title>操作系统（Linux）</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/04/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Linux%EF%BC%89/"/>
+        <content type="html">&lt;p&gt;南京大学 2022《操作系统：设计与实现》- 蒋炎岩&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUNtNHkxZDdVcg==&#34;&gt;https://www.bilibili.com/video/BV1Cm4y1d7Ur&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&#34;操作系统概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统概述&#34;&gt;#&lt;/a&gt; 操作系统概述&lt;/h1&gt;
+&lt;h2 id=&#34;什么是操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是操作系统&#34;&gt;#&lt;/a&gt; 什么是操作系统？&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Operating System: A body of software, in fact, that is responsible for making it easy to run programs(even allowing you to seemingly run many at the same time), allowing programs to share memory, enabling programs to interact with devices, and other fun stuff like that.     ——《OSTEP》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;操作系统发展历程：……&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;今天的操作系统：通过 “虚拟化硬件” 资源为程序运行提供服务的软件&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更复杂的的处理器和内存
+&lt;ul&gt;
+&lt;li&gt;非对称对处理器（ARM big.LITTLE；Intel P/E-cores）&lt;/li&gt;
+&lt;li&gt;Non-uniform Memory Access (NUMA)&lt;/li&gt;
+&lt;li&gt;更多的硬件机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;更多的设备和资源
+&lt;ul&gt;
+&lt;li&gt;网卡、SSD、GPU、FPGA……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;复杂的应用需求和应用环境
+&lt;ul&gt;
+&lt;li&gt;服务器、个人电脑、智能手机、手环、IoT……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;理解操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#理解操作系统&#34;&gt;#&lt;/a&gt; 理解操作系统&lt;/h2&gt;
+&lt;p&gt;三个根本问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;操作系统服务谁？
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;程序 = 状态机&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;本课程涉及：多线程 Linux 应用程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;操作系统为程序提供什么服务？（设计 / 应用视角）
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;操作系统 = 对象 + API&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;本课程涉及：POSIX + 部分 Linux 特性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如何实现操作系统提供的服务（实现 / 硬件视角）？
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;操作系统 = C 程序&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;完成初始化后就成为 interrupt/trap/fault handler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;本课程涉及：xv6，自制迷你操作系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;操作系统上的程序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统上的程序&#34;&gt;#&lt;/a&gt; 操作系统上的程序&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Overview：&lt;/p&gt;
+&lt;p&gt;操作系统 = 对象 + API (应用视角 / 设计) = C 程序 (硬件视角 / 实现)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Q：到底什么是程序？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;本节主要内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;程序的状态机模型（和编译器）&lt;/li&gt;
+&lt;li&gt;操作系统上的 {最小 / 一般 / 图形} 程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;状态机复习&lt;/p&gt;
+&lt;p&gt;数字逻辑电路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态 = 寄存器保存的值（flip-flop）&lt;/li&gt;
+&lt;li&gt;初始状态 = RESET (implementation dependent)&lt;/li&gt;
+&lt;li&gt;迁移 = 组合逻辑电路计算寄存器下一周期的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;数字系统本身是状态机&lt;/p&gt;
+&lt;p&gt;所有的程序都是运行在数字系统上的，&lt;strong&gt;程序也是状态机&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;什么是程序源代码视角&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是程序源代码视角&#34;&gt;#&lt;/a&gt; 什么是程序（源代码视角）&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;C 程序的状态机模型&lt;/strong&gt;（语义，semantics）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态 = 堆 + 栈&lt;/li&gt;
+&lt;li&gt;初始状态 = main 的第一条语句&lt;/li&gt;
+&lt;li&gt;迁移 = 执行一条简单语句
+&lt;ul&gt;
+&lt;li&gt;任何 C 程序都可以改写成 “非复合语句” 的 C 代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这还只是粗浅的理解&lt;/p&gt;
+&lt;p&gt;任何真正的理解都应该落实到可以执行的代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;状态 = stack frame 的列表（每个 frame 有 PC）+ 全局变量&lt;/li&gt;
+&lt;li&gt;初始状态 = main (argc, argv), 全局变量初始化&lt;/li&gt;
+&lt;li&gt;迁移 = 执行 top stack frame PC 的语句；PC++（PC 是计数器，存下一条指令地址）
+&lt;ul&gt;
+&lt;li&gt;函数调用 = push frame (frame.PC = 入口)&lt;/li&gt;
+&lt;li&gt;函数返回 = pop frame&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C 语言程序是由很多栈帧组成的，每次函数调用创建一个新的栈帧&lt;/p&gt;
+&lt;p&gt;应用：将任何递归程序就地转为非递归（还是一样的 call ()，但放入不同的 frame）&lt;/p&gt;
+&lt;h2 id=&#34;什么是程序二进制代码视角&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是程序二进制代码视角&#34;&gt;#&lt;/a&gt; 什么是程序（二进制代码视角）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;状态 = 内存 M + 寄存器 R&lt;/li&gt;
+&lt;li&gt;初始状态&lt;/li&gt;
+&lt;li&gt;迁移 = 执行一条指令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;操作系统上的程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的指令都只能&lt;strong&gt;计算&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;deterministic: mov, add, sub, call…&lt;/li&gt;
+&lt;li&gt;non-deterministic: rdrand …&lt;/li&gt;
+&lt;li&gt;但这些指令甚至都无法使程序停下来（NEMU：加条 trap 指令）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;一条特殊的指令：调用操作系统 &lt;code&gt;syscall&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;把（M,R）完全交给操作系统，任其修改&lt;/li&gt;
+&lt;li&gt;实现与操作系统中的其它对象交互
+&lt;ul&gt;
+&lt;li&gt;读写文件 / 操作系统状态（例如把文件内容写入 M）&lt;/li&gt;
+&lt;li&gt;改变进程（运行中状态机）的状态，例如创建进程 / 销毁自己&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;程序 = 计算 + syscall&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;如何在程序的两个视角之间切换&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#如何在程序的两个视角之间切换&#34;&gt;#&lt;/a&gt; 如何在程序的两个视角之间切换&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;编译器&lt;/strong&gt;：源代码 S（状态机） → 二进制代码 C（状态机）&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;katex-display&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mtext&gt;（&lt;/mtext&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mtext&gt;）&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;C = complie（S）
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.07153em;&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;）&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;操作系统中的一般程序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统中的一般程序&#34;&gt;#&lt;/a&gt; 操作系统中的一般程序&lt;/h2&gt;
+&lt;p&gt;系统中常见的应用程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Core Utilities(coreutils)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;standard programs for text and file manipulation&lt;/li&gt;
+&lt;li&gt;系统中安装的是 GNU Coreutils&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;系统 / 工具程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bash, binutils, apt, ip, ssh, vim, tmux, jdk, python, …&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他应用程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器、音乐播放器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;面试题 (1)：一个普通的、人畜无害的 Hello World C 程序执行的第一条指令在哪里？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;gdb a.out&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gdb&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; start&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;main () 之前发生了什么？&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ld-linux-x86-64.so&lt;/code&gt;  加载了 libc&lt;/p&gt;
+&lt;p&gt;之后 libc 完成了自己的初始化&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RTFM: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9odXJkL2dsaWJjL3N0YXJ0dXAuaHRtbA==&#34;&gt;libc startup&lt;/span&gt; on Hurd&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main()&lt;/code&gt;  的开始 / 结束并不是整个程序的开始 / 结束&lt;/li&gt;
+&lt;li&gt;例子：hello-goodbye.c&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;面试题 (2)：main 执行之前、执行中、执行后，发生了哪些操作系统 API 调用？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In general, trace refers to the process of following &lt;em&gt;anything&lt;/em&gt; from the beginning to the end. For example, the  &lt;code&gt;traceroute&lt;/code&gt;  command follows each of the network hops as your computer connects to another computer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这门课中很重要的工具：strace&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;system call trace&lt;/li&gt;
+&lt;li&gt;理解程序运行时使用的系统调用
+&lt;ul&gt;
+&lt;li&gt;demo:  &lt;code&gt;strace ./hello-goodbye&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在这门课中，你能理解 strace 的输出并在你自己的操作系统里实现相当一部分系统调用 (mmap, execve, …)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;本质上，所有程序都和 Hello World 类似&lt;/p&gt;
+&lt;p&gt;程序 = 状态机 = 计算 → syscall → 计算 →&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;被操作系统加载
+&lt;ul&gt;
+&lt;li&gt;通过另一个进程执行 execve 设置为初始状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;状态机执行
+&lt;ul&gt;
+&lt;li&gt;进程管理：fork, execve, exit, …&lt;/li&gt;
+&lt;li&gt;文件 / 设备管理：open, close, read, write, …&lt;/li&gt;
+&lt;li&gt;存储管理：mmap, brk, …&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;直到 _exit (exit_group) 退出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;(初学者对这一点会感到有一点惊讶)&lt;/p&gt;
+&lt;p&gt;说好的浏览器、游戏、杀毒软件、病毒呢？都是这些 API 吗&lt;/p&gt;
+&lt;p&gt;Yes! - 这些 API 就是操作系统的全部&lt;/p&gt;
+&lt;p&gt;编译器 (gcc)，代表其他工具程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;主要的系统调用：execve, read, write&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;strace&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; gcc a.c&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;(gcc 会启动其他进程)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以管道给编辑器  &lt;code&gt;vim -&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编辑器里还可以  &lt;code&gt;%!grep&lt;/code&gt;  (细节 / 技巧)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;图形界面程序 (xedit)，代表其他图形界面程序 (例如 vscode)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;主要的系统调用：poll, recvmsg, writev&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;strace&lt;/span&gt; xedit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;图形界面程序和 X-Window 服务器按照 X11 协议通信&lt;/li&gt;
+&lt;li&gt;虚拟机中的 xedit 将 X11 命令通过 ssh (X11 forwarding) 转发到 Host&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;p&gt;本次课回答的问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Q&lt;/strong&gt;: 到底什么是 “程序”？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;程序 = 状态机&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;源代码 &lt;em&gt;S&lt;/em&gt;: 状态迁移 = 执行语句&lt;/li&gt;
+&lt;li&gt;二进制代码 &lt;em&gt;C&lt;/em&gt;: 状态迁移 = 执行指令&lt;/li&gt;
+&lt;li&gt;编译器 C = compile (S)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;应用视角的操作系统&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;就是一条 syscall 指令&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;计算机系统不存在玄学；一切都建立在确定的机制上&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;理解操作系统的重要工具：gcc, binutils, gdb, strace&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="Linux" />
+        <updated>2023-04-20T09:56:33.000Z</updated>
+    </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/04/02/C++11/</id>
         <title>C++11</title>
@@ -1729,7 +2003,7 @@ nums 的每个元素都将在 [-9999, 9999] 之间。&lt;/p&gt;
 &lt;p&gt;vector 对象的带参构造&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;vector(begin, end);  //构造函数将[begin,end)区间的元素拷贝给自身&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;``vector (n,elem);  // 构造函数将 n 个 elem 拷贝给自身`&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vector(n,elem);  //构造函数将n个elem拷贝给自身&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vector(const vector &amp;amp;vec);  //拷贝构造函数&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; iArray&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vA&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;iArray&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; iArray&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 定义一个长度为 n 的数组，初始值默认为 0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vB&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vA&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vA&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vB&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vA&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vA&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vC&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;	&lt;span class=&#34;token comment&#34;&gt;// 存放 3 个元素 9&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vD&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vA&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
@@ -1737,8 +2011,8 @@ nums 的每个元素都将在 [-9999, 9999] 之间。&lt;/p&gt;
 &lt;p&gt;二维初始化&lt;/p&gt;
 &lt;p&gt;定义第一维固定长度为 5，第二维可变化的二维数组&lt;/p&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; v&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 定义可变长二维数组&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 注意：行不可变（只有 5 行）, 而列可变，可以在指定行添加元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 第一维固定长度为 5，第二维长度可以改变&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;行列均可变&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 初始化二维均可变长数组&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;vectot&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; v&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 定义一个行和列均可变的二维数组&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;行列长度均固定 n + 1 行 m + 1 列初始值为 0&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token generic-function&#34;&gt;&lt;span class=&#34;token function&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;token generic class-name&#34;&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;m &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;code&gt;c++17&lt;/code&gt;  或者 &lt;code&gt;c++20&lt;/code&gt;  支持的形式（不常用）&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 初始化二维均可变长数组&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;vectot&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; v&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 定义一个行和列均可变的二维数组&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;行列长度均固定 n + 1 行 m + 1 列初始值为 0&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token generic-function&#34;&gt;&lt;span class=&#34;token function&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;token generic class-name&#34;&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;m &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;code&gt;c++17&lt;/code&gt;  或者 &lt;code&gt;c++20&lt;/code&gt;  支持的形式（不常用）&lt;/p&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vector &lt;span class=&#34;token function&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;m &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;vector的赋值&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#vector的赋值&#34;&gt;#&lt;/a&gt; vector 的赋值&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt; vector.assign(begin, end);  //将[begin, end)区间中的数据拷贝赋值给本身&lt;/code&gt;&lt;/li&gt;
@@ -3120,7 +3394,27 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
         <link rel="alternate" href="https://adventure-yx.github.io/2023/03/08/Linux/"/>
         <content type="html">&lt;h1 id=&#34;linux-配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-配置&#34;&gt;#&lt;/a&gt; Linux 配置&lt;/h1&gt;
 &lt;p&gt;windows powershell&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新软件包&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wsl &lt;span class=&#34;token parameter variable&#34;&gt;--installl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; Ubuntu-20.04&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;linux&lt;/p&gt;
+&lt;p&gt;uname -r ： 显示操作系统的发行版号&lt;br&gt;
+ uname -a ：显示系统名、节点名称、操作系统的发行版号、内核版本等等。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230420174648351.png&#34; alt=&#34;image-20230420174648351&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;系统名：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Linux&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;节点名称：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;LAPTOP-G8CK4FEN&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作系统的发行版号：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;5.10.16.3-microsoft-standard-WSL2&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;硬件平台：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;机器硬件名：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统处理器的体系结构：&lt;/strong&gt;&lt;br&gt;
+x86_64&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作系统：&lt;/strong&gt;&lt;br&gt;
+GNU/Linux&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;更新软件包&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装最常用 linux 桌面程序 gedit&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; gedit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;安装编译工具 gcc+cmake&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; build-essential&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; cmake&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;apt-get&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;linux-系统目录结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-系统目录结构&#34;&gt;#&lt;/a&gt; Linux 系统目录结构&lt;/h1&gt;
@@ -3154,10 +3448,10 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
 &lt;p&gt;&lt;strong&gt;外部文件管理：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;/dev&lt;/code&gt;  ：Device (设备) 的缩写，存放的是 Linux 的外部设备。** 注意：** 在 Linux 中访问设备和访问文件的方式是相同的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/dev&lt;/code&gt;  ：Device (设备) 的缩写，存放的是 Linux 的外部设备。&lt;strong&gt;注意&lt;/strong&gt;：在 Linux 中访问设备和访问文件的方式是相同的。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;/media&lt;/code&gt; ：类 windows 的 ** 其他设备，** 例如 U 盘、光驱等等，识别后 linux 会把设备放到这个目录下。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/media&lt;/code&gt; ：类 windows 的&lt;strong&gt;其他设备&lt;/strong&gt;，例如 U 盘、光驱等等，识别后 linux 会把设备放到这个目录下。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;/mnt&lt;/code&gt; ：临时挂载别的文件系统的，我们可以将光驱挂载在 /mnt/ 上，然后进入该目录就可以查看光驱里的内容了。&lt;/p&gt;
@@ -3254,9 +3548,9 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
 一般建议在根目录下面只有目录，不要直接存放文件；&lt;br&gt;
 根目录是 linux 系统启动时系统第一个载入的分区，所以启动过程中用到的文件应该都放在这个分区中；&lt;br&gt;
 其中 &lt;code&gt;/etc&lt;/code&gt; 、 &lt;code&gt;/bin&lt;/code&gt; 、 &lt;code&gt;/dev&lt;/code&gt; 、 &lt;code&gt;/lib&lt;/code&gt; 、 &lt;code&gt;/sbin&lt;/code&gt;  这 5 个子目录都应该要与根目录连在一起，不可独立成为某个分区。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;“./” 代表的意思是：&lt;/strong&gt; ./ 代表当前文件目录，某一个文件（或者目录）的查找路径是从当前目录 “.” 下面开始进行查找。&lt;/p&gt;
-&lt;p&gt;**“~” 代表的意思是：** 表示代码主目录，也就是当前登录用户的用户目录。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;“…” 代表的意思是：&lt;/strong&gt;“…” 表示上级目录&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“./” 代表的意思是&lt;/strong&gt;： ./ 代表当前文件目录，某一个文件（或者目录）的查找路径是从当前目录 “.” 下面开始进行查找。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“~” 代表的意思是&lt;/strong&gt;：表示代码主目录，也就是当前登录用户的用户目录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“…” 代表的意思是&lt;/strong&gt;：“…” 表示上级目录&lt;/p&gt;
 &lt;h2 id=&#34;处理目录的常用命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理目录的常用命令&#34;&gt;#&lt;/a&gt; 处理目录的常用命令&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;ls&lt;/code&gt; （英文全拼：list files）: 列出目录及文件名&lt;/li&gt;
