@@ -8,10 +8,10 @@
     <category term="Linux" />
     <category term="Qt" />
     <category term="QML" />
+    <category term="设计模式" />
     <category term="DataBase" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/04/02/C++11/</id>
         <title>C++11</title>
@@ -455,7 +455,119 @@
         <id>https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
         <title>设计模式</title>
         <link rel="alternate" href="https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-        <content type="html"></content>
+        <content type="html">&lt;h1 id=&#34;设计模式概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#设计模式概述&#34;&gt;#&lt;/a&gt; 设计模式概述&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;什么是设计模式？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;“每一个模式描述了一个在我们周围不断重复发生的问题， 以及该问题的解决方案的核心。这样，你就能一次又一次地使用该方案而不必做重复劳动”。 ——Christopher Alexander&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;23 种设计模式&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建型模式
+&lt;ol&gt;
+&lt;li&gt;单例模式（Singleton）&lt;/li&gt;
+&lt;li&gt;简单工厂模式&lt;/li&gt;
+&lt;li&gt;工厂模式（Factory Method）&lt;/li&gt;
+&lt;li&gt;抽象工厂模式（Abstract Factory）&lt;/li&gt;
+&lt;li&gt;生成器 / 建造者模式（Builder）&lt;/li&gt;
+&lt;li&gt;原型模式（Prototype）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;结构型模式
+&lt;ol&gt;
+&lt;li&gt;适配器模式（Adapter）&lt;/li&gt;
+&lt;li&gt;桥接模式（Bridge)&lt;/li&gt;
+&lt;li&gt;组合模式（Composite）&lt;/li&gt;
+&lt;li&gt;装饰模式（Decorator）&lt;/li&gt;
+&lt;li&gt;外观模式（Facade）&lt;/li&gt;
+&lt;li&gt;享元模式（Flyweight）&lt;/li&gt;
+&lt;li&gt;代理模式（Proxy）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;行为模式
+&lt;ol&gt;
+&lt;li&gt;职责链模式（Chain of Responsibility）&lt;/li&gt;
+&lt;li&gt;命令模式（Command）&lt;/li&gt;
+&lt;li&gt;迭代器模式（Iterator）&lt;/li&gt;
+&lt;li&gt;中介者模式（Mediator）&lt;/li&gt;
+&lt;li&gt;备忘录模式（Memento）&lt;/li&gt;
+&lt;li&gt;观察者模式（Observer）&lt;/li&gt;
+&lt;li&gt;策略模式（Strategy）&lt;/li&gt;
+&lt;li&gt;状态模式（State）&lt;/li&gt;
+&lt;li&gt;模板方法模式（Template Method）&lt;/li&gt;
+&lt;li&gt;访问者模式（Vistor）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;深入理解面向对象&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;底层思维：向下，如何把握机器底层从微观理解对象构造
+&lt;ul&gt;
+&lt;li&gt;语言构造&lt;/li&gt;
+&lt;li&gt;编译转换&lt;/li&gt;
+&lt;li&gt;内存模型&lt;/li&gt;
+&lt;li&gt;运行时机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;抽象思维：向上，如何将我们的周围世界抽象为程序代码
+&lt;ul&gt;
+&lt;li&gt;面向对象
+&lt;ul&gt;
+&lt;li&gt;封装，隐藏内部实现&lt;/li&gt;
+&lt;li&gt;继承，复用现有代码&lt;/li&gt;
+&lt;li&gt;多态，改写对象行为&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;组件封装&lt;/li&gt;
+&lt;li&gt;设计模式&lt;/li&gt;
+&lt;li&gt;架构模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;软件设计固有的复杂性高&lt;/p&gt;
+&lt;p&gt;软件设计复杂的根本原因：&lt;strong&gt;变化&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户需求的变化&lt;/li&gt;
+&lt;li&gt;技术平台的变化&lt;/li&gt;
+&lt;li&gt;开发团队的变化&lt;/li&gt;
+&lt;li&gt;市场环境的变化&lt;/li&gt;
+&lt;li&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如何解决复杂性？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;分解（结构化）&lt;/p&gt;
+&lt;p&gt;人们面对复杂性有一个常见的做法：即分而治之，将大问题分 解为多个小问题，将复杂问题分解为多个简单问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;抽象（面向对象）&lt;/p&gt;
+&lt;p&gt;更高层次来讲，人们处理复杂性有一个通用的技术，即抽象。 由于不能掌握全部的复杂对象，我们选择忽视它的非本质细节， 而去处理泛化和理想化了的对象模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;软件设计的目标：&lt;strong&gt;复用&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;uml类图&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#uml类图&#34;&gt;#&lt;/a&gt; UML 类图&lt;/h1&gt;
+&lt;h1 id=&#34;面向对象设计原则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#面向对象设计原则&#34;&gt;#&lt;/a&gt; 面向对象设计原则&lt;/h1&gt;
+&lt;h1 id=&#34;单例模式singleton&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#单例模式singleton&#34;&gt;#&lt;/a&gt; 单例模式（Singleton）&lt;/h1&gt;
+&lt;h1 id=&#34;简单工厂模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#简单工厂模式&#34;&gt;#&lt;/a&gt; 简单工厂模式&lt;/h1&gt;
+&lt;h1 id=&#34;工厂模式factory-method&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#工厂模式factory-method&#34;&gt;#&lt;/a&gt; 工厂模式（Factory Method）&lt;/h1&gt;
+&lt;h1 id=&#34;抽象工厂模式abstract-factory&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#抽象工厂模式abstract-factory&#34;&gt;#&lt;/a&gt; 抽象工厂模式（Abstract Factory）&lt;/h1&gt;
+&lt;h1 id=&#34;生成器建造者模式builder&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#生成器建造者模式builder&#34;&gt;#&lt;/a&gt; 生成器 / 建造者模式（Builder）&lt;/h1&gt;
+&lt;h1 id=&#34;原型模式prototype&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原型模式prototype&#34;&gt;#&lt;/a&gt; 原型模式（Prototype）&lt;/h1&gt;
+&lt;h1 id=&#34;适配器模式adapter&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#适配器模式adapter&#34;&gt;#&lt;/a&gt; 适配器模式（Adapter）&lt;/h1&gt;
+&lt;h1 id=&#34;桥接模式bridge&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#桥接模式bridge&#34;&gt;#&lt;/a&gt; 桥接模式（Bridge)&lt;/h1&gt;
+&lt;h1 id=&#34;组合模式composite&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#组合模式composite&#34;&gt;#&lt;/a&gt; 组合模式（Composite）&lt;/h1&gt;
+&lt;h1 id=&#34;装饰模式decorator&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#装饰模式decorator&#34;&gt;#&lt;/a&gt; 装饰模式（Decorator）&lt;/h1&gt;
+&lt;h1 id=&#34;外观模式facade&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#外观模式facade&#34;&gt;#&lt;/a&gt; 外观模式（Facade）&lt;/h1&gt;
+&lt;h1 id=&#34;享元模式flyweight&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#享元模式flyweight&#34;&gt;#&lt;/a&gt; 享元模式（Flyweight）&lt;/h1&gt;
+&lt;h1 id=&#34;代理模式proxy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理模式proxy&#34;&gt;#&lt;/a&gt; 代理模式（Proxy）&lt;/h1&gt;
+&lt;h1 id=&#34;职责链模式chain-of-responsibility&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#职责链模式chain-of-responsibility&#34;&gt;#&lt;/a&gt; 职责链模式（Chain of Responsibility）&lt;/h1&gt;
+&lt;h1 id=&#34;命令模式command&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令模式command&#34;&gt;#&lt;/a&gt; 命令模式（Command）&lt;/h1&gt;
+&lt;h1 id=&#34;迭代器模式iterator&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#迭代器模式iterator&#34;&gt;#&lt;/a&gt; 迭代器模式（Iterator）&lt;/h1&gt;
+&lt;h1 id=&#34;中介者模式mediator&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#中介者模式mediator&#34;&gt;#&lt;/a&gt; 中介者模式（Mediator）&lt;/h1&gt;
+&lt;h1 id=&#34;备忘录模式memento&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#备忘录模式memento&#34;&gt;#&lt;/a&gt; 备忘录模式（Memento）&lt;/h1&gt;
+&lt;h1 id=&#34;观察者模式observer&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#观察者模式observer&#34;&gt;#&lt;/a&gt; 观察者模式（Observer）&lt;/h1&gt;
+&lt;h1 id=&#34;策略模式strategy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#策略模式strategy&#34;&gt;#&lt;/a&gt; 策略模式（Strategy）&lt;/h1&gt;
+&lt;h1 id=&#34;状态模式state&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#状态模式state&#34;&gt;#&lt;/a&gt; 状态模式（State）&lt;/h1&gt;
+&lt;h1 id=&#34;模板方法模式template-method&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#模板方法模式template-method&#34;&gt;#&lt;/a&gt; 模板方法模式（Template Method）&lt;/h1&gt;
+&lt;h1 id=&#34;访问者模式vistor&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#访问者模式vistor&#34;&gt;#&lt;/a&gt; 访问者模式（Vistor）&lt;/h1&gt;
+</content>
         <category term="C++" />
         <category term="设计模式" />
         <updated>2023-03-20T12:10:48.000Z</updated>
