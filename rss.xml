@@ -9,13 +9,13 @@
         <lastBuildDate>Sun, 02 Apr 2023 20:10:08 +0800</lastBuildDate>
         <category>C++</category>
         <category>DataBase</category>
-        <category>Qt</category>
-        <category>QML</category>
         <category>Linux</category>
+        <category>Qt</category>
         <category>操作系统</category>
-        <category>设计模式</category>
+        <category>QML</category>
         <category>STL</category>
         <category>算法</category>
+        <category>设计模式</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/04/02/C++11/</guid>
             <title>C++11</title>
@@ -3128,8 +3128,8 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
             <category>Linux</category>
             <category>操作系统</category>
             <pubDate>Thu, 09 Mar 2023 17:56:33 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;南京大学 2022《操作系统：设计与实现》- 蒋炎岩&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUNtNHkxZDdVcg==&#34;&gt;https://www.bilibili.com/video/BV1Cm4y1d7Ur&lt;/span&gt;&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;南京大学 2023《操作系统：设计与实现》- 蒋炎岩&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVh4NHkxVjdKWg==&#34;&gt;https://www.bilibili.com/video/BV1Xx4y1V7JZ&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&#34;操作系统概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统概述&#34;&gt;#&lt;/a&gt; 操作系统概述&lt;/h1&gt;
 &lt;h2 id=&#34;什么是操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是操作系统&#34;&gt;#&lt;/a&gt; 什么是操作系统？&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -3519,6 +3519,7 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;gdb&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gdb&#34;&gt;#&lt;/a&gt; GDB&lt;/h2&gt;
 &lt;h1 id=&#34;python-建模操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#python-建模操作系统&#34;&gt;#&lt;/a&gt; Python 建模操作系统&lt;/h1&gt;
 &lt;h1 id=&#34;并发&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发&#34;&gt;#&lt;/a&gt; = 并发 =&lt;/h1&gt;
 &lt;h1 id=&#34;多处理器编程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多处理器编程&#34;&gt;#&lt;/a&gt; 多处理器编程&lt;/h1&gt;
