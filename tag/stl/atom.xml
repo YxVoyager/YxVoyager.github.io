@@ -5,13 +5,14 @@
     <link href="https://adventure-yx.github.io" />
     <updated>2023-03-12T12:42:19.000Z</updated>
     <category term="C++" />
+    <category term="DataBase" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="DataBase" />
     <category term="Linux" />
+    <category term="操作系统" />
+    <category term="设计模式" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/</id>
         <title>算法进阶</title>
@@ -285,9 +286,9 @@ nums 的每个元素都将在 [-9999, 9999] 之间。&lt;/p&gt;
         <updated>2023-03-12T12:42:19.000Z</updated>
     </entry>
     <entry>
-        <id>https://adventure-yx.github.io/2023/03/09/STL/</id>
+        <id>https://adventure-yx.github.io/2023/03/10/STL/</id>
         <title>STL</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/09/STL/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/10/STL/"/>
         <content type="html">&lt;h1 id=&#34;stl概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#stl概述&#34;&gt;#&lt;/a&gt; STL 概述&lt;/h1&gt;
 &lt;p&gt;C++ STL（标准模板库，Standard Template Library）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1818,6 +1819,6 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
 </content>
         <category term="C++" />
         <category term="STL" />
-        <updated>2023-03-09T12:42:19.000Z</updated>
+        <updated>2023-03-10T12:42:19.000Z</updated>
     </entry>
 </feed>

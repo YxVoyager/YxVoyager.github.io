@@ -5,13 +5,14 @@
     <link href="https://adventure-yx.github.io" />
     <updated>2023-04-02T12:10:08.000Z</updated>
     <category term="C++" />
+    <category term="DataBase" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="DataBase" />
     <category term="Linux" />
+    <category term="操作系统" />
+    <category term="设计模式" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/04/02/C++11/</id>
         <title>C++11</title>
@@ -504,12 +505,14 @@
 &lt;p&gt;软件设计的目标：&lt;strong&gt;复用&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;uml类图&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#uml类图&#34;&gt;#&lt;/a&gt; UML 类图&lt;/h1&gt;
 &lt;h1 id=&#34;面向对象设计原则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#面向对象设计原则&#34;&gt;#&lt;/a&gt; 面向对象设计原则&lt;/h1&gt;
+&lt;h1 id=&#34;创建型模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#创建型模式&#34;&gt;#&lt;/a&gt; = 创建型模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;单例模式singleton&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#单例模式singleton&#34;&gt;#&lt;/a&gt; 单例模式（Singleton）&lt;/h1&gt;
 &lt;h1 id=&#34;简单工厂模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#简单工厂模式&#34;&gt;#&lt;/a&gt; 简单工厂模式&lt;/h1&gt;
 &lt;h1 id=&#34;工厂模式factory-method&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#工厂模式factory-method&#34;&gt;#&lt;/a&gt; 工厂模式（Factory Method）&lt;/h1&gt;
 &lt;h1 id=&#34;抽象工厂模式abstract-factory&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#抽象工厂模式abstract-factory&#34;&gt;#&lt;/a&gt; 抽象工厂模式（Abstract Factory）&lt;/h1&gt;
 &lt;h1 id=&#34;生成器建造者模式builder&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#生成器建造者模式builder&#34;&gt;#&lt;/a&gt; 生成器 / 建造者模式（Builder）&lt;/h1&gt;
 &lt;h1 id=&#34;原型模式prototype&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原型模式prototype&#34;&gt;#&lt;/a&gt; 原型模式（Prototype）&lt;/h1&gt;
+&lt;h1 id=&#34;结构型模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#结构型模式&#34;&gt;#&lt;/a&gt; = 结构型模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;适配器模式adapter&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#适配器模式adapter&#34;&gt;#&lt;/a&gt; 适配器模式（Adapter）&lt;/h1&gt;
 &lt;h1 id=&#34;桥接模式bridge&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#桥接模式bridge&#34;&gt;#&lt;/a&gt; 桥接模式（Bridge)&lt;/h1&gt;
 &lt;h1 id=&#34;组合模式composite&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#组合模式composite&#34;&gt;#&lt;/a&gt; 组合模式（Composite）&lt;/h1&gt;
@@ -517,6 +520,7 @@
 &lt;h1 id=&#34;外观模式facade&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#外观模式facade&#34;&gt;#&lt;/a&gt; 外观模式（Facade）&lt;/h1&gt;
 &lt;h1 id=&#34;享元模式flyweight&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#享元模式flyweight&#34;&gt;#&lt;/a&gt; 享元模式（Flyweight）&lt;/h1&gt;
 &lt;h1 id=&#34;代理模式proxy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理模式proxy&#34;&gt;#&lt;/a&gt; 代理模式（Proxy）&lt;/h1&gt;
+&lt;h1 id=&#34;行为模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#行为模式&#34;&gt;#&lt;/a&gt; = 行为模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;职责链模式chain-of-responsibility&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#职责链模式chain-of-responsibility&#34;&gt;#&lt;/a&gt; 职责链模式（Chain of Responsibility）&lt;/h1&gt;
 &lt;h1 id=&#34;命令模式command&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令模式command&#34;&gt;#&lt;/a&gt; 命令模式（Command）&lt;/h1&gt;
 &lt;h1 id=&#34;迭代器模式iterator&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#迭代器模式iterator&#34;&gt;#&lt;/a&gt; 迭代器模式（Iterator）&lt;/h1&gt;
@@ -805,9 +809,9 @@ nums 的每个元素都将在 [-9999, 9999] 之间。&lt;/p&gt;
         <updated>2023-03-12T12:42:19.000Z</updated>
     </entry>
     <entry>
-        <id>https://adventure-yx.github.io/2023/03/09/STL/</id>
+        <id>https://adventure-yx.github.io/2023/03/10/STL/</id>
         <title>STL</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/09/STL/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/10/STL/"/>
         <content type="html">&lt;h1 id=&#34;stl概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#stl概述&#34;&gt;#&lt;/a&gt; STL 概述&lt;/h1&gt;
 &lt;p&gt;C++ STL（标准模板库，Standard Template Library）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2338,7 +2342,7 @@ SGI 版本 STL 的默认配置器 std::alloc。参见：《STL 源码剖析》&l
 </content>
         <category term="C++" />
         <category term="STL" />
-        <updated>2023-03-09T12:42:19.000Z</updated>
+        <updated>2023-03-10T12:42:19.000Z</updated>
     </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/03/05/C++%E9%9D%A2%E7%BB%8F/</id>

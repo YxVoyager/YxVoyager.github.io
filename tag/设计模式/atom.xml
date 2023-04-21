@@ -5,13 +5,14 @@
     <link href="https://adventure-yx.github.io" />
     <updated>2023-03-20T12:10:48.000Z</updated>
     <category term="C++" />
+    <category term="DataBase" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="DataBase" />
     <category term="Linux" />
+    <category term="操作系统" />
+    <category term="设计模式" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
         <title>设计模式</title>
@@ -105,12 +106,14 @@
 &lt;p&gt;软件设计的目标：&lt;strong&gt;复用&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;uml类图&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#uml类图&#34;&gt;#&lt;/a&gt; UML 类图&lt;/h1&gt;
 &lt;h1 id=&#34;面向对象设计原则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#面向对象设计原则&#34;&gt;#&lt;/a&gt; 面向对象设计原则&lt;/h1&gt;
+&lt;h1 id=&#34;创建型模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#创建型模式&#34;&gt;#&lt;/a&gt; = 创建型模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;单例模式singleton&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#单例模式singleton&#34;&gt;#&lt;/a&gt; 单例模式（Singleton）&lt;/h1&gt;
 &lt;h1 id=&#34;简单工厂模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#简单工厂模式&#34;&gt;#&lt;/a&gt; 简单工厂模式&lt;/h1&gt;
 &lt;h1 id=&#34;工厂模式factory-method&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#工厂模式factory-method&#34;&gt;#&lt;/a&gt; 工厂模式（Factory Method）&lt;/h1&gt;
 &lt;h1 id=&#34;抽象工厂模式abstract-factory&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#抽象工厂模式abstract-factory&#34;&gt;#&lt;/a&gt; 抽象工厂模式（Abstract Factory）&lt;/h1&gt;
 &lt;h1 id=&#34;生成器建造者模式builder&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#生成器建造者模式builder&#34;&gt;#&lt;/a&gt; 生成器 / 建造者模式（Builder）&lt;/h1&gt;
 &lt;h1 id=&#34;原型模式prototype&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原型模式prototype&#34;&gt;#&lt;/a&gt; 原型模式（Prototype）&lt;/h1&gt;
+&lt;h1 id=&#34;结构型模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#结构型模式&#34;&gt;#&lt;/a&gt; = 结构型模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;适配器模式adapter&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#适配器模式adapter&#34;&gt;#&lt;/a&gt; 适配器模式（Adapter）&lt;/h1&gt;
 &lt;h1 id=&#34;桥接模式bridge&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#桥接模式bridge&#34;&gt;#&lt;/a&gt; 桥接模式（Bridge)&lt;/h1&gt;
 &lt;h1 id=&#34;组合模式composite&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#组合模式composite&#34;&gt;#&lt;/a&gt; 组合模式（Composite）&lt;/h1&gt;
@@ -118,6 +121,7 @@
 &lt;h1 id=&#34;外观模式facade&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#外观模式facade&#34;&gt;#&lt;/a&gt; 外观模式（Facade）&lt;/h1&gt;
 &lt;h1 id=&#34;享元模式flyweight&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#享元模式flyweight&#34;&gt;#&lt;/a&gt; 享元模式（Flyweight）&lt;/h1&gt;
 &lt;h1 id=&#34;代理模式proxy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理模式proxy&#34;&gt;#&lt;/a&gt; 代理模式（Proxy）&lt;/h1&gt;
+&lt;h1 id=&#34;行为模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#行为模式&#34;&gt;#&lt;/a&gt; = 行为模式 =&lt;/h1&gt;
 &lt;h1 id=&#34;职责链模式chain-of-responsibility&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#职责链模式chain-of-responsibility&#34;&gt;#&lt;/a&gt; 职责链模式（Chain of Responsibility）&lt;/h1&gt;
 &lt;h1 id=&#34;命令模式command&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令模式command&#34;&gt;#&lt;/a&gt; 命令模式（Command）&lt;/h1&gt;
 &lt;h1 id=&#34;迭代器模式iterator&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#迭代器模式iterator&#34;&gt;#&lt;/a&gt; 迭代器模式（Iterator）&lt;/h1&gt;

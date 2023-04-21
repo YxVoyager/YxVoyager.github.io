@@ -3,19 +3,20 @@
     <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;linux&#34; tag</title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-04-20T09:56:33.000Z</updated>
+    <updated>2023-03-09T09:56:33.000Z</updated>
     <category term="C++" />
+    <category term="DataBase" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="DataBase" />
     <category term="Linux" />
+    <category term="操作系统" />
+    <category term="设计模式" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <entry>
-        <id>https://adventure-yx.github.io/2023/04/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Linux%EF%BC%89/</id>
-        <title>操作系统（Linux）</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/04/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Linux%EF%BC%89/"/>
+        <id>https://adventure-yx.github.io/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/</id>
+        <title>操作系统（南大2023）</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/"/>
         <content type="html">&lt;p&gt;南京大学 2022《操作系统：设计与实现》- 蒋炎岩&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUNtNHkxZDdVcg==&#34;&gt;https://www.bilibili.com/video/BV1Cm4y1d7Ur&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&#34;操作系统概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统概述&#34;&gt;#&lt;/a&gt; 操作系统概述&lt;/h1&gt;
@@ -70,34 +71,15 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;操作系统上的程序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统上的程序&#34;&gt;#&lt;/a&gt; 操作系统上的程序&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Overview：&lt;/p&gt;
+&lt;h1 id=&#34;应用视角的操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#应用视角的操作系统&#34;&gt;#&lt;/a&gt; 应用视角的操作系统&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：操作系统有三条主线：“软件 (应用)”、“硬件 (计算机)”、“操作系统 (软件直接访问硬件带来麻烦太多而引入的中间件)”。想要理解操作系统，对操作系统的服务对象 (应用程序) 有精确的理解是必不可少的。&lt;/p&gt;
 &lt;p&gt;操作系统 = 对象 + API (应用视角 / 设计) = C 程序 (硬件视角 / 实现)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Q：到底什么是程序？&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;本节主要内容：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：指令序列和高级语言的状态机模型；回答以下问题：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;程序的状态机模型（和编译器）&lt;/li&gt;
-&lt;li&gt;操作系统上的 {最小 / 一般 / 图形} 程序&lt;/li&gt;
+&lt;li&gt;什么是软件 (程序)？&lt;/li&gt;
+&lt;li&gt;如何在操作系统上构造最小 / 一般 / 图形界面应用程序？&lt;/li&gt;
+&lt;li&gt;什么是编译器？编译器把一段程序翻译成什么样的指令序列才算 “正确”？&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;状态机复习&lt;/p&gt;
-&lt;p&gt;数字逻辑电路：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;状态 = 寄存器保存的值（flip-flop）&lt;/li&gt;
-&lt;li&gt;初始状态 = RESET (implementation dependent)&lt;/li&gt;
-&lt;li&gt;迁移 = 组合逻辑电路计算寄存器下一周期的值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;数字系统本身是状态机&lt;/p&gt;
-&lt;p&gt;所有的程序都是运行在数字系统上的，&lt;strong&gt;程序也是状态机&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;什么是程序源代码视角&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是程序源代码视角&#34;&gt;#&lt;/a&gt; 什么是程序（源代码视角）&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;C 程序的状态机模型&lt;/strong&gt;（语义，semantics）&lt;/p&gt;
 &lt;ul&gt;
@@ -282,9 +264,238 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id=&#34;硬件视角的操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#硬件视角的操作系统&#34;&gt;#&lt;/a&gt; 硬件视角的操作系统&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：计算机硬件的状态机模型；回答以下问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是计算机硬件？&lt;/li&gt;
+&lt;li&gt;计算机硬件和程序员之间是如何约定的？&lt;/li&gt;
+&lt;li&gt;听说操作系统也是程序。那到底是鸡生蛋还是蛋生鸡？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;状态机复习&lt;/p&gt;
+&lt;p&gt;数字逻辑电路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态 = 寄存器保存的值（flip-flop）&lt;/li&gt;
+&lt;li&gt;初始状态 = RESET (implementation dependent)&lt;/li&gt;
+&lt;li&gt;迁移 = 组合逻辑电路计算寄存器下一周期的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;数字系统本身是状态机&lt;/p&gt;
+&lt;p&gt;所有的程序都是运行在数字系统上的，&lt;strong&gt;程序也是状态机&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;调试理论与实践&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#调试理论与实践&#34;&gt;#&lt;/a&gt; 调试理论与实践&lt;/h1&gt;
+&lt;h2 id=&#34;调试理论&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#调试理论&#34;&gt;#&lt;/a&gt; 调试理论&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：调试理论：Fault, Error 和 Failure；GDB 使用技巧。&lt;/p&gt;
+&lt;p&gt;“软件” 的两层含义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人类需求在信息世界的投影
+&lt;ul&gt;
+&lt;li&gt;理解错需求 → bug&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;计算过程的精确 (数学) 描述
+&lt;ul&gt;
+&lt;li&gt;实现错误 → bug&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;调试 (debugging)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;已知程序有 bug，如何找到？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;调试困难的根本原因&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为 bug 的触发经历了漫长的过程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需求 → 设计 → 代码 (状态机) → Fault (bug) → Error (程序状态错) → Failure
+&lt;ul&gt;
+&lt;li&gt;我们只能观测到 failure (可观测的结果错)&lt;/li&gt;
+&lt;li&gt;我们可以检查状态的正确性 (但非常费时)&lt;/li&gt;
+&lt;li&gt;无法预知 bug 在哪里 (每一行 “看起来” 都挺对的)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;调试理论：如果我们能判定任意程序状态的正确性，那么给定一个 failure，我们可以通过二分查找定位到第一个 error 的状态，此时的代码就是 fault (bug)。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;调试理论：推论&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;为什么我们喜欢 “单步调试”？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从一个假定正确的状态出发&lt;/li&gt;
+&lt;li&gt;每个语句的行为有限，容易判定是否是 error&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为什么调试理论看起来很没用？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;因为判定程序状态的正确性非常困难&lt;/p&gt;
+&lt;p&gt;(是否在调试 DP 题 / 图论算法时陷入时间黑洞？)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实际中的调试：观察状态机执行 (trace) 的某个侧面&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缩小错误状态 (error) 可能产生的位置&lt;/li&gt;
+&lt;li&gt;作出适当的假设&lt;/li&gt;
+&lt;li&gt;再进行细粒度的定位和诊断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;最重要的两个工具&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;printf → 自定义 log 的 trace
+&lt;ul&gt;
+&lt;li&gt;灵活可控、能快速定位问题大概位置、适用于大型软件&lt;/li&gt;
+&lt;li&gt;无法精确定位、大量的 logs 管理起来比较麻烦&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;gdb → 指令 / 语句级 trace
+&lt;ul&gt;
+&lt;li&gt;精确、指令级定位、任意查看程序内部状态&lt;/li&gt;
+&lt;li&gt;耗费大量时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;调试理论给了大家在遇到 “任何问题” 时候 self-check 的列表：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;是怎样的程序 (状态机) 在运行？&lt;/li&gt;
+&lt;li&gt;我们遇到了怎样的 failure？&lt;/li&gt;
+&lt;li&gt;我们能从状态机的运行中从易到难得到什么信息？&lt;/li&gt;
+&lt;li&gt;如何二分检查这些信息和 error 之间的关联？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;编程基本准则回顾&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#编程基本准则回顾&#34;&gt;#&lt;/a&gt; 编程基本准则：回顾&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Programs are meant to be read by humans (AIs) and only incidentally for computers to execute. — &lt;em&gt;D. E. Knuth&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(程序首先是拿给人读的，其次才是被机器执行。)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;好的程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;不言自明：能知道是做什么的 (specification)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因此代码风格很重要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不言自证：能确认代码和 specification 一致&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因此代码中的逻辑流很重要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;人类新纪元的评判标准&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AI 是否能正确理解 / 维护你的代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;调试理论的最重要应用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#调试理论的最重要应用&#34;&gt;#&lt;/a&gt; 调试理论的最重要应用&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;写好读、易验证的代码&lt;/p&gt;
+&lt;p&gt;在代码中添加更多的断言 (assertions)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;断言的意义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把代码中隐藏的 specification 写出来
+&lt;ul&gt;
+&lt;li&gt;Fault → Error (靠测试)&lt;/li&gt;
+&lt;li&gt;Error → Failure (靠断言)
+&lt;ul&gt;
+&lt;li&gt;Error 暴露的越晚，越难调试&lt;/li&gt;
+&lt;li&gt;追溯导致 assert failure 的变量值 (slice) 通常可以快速定位到 bug&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;python-建模操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#python-建模操作系统&#34;&gt;#&lt;/a&gt; Python 建模操作系统&lt;/h1&gt;
+&lt;h1 id=&#34;并发&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发&#34;&gt;#&lt;/a&gt; = 并发 =&lt;/h1&gt;
+&lt;h1 id=&#34;多处理器编程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多处理器编程&#34;&gt;#&lt;/a&gt; 多处理器编程&lt;/h1&gt;
+&lt;h2 id=&#34;并发-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发-2&#34;&gt;#&lt;/a&gt; 并发&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Concurrent: existing, happening, or done &lt;em&gt;at the same time&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In computer science, concurrency refers to the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the final outcome. (Wikipedia)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;操作系统作为 “状态机的管理者”，引入了共享的状态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;带来了并发&lt;/li&gt;
+&lt;li&gt;(操作系统是最早的并发程序)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Tprint&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    sys_write&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string-interpolation&#34;&gt;&lt;span class=&#34;token string&#34;&gt;f&#39;&lt;/span&gt;&lt;span class=&#34;token interpolation&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; name &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;AB&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sys_spawn&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Tprint&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; name&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;使用 model checker 绘制状态图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;多线程共享内存并发&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;线程：共享内存的执行流&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;执行流拥有独立的堆栈 / 寄存器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;简化的线程 API (thread.h)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;spawn(fn)&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;创建一个入口函数是 &lt;code&gt;fn&lt;/code&gt;  的线程，并立即开始执行
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;void fn(int tid) &amp;#123; ... &amp;#125;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;参数  &lt;code&gt;tid&lt;/code&gt;  从 1 开始编号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;行为： &lt;code&gt;sys_spawn(fn, tid)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;join()&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;等待所有运行线程的返回 (也可以不调用)&lt;/li&gt;
+&lt;li&gt;行为： &lt;code&gt;while (done != T) sys_sched()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;多处理器编程：一个 API 搞定&lt;/p&gt;
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;figcaption data-lang=&#34;c&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;thread.h&#34;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Ta&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;a&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Tb&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;b&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token function&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Ta&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token function&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Tb&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;这个程序可以利用系统中的多处理器
+&lt;ul&gt;
+&lt;li&gt;操作系统会自动把线程放置在不同的处理器上&lt;/li&gt;
+&lt;li&gt;CPU 使用率超过了 100%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;原子性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原子性&#34;&gt;#&lt;/a&gt; 原子性&lt;/h2&gt;
+&lt;h2 id=&#34;执行顺序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#执行顺序&#34;&gt;#&lt;/a&gt; 执行顺序&lt;/h2&gt;
+&lt;h2 id=&#34;处理器间的可见性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理器间的可见性&#34;&gt;#&lt;/a&gt; 处理器间的可见性&lt;/h2&gt;
+&lt;h1 id=&#34;并发控制基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制基础&#34;&gt;#&lt;/a&gt; 并发控制基础&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：虽然 “线程库” 入门简单，但多处理器编程 + 编译优化会给我们带来很多意想不到的惊喜。在编写多线程程序时，必须放弃许多对顺序程序编程时的基本假设，这也是并发编程困难的原因。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：并发编程困难不代表我们只能摆烂 —— 我们还可以创造出新的手段，帮助我们编写正确的并发程序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;互斥问题和 Peterson 算法&lt;/li&gt;
+&lt;li&gt;Peterson 算法的正确性和模型检验&lt;/li&gt;
+&lt;li&gt;Peterson 算法在现代多处理器系统上的实现&lt;/li&gt;
+&lt;li&gt;实现并发控制的硬件和编译器机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;并发控制互斥&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制互斥&#34;&gt;#&lt;/a&gt; 并发控制：互斥&lt;/h1&gt;
+&lt;h1 id=&#34;并发控制同步&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制同步&#34;&gt;#&lt;/a&gt; 并发控制：同步&lt;/h1&gt;
+&lt;h1 id=&#34;真实世界的并发编程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#真实世界的并发编程&#34;&gt;#&lt;/a&gt; 真实世界的并发编程&lt;/h1&gt;
+&lt;h1 id=&#34;并发-bugs&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发-bugs&#34;&gt;#&lt;/a&gt; 并发 Bugs&lt;/h1&gt;
+&lt;h1 id=&#34;多处理器系统与中断机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多处理器系统与中断机制&#34;&gt;#&lt;/a&gt; 多处理器系统与中断机制&lt;/h1&gt;
+&lt;h1 id=&#34;虚拟化&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#虚拟化&#34;&gt;#&lt;/a&gt; = 虚拟化 =&lt;/h1&gt;
+&lt;h1 id=&#34;操作系统上的进程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统上的进程&#34;&gt;#&lt;/a&gt; 操作系统上的进程&lt;/h1&gt;
+&lt;h1 id=&#34;linux-操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-操作系统&#34;&gt;#&lt;/a&gt; Linux 操作系统&lt;/h1&gt;
+&lt;h1 id=&#34;linux-进程的地址空间&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-进程的地址空间&#34;&gt;#&lt;/a&gt; Linux 进程的地址空间&lt;/h1&gt;
+&lt;h1 id=&#34;系统调用和-unix-shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用和-unix-shell&#34;&gt;#&lt;/a&gt; 系统调用和 UNIX Shell&lt;/h1&gt;
+&lt;h1 id=&#34;c-标准库的实现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#c-标准库的实现&#34;&gt;#&lt;/a&gt; C 标准库的实现&lt;/h1&gt;
+&lt;h1 id=&#34;可执行文件的加载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可执行文件的加载&#34;&gt;#&lt;/a&gt; 可执行文件的加载&lt;/h1&gt;
+&lt;h1 id=&#34;处理器调度&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理器调度&#34;&gt;#&lt;/a&gt; 处理器调度&lt;/h1&gt;
+&lt;h1 id=&#34;进程-线程与系统调用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#进程-线程与系统调用&#34;&gt;#&lt;/a&gt; 进程、线程与系统调用&lt;/h1&gt;
+&lt;h1 id=&#34;持久化&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#持久化&#34;&gt;#&lt;/a&gt; = 持久化 =&lt;/h1&gt;
+&lt;h1 id=&#34;存储设备原理&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#存储设备原理&#34;&gt;#&lt;/a&gt; 存储设备原理&lt;/h1&gt;
+&lt;h1 id=&#34;输入输出设备&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输入输出设备&#34;&gt;#&lt;/a&gt; 输入输出设备&lt;/h1&gt;
+&lt;h1 id=&#34;设备驱动程序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#设备驱动程序&#34;&gt;#&lt;/a&gt; 设备驱动程序&lt;/h1&gt;
+&lt;h1 id=&#34;文件系统-api&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文件系统-api&#34;&gt;#&lt;/a&gt; 文件系统 API&lt;/h1&gt;
+&lt;h1 id=&#34;fat-和-unix-文件系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#fat-和-unix-文件系统&#34;&gt;#&lt;/a&gt; FAT 和 UNIX 文件系统&lt;/h1&gt;
+&lt;h1 id=&#34;持久数据的可靠性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#持久数据的可靠性&#34;&gt;#&lt;/a&gt; 持久数据的可靠性&lt;/h1&gt;
 </content>
         <category term="Linux" />
-        <updated>2023-04-20T09:56:33.000Z</updated>
+        <category term="操作系统" />
+        <updated>2023-03-09T09:56:33.000Z</updated>
     </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/03/08/Linux/</id>
