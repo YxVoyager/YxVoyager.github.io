@@ -3,23 +3,34 @@
     <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;database&#34; category</title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-03-05T16:03:56.000Z</updated>
+    <updated>2023-03-06T12:10:50.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
+    <category term="Linux" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="Linux" />
+    <category term="操作系统" />
     <category term="STL" />
     <category term="算法" />
     <category term="设计模式" />
-    <category term="操作系统" />
+    <entry>
+        <id>https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/</id>
+        <title>CMU15-445 Project#0 字典树trie</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/"/>
+        <content type="html">&lt;p&gt;&lt;img data-src=&#34;image-20230422131532761.png&#34; alt=&#34;image-20230422131532761&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;前置基础复习&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前置基础复习&#34;&gt;#&lt;/a&gt; 前置基础复习&lt;/h1&gt;
+</content>
+        <category term="DataBase" />
+        <updated>2023-03-06T12:10:50.000Z</updated>
+    </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/03/06/CMU15-445/</id>
-        <title>CMU15-445</title>
+        <title>CMU15-445（2022Fall）</title>
         <link rel="alternate" href="https://adventure-yx.github.io/2023/03/06/CMU15-445/"/>
         <content type="html">&lt;p&gt;Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2022)](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly8xNTQ0NS5jb3Vyc2VzLmNzLmNtdS5lZHUvZmFsbDIwMjIvc2NoZWR1bGUuaHRtbA==&#34;&gt;https://15445.courses.cs.cmu.edu/fall2022/schedule.html&lt;/span&gt;)&lt;/p&gt;
-&lt;h1 id=&#34;lesson01-关系模型关系代数relational-model-relational-algebra&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#lesson01-关系模型关系代数relational-model-relational-algebra&#34;&gt;#&lt;/a&gt; Lesson#01. 关系模型 &amp;amp; 关系代数（Relational Model &amp;amp; Relational Algebra）&lt;/h1&gt;
-&lt;h2 id=&#34;database&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#database&#34;&gt;#&lt;/a&gt; Database&lt;/h2&gt;
+&lt;h1 id=&#34;lesson01-关系模型关系代数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#lesson01-关系模型关系代数&#34;&gt;#&lt;/a&gt; Lesson#01. 关系模型 &amp;amp; 关系代数&lt;/h1&gt;
+&lt;p&gt;Relational Model &amp;amp; Relational Algebra&lt;/p&gt;
+&lt;h2 id=&#34;数据库&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#数据库&#34;&gt;#&lt;/a&gt; 数据库&lt;/h2&gt;
 &lt;p&gt;数据库 (Database,DB) 是一个有组织的、互相关联的、对现实世界的某些方面进行建模的集合。&lt;/p&gt;
 &lt;p&gt;严格来讲，数据库是长期存储在计算机内、有组织的、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度 ()、较高的数据独立性 () 和易扩展性 ()，并可为各种用户共享。&lt;/p&gt;
 &lt;p&gt;本笔记中，用一个存储着艺术家和对应的专辑信息的数据库作为例子，亦即数字音乐商店 (A database that models a digital music store)。&lt;/p&gt;
@@ -69,8 +80,8 @@
  耐受性&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;database-management-systemdbms&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#database-management-systemdbms&#34;&gt;#&lt;/a&gt; Database Management System(DBMS)&lt;/h2&gt;
-&lt;p&gt;一个 DBMS 是一个能让应用在数据库中保存与分析数据的软件&lt;/p&gt;
+&lt;h2 id=&#34;数据库管理系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#数据库管理系统&#34;&gt;#&lt;/a&gt; 数据库管理系统&lt;/h2&gt;
+&lt;p&gt;一个 Database Management System (DBMS) 是一个能让应用在数据库中保存与分析数据的软件&lt;/p&gt;
 &lt;p&gt;通常，DBMS 设计的目的是允许定义、创建、查询、更新和管理符合某种数据模型的数据库。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -100,8 +111,8 @@
 是这些实体和属性的存储方式。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;所以早期的数据库，一旦改变了物理层，逻辑层也得跟着变。&lt;/p&gt;
-&lt;h2 id=&#34;relational-model&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#relational-model&#34;&gt;#&lt;/a&gt; Relational Model&lt;/h2&gt;
-&lt;p&gt;人们每次改变物理层都要重新写数据管理系统，故 Ted Codd 注意到后提出了关系模型。&lt;/p&gt;
+&lt;h2 id=&#34;关系模型&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关系模型&#34;&gt;#&lt;/a&gt; 关系模型&lt;/h2&gt;
+&lt;p&gt;人们每次改变物理层都要重新写数据管理系统，故 Ted Codd 注意到后提出了关系模型（Relational Model）。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Relational Model：&lt;/strong&gt;&lt;/p&gt;
@@ -150,7 +161,7 @@
 &lt;p&gt;&lt;img data-src=&#34;image-20230312011848991.png&#34; alt=&#34;image-20230312011848991&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;data-manipulation-languages-dml&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#data-manipulation-languages-dml&#34;&gt;#&lt;/a&gt; Data Manipulation Languages (DML)&lt;/h2&gt;
+&lt;h2 id=&#34;数据操纵语言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#数据操纵语言&#34;&gt;#&lt;/a&gt; 数据操纵语言&lt;/h2&gt;
 &lt;p&gt;DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。&lt;/p&gt;
 &lt;p&gt;DDL（data definition language）是数据定义语言：DDL 比 DML 要多，主要的命令有 CREATE、ALTER、DROP 等，DDL 主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用。&lt;/p&gt;
 &lt;p&gt;DCL（Data Control Language）是数据库控制语言：是用来设置或更改数据库用户或角色权限的语句，包括（grant,deny,revoke 等）语句。&lt;/p&gt;
@@ -162,7 +173,7 @@ The query specifies the (high-level) strategy the DBMS should use to find the de
 The query specifies only what data is wanted and not how to find it. (&lt;strong&gt;relational calculus&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;一般现在都是用第二种的，我不管 DBMS 用什么策略，我只需要你给我我想要的数据。&lt;/p&gt;
-&lt;h2 id=&#34;relational-algebra&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#relational-algebra&#34;&gt;#&lt;/a&gt; Relational Algebra&lt;/h2&gt;
+&lt;h2 id=&#34;关系代数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关系代数&#34;&gt;#&lt;/a&gt; 关系代数&lt;/h2&gt;
 &lt;p&gt;关系代数 (Relational Algebra) 就是一组基本操作，用于检索和操作关系中的图元。&lt;/p&gt;
 &lt;p&gt;每个操作符都需要一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以把这些运算符 &amp;quot;链&amp;quot; 在一起，以创建更复杂的操作。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;image-20230312012338736.png&#34; alt=&#34;image-20230312012338736&#34;&gt;&lt;/p&gt;
@@ -180,7 +191,8 @@ The query specifies only what data is wanted and not how to find it. (&lt;strong
 &lt;p&gt;&lt;img data-src=&#34;image-20230312012728132.png&#34; alt=&#34;image-20230312012728132&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Join&lt;/strong&gt; takes in two relations and outputs a relation that contains all the tuples that are a combination of two tuples where for each attribute that the two relations share, the values for that attribute of both tuples is the same.&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;image-20230312012750042.png&#34; alt=&#34;image-20230312012750042&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;lesson02-高级sqladvanced-sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#lesson02-高级sqladvanced-sql&#34;&gt;#&lt;/a&gt; Lesson#02. 高级 SQL（Advanced SQL）&lt;/h1&gt;
+&lt;h1 id=&#34;lesson02-高级sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#lesson02-高级sql&#34;&gt;#&lt;/a&gt; Lesson#02. 高级 SQL&lt;/h1&gt;
+&lt;p&gt;Advanced SQL&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;SQL&lt;/strong&gt; (Structured Query Language: 结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。&lt;/p&gt;
 &lt;p&gt;DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。&lt;/p&gt;
 &lt;p&gt;DDL（data definition language）是数据定义语言：DDL 比 DML 要多，主要的命令有 CREATE、ALTER、DROP 等，DDL 主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用。&lt;/p&gt;
@@ -439,7 +451,8 @@ WHERE column LIKE pattern;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;output-redirection输出重定向&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#output-redirection输出重定向&#34;&gt;#&lt;/a&gt; Output Redirection (输出重定向)&lt;/h2&gt;
+&lt;h2 id=&#34;输出重定向&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出重定向&#34;&gt;#&lt;/a&gt; 输出重定向&lt;/h2&gt;
+&lt;p&gt;Output Redirection&lt;/p&gt;
 &lt;p&gt;你可以告诉 DBMS 将查询结果存储到另一个表中，而不是将查询结果返回给客户端（例如，终端）。结果存储到另一个表中。然后你可以在随后的查询中访问这些数据&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -454,12 +467,14 @@ WHERE column LIKE pattern;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;output-control&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#output-control&#34;&gt;#&lt;/a&gt; Output Control&lt;/h2&gt;
+&lt;h2 id=&#34;输出控制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出控制&#34;&gt;#&lt;/a&gt; 输出控制&lt;/h2&gt;
+&lt;p&gt;Output Control&lt;/p&gt;
 &lt;p&gt;因为 SQL 是无序的，我们可以用 ORDER BY 来对输出进行排序&lt;/p&gt;
 &lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;SELECT&lt;/span&gt; sid&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; grade &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; enrolled &lt;span class=&#34;token keyword&#34;&gt;WHERE&lt;/span&gt; cid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;15-721&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;ORDER&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;BY&lt;/span&gt; grade&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;后面可以加 &lt;code&gt;DESC&lt;/code&gt; ,  &lt;code&gt;ASC&lt;/code&gt;  来指定排序策略&lt;/p&gt;
 &lt;p&gt;输出的数量可以用 &lt;code&gt;LIMIT n&lt;/code&gt;  进行指定&lt;/p&gt;
 &lt;p&gt;当然也可以用 &lt;code&gt;OFFSET&lt;/code&gt;  来提供一个 bias。&lt;/p&gt;
-&lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;SELECT&lt;/span&gt; sid&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; name &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; student &lt;span class=&#34;token keyword&#34;&gt;WHERE&lt;/span&gt; login &lt;span class=&#34;token operator&#34;&gt;LIKE&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;%@cs&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;LIMIT&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;20&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;OFFSET&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;nested-queries内部查询查询嵌套&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nested-queries内部查询查询嵌套&#34;&gt;#&lt;/a&gt; Nested Queries（内部查询 / 查询嵌套）&lt;/h2&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;SELECT&lt;/span&gt; sid&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; name &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; student &lt;span class=&#34;token keyword&#34;&gt;WHERE&lt;/span&gt; login &lt;span class=&#34;token operator&#34;&gt;LIKE&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;%@cs&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;LIMIT&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;20&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;OFFSET&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;内部查询查询嵌套&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#内部查询查询嵌套&#34;&gt;#&lt;/a&gt; 内部查询 / 查询嵌套&lt;/h2&gt;
+&lt;p&gt;Nested Queries&lt;/p&gt;
 &lt;p&gt;在其他查询中调用查询，在单个查询中执行更复杂的逻辑。嵌套查询往往难以优化。&lt;/p&gt;
 &lt;p&gt;外部查询的范围包括在内部查询中（即内部查询可以访问来自外部&lt;br&gt;
 查询），反之不行。&lt;/p&gt;
@@ -501,8 +516,8 @@ At least one row is returned.&lt;/li&gt;
 &lt;p&gt;找到所有没有学生注册的课&lt;/p&gt;
 &lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;SELECT&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; course&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;WHERE&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;NOT&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;EXISTS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;SELECT&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; enrolled&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;WHERE&lt;/span&gt; course&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;cid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; enrolled&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;cid&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;window-function&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#window-function&#34;&gt;#&lt;/a&gt; Window Function&lt;/h2&gt;
-&lt;p&gt;A window function perform “sliding” calculation across a set of tuples that are related. Like an aggregation but tuples are not grouped into a single output tuple.&lt;/p&gt;
+&lt;h2 id=&#34;窗口函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#窗口函数&#34;&gt;#&lt;/a&gt; 窗口函数&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;window function&lt;/strong&gt; perform “sliding” calculation across a set of tuples that are related. Like an aggregation but tuples are not grouped into a single output tuple.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;函数： 窗口函数可以是我们上面讨论的任何一个聚合函数。也有一些特殊的窗口函数。&lt;/p&gt;
@@ -527,8 +542,8 @@ At least one row is returned.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;commom-table-expressions&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#commom-table-expressions&#34;&gt;#&lt;/a&gt; Commom Table Expressions&lt;/h2&gt;
-&lt;p&gt;在编写更复杂的查询时，通用表表达式（CTE）是窗口或嵌套查询的一种替代方法。复杂的查询时，可以替代窗口或嵌套查询。它们提供了一种方法来为用户在一个更大的查询中编写辅助语句.&lt;/p&gt;
+&lt;h2 id=&#34;通用表表达式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#通用表表达式&#34;&gt;#&lt;/a&gt; 通用表表达式&lt;/h2&gt;
+&lt;p&gt;在编写更复杂的查询时，通用表表达式（CTE，Commom Table Expressions）是窗口或嵌套查询的一种替代方法。复杂的查询时，可以替代窗口或嵌套查询。它们提供了一种方法来为用户在一个更大的查询中编写辅助语句.&lt;/p&gt;
 &lt;p&gt;可以理解为一个辅助表。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;WITH&lt;/code&gt;  子句将内部查询的输出与一个具有该名称的临时结果绑定。&lt;/p&gt;
 &lt;ul&gt;
@@ -609,13 +624,13 @@ SELECT * FROM cteSource;
 &lt;blockquote&gt;
 &lt;p&gt;Even though the system will have functionalities that seem like something the OS can provide, having the DBMS implement these procedures itself gives it better control and performance&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;4-file-storage&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4-file-storage&#34;&gt;#&lt;/a&gt; 4. File Storage&lt;/h2&gt;
+&lt;h2 id=&#34;file-storage&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#file-storage&#34;&gt;#&lt;/a&gt; File Storage&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;在其最基本的形式中，DBMS 将数据库存储为磁盘上的文件。有些可能使用文件层次结构，有些则可能使用单个文件&lt;/li&gt;
 &lt;li&gt;操作系统对这些文件的内容一无所知。只有 DBMS 知道如何解读它们的内容，因为它是以 DBMS 特有的方式编码的。&lt;/li&gt;
 &lt;li&gt;DBMS 的存储管理器负责管理数据库的文件。它将文件表示为一个 页的集合。它还跟踪哪些数据被读和写到了页面上，以及这些页面有多少可用空间。这些页面中还有多少可用空间。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;5-database-pages&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#5-database-pages&#34;&gt;#&lt;/a&gt; 5. Database Pages&lt;/h2&gt;
+&lt;h2 id=&#34;database-pages&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#database-pages&#34;&gt;#&lt;/a&gt; Database Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;DBMS 将数据库组织在一个或多个文件中的固定大小的数据块，称为页。页面可以包含不同种类的数据（tuple、indexes 等）。&lt;/p&gt;
@@ -652,12 +667,12 @@ SELECT * FROM cteSource;
 这意味着，如果我们的数据库页面比我们的硬件页面大，DBMS 将不得不采取额外的措施 以确保数据被安全地写出来。 因为当系统崩溃时，程序可能已经完成了将数据库页面写入磁盘的一部分&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;6-database-heap&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#6-database-heap&#34;&gt;#&lt;/a&gt; 6. Database Heap&lt;/h2&gt;
+&lt;h2 id=&#34;database-heap&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#database-heap&#34;&gt;#&lt;/a&gt; Database Heap&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;有几种方法可以找到 DBMS 在磁盘上想要的页面的位置，堆文件组织是其中一种方法&lt;br&gt;
-堆文件是一个无序的页面集合，其中的图元是按照 随机顺序存储。&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;有几种方法可以找到 DBMS 在磁盘上想要的页面的位置，堆文件组织是其中一种方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;堆文件是一个无序的页面集合，其中的图元是按照随机顺序存储。&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;DBMS 可以通过使用页面的链接列表或页面目录在磁盘上找到一个给定的页面 ID&lt;/p&gt;
 &lt;ol&gt;
@@ -672,7 +687,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;7-page-layout&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#7-page-layout&#34;&gt;#&lt;/a&gt; 7. Page Layout&lt;/h2&gt;
+&lt;h2 id=&#34;page-layout&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#page-layout&#34;&gt;#&lt;/a&gt; Page Layout&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;每个页面都包括一个 header，记录关于页面内容的元数据。&lt;/p&gt;
@@ -706,7 +721,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;8-tuple-layout&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#8-tuple-layout&#34;&gt;#&lt;/a&gt; 8. Tuple Layout&lt;/h2&gt;
+&lt;h2 id=&#34;tuple-layout&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tuple-layout&#34;&gt;#&lt;/a&gt; Tuple Layout&lt;/h2&gt;
 &lt;p&gt;tuples 本质上是一个字节序列。DBMS 的工作是将这些字节解释为属性类型和值。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

@@ -146,8 +146,19 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="qt-核心机制"><a class="markdownIt-Anchor" href="#qt-核心机制">#</a> Qt 核心机制</h1>
-<h2 id="元对象系统"><a class="markdownIt-Anchor" href="#元对象系统">#</a> 元对象系统</h2>
+    <h1 id="gui程序设计基础"><a class="markdownIt-Anchor" href="#gui程序设计基础">#</a> GUI 程序设计基础</h1>
+<h2 id="gui程序结构和运行机制"><a class="markdownIt-Anchor" href="#gui程序结构和运行机制">#</a> GUI 程序结构和运行机制</h2>
+<h2 id="可视化ui设计"><a class="markdownIt-Anchor" href="#可视化ui设计">#</a> 可视化 UI 设计</h2>
+<h2 id="代码化ui设计"><a class="markdownIt-Anchor" href="#代码化ui设计">#</a> 代码化 UI 设计</h2>
+<h2 id="使用cmake构建项目"><a class="markdownIt-Anchor" href="#使用cmake构建项目">#</a> 使用 CMake 构建项目</h2>
+<h2 id="qt-creator使用技巧"><a class="markdownIt-Anchor" href="#qt-creator使用技巧">#</a> Qt Creator 使用技巧</h2>
+<h1 id="qt-框架功能概述"><a class="markdownIt-Anchor" href="#qt-框架功能概述">#</a> Qt 框架功能概述</h1>
+<h2 id="qt6-框架中的模块"><a class="markdownIt-Anchor" href="#qt6-框架中的模块">#</a> Qt6 框架中的模块</h2>
+<h3 id="qt基础模块"><a class="markdownIt-Anchor" href="#qt基础模块">#</a> Qt 基础模块</h3>
+<h3 id="qt附加模块"><a class="markdownIt-Anchor" href="#qt附加模块">#</a> Qt 附加模块</h3>
+<h2 id="qt-全局定义"><a class="markdownIt-Anchor" href="#qt-全局定义">#</a> Qt 全局定义</h2>
+<h2 id="qt-元对象系统"><a class="markdownIt-Anchor" href="#qt-元对象系统">#</a> Qt 元对象系统</h2>
+<h3 id="元对象系统概述"><a class="markdownIt-Anchor" href="#元对象系统概述">#</a> 元对象系统概述</h3>
 <p>Qt 元对象系统提供了对象间的通信机制（信号和槽）、运行时类型信息和动态属性系统的支持，是标准 <code>C++</code>  的一个扩展，它使 Qt 能够更好的实现 GUI 用户图形界面编程。Qt 的元对象系统不支持 C++ 模板。</p>
 <p>Qt 元对象系统基于以下三个事实：</p>
 <ul>
@@ -155,32 +166,8 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li><code>Q_OBJECT</code>  宏： <code>Q_OBJECT</code>  宏必须出现在类的私有声明区，用于启动元对象的特性。</li>
 <li>元对象编译器（moc, Meta-Object Compiler）：为 <code>QObject</code>  子类实现元对象特性提供必要的代码实现。（将 Qt 对 C<ins> 的语法拓展编译还原为 ** 标准 C</ins> 代码 **）</li>
 </ul>
-<h2 id="对象树"><a class="markdownIt-Anchor" href="#对象树">#</a> 对象树</h2>
-<p>什么是 Qt 对象：定义一个类，继承于  <code>QObject</code>  ，因此而产生的对象叫 Qt 对象</p>
-<ul>
-<li>对象通过对象树的形式组织。</li>
-<li>对象树主要用来内存回收，对象树之间不一定是继承关系</li>
-<li>Qt 对象间可以存在父子关系
-<ul>
-<li>每一个对象都保存有它所有子对象的指针</li>
-<li>每一个对象都有一个指向其父对象的指针</li>
-<li>可以使用 <code>findChild()</code>  或 <code>findChildren()</code>  查找对象的子对象。</li>
-</ul>
-</li>
-<li>当指定 Qt 对象的父对象时，该对象将自动将自己添加到父对象的 <code>children()</code>  列表中
-<ul>
-<li>其父对象会在<strong>子对象链表</strong>中加入该对象的指针</li>
-<li>该对象会保存指向其父对象的指针</li>
-</ul>
-</li>
-<li>当 Qt 对象被销毁时
-<ul>
-<li>将自己从父对象的 Children List 移除</li>
-<li>将自己的 Children List 中的所有对象销毁</li>
-</ul>
-</li>
-</ul>
-<h2 id="信号和槽"><a class="markdownIt-Anchor" href="#信号和槽">#</a> 信号和槽</h2>
+<h3 id="运行时类型信息"><a class="markdownIt-Anchor" href="#运行时类型信息">#</a> 运行时类型信息</h3>
+<h3 id="信号和槽"><a class="markdownIt-Anchor" href="#信号和槽">#</a> 信号和槽</h3>
 <ul>
 <li>
 <p>信号（signal）和槽（slot）是 Qt 自行定义的一种通信机制，实现对象之间的数据交互。</p>
@@ -279,8 +266,33 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p>案例：登录对话框</p>
 </li>
 </ul>
-<h2 id="qobject基类"><a class="markdownIt-Anchor" href="#qobject基类">#</a> QObject 基类</h2>
-<h2 id="qt中使用到的设计模式"><a class="markdownIt-Anchor" href="#qt中使用到的设计模式">#</a> Qt 中使用到的设计模式</h2>
+<h3 id="对象树"><a class="markdownIt-Anchor" href="#对象树">#</a> 对象树</h3>
+<p>什么是 Qt 对象：定义一个类，继承于  <code>QObject</code>  ，因此而产生的对象叫 Qt 对象</p>
+<ul>
+<li>对象通过对象树的形式组织。</li>
+<li>对象树主要用来内存回收，对象树之间不一定是继承关系</li>
+<li>Qt 对象间可以存在父子关系
+<ul>
+<li>每一个对象都保存有它所有子对象的指针</li>
+<li>每一个对象都有一个指向其父对象的指针</li>
+<li>可以使用 <code>findChild()</code>  或 <code>findChildren()</code>  查找对象的子对象。</li>
+</ul>
+</li>
+<li>当指定 Qt 对象的父对象时，该对象将自动将自己添加到父对象的 <code>children()</code>  列表中
+<ul>
+<li>其父对象会在<strong>子对象链表</strong>中加入该对象的指针</li>
+<li>该对象会保存指向其父对象的指针</li>
+</ul>
+</li>
+<li>当 Qt 对象被销毁时
+<ul>
+<li>将自己从父对象的 Children List 移除</li>
+<li>将自己的 Children List 中的所有对象销毁</li>
+</ul>
+</li>
+</ul>
+<h3 id="qobject基类"><a class="markdownIt-Anchor" href="#qobject基类">#</a> QObject 基类</h3>
+<h3 id="qt中使用到的设计模式"><a class="markdownIt-Anchor" href="#qt中使用到的设计模式">#</a> Qt 中使用到的设计模式</h3>
 <ol>
 <li>
 <p>单例模式</p>
@@ -331,8 +343,25 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p>说明：Qt 中的 QWidget 就用到了组合模式，每一个控件都由 QWidget 或其派生类派生，它们之间存在着树状的层级关系，并且都有一些共有的方法，比如 QPaintEvent，setParent，move，resize 等。</p>
 </li>
 </ol>
-<h1 id="qt-模板库-工具类及控件"><a class="markdownIt-Anchor" href="#qt-模板库-工具类及控件">#</a> Qt 模板库、工具类及控件</h1>
-<h1 id="qt-窗口"><a class="markdownIt-Anchor" href="#qt-窗口">#</a> Qt 窗口</h1>
+<h2 id="容器类"><a class="markdownIt-Anchor" href="#容器类">#</a> 容器类</h2>
+<h2 id="其他常用基础类"><a class="markdownIt-Anchor" href="#其他常用基础类">#</a> 其他常用基础类</h2>
+<h3 id="qvariant类"><a class="markdownIt-Anchor" href="#qvariant类">#</a> QVariant 类</h3>
+<h3 id="qflags类"><a class="markdownIt-Anchor" href="#qflags类">#</a> QFlags 类</h3>
+<h3 id="qrandomgenerator类"><a class="markdownIt-Anchor" href="#qrandomgenerator类">#</a> QRandomGenerator 类</h3>
+<h1 id="常用界面组件"><a class="markdownIt-Anchor" href="#常用界面组件">#</a> 常用界面组件</h1>
+<h2 id="界面组件概述"><a class="markdownIt-Anchor" href="#界面组件概述">#</a> 界面组件概述</h2>
+<h2 id="布局管理"><a class="markdownIt-Anchor" href="#布局管理">#</a> 布局管理</h2>
+<h2 id="qstring字符串操作"><a class="markdownIt-Anchor" href="#qstring字符串操作">#</a> QString 字符串操作</h2>
+<h2 id="qspinbox和qdoublespinbox"><a class="markdownIt-Anchor" href="#qspinbox和qdoublespinbox">#</a> QSpinBox 和 QDoubleSpinBox</h2>
+<h2 id="常用按钮组件"><a class="markdownIt-Anchor" href="#常用按钮组件">#</a> 常用按钮组件</h2>
+<h2 id="qslider和qprogressbar"><a class="markdownIt-Anchor" href="#qslider和qprogressbar">#</a> QSlider 和 QProgressBar</h2>
+<h2 id="日期和时间"><a class="markdownIt-Anchor" href="#日期和时间">#</a> 日期和时间</h2>
+<h2 id="qtimer和qelapsedtimer"><a class="markdownIt-Anchor" href="#qtimer和qelapsedtimer">#</a> QTimer 和 QElapsedTimer</h2>
+<h2 id="qcombobox"><a class="markdownIt-Anchor" href="#qcombobox">#</a> QComboBox</h2>
+<h2 id="qmainwindow和qaction"><a class="markdownIt-Anchor" href="#qmainwindow和qaction">#</a> QMainWindow 和 QAction</h2>
+<h2 id="qtoolbutton和qlistwidget"><a class="markdownIt-Anchor" href="#qtoolbutton和qlistwidget">#</a> QToolButton 和 QListWidget</h2>
+<h2 id="qtreewidget"><a class="markdownIt-Anchor" href="#qtreewidget">#</a> QTreeWidget</h2>
+<h2 id="qtablewidget"><a class="markdownIt-Anchor" href="#qtablewidget">#</a> QTableWidget</h2>
 <ul>
 <li>
 <p>创建控件时，可以指定停靠在某个父窗口上面，这时控件将作为子窗口被束缚在其父窗口的内部，并伴随父窗口一起移动、隐藏、显示和关闭；否则该控件将作为独立窗口显示在屏幕上，且游离于其他窗口之外。</p>
@@ -360,9 +389,39 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </li>
 <li>
 <figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QDialog></span></span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPushButton></span></span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    QApplication <span class="token function">a</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>    MainWindow w<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    w<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">640</span><span class="token punctuation">,</span> <span class="token number">640</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token comment">// 创建标签控件</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    QLabel <span class="token function">label</span><span class="token punctuation">(</span><span class="token string">"我是标签"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    label<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token comment">// 创建按钮空间，栈创建，系统自动销毁</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    QPushButton <span class="token function">btn</span><span class="token punctuation">(</span><span class="token string">"我是按钮"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    btn<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    btn<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    </pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token comment">// 堆创建，new 对象如果指定了父窗口指针，可以不写 delete，随父窗口销毁</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    QPushButton<span class="token operator">*</span> btn2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">QPushButton</span><span class="token punctuation">(</span><span class="token string">"我也是按钮"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    btn2<span class="token operator">-></span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">170</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    btn2<span class="token operator">-></span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre>    w<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token keyword">return</span> a<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
-<li></li>
 </ul>
-<h1 id="qt-事件处理机制"><a class="markdownIt-Anchor" href="#qt-事件处理机制">#</a> Qt 事件处理机制</h1>
+<h1 id="模型视图结构"><a class="markdownIt-Anchor" href="#模型视图结构">#</a> 模型 / 视图结构</h1>
+<p>MVC 设计模式是起源于 Smalltalk 的一种与用户界面相关的设计模式。通过使用此模式，可以有效地分离数据和用户界面。</p>
+<p>MVC 设计模式包括三个元素：</p>
+<ul>
+<li>表示数据的模型（Model）</li>
+<li>表示用户界面的视图（View）</li>
+<li>定义了用户在界面上操作的控制器（Controller）</li>
+</ul>
+<p>Qt 中将视图和控制器部件结合在一起，使得框架更为简洁。为了灵活的处理用户输入，Qt 框架引入了代理（delegate）。通过使用代理，能够自定义数据条目（item）的显示和编辑方式。</p>
+<p>Qt 的模型 / 视图结构分为三部分</p>
+<ul>
+<li>
+<p><strong>模型（Model）</strong></p>
+<p>模型与数据源通信，并为其他部件提供接口；</p>
+</li>
+<li>
+<p><strong>视图（View）</strong></p>
+<p>视图从模型中获得用来引用数据条目的模型索引 (Model Index)。</p>
+</li>
+<li>
+<p><strong>代理（Delegate）</strong></p>
+<p>在视图中，代理负责绘制数据条目，当编辑条目时，代理和模型直接进行通信。</p>
+</li>
+</ul>
+<p>Model/View/Delegate 之间通过信号和槽进行通信，关系如下：</p>
+<ul>
+<li>数据发生改变时，模型发出信号通知视图。</li>
+<li>用户对界面进行操作，视图发出信号。</li>
+<li>代理发出信号告知模型和视图编辑器目前的状态。</li>
+</ul>
+<p><img data-src="image-20230405120120465.png" alt="image-20230405120120465"></p>
+<h1 id="事件处理机制"><a class="markdownIt-Anchor" href="#事件处理机制">#</a> 事件处理机制</h1>
 <h2 id="什么是事件"><a class="markdownIt-Anchor" href="#什么是事件">#</a> 什么是事件</h2>
 <ul>
 <li>
@@ -445,38 +504,10 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>案例：鼠标测试，通过鼠标左键拖拽 label 方块移动</li>
 </ul>
 <p>键盘事件</p>
-<h1 id="qt-模型视图结构"><a class="markdownIt-Anchor" href="#qt-模型视图结构">#</a> Qt 模型 / 视图结构</h1>
-<p>MVC 设计模式是起源于 Smalltalk 的一种与用户界面相关的设计模式。通过使用此模式，可以有效地分离数据和用户界面。</p>
-<p>MVC 设计模式包括三个元素：</p>
-<ul>
-<li>表示数据的模型（Model）</li>
-<li>表示用户界面的视图（View）</li>
-<li>定义了用户在界面上操作的控制器（Controller）</li>
-</ul>
-<p>Qt 中将视图和控制器部件结合在一起，使得框架更为简洁。为了灵活的处理用户输入，Qt 框架引入了代理（delegate）。通过使用代理，能够自定义数据条目（item）的显示和编辑方式。</p>
-<p>Qt 的模型 / 视图结构分为三部分</p>
-<ul>
-<li>
-<p><strong>模型（Model）</strong></p>
-<p>模型与数据源通信，并为其他部件提供接口；</p>
-</li>
-<li>
-<p><strong>视图（View）</strong></p>
-<p>视图从模型中获得用来引用数据条目的模型索引 (Model Index)。</p>
-</li>
-<li>
-<p><strong>代理（Delegate）</strong></p>
-<p>在视图中，代理负责绘制数据条目，当编辑条目时，代理和模型直接进行通信。</p>
-</li>
-</ul>
-<p>Model/View/Delegate 之间通过信号和槽进行通信，关系如下：</p>
-<ul>
-<li>数据发生改变时，模型发出信号通知视图。</li>
-<li>用户对界面进行操作，视图发出信号。</li>
-<li>代理发出信号告知模型和视图编辑器目前的状态。</li>
-</ul>
-<p><img data-src="image-20230405120120465.png" alt="image-20230405120120465"></p>
+<h1 id="对话框和多窗口程序设计"><a class="markdownIt-Anchor" href="#对话框和多窗口程序设计">#</a> 对话框和多窗口程序设计</h1>
+<h1 id="文件系统操作和文件读写"><a class="markdownIt-Anchor" href="#文件系统操作和文件读写">#</a> 文件系统操作和文件读写</h1>
 <h1 id="qt-数据库"><a class="markdownIt-Anchor" href="#qt-数据库">#</a> Qt 数据库</h1>
+<h2 id="qt-数据库编程概述"><a class="markdownIt-Anchor" href="#qt-数据库编程概述">#</a> Qt 数据库编程概述</h2>
 <ul>
 <li>
 <p>数据库是指以一定方式存储在一起，能为多个用户共享，具有尽可能小的冗余特性，是与应用程序彼此独立的数据集合。</p>
@@ -531,178 +562,27 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </ul>
 </li>
 </ul>
-<h1 id="基于qt框架实现学生成绩管理系统"><a class="markdownIt-Anchor" href="#基于qt框架实现学生成绩管理系统">#</a> 基于 Qt 框架实现学生成绩管理系统</h1>
-<h1 id="qt-网络编程"><a class="markdownIt-Anchor" href="#qt-网络编程">#</a> Qt 网络编程</h1>
-<p><img data-src="https://subingwen.cn/linux/socket/ip%E5%9B%9B%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%A8%A1%E5%9E%8B.png" alt="img"></p>
-<ul>
-<li>物理层：负责最后将信息编码成电流脉冲或其它信号用于网上传输</li>
-<li>数据链路层:<br>
- 数据链路层通过物理网络链路供数据传输。<br>
-规定了 0 和 1 的分包形式，确定了网络数据包的形式；</li>
-<li>网络层<br>
-网络层负责在源和终点之间建立连接；<br>
-此处需要确定计算机的位置，通过 IPv4，IPv6 格式的 IP 地址来找到对应的主机</li>
-<li>传输层<br>
-传输层向高层提供可靠的端到端的网络数据流服务。<br>
-每一个应用程序都会在网卡注册一个端口号，该层就是端口与端口的通信</li>
-<li>会话层<br>
-会话层建立、管理和终止表示层与实体之间的通信会话；<br>
-建立一个连接（自动的手机信息、自动的网络寻址）;</li>
-<li>表示层:<br>
- 对应用层数据编码和转化，确保以一个系统应用层发送的信息 可以被另一个系统应用层识别；</li>
-</ul>
-<p>TCP 通信流程</p>
-<p>TCP 是一个面向连接的，安全的，流式传输协议，这个协议是一个传输层协议。</p>
-<ul>
-<li>面向连接：是一个双向连接，通过三次握手完成，断开连接需要通过四次挥手完成。</li>
-<li>安全：tcp 通信过程中，会对发送的每一数据包都会进行校验，如果发现数据丢失，会自动重传</li>
-<li>流式传输：发送端和接收端处理数据的速度，数据的量都可以不一致</li>
-</ul>
-<p>服务器端通信流程</p>
-<ol>
-<li>
-<p>创建用于监听的套接字，这个套接字是一个文件描述符 (监听的)</p>
-<p><code>int lfd = socket();</code></p>
-</li>
-<li>
-<p>将得到的监听的文件描述符和本地的 IP 端口进行绑定</p>
-<p><code>bind();</code></p>
-</li>
-<li>
-<p>设置监听 (成功之后开始监听，监听的是客户端的连接)</p>
-<p><code>listen();</code></p>
-</li>
-<li>
-<p>等待并接受客户端的连接请求，建立新的连接，会得到一个新的文件描述符 (通信的)，没有新连接请求就阻塞</p>
-<p><code>int cfd = accept();</code></p>
-</li>
-<li>
-<p>通信，读写操作默认都是阻塞的</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>断开连接，关闭套接字</p>
-<p><code>close();</code></p>
-</li>
-</ol>
-<blockquote>
-<p>在 tcp 的服务器端，有两类文件描述符</p>
-<p>监听的文件描述符<br>
-只需要有一个<br>
-不负责和客户端通信，负责检测客户端的连接请求，检测到之后调用 accept 就可以建立新的连接<br>
-通信的文件描述符<br>
-负责和建立连接的客户端通信<br>
-如果有 N 个客户端和服务器建立了新的连接，通信的文件描述符就有 N 个，每个客户端和服务器都对应一个通信的文件描述符</p>
-</blockquote>
-<p>客户端的通信流程</p>
-<p>在单线程的情况下客户端通信的文件描述符有一个，没有监听的文件描述符</p>
-<ol>
-<li>
-<p>创建一个通信的套接字</p>
-<p><code>int cfd = socket();</code></p>
-</li>
-<li>
-<p>连接服务器，需要知道服务器绑定的 IP 和端口</p>
-<p><code>connect();</code></p>
-</li>
-<li>
-<p>通信</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>断开连接，关闭文件描述符 (套接字)</p>
-<p><code>close();</code></p>
-</li>
-</ol>
-<h2 id="套接字"><a class="markdownIt-Anchor" href="#套接字">#</a> 套接字</h2>
-<p>在标准 C++ 没有提供专门用于套接字通信的类，所以只能使用操作系统提供的基于 C 的 API 函数，基于这些 C 的 API 函数我们也可以封装自己的 C++ 类。</p>
-<p>但是 Qt 就不一样了，它是 C++ 的一个框架并且里边提供了用于套接字通信的类（TCP、UDP）这样就使得我们的操作变得更加简单了（当然，在 Qt 中使用标准 C 的 API 进行套接字通信也是完全没有问题的）。下面，给大家讲一下如果使用相关类的进行 TCP 通信。</p>
-<p>使用 Qt 提供的类进行基于 TCP 的套接字通信需要用到两个类：</p>
-<ul>
-<li>QTcpServer：服务器类，用于监听客户端连接以及和客户端建立连接。</li>
-<li>QTcpSocket：通信的套接字类，客户端、服务器端都需要使用。</li>
-</ul>
-<p>这两个套接字通信类都属于网络模块 network。</p>
-<h2 id="qtcpserve"><a class="markdownIt-Anchor" href="#qtcpserve">#</a> QTcpServe</h2>
-<p>QTcpServer 类用于监听客户端连接以及和客户端建立连接，在使用之前先介绍一下这个类提供的一些常用 API 函数：</p>
-<ul>
-<li>
-<p>构造函数</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">QTcpServer</span><span class="token punctuation">(</span>QObject <span class="token operator">*</span>parent <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>给监听的套接字设置监听</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token keyword">const</span> QHostAddress <span class="token operator">&amp;</span>address <span class="token operator">=</span> QHostAddress<span class="token double-colon punctuation">::</span>Any<span class="token punctuation">,</span> quint16 port <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 判断当前对象是否在监听，是返回 true，没有监听返回 false</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">isListening</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 如果当前对象正在监听返回监听的服务器地址信息，否则返回 QHostAddress::Null</span></pre></td></tr><tr><td data-num="5"></td><td><pre>QHostAddress <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">serverAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">// 如果服务器正在侦听连接，则返回服务器的端口；否则返回 0</span></pre></td></tr><tr><td data-num="7"></td><td><pre>quint16 <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">serverPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span></pre></td></tr></table></figure><p>参数：</p>
-<ul>
-<li>address：通过类 QHostAddress 可以封装 IPv4、IPv6 格式的 IP 地址，QHostAddress::Any 表示自动绑定</li>
-<li>port：如果指定为 0 表示随机绑定一个可用端口。使用时要指定一个端口</li>
-</ul>
-<p>返回值：</p>
-<ul>
-<li>绑定成功返回 true，失败返回 false</li>
-</ul>
-</li>
-<li>
-<p>得到和客户端建立连接之后用于通信的 QTcpSocket 套接字对象，它是 QTcpServer 的一个子对象，当 QTcpServer 对象析构的时候会自动析构这个子对象，当然也可自己手动析构，建议用完之后自己手动析构这个通信的 QTcpSocket 对象。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>QTcpSocket <span class="token operator">*</span><span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">nextPendingConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>阻塞等待客户端发起的连接请求，不推荐在单线程程序中使用，建议使用非阻塞方式处理新连接，即使用信号 newConnection () 。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">waitForNewConnection</span><span class="token punctuation">(</span><span class="token keyword">int</span> msec <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">*</span>timedOut <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>参数：</p>
-<ul>
-<li>msec：指定阻塞的最大时长，单位为毫秒（ms）</li>
-<li>timeout：传出参数，如果操作超时 timeout 为 true，没有超时 timeout 为 false</li>
-</ul>
-</li>
-<li>
-<p>信号</p>
-<ul>
-<li>
-<p>当接受新连接导致错误时，将发射如下信号。socketError 参数描述了发生的错误相关的信息。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>signal<span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">acceptError</span><span class="token punctuation">(</span>QAbstractSocket<span class="token double-colon punctuation">::</span>SocketError socketError<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>每次有新连接可用时都会发出 newConnection () 信号。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>signal<span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">newConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="qtcpsocket"><a class="markdownIt-Anchor" href="#qtcpsocket">#</a> QTcpSocket</h2>
-<p>QTcpSocket 是一个套接字通信类，不管是客户端还是服务器端都需要使用。在 Qt 中发送和接收数据也属于 IO 操作（网络 IO），先来看一下这个类的继承关系：</p>
-<p><img data-src="https://subingwen.cn/qt/socket-tcp/image-20210512174459252.png" alt="image-20210512174459252"></p>
-<ul>
-<li>
-<p>构造函数</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">QTcpSocket</span><span class="token double-colon punctuation">::</span><span class="token function">QTcpSocket</span><span class="token punctuation">(</span>QObject <span class="token operator">*</span>parent <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>连接服务器，需要指定服务器端绑定的 IP 和端口信息。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span><span class="token keyword">virtual</span><span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QAbstractSocket</span><span class="token double-colon punctuation">::</span><span class="token function">connectToHost</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString <span class="token operator">&amp;</span>hostName<span class="token punctuation">,</span> quint16 port<span class="token punctuation">,</span> OpenMode openMode <span class="token operator">=</span> ReadWrite<span class="token punctuation">,</span> NetworkLayerProtocol protocol <span class="token operator">=</span> AnyIPProtocol<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span><span class="token keyword">virtual</span><span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QAbstractSocket</span><span class="token double-colon punctuation">::</span><span class="token function">connectToHost</span><span class="token punctuation">(</span><span class="token keyword">const</span> QHostAddress <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> quint16 port<span class="token punctuation">,</span> OpenMode openMode <span class="token operator">=</span> ReadWrite<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>在 Qt 中不管调用读操作函数接收数据，还是调用写函数发送数据，操作的对象都是本地的由 Qt 框架维护的一块内存。因此，调用了发送函数数据不一定会马上被发送到网络中，调用了接收函数也不是直接从网络中接收数据，关于底层的相关操作是不需要使用者来维护的。</p>
-</li>
-<li>
-<p>接收数据</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 指定可接收的最大字节数 maxSize 的数据到指针 data 指向的内存中</span></pre></td></tr><tr><td data-num="2"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 指定可接收的最大字节数 maxSize，返回接收的字符串</span></pre></td></tr><tr><td data-num="4"></td><td><pre>QByteArray <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">read</span><span class="token punctuation">(</span>qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 将当前可用操作数据全部读出，通过返回值返回读出的字符串</span></pre></td></tr><tr><td data-num="6"></td><td><pre>QByteArray <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>发送数据</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 发送指针 data 指向的内存中的 maxSize 个字节的数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送指针 data 指向的内存中的数据，字符串以 \0 作为结束标记</span></pre></td></tr><tr><td data-num="4"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 发送参数指定的字符串</span></pre></td></tr><tr><td data-num="6"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> QByteArray <span class="token operator">&amp;</span>byteArray<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="描述qt下tcp通信的整个流程"><a class="markdownIt-Anchor" href="#描述qt下tcp通信的整个流程">#</a> 描述 Qt 下 Tcp 通信的整个流程</h2>
-<p>具体解释 ：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cuY25ibG9ncy5jb20veXV3ZWlmZW5nL3AvOTM4Mjg0MS5odG1s">https://www.cnblogs.com/yuweifeng/p/9382841.html</span></p>
-<p>QT 如果要进行<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNyVCRCU5MSVFNyVCQiU5QyVFNyVCQyU5NiVFNyVBOCU4QiZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">网络编程</span>首先需要在.pro 中添加如下代码：QT += network</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNiU5QyU4RCVFNSU4QSVBMSVFNSU5OSVBOCVFNyVBQiVBRiZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">服务器端</span>:<br>
-\1. 创建用于监听的<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNSVBNSU5NyVFNiU4RSVBNSVFNSVBRCU5NyZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">套接字</span><br>
- \2. 给套接字设置监听<br>
- \3. 如果有连接到来，监听的套接字会发出信号 newConnected<br>
-\4. 接收连接，通过 nextPendingConnection () 函数，返回一个 QTcpSocket 类型的套接字对象 (用于通信)<br>
-\5. 使用用于通信的套接字对象通信<br>
- 1&gt;. 发送数据: write<br>
-2&gt;. 接收数据: readAll/read<br>
- 客户端:<br>
-\1. 创建用于通信的套接字<br>
- \2. 连接服务器: connectToHost<br>
-\3. 连接成功与服务器通信<br>
- 1&gt;. 发送数据: write<br>
-2&gt;. 接收数据: readAll/read</p>
-<h2 id="描述qt下udp通信的整个流程"><a class="markdownIt-Anchor" href="#描述qt下udp通信的整个流程">#</a> 描述 QT 下 udp 通信的整个流程</h2>
-<p>QT 下 udp 通信服务器端和客户端的关系是对等的，做的处理也是一样的.<br>
-\1. 创建套接字对象<br>
- \2. 如果需要接收数据，必须绑定端口<br>
- \3. 发送数据: writeDatagram<br>
-\4. 接收数据: readDatagram</p>
+<h2 id="qsqltablemodel"><a class="markdownIt-Anchor" href="#qsqltablemodel">#</a> QSqlTableModel</h2>
+<h2 id="qsqlquerymodel"><a class="markdownIt-Anchor" href="#qsqlquerymodel">#</a> QSqlQueryModel</h2>
+<h2 id="qsqlquery"><a class="markdownIt-Anchor" href="#qsqlquery">#</a> QSqlQuery</h2>
+<h2 id="qsqlrelationaltablemodel"><a class="markdownIt-Anchor" href="#qsqlrelationaltablemodel">#</a> QSqlRelationalTableModel</h2>
+<h2 id="基于qt框架实现学生成绩管理系统"><a class="markdownIt-Anchor" href="#基于qt框架实现学生成绩管理系统">#</a> 基于 Qt 框架实现学生成绩管理系统</h2>
+<h1 id="qt-绘图"><a class="markdownIt-Anchor" href="#qt-绘图">#</a> Qt 绘图</h1>
+<h2 id="qpainter绘图"><a class="markdownIt-Anchor" href="#qpainter绘图">#</a> QPainter 绘图</h2>
+<h2 id="坐标系统和坐标变换"><a class="markdownIt-Anchor" href="#坐标系统和坐标变换">#</a> 坐标系统和坐标变换</h2>
+<h2 id="图形视图架构"><a class="markdownIt-Anchor" href="#图形视图架构">#</a> 图形 / 视图架构</h2>
+<h2 id="图像处理"><a class="markdownIt-Anchor" href="#图像处理">#</a> 图像处理</h2>
+<h1 id="自定义插件和库"><a class="markdownIt-Anchor" href="#自定义插件和库">#</a> 自定义插件和库</h1>
+<h1 id="qt-charts"><a class="markdownIt-Anchor" href="#qt-charts">#</a> Qt  Charts</h1>
+<h2 id="charts模块概述"><a class="markdownIt-Anchor" href="#charts模块概述">#</a> Charts 模块概述</h2>
+<h2 id="折线图绘制"><a class="markdownIt-Anchor" href="#折线图绘制">#</a> 折线图绘制</h2>
+<h2 id="图标交互操作"><a class="markdownIt-Anchor" href="#图标交互操作">#</a> 图标交互操作</h2>
+<h2 id="柱状图和饼图"><a class="markdownIt-Anchor" href="#柱状图和饼图">#</a> 柱状图和饼图</h2>
+<h1 id="qt-data-visualization"><a class="markdownIt-Anchor" href="#qt-data-visualization">#</a> Qt Data Visualization</h1>
+<h2 id="data-visualization模块概述"><a class="markdownIt-Anchor" href="#data-visualization模块概述">#</a> Data Visualization 模块概述</h2>
+<h2 id="三维柱状图"><a class="markdownIt-Anchor" href="#三维柱状图">#</a> 三维柱状图</h2>
+<h2 id="三维散点图"><a class="markdownIt-Anchor" href="#三维散点图">#</a> 三维散点图</h2>
+<h2 id="三维曲面图"><a class="markdownIt-Anchor" href="#三维曲面图">#</a> 三维曲面图</h2>
 <h1 id="qt-多线程"><a class="markdownIt-Anchor" href="#qt-多线程">#</a> Qt 多线程</h1>
 <p>在进行桌面应用程序开发的时候， 假设应用程序在某些情况下需要处理比较复杂的逻辑， 如果只有一个线程去处理，就会导致窗口卡顿，无法处理用户的相关操作。这种情况下就需要使用多线程，其中<strong>一个线程处理窗口事件，其他线程进行逻辑运算，多个线程各司其职，不仅可以提高用户体验还可以提升程序的执行效率。</strong></p>
 <p>在 qt 中使用了多线程，有些事项是需要额外注意的：</p>
@@ -869,8 +749,234 @@ void QThreadPool::clear();
 static QThreadPool * QThreadPool::globalInstance();
 </code></pre>
 <p>一般情况下，我们不需要在 Qt 程序中创建线程池对象，直接使用 Qt 为每个应用程序提供的线程池全局对象即可。得到线程池对象之后，调用 start () 方法就可以将一个任务添加到线程池中，这个任务就可以被线程池内部的线程池处理掉了，使用线程池比自己创建线程的这种多种多线程方式更加简单和易于维护。</p>
-<h1 id="基于qt框架实现网络聊天室项目"><a class="markdownIt-Anchor" href="#基于qt框架实现网络聊天室项目">#</a> 基于 Qt 框架实现网络聊天室项目</h1>
+<h1 id="qt-网络编程"><a class="markdownIt-Anchor" href="#qt-网络编程">#</a> Qt 网络编程</h1>
+<table>
+	<tr>
+	    <th colspan="3">计算机网络分层模型</th>
+	</tr >
+	<tr>
+	    <td >OSI七层网络模型</td>
+	    <td>TCP/IP四层概念模型</td>
+	    <td>对应网络协议</td>  
+	</tr >
+	<tr >
+	    <td>应用层（Application）</td>
+	    <td rowspan="3">应用层</td>
+	    <td>HTTP、TFTP、FTP、NFS、WAIS、SMTP</td>
+	</tr>
+	<tr>
+	    <td>表示层（Presentation）</td>
+        <td>Telnet、Rlogin、SNMP、Gopher</td>
+	</tr>
+	<tr>
+	    <td>会话层（Session）</td>
+        <td>SMTP、DNS</td>
+	</tr>
+	<tr>
+	    <td>传输层（Transport）</td>
+	    <td>传输层</td>
+       	<td>TCP、UDP</td>
+	</tr>
+	<tr>
+       	<td>网络层（Network）</td>
+	    <td>网络层</td>
+       	<td>IP、ICMP、ARP、RARP、AKP、UUCP</td>
+	</tr>
+	<tr>
+	    <td>数据链路层(Data Link)</td>
+	    <td rowspan="2">网络接口层</td>
+       <td>FDDI、Ethernet、Arpanet、PDN、SLIP、PPP</td>
+	</tr>
+	<tr>
+	    <td>物理层(Physical)</td>
+	    <td>IEEE802.1A、IEEE802.2-IEEE802.11</td>
+	</tr>
+</table>
++ 物理层
+<p>负责最后将信息编码成电流脉冲或其它信号用于网上传输</p>
+<ul>
+<li>
+<p>数据链路层</p>
+<p>数据链路层通过物理网络链路供数据传输。<br>
+规定了 0 和 1 的分包形式，确定了网络数据包的形式；</p>
+</li>
+<li>
+<p>网络层</p>
+<p>网络层负责在源和终点之间建立连接；<br>
+此处需要确定计算机的位置，通过 IPv4，IPv6 格式的 IP 地址来找到对应的主机</p>
+</li>
+<li>
+<p>传输层</p>
+<p>传输层向高层提供可靠的端到端的网络数据流服务。<br>
+每一个应用程序都会在网卡注册一个端口号，该层就是端口与端口的通信</p>
+</li>
+<li>
+<p>会话层</p>
+<p>会话层建立、管理和终止表示层与实体之间的通信会话；<br>
+建立一个连接（自动的手机信息、自动的网络寻址）;</p>
+</li>
+<li>
+<p>表示层:</p>
+<p>对应用层数据编码和转化，确保以一个系统应用层发送的信息 可以被另一个系统应用层识别；</p>
+</li>
+</ul>
+<p>TCP 通信流程</p>
+<p>TCP 是一个面向连接的，安全的，流式传输协议，这个协议是一个传输层协议。</p>
+<ul>
+<li>面向连接：是一个双向连接，通过三次握手完成，断开连接需要通过四次挥手完成。</li>
+<li>安全：tcp 通信过程中，会对发送的每一数据包都会进行校验，如果发现数据丢失，会自动重传</li>
+<li>流式传输：发送端和接收端处理数据的速度，数据的量都可以不一致</li>
+</ul>
+<p>服务器端通信流程</p>
+<ol>
+<li>
+<p>创建用于监听的套接字，这个套接字是一个文件描述符 (监听的)</p>
+<p><code>int lfd = socket();</code></p>
+</li>
+<li>
+<p>将得到的监听的文件描述符和本地的 IP 端口进行绑定</p>
+<p><code>bind();</code></p>
+</li>
+<li>
+<p>设置监听 (成功之后开始监听，监听的是客户端的连接)</p>
+<p><code>listen();</code></p>
+</li>
+<li>
+<p>等待并接受客户端的连接请求，建立新的连接，会得到一个新的文件描述符 (通信的)，没有新连接请求就阻塞</p>
+<p><code>int cfd = accept();</code></p>
+</li>
+<li>
+<p>通信，读写操作默认都是阻塞的</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>断开连接，关闭套接字</p>
+<p><code>close();</code></p>
+</li>
+</ol>
+<blockquote>
+<p>在 tcp 的服务器端，有两类文件描述符</p>
+<p>监听的文件描述符<br>
+只需要有一个<br>
+不负责和客户端通信，负责检测客户端的连接请求，检测到之后调用 accept 就可以建立新的连接<br>
+通信的文件描述符<br>
+负责和建立连接的客户端通信<br>
+如果有 N 个客户端和服务器建立了新的连接，通信的文件描述符就有 N 个，每个客户端和服务器都对应一个通信的文件描述符</p>
+</blockquote>
+<p>客户端的通信流程</p>
+<p>在单线程的情况下客户端通信的文件描述符有一个，没有监听的文件描述符</p>
+<ol>
+<li>
+<p>创建一个通信的套接字</p>
+<p><code>int cfd = socket();</code></p>
+</li>
+<li>
+<p>连接服务器，需要知道服务器绑定的 IP 和端口</p>
+<p><code>connect();</code></p>
+</li>
+<li>
+<p>通信</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>断开连接，关闭文件描述符 (套接字)</p>
+<p><code>close();</code></p>
+</li>
+</ol>
+<h2 id="套接字"><a class="markdownIt-Anchor" href="#套接字">#</a> 套接字</h2>
+<p>在标准 C++ 没有提供专门用于套接字通信的类，所以只能使用操作系统提供的基于 C 的 API 函数，基于这些 C 的 API 函数我们也可以封装自己的 C++ 类。</p>
+<p>但是 Qt 就不一样了，它是 C++ 的一个框架并且里边提供了用于套接字通信的类（TCP、UDP）这样就使得我们的操作变得更加简单了（当然，在 Qt 中使用标准 C 的 API 进行套接字通信也是完全没有问题的）。下面，给大家讲一下如果使用相关类的进行 TCP 通信。</p>
+<p>使用 Qt 提供的类进行基于 TCP 的套接字通信需要用到两个类：</p>
+<ul>
+<li>QTcpServer：服务器类，用于监听客户端连接以及和客户端建立连接。</li>
+<li>QTcpSocket：通信的套接字类，客户端、服务器端都需要使用。</li>
+</ul>
+<p>这两个套接字通信类都属于网络模块 network。</p>
+<h2 id="qtcpserve"><a class="markdownIt-Anchor" href="#qtcpserve">#</a> QTcpServe</h2>
+<p>QTcpServer 类用于监听客户端连接以及和客户端建立连接，在使用之前先介绍一下这个类提供的一些常用 API 函数：</p>
+<ul>
+<li>
+<p>构造函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">QTcpServer</span><span class="token punctuation">(</span>QObject <span class="token operator">*</span>parent <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>给监听的套接字设置监听</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token keyword">const</span> QHostAddress <span class="token operator">&amp;</span>address <span class="token operator">=</span> QHostAddress<span class="token double-colon punctuation">::</span>Any<span class="token punctuation">,</span> quint16 port <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 判断当前对象是否在监听，是返回 true，没有监听返回 false</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">isListening</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 如果当前对象正在监听返回监听的服务器地址信息，否则返回 QHostAddress::Null</span></pre></td></tr><tr><td data-num="5"></td><td><pre>QHostAddress <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">serverAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">// 如果服务器正在侦听连接，则返回服务器的端口；否则返回 0</span></pre></td></tr><tr><td data-num="7"></td><td><pre>quint16 <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">serverPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span></pre></td></tr></table></figure><p>参数：</p>
+<ul>
+<li>address：通过类 QHostAddress 可以封装 IPv4、IPv6 格式的 IP 地址，QHostAddress::Any 表示自动绑定</li>
+<li>port：如果指定为 0 表示随机绑定一个可用端口。使用时要指定一个端口</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>绑定成功返回 true，失败返回 false</li>
+</ul>
+</li>
+<li>
+<p>得到和客户端建立连接之后用于通信的 QTcpSocket 套接字对象，它是 QTcpServer 的一个子对象，当 QTcpServer 对象析构的时候会自动析构这个子对象，当然也可自己手动析构，建议用完之后自己手动析构这个通信的 QTcpSocket 对象。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>QTcpSocket <span class="token operator">*</span><span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">nextPendingConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>阻塞等待客户端发起的连接请求，不推荐在单线程程序中使用，建议使用非阻塞方式处理新连接，即使用信号 newConnection () 。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">bool</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">waitForNewConnection</span><span class="token punctuation">(</span><span class="token keyword">int</span> msec <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">*</span>timedOut <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>参数：</p>
+<ul>
+<li>msec：指定阻塞的最大时长，单位为毫秒（ms）</li>
+<li>timeout：传出参数，如果操作超时 timeout 为 true，没有超时 timeout 为 false</li>
+</ul>
+</li>
+<li>
+<p>信号</p>
+<ul>
+<li>
+<p>当接受新连接导致错误时，将发射如下信号。socketError 参数描述了发生的错误相关的信息。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>signal<span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">acceptError</span><span class="token punctuation">(</span>QAbstractSocket<span class="token double-colon punctuation">::</span>SocketError socketError<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>每次有新连接可用时都会发出 newConnection () 信号。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>signal<span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QTcpServer</span><span class="token double-colon punctuation">::</span><span class="token function">newConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="qtcpsocket"><a class="markdownIt-Anchor" href="#qtcpsocket">#</a> QTcpSocket</h2>
+<p>QTcpSocket 是一个套接字通信类，不管是客户端还是服务器端都需要使用。在 Qt 中发送和接收数据也属于 IO 操作（网络 IO），先来看一下这个类的继承关系：</p>
+<p><img data-src="https://subingwen.cn/qt/socket-tcp/image-20210512174459252.png" alt="image-20210512174459252"></p>
+<ul>
+<li>
+<p>构造函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">QTcpSocket</span><span class="token double-colon punctuation">::</span><span class="token function">QTcpSocket</span><span class="token punctuation">(</span>QObject <span class="token operator">*</span>parent <span class="token operator">=</span> Q_NULLPTR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>连接服务器，需要指定服务器端绑定的 IP 和端口信息。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span><span class="token keyword">virtual</span><span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QAbstractSocket</span><span class="token double-colon punctuation">::</span><span class="token function">connectToHost</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString <span class="token operator">&amp;</span>hostName<span class="token punctuation">,</span> quint16 port<span class="token punctuation">,</span> OpenMode openMode <span class="token operator">=</span> ReadWrite<span class="token punctuation">,</span> NetworkLayerProtocol protocol <span class="token operator">=</span> AnyIPProtocol<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span><span class="token keyword">virtual</span><span class="token punctuation">]</span> <span class="token keyword">void</span> <span class="token class-name">QAbstractSocket</span><span class="token double-colon punctuation">::</span><span class="token function">connectToHost</span><span class="token punctuation">(</span><span class="token keyword">const</span> QHostAddress <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> quint16 port<span class="token punctuation">,</span> OpenMode openMode <span class="token operator">=</span> ReadWrite<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>在 Qt 中不管调用读操作函数接收数据，还是调用写函数发送数据，操作的对象都是本地的由 Qt 框架维护的一块内存。因此，调用了发送函数数据不一定会马上被发送到网络中，调用了接收函数也不是直接从网络中接收数据，关于底层的相关操作是不需要使用者来维护的。</p>
+</li>
+<li>
+<p>接收数据</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 指定可接收的最大字节数 maxSize 的数据到指针 data 指向的内存中</span></pre></td></tr><tr><td data-num="2"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 指定可接收的最大字节数 maxSize，返回接收的字符串</span></pre></td></tr><tr><td data-num="4"></td><td><pre>QByteArray <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">read</span><span class="token punctuation">(</span>qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 将当前可用操作数据全部读出，通过返回值返回读出的字符串</span></pre></td></tr><tr><td data-num="6"></td><td><pre>QByteArray <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>发送数据</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 发送指针 data 指向的内存中的 maxSize 个字节的数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> qint64 maxSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送指针 data 指向的内存中的数据，字符串以 \0 作为结束标记</span></pre></td></tr><tr><td data-num="4"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 发送参数指定的字符串</span></pre></td></tr><tr><td data-num="6"></td><td><pre>qint64 <span class="token class-name">QIODevice</span><span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">const</span> QByteArray <span class="token operator">&amp;</span>byteArray<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="描述qt下tcp通信的整个流程"><a class="markdownIt-Anchor" href="#描述qt下tcp通信的整个流程">#</a> 描述 Qt 下 Tcp 通信的整个流程</h2>
+<p>具体解释 ：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cuY25ibG9ncy5jb20veXV3ZWlmZW5nL3AvOTM4Mjg0MS5odG1s">https://www.cnblogs.com/yuweifeng/p/9382841.html</span></p>
+<p>QT 如果要进行<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNyVCRCU5MSVFNyVCQiU5QyVFNyVCQyU5NiVFNyVBOCU4QiZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">网络编程</span>首先需要在.pro 中添加如下代码：QT += network</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNiU5QyU4RCVFNSU4QSVBMSVFNSU5OSVBOCVFNyVBQiVBRiZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">服务器端</span>:<br>
+\1. 创建用于监听的<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPSVFNSVBNSU5NyVFNiU4RSVBNSVFNSVBRCU5NyZhbXA7c2VhcmNoX3NvdXJjZT1FbnRpdHkmYW1wO2h5YnJpZF9zZWFyY2hfc291cmNlPUVudGl0eSZhbXA7aHlicmlkX3NlYXJjaF9leHRyYT0lN0IlMjJzb3VyY2VUeXBlJTIyJTNBJTIyYXJ0aWNsZSUyMiUyQyUyMnNvdXJjZUlkJTIyJTNBJTIyNjExNzM1MzMyJTIyJTdE">套接字</span><br>
+ \2. 给套接字设置监听<br>
+ \3. 如果有连接到来，监听的套接字会发出信号 newConnected<br>
+\4. 接收连接，通过 nextPendingConnection () 函数，返回一个 QTcpSocket 类型的套接字对象 (用于通信)<br>
+\5. 使用用于通信的套接字对象通信<br>
+ 1&gt;. 发送数据: write<br>
+2&gt;. 接收数据: readAll/read<br>
+ 客户端:<br>
+\1. 创建用于通信的套接字<br>
+ \2. 连接服务器: connectToHost<br>
+\3. 连接成功与服务器通信<br>
+ 1&gt;. 发送数据: write<br>
+2&gt;. 接收数据: readAll/read</p>
+<h2 id="描述qt下udp通信的整个流程"><a class="markdownIt-Anchor" href="#描述qt下udp通信的整个流程">#</a> 描述 QT 下 udp 通信的整个流程</h2>
+<p>QT 下 udp 通信服务器端和客户端的关系是对等的，做的处理也是一样的.<br>
+\1. 创建套接字对象<br>
+ \2. 如果需要接收数据，必须绑定端口<br>
+ \3. 发送数据: writeDatagram<br>
+\4. 接收数据: readDatagram</p>
+<h2 id="基于qt框架实现网络聊天室项目"><a class="markdownIt-Anchor" href="#基于qt框架实现网络聊天室项目">#</a> 基于 Qt 框架实现网络聊天室项目</h2>
 <p>服务器：基于 TCP 协议创建服务器</p>
+<h1 id="qt-多媒体"><a class="markdownIt-Anchor" href="#qt-多媒体">#</a> Qt 多媒体</h1>
+<h1 id="串口编程"><a class="markdownIt-Anchor" href="#串口编程">#</a> 串口编程</h1>
+<h1 id="其他工具软件和技术"><a class="markdownIt-Anchor" href="#其他工具软件和技术">#</a> 其他工具软件和技术</h1>
 
       <div class="tags">
           <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
@@ -886,7 +992,7 @@ static QThreadPool * QThreadPool::globalInstance();
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-10 21:06:34" itemprop="dateModified" datetime="2023-04-10T21:06:34+08:00">2023-04-10</time>
+    <time title="修改时间：2023-04-21 19:07:01" itemprop="dateModified" datetime="2023-04-21T19:07:01+08:00">2023-04-21</time>
   </span>
   <span id="2023/03/12/QtStudy/" class="item leancloud_visitors" data-flag-title="Qt Study" title="阅读次数">
       <span class="icon">
@@ -958,7 +1064,7 @@ static QThreadPool * QThreadPool::globalInstance();
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text"> Qt 核心机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text"> 元对象系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%91"><span class="toc-number">1.2.</span> <span class="toc-text"> 对象树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="toc-number">1.3.</span> <span class="toc-text"> 信号和槽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qobject%E5%9F%BA%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text"> QObject 基类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text"> Qt 中使用到的设计模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%A8%A1%E6%9D%BF%E5%BA%93-%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%8F%8A%E6%8E%A7%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text"> Qt 模板库、工具类及控件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%AA%97%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text"> Qt 窗口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text"> Qt 事件处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 什么是事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text"> 如何处理事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text"> 绘图事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text"> 定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%92%8C%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.5.</span> <span class="toc-text"> 鼠标和键盘事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text"> Qt 模型 &#x2F; 视图结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">6.</span> <span class="toc-text"> Qt 数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.</span> <span class="toc-text"> 基于 Qt 框架实现学生成绩管理系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">8.</span> <span class="toc-text"> Qt 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="toc-number">8.1.</span> <span class="toc-text"> 套接字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpserve"><span class="toc-number">8.2.</span> <span class="toc-text"> QTcpServe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpsocket"><span class="toc-number">8.3.</span> <span class="toc-text"> QTcpSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Btcp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">8.4.</span> <span class="toc-text"> 描述 Qt 下 Tcp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Budp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">8.5.</span> <span class="toc-text"> 描述 QT 下 udp 通信的整个流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">9.</span> <span class="toc-text"> Qt 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBqthread"><span class="toc-number">9.1.</span> <span class="toc-text"> 线程类 QThread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%85%B1%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">9.1.1.</span> <span class="toc-text"> 常用公共成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD"><span class="toc-number">9.1.2.</span> <span class="toc-text"> 信号槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">9.1.3.</span> <span class="toc-text"> 静态函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">9.1.4.</span> <span class="toc-text"> 任务处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F1"><span class="toc-number">9.2.</span> <span class="toc-text"> 线程使用方式 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F2"><span class="toc-number">9.3.</span> <span class="toc-text"> 线程使用方式 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE"><span class="toc-number">9.4.</span> <span class="toc-text"> 线程资源释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">9.5.</span> <span class="toc-text"> Qt 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">9.5.1.</span> <span class="toc-text"> 线程池的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrunnable"><span class="toc-number">9.5.2.</span> <span class="toc-text"> QRunnable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qthreadpool"><span class="toc-number">9.5.3.</span> <span class="toc-text"> QThreadPool</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%A1%B9%E7%9B%AE"><span class="toc-number">10.</span> <span class="toc-text"> 基于 Qt 框架实现网络聊天室项目</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gui%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text"> GUI 程序设计基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gui%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%92%8C%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> GUI 程序结构和运行机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96ui%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text"> 可视化 UI 设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%8C%96ui%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text"> 代码化 UI 设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cmake%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 使用 CMake 构建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-creator%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text"> Qt Creator 使用技巧</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text"> Qt 框架功能概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt6-%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text"> Qt6 框架中的模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97"><span class="toc-number">2.1.1.</span> <span class="toc-text"> Qt 基础模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E9%99%84%E5%8A%A0%E6%A8%A1%E5%9D%97"><span class="toc-number">2.1.2.</span> <span class="toc-text"> Qt 附加模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text"> Qt 全局定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.3.</span> <span class="toc-text"> Qt 元对象系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 元对象系统概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 运行时类型信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 信号和槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%91"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 对象树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qobject%E5%9F%BA%E7%B1%BB"><span class="toc-number">2.3.5.</span> <span class="toc-text"> QObject 基类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.6.</span> <span class="toc-text"> Qt 中使用到的设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%B1%BB"><span class="toc-number">2.4.</span> <span class="toc-text"> 容器类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E7%B1%BB"><span class="toc-number">2.5.</span> <span class="toc-text"> 其他常用基础类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qvariant%E7%B1%BB"><span class="toc-number">2.5.1.</span> <span class="toc-text"> QVariant 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qflags%E7%B1%BB"><span class="toc-number">2.5.2.</span> <span class="toc-text"> QFlags 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrandomgenerator%E7%B1%BB"><span class="toc-number">2.5.3.</span> <span class="toc-text"> QRandomGenerator 类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text"> 常用界面组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text"> 界面组件概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 布局管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text"> QString 字符串操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qspinbox%E5%92%8Cqdoublespinbox"><span class="toc-number">3.4.</span> <span class="toc-text"> QSpinBox 和 QDoubleSpinBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">3.5.</span> <span class="toc-text"> 常用按钮组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qslider%E5%92%8Cqprogressbar"><span class="toc-number">3.6.</span> <span class="toc-text"> QSlider 和 QProgressBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">3.7.</span> <span class="toc-text"> 日期和时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtimer%E5%92%8Cqelapsedtimer"><span class="toc-number">3.8.</span> <span class="toc-text"> QTimer 和 QElapsedTimer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qcombobox"><span class="toc-number">3.9.</span> <span class="toc-text"> QComboBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qmainwindow%E5%92%8Cqaction"><span class="toc-number">3.10.</span> <span class="toc-text"> QMainWindow 和 QAction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtoolbutton%E5%92%8Cqlistwidget"><span class="toc-number">3.11.</span> <span class="toc-text"> QToolButton 和 QListWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtreewidget"><span class="toc-number">3.12.</span> <span class="toc-text"> QTreeWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtablewidget"><span class="toc-number">3.13.</span> <span class="toc-text"> QTableWidget</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text"> 模型 &#x2F; 视图结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">5.</span> <span class="toc-text"> 事件处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text"> 什么是事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text"> 如何处理事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.3.</span> <span class="toc-text"> 绘图事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.4.</span> <span class="toc-text"> 定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%92%8C%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.5.</span> <span class="toc-text"> 鼠标和键盘事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%92%8C%E5%A4%9A%E7%AA%97%E5%8F%A3%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">6.</span> <span class="toc-text"> 对话框和多窗口程序设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%92%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="toc-number">7.</span> <span class="toc-text"> 文件系统操作和文件读写</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">8.</span> <span class="toc-text"> Qt 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">8.1.</span> <span class="toc-text"> Qt 数据库编程概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqltablemodel"><span class="toc-number">8.2.</span> <span class="toc-text"> QSqlTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquerymodel"><span class="toc-number">8.3.</span> <span class="toc-text"> QSqlQueryModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquery"><span class="toc-number">8.4.</span> <span class="toc-text"> QSqlQuery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlrelationaltablemodel"><span class="toc-number">8.5.</span> <span class="toc-text"> QSqlRelationalTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.6.</span> <span class="toc-text"> 基于 Qt 框架实现学生成绩管理系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BB%98%E5%9B%BE"><span class="toc-number">9.</span> <span class="toc-text"> Qt 绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qpainter%E7%BB%98%E5%9B%BE"><span class="toc-number">9.1.</span> <span class="toc-text"> QPainter 绘图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">9.2.</span> <span class="toc-text"> 坐标系统和坐标变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E8%A7%86%E5%9B%BE%E6%9E%B6%E6%9E%84"><span class="toc-number">9.3.</span> <span class="toc-text"> 图形 &#x2F; 视图架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">9.4.</span> <span class="toc-text"> 图像处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%92%8C%E5%BA%93"><span class="toc-number">10.</span> <span class="toc-text"> 自定义插件和库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-charts"><span class="toc-number">11.</span> <span class="toc-text"> Qt  Charts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#charts%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">11.1.</span> <span class="toc-text"> Charts 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="toc-number">11.2.</span> <span class="toc-text"> 折线图绘制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E6%A0%87%E4%BA%A4%E4%BA%92%E6%93%8D%E4%BD%9C"><span class="toc-number">11.3.</span> <span class="toc-text"> 图标交互操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E5%92%8C%E9%A5%BC%E5%9B%BE"><span class="toc-number">11.4.</span> <span class="toc-text"> 柱状图和饼图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-data-visualization"><span class="toc-number">12.</span> <span class="toc-text"> Qt Data Visualization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-visualization%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">12.1.</span> <span class="toc-text"> Data Visualization 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="toc-number">12.2.</span> <span class="toc-text"> 三维柱状图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="toc-number">12.3.</span> <span class="toc-text"> 三维散点图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9B%B2%E9%9D%A2%E5%9B%BE"><span class="toc-number">12.4.</span> <span class="toc-text"> 三维曲面图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">13.</span> <span class="toc-text"> Qt 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBqthread"><span class="toc-number">13.1.</span> <span class="toc-text"> 线程类 QThread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%85%B1%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">13.1.1.</span> <span class="toc-text"> 常用公共成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD"><span class="toc-number">13.1.2.</span> <span class="toc-text"> 信号槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">13.1.3.</span> <span class="toc-text"> 静态函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">13.1.4.</span> <span class="toc-text"> 任务处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F1"><span class="toc-number">13.2.</span> <span class="toc-text"> 线程使用方式 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F2"><span class="toc-number">13.3.</span> <span class="toc-text"> 线程使用方式 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE"><span class="toc-number">13.4.</span> <span class="toc-text"> 线程资源释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">13.5.</span> <span class="toc-text"> Qt 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">13.5.1.</span> <span class="toc-text"> 线程池的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrunnable"><span class="toc-number">13.5.2.</span> <span class="toc-text"> QRunnable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qthreadpool"><span class="toc-number">13.5.3.</span> <span class="toc-text"> QThreadPool</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">14.</span> <span class="toc-text"> Qt 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="toc-number">14.1.</span> <span class="toc-text"> 套接字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpserve"><span class="toc-number">14.2.</span> <span class="toc-text"> QTcpServe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpsocket"><span class="toc-number">14.3.</span> <span class="toc-text"> QTcpSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Btcp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">14.4.</span> <span class="toc-text"> 描述 Qt 下 Tcp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Budp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">14.5.</span> <span class="toc-text"> 描述 QT 下 udp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%A1%B9%E7%9B%AE"><span class="toc-number">14.6.</span> <span class="toc-text"> 基于 Qt 框架实现网络聊天室项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-number">15.</span> <span class="toc-text"> Qt 多媒体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E7%BC%96%E7%A8%8B"><span class="toc-number">16.</span> <span class="toc-text"> 串口编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%8A%80%E6%9C%AF"><span class="toc-number">17.</span> <span class="toc-text"> 其他工具软件和技术</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -976,7 +1082,7 @@ static QThreadPool * QThreadPool::globalInstance();
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">11</span>
+        <span class="count">12</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -1080,7 +1186,7 @@ static QThreadPool * QThreadPool::globalInstance();
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -1090,27 +1196,7 @@ static QThreadPool * QThreadPool::globalInstance();
 <a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
   </li>
 
       
@@ -1127,10 +1213,30 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
   </li>
 
       
@@ -1147,16 +1253,6 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
@@ -1167,10 +1263,20 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/04/02/C++11/" title="C++11特性">C++11特性</a></span>
   </li>
 
   </ul>

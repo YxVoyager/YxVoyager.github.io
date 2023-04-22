@@ -32,7 +32,7 @@
 
 
   <title>
-CMU15-445 - DataBase |
+CMU15-445（2022Fall） - DataBase |
 Adventure =  = 心有所向。日复一日，必有精进</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +60,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">CMU15-445
+  <h1 itemprop="name headline">CMU15-445（2022Fall）
   </h1>
   
 <div class="meta">
@@ -147,8 +147,9 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     
 
     <p>Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2022)](<span class="exturl" data-url="aHR0cHM6Ly8xNTQ0NS5jb3Vyc2VzLmNzLmNtdS5lZHUvZmFsbDIwMjIvc2NoZWR1bGUuaHRtbA==">https://15445.courses.cs.cmu.edu/fall2022/schedule.html</span>)</p>
-<h1 id="lesson01-关系模型关系代数relational-model-relational-algebra"><a class="markdownIt-Anchor" href="#lesson01-关系模型关系代数relational-model-relational-algebra">#</a> Lesson#01. 关系模型 &amp; 关系代数（Relational Model &amp; Relational Algebra）</h1>
-<h2 id="database"><a class="markdownIt-Anchor" href="#database">#</a> Database</h2>
+<h1 id="lesson01-关系模型关系代数"><a class="markdownIt-Anchor" href="#lesson01-关系模型关系代数">#</a> Lesson#01. 关系模型 &amp; 关系代数</h1>
+<p>Relational Model &amp; Relational Algebra</p>
+<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库">#</a> 数据库</h2>
 <p>数据库 (Database,DB) 是一个有组织的、互相关联的、对现实世界的某些方面进行建模的集合。</p>
 <p>严格来讲，数据库是长期存储在计算机内、有组织的、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度 ()、较高的数据独立性 () 和易扩展性 ()，并可为各种用户共享。</p>
 <p>本笔记中，用一个存储着艺术家和对应的专辑信息的数据库作为例子，亦即数字音乐商店 (A database that models a digital music store)。</p>
@@ -198,8 +199,8 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
  耐受性</p>
 </li>
 </ul>
-<h2 id="database-management-systemdbms"><a class="markdownIt-Anchor" href="#database-management-systemdbms">#</a> Database Management System(DBMS)</h2>
-<p>一个 DBMS 是一个能让应用在数据库中保存与分析数据的软件</p>
+<h2 id="数据库管理系统"><a class="markdownIt-Anchor" href="#数据库管理系统">#</a> 数据库管理系统</h2>
+<p>一个 Database Management System (DBMS) 是一个能让应用在数据库中保存与分析数据的软件</p>
 <p>通常，DBMS 设计的目的是允许定义、创建、查询、更新和管理符合某种数据模型的数据库。</p>
 <ul>
 <li>
@@ -229,8 +230,8 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 是这些实体和属性的存储方式。</li>
 </ul>
 <p>所以早期的数据库，一旦改变了物理层，逻辑层也得跟着变。</p>
-<h2 id="relational-model"><a class="markdownIt-Anchor" href="#relational-model">#</a> Relational Model</h2>
-<p>人们每次改变物理层都要重新写数据管理系统，故 Ted Codd 注意到后提出了关系模型。</p>
+<h2 id="关系模型"><a class="markdownIt-Anchor" href="#关系模型">#</a> 关系模型</h2>
+<p>人们每次改变物理层都要重新写数据管理系统，故 Ted Codd 注意到后提出了关系模型（Relational Model）。</p>
 <ul>
 <li>
 <p><strong>Relational Model：</strong></p>
@@ -279,7 +280,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p><img data-src="image-20230312011848991.png" alt="image-20230312011848991"></p>
 </li>
 </ul>
-<h2 id="data-manipulation-languages-dml"><a class="markdownIt-Anchor" href="#data-manipulation-languages-dml">#</a> Data Manipulation Languages (DML)</h2>
+<h2 id="数据操纵语言"><a class="markdownIt-Anchor" href="#数据操纵语言">#</a> 数据操纵语言</h2>
 <p>DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。</p>
 <p>DDL（data definition language）是数据定义语言：DDL 比 DML 要多，主要的命令有 CREATE、ALTER、DROP 等，DDL 主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用。</p>
 <p>DCL（Data Control Language）是数据库控制语言：是用来设置或更改数据库用户或角色权限的语句，包括（grant,deny,revoke 等）语句。</p>
@@ -291,7 +292,7 @@ The query specifies the (high-level) strategy the DBMS should use to find the de
 The query specifies only what data is wanted and not how to find it. (<strong>relational calculus</strong>)</li>
 </ul>
 <p>一般现在都是用第二种的，我不管 DBMS 用什么策略，我只需要你给我我想要的数据。</p>
-<h2 id="relational-algebra"><a class="markdownIt-Anchor" href="#relational-algebra">#</a> Relational Algebra</h2>
+<h2 id="关系代数"><a class="markdownIt-Anchor" href="#关系代数">#</a> 关系代数</h2>
 <p>关系代数 (Relational Algebra) 就是一组基本操作，用于检索和操作关系中的图元。</p>
 <p>每个操作符都需要一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以把这些运算符 &quot;链&quot; 在一起，以创建更复杂的操作。</p>
 <p><img data-src="image-20230312012338736.png" alt="image-20230312012338736"></p>
@@ -309,7 +310,8 @@ The query specifies only what data is wanted and not how to find it. (<strong>re
 <p><img data-src="image-20230312012728132.png" alt="image-20230312012728132"></p>
 <p><strong>Join</strong> takes in two relations and outputs a relation that contains all the tuples that are a combination of two tuples where for each attribute that the two relations share, the values for that attribute of both tuples is the same.</p>
 <p><img data-src="image-20230312012750042.png" alt="image-20230312012750042"></p>
-<h1 id="lesson02-高级sqladvanced-sql"><a class="markdownIt-Anchor" href="#lesson02-高级sqladvanced-sql">#</a> Lesson#02. 高级 SQL（Advanced SQL）</h1>
+<h1 id="lesson02-高级sql"><a class="markdownIt-Anchor" href="#lesson02-高级sql">#</a> Lesson#02. 高级 SQL</h1>
+<p>Advanced SQL</p>
 <p><strong>SQL</strong> (Structured Query Language: 结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
 <p>DML（data manipulation language）是数据操纵语言：它们是 SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这 4 条命令是用来对数据库里的数据进行操作的语言。</p>
 <p>DDL（data definition language）是数据定义语言：DDL 比 DML 要多，主要的命令有 CREATE、ALTER、DROP 等，DDL 主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用。</p>
@@ -568,7 +570,8 @@ WHERE column LIKE pattern;
 </ol>
 </li>
 </ul>
-<h2 id="output-redirection输出重定向"><a class="markdownIt-Anchor" href="#output-redirection输出重定向">#</a> Output Redirection (输出重定向)</h2>
+<h2 id="输出重定向"><a class="markdownIt-Anchor" href="#输出重定向">#</a> 输出重定向</h2>
+<p>Output Redirection</p>
 <p>你可以告诉 DBMS 将查询结果存储到另一个表中，而不是将查询结果返回给客户端（例如，终端）。结果存储到另一个表中。然后你可以在随后的查询中访问这些数据</p>
 <ul>
 <li>
@@ -583,12 +586,14 @@ WHERE column LIKE pattern;
 </code></pre>
 </li>
 </ul>
-<h2 id="output-control"><a class="markdownIt-Anchor" href="#output-control">#</a> Output Control</h2>
+<h2 id="输出控制"><a class="markdownIt-Anchor" href="#输出控制">#</a> 输出控制</h2>
+<p>Output Control</p>
 <p>因为 SQL 是无序的，我们可以用 ORDER BY 来对输出进行排序</p>
 <figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">SELECT</span> sid<span class="token punctuation">,</span> grade <span class="token keyword">FROM</span> enrolled <span class="token keyword">WHERE</span> cid <span class="token operator">=</span> <span class="token string">'15-721'</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> grade<span class="token punctuation">;</span></pre></td></tr></table></figure><p>后面可以加 <code>DESC</code> ,  <code>ASC</code>  来指定排序策略</p>
 <p>输出的数量可以用 <code>LIMIT n</code>  进行指定</p>
 <p>当然也可以用 <code>OFFSET</code>  来提供一个 bias。</p>
-<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">SELECT</span> sid<span class="token punctuation">,</span> name <span class="token keyword">FROM</span> student <span class="token keyword">WHERE</span> login <span class="token operator">LIKE</span> <span class="token string">'%@cs'</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">LIMIT</span> <span class="token number">20</span> <span class="token keyword">OFFSET</span> <span class="token number">10</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h2 id="nested-queries内部查询查询嵌套"><a class="markdownIt-Anchor" href="#nested-queries内部查询查询嵌套">#</a> Nested Queries（内部查询 / 查询嵌套）</h2>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">SELECT</span> sid<span class="token punctuation">,</span> name <span class="token keyword">FROM</span> student <span class="token keyword">WHERE</span> login <span class="token operator">LIKE</span> <span class="token string">'%@cs'</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">LIMIT</span> <span class="token number">20</span> <span class="token keyword">OFFSET</span> <span class="token number">10</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h2 id="内部查询查询嵌套"><a class="markdownIt-Anchor" href="#内部查询查询嵌套">#</a> 内部查询 / 查询嵌套</h2>
+<p>Nested Queries</p>
 <p>在其他查询中调用查询，在单个查询中执行更复杂的逻辑。嵌套查询往往难以优化。</p>
 <p>外部查询的范围包括在内部查询中（即内部查询可以访问来自外部<br>
 查询），反之不行。</p>
@@ -630,8 +635,8 @@ At least one row is returned.</li>
 <p>找到所有没有学生注册的课</p>
 <figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> course</pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> enrolled</pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">WHERE</span> course<span class="token punctuation">.</span>cid <span class="token operator">=</span> enrolled<span class="token punctuation">.</span>cid</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="window-function"><a class="markdownIt-Anchor" href="#window-function">#</a> Window Function</h2>
-<p>A window function perform “sliding” calculation across a set of tuples that are related. Like an aggregation but tuples are not grouped into a single output tuple.</p>
+<h2 id="窗口函数"><a class="markdownIt-Anchor" href="#窗口函数">#</a> 窗口函数</h2>
+<p>A <strong>window function</strong> perform “sliding” calculation across a set of tuples that are related. Like an aggregation but tuples are not grouped into a single output tuple.</p>
 <ul>
 <li>
 <p>函数： 窗口函数可以是我们上面讨论的任何一个聚合函数。也有一些特殊的窗口函数。</p>
@@ -656,8 +661,8 @@ At least one row is returned.</li>
 </ul>
 </li>
 </ul>
-<h2 id="commom-table-expressions"><a class="markdownIt-Anchor" href="#commom-table-expressions">#</a> Commom Table Expressions</h2>
-<p>在编写更复杂的查询时，通用表表达式（CTE）是窗口或嵌套查询的一种替代方法。复杂的查询时，可以替代窗口或嵌套查询。它们提供了一种方法来为用户在一个更大的查询中编写辅助语句.</p>
+<h2 id="通用表表达式"><a class="markdownIt-Anchor" href="#通用表表达式">#</a> 通用表表达式</h2>
+<p>在编写更复杂的查询时，通用表表达式（CTE，Commom Table Expressions）是窗口或嵌套查询的一种替代方法。复杂的查询时，可以替代窗口或嵌套查询。它们提供了一种方法来为用户在一个更大的查询中编写辅助语句.</p>
 <p>可以理解为一个辅助表。</p>
 <p><code>WITH</code>  子句将内部查询的输出与一个具有该名称的临时结果绑定。</p>
 <ul>
@@ -738,13 +743,13 @@ SELECT * FROM cteSource;
 <blockquote>
 <p>Even though the system will have functionalities that seem like something the OS can provide, having the DBMS implement these procedures itself gives it better control and performance</p>
 </blockquote>
-<h2 id="4-file-storage"><a class="markdownIt-Anchor" href="#4-file-storage">#</a> 4. File Storage</h2>
+<h2 id="file-storage"><a class="markdownIt-Anchor" href="#file-storage">#</a> File Storage</h2>
 <ul>
 <li>在其最基本的形式中，DBMS 将数据库存储为磁盘上的文件。有些可能使用文件层次结构，有些则可能使用单个文件</li>
 <li>操作系统对这些文件的内容一无所知。只有 DBMS 知道如何解读它们的内容，因为它是以 DBMS 特有的方式编码的。</li>
 <li>DBMS 的存储管理器负责管理数据库的文件。它将文件表示为一个 页的集合。它还跟踪哪些数据被读和写到了页面上，以及这些页面有多少可用空间。这些页面中还有多少可用空间。</li>
 </ul>
-<h2 id="5-database-pages"><a class="markdownIt-Anchor" href="#5-database-pages">#</a> 5. Database Pages</h2>
+<h2 id="database-pages"><a class="markdownIt-Anchor" href="#database-pages">#</a> Database Pages</h2>
 <ul>
 <li>
 <p>DBMS 将数据库组织在一个或多个文件中的固定大小的数据块，称为页。页面可以包含不同种类的数据（tuple、indexes 等）。</p>
@@ -781,12 +786,12 @@ SELECT * FROM cteSource;
 这意味着，如果我们的数据库页面比我们的硬件页面大，DBMS 将不得不采取额外的措施 以确保数据被安全地写出来。 因为当系统崩溃时，程序可能已经完成了将数据库页面写入磁盘的一部分</p>
 </li>
 </ul>
-<h2 id="6-database-heap"><a class="markdownIt-Anchor" href="#6-database-heap">#</a> 6. Database Heap</h2>
+<h2 id="database-heap"><a class="markdownIt-Anchor" href="#database-heap">#</a> Database Heap</h2>
 <ul>
-<li>
-<p>有几种方法可以找到 DBMS 在磁盘上想要的页面的位置，堆文件组织是其中一种方法<br>
-堆文件是一个无序的页面集合，其中的图元是按照 随机顺序存储。</p>
-</li>
+<li>有几种方法可以找到 DBMS 在磁盘上想要的页面的位置，堆文件组织是其中一种方法</li>
+</ul>
+<p>堆文件是一个无序的页面集合，其中的图元是按照随机顺序存储。</p>
+<ul>
 <li>
 <p>DBMS 可以通过使用页面的链接列表或页面目录在磁盘上找到一个给定的页面 ID</p>
 <ol>
@@ -801,7 +806,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 </ol>
 </li>
 </ul>
-<h2 id="7-page-layout"><a class="markdownIt-Anchor" href="#7-page-layout">#</a> 7. Page Layout</h2>
+<h2 id="page-layout"><a class="markdownIt-Anchor" href="#page-layout">#</a> Page Layout</h2>
 <ul>
 <li>
 <p>每个页面都包括一个 header，记录关于页面内容的元数据。</p>
@@ -835,7 +840,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 </ol>
 </li>
 </ul>
-<h2 id="8-tuple-layout"><a class="markdownIt-Anchor" href="#8-tuple-layout">#</a> 8. Tuple Layout</h2>
+<h2 id="tuple-layout"><a class="markdownIt-Anchor" href="#tuple-layout">#</a> Tuple Layout</h2>
 <p>tuples 本质上是一个字节序列。DBMS 的工作是将这些字节解释为属性类型和值。</p>
 <ul>
 <li>
@@ -884,9 +889,9 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-20 13:19:32" itemprop="dateModified" datetime="2023-04-20T13:19:32+08:00">2023-04-20</time>
+    <time title="修改时间：2023-04-22 13:13:30" itemprop="dateModified" datetime="2023-04-22T13:13:30+08:00">2023-04-22</time>
   </span>
-  <span id="2023/03/06/CMU15-445/" class="item leancloud_visitors" data-flag-title="CMU15-445" title="阅读次数">
+  <span id="2023/03/06/CMU15-445/" class="item leancloud_visitors" data-flag-title="CMU15-445（2022Fall）" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -905,7 +910,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://adventure-yx.github.io/2023/03/06/CMU15-445/" title="CMU15-445">https://adventure-yx.github.io/2023/03/06/CMU15-445/</a>
+    <a href="https://adventure-yx.github.io/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">https://adventure-yx.github.io/2023/03/06/CMU15-445/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -934,10 +939,10 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
     <div class="item right">
       
 
-  <a href="/2023/03/08/Linux/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;cover-4eb532c64ce3f5188.jpeg" title="Linux">
+  <a href="/2023/03/06/CMU15-445%20Project0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;cover-3d001679d9230e286.jpeg" title="CMU15-445 Project#0 字典树trie">
   <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> Linux</span>
-  <h3>Linux</h3>
+  <span class="category"><i class="ic i-flag"></i> DataBase</span>
+  <h3>CMU15-445 Project#0 字典树trie</h3>
   </a>
 
     </div>
@@ -956,11 +961,11 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson01-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0relational-model-relational-algebra"><span class="toc-number">1.</span> <span class="toc-text"> Lesson#01. 关系模型 &amp; 关系代数（Relational Model &amp; Relational Algebra）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#database"><span class="toc-number">1.1.</span> <span class="toc-text"> Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flat-file-strawman"><span class="toc-number">1.2.</span> <span class="toc-text"> Flat File Strawman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-management-systemdbms"><span class="toc-number">1.3.</span> <span class="toc-text"> Database Management System(DBMS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relational-model"><span class="toc-number">1.4.</span> <span class="toc-text"> Relational Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-manipulation-languages-dml"><span class="toc-number">1.5.</span> <span class="toc-text"> Data Manipulation Languages (DML)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relational-algebra"><span class="toc-number">1.6.</span> <span class="toc-text"> Relational Algebra</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson02-%E9%AB%98%E7%BA%A7sqladvanced-sql"><span class="toc-number">2.</span> <span class="toc-text"> Lesson#02. 高级 SQL（Advanced SQL）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text"> SQL 基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins"><span class="toc-number">2.2.</span> <span class="toc-text"> Joins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aggregate%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text"> Aggregate 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-operations"><span class="toc-number">2.4.</span> <span class="toc-text"> String Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date-and-time"><span class="toc-number">2.5.</span> <span class="toc-text"> Date and Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-redirection%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">2.6.</span> <span class="toc-text"> Output Redirection (输出重定向)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-control"><span class="toc-number">2.7.</span> <span class="toc-text"> Output Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nested-queries%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97"><span class="toc-number">2.8.</span> <span class="toc-text"> Nested Queries（内部查询 &#x2F; 查询嵌套）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-function"><span class="toc-number">2.9.</span> <span class="toc-text"> Window Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commom-table-expressions"><span class="toc-number">2.10.</span> <span class="toc-text"> Commom Table Expressions</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson03-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%80"><span class="toc-number">3.</span> <span class="toc-text"> Lesson#03. 存储引擎（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#storage"><span class="toc-number">3.1.</span> <span class="toc-text"> Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#disk-oriented-dbms-overview"><span class="toc-number">3.2.</span> <span class="toc-text"> Disk-Oriented DBMS Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dbms-vs-os"><span class="toc-number">3.3.</span> <span class="toc-text"> DBMS vs. OS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-file-storage"><span class="toc-number">3.4.</span> <span class="toc-text"> 4. File Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-database-pages"><span class="toc-number">3.5.</span> <span class="toc-text"> 5. Database Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-database-heap"><span class="toc-number">3.6.</span> <span class="toc-text"> 6. Database Heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-page-layout"><span class="toc-number">3.7.</span> <span class="toc-text"> 7. Page Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-tuple-layout"><span class="toc-number">3.8.</span> <span class="toc-text"> 8. Tuple Layout</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson04-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BA%8C"><span class="toc-number">4.</span> <span class="toc-text"> Lesson#04. 存储引擎（二）</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson01-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> Lesson#01. 关系模型 &amp; 关系代数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flat-file-strawman"><span class="toc-number">1.2.</span> <span class="toc-text"> Flat File Strawman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text"> 数据库管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 关系模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5%E8%AF%AD%E8%A8%80"><span class="toc-number">1.5.</span> <span class="toc-text"> 数据操纵语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text"> 关系代数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson02-%E9%AB%98%E7%BA%A7sql"><span class="toc-number">2.</span> <span class="toc-text"> Lesson#02. 高级 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text"> SQL 基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins"><span class="toc-number">2.2.</span> <span class="toc-text"> Joins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aggregate%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text"> Aggregate 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-operations"><span class="toc-number">2.4.</span> <span class="toc-text"> String Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date-and-time"><span class="toc-number">2.5.</span> <span class="toc-text"> Date and Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">2.6.</span> <span class="toc-text"> 输出重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8E%A7%E5%88%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 输出控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97"><span class="toc-number">2.8.</span> <span class="toc-text"> 内部查询 &#x2F; 查询嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">2.9.</span> <span class="toc-text"> 窗口函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A1%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.10.</span> <span class="toc-text"> 通用表表达式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson03-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%80"><span class="toc-number">3.</span> <span class="toc-text"> Lesson#03. 存储引擎（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#storage"><span class="toc-number">3.1.</span> <span class="toc-text"> Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#disk-oriented-dbms-overview"><span class="toc-number">3.2.</span> <span class="toc-text"> Disk-Oriented DBMS Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dbms-vs-os"><span class="toc-number">3.3.</span> <span class="toc-text"> DBMS vs. OS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-storage"><span class="toc-number">3.4.</span> <span class="toc-text"> File Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-pages"><span class="toc-number">3.5.</span> <span class="toc-text"> Database Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-heap"><span class="toc-number">3.6.</span> <span class="toc-text"> Database Heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page-layout"><span class="toc-number">3.7.</span> <span class="toc-text"> Page Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple-layout"><span class="toc-number">3.8.</span> <span class="toc-text"> Tuple Layout</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson04-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BA%8C"><span class="toc-number">4.</span> <span class="toc-text"> Lesson#04. 存储引擎（二）</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/2023/03/06/CMU15-445/" rel="bookmark" title="CMU15-445">CMU15-445</a></li>
+          <li class="active"><a href="/2023/03/06/CMU15-445/" rel="bookmark" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></li><li><a href="/2023/03/06/CMU15-445%20Project0/" rel="bookmark" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -974,7 +979,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">11</span>
+        <span class="count">12</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -1053,7 +1058,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2023/03/08/Linux/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+        <a href="/2023/03/06/CMU15-445%20Project0/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -1075,30 +1080,10 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
@@ -1118,17 +1103,17 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/04/02/C++11/" title="C++11">C++11</a></span>
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
   </li>
 
       
@@ -1148,17 +1133,17 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/08/Linux/" title="Linux">Linux</a></span>
+    <span><a href="/2023/04/02/C++11/" title="C++11特性">C++11特性</a></span>
   </li>
 
       
@@ -1168,7 +1153,27 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445">CMU15-445</a></span>
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
   </li>
 
   </ul>

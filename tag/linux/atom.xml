@@ -6,13 +6,13 @@
     <updated>2023-03-09T09:56:33.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
+    <category term="Linux" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="Linux" />
+    <category term="操作系统" />
     <category term="STL" />
     <category term="算法" />
     <category term="设计模式" />
-    <category term="操作系统" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/</id>
         <title>操作系统（南大2023）</title>
@@ -460,7 +460,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;原子性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原子性&#34;&gt;#&lt;/a&gt; 原子性&lt;/h2&gt;
+&lt;h2 id=&#34;原子性互斥&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原子性互斥&#34;&gt;#&lt;/a&gt; 原子性 (互斥)&lt;/h2&gt;
 &lt;h2 id=&#34;执行顺序&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#执行顺序&#34;&gt;#&lt;/a&gt; 执行顺序&lt;/h2&gt;
 &lt;h2 id=&#34;处理器间的可见性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#处理器间的可见性&#34;&gt;#&lt;/a&gt; 处理器间的可见性&lt;/h2&gt;
 &lt;h1 id=&#34;并发控制基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制基础&#34;&gt;#&lt;/a&gt; 并发控制基础&lt;/h1&gt;
@@ -472,15 +472,122 @@
 &lt;li&gt;Peterson 算法在现代多处理器系统上的实现&lt;/li&gt;
 &lt;li&gt;实现并发控制的硬件和编译器机制&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;peterson算法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#peterson算法&#34;&gt;#&lt;/a&gt; Peterson 算法&lt;/h2&gt;
+&lt;p&gt;在共享内容上实现互斥&lt;/p&gt;
+&lt;h2 id=&#34;模型验证model-checker&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#模型验证model-checker&#34;&gt;#&lt;/a&gt; 模型验证 (model checker)&lt;/h2&gt;
+&lt;h2 id=&#34;原子指令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原子指令&#34;&gt;#&lt;/a&gt; 原子指令&lt;/h2&gt;
+&lt;p&gt;并发编程困难的解决：普通的变量读写在编译器 + 处理器的双重优化下行为变得复杂&lt;/p&gt;
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;figcaption data-lang=&#34;c&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;retry&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;locked &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; UNLOCK&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;goto&lt;/span&gt; retry&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  locked &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; LOCK&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;解决方法：编译器和硬件共同提供不可优化、不可打断的指令&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“原子指令” + compiler barrier&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;并发控制互斥&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制互斥&#34;&gt;#&lt;/a&gt; 并发控制：互斥&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：互斥 (Peterson 算法)：为了掌控并发程序的复杂行为，使程序退回到 “串行执行” 的 lock &amp;amp; unlock。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：现代多处理器系统上的互斥实现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;互斥问题的定义和假设&lt;/li&gt;
+&lt;li&gt;自旋锁&lt;/li&gt;
+&lt;li&gt;互斥锁和 Futex&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;review：并发编程（理解并发的工具）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程 = 人 (大脑能完成局部存储和计算)&lt;/li&gt;
+&lt;li&gt;共享内存 = 物理世界 (物理世界天生并行)&lt;/li&gt;
+&lt;li&gt;一切都是状态机 (debugger &amp;amp; model checker)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;互斥问题&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#互斥问题&#34;&gt;#&lt;/a&gt; 互斥问题&lt;/h2&gt;
+&lt;p&gt;互斥 (mutual exclusion)，“互相排斥”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;实现  &lt;code&gt;lock_t&lt;/code&gt;  数据结构和  &lt;code&gt;lock/unlock&lt;/code&gt;  API:&lt;/p&gt;
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;figcaption data-lang=&#34;c&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;lock_t&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;lock_t&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;lk&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;unlock&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;lock_t&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;lk&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;一把 “排他性” 的锁 —— 对于锁对象  &lt;code&gt;lk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果某个线程持有锁，则其他线程的  &lt;code&gt;lock&lt;/code&gt;  不能返回 (Safety)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在多个线程执行  &lt;code&gt;lock&lt;/code&gt;  时，至少有一个可以返回 (Liveness)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能&lt;strong&gt;正确处理处理器乱序、宽松内存模型和编译优化&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;并发控制同步&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发控制同步&#34;&gt;#&lt;/a&gt; 并发控制：同步&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：我们已经了解如何通过 “不可优化、保证顺序” 的原子指令实现自旋锁，以及借助操作系统 (系统调用) 实现线程的睡眠，从而不致于出现 CPU 空转的浪费。然而，互斥并不总是能满足多个并发线程协作完成任务的需求，例如大家试着在完成 Minilab 时应该已经遇到了一些困难。如何能便捷地让共享内存的线程协作以共同完成计算任务？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：并发控制：同步&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同步问题的定义&lt;/li&gt;
+&lt;li&gt;生产者 - 消费者问题&lt;/li&gt;
+&lt;li&gt;条件变量&lt;/li&gt;
+&lt;li&gt;信号量&lt;/li&gt;
+&lt;li&gt;信号量适合解决什么问题&lt;/li&gt;
+&lt;li&gt;哲学家吃饭问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;同步问题&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同步问题&#34;&gt;#&lt;/a&gt; 同步问题&lt;/h2&gt;
+&lt;p&gt;同步 (Synchronization)：两个或两个以上随时间变化的量在变化过程中保持一定的相对关系。&lt;/p&gt;
 &lt;h1 id=&#34;真实世界的并发编程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#真实世界的并发编程&#34;&gt;#&lt;/a&gt; 真实世界的并发编程&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：我们已经掌握了多种并发控制技术：自旋锁、互斥锁、条件变量、信号量。我们已经可以实现共享内存系统上的任意并发 / 并行计算。然而，大家也在使用这些 “底层” 并发控制时发现使用的困难。那么，真实世界的程序员是怎么实现并发程序的？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：(本节为科普) 并发编程模型与底层同步机制的封装&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高性能计算中的并行编程 (embarrassingly parallel 的数值计算)&lt;/li&gt;
+&lt;li&gt;数据中心中的并发编程 (协程、Goroutine 和 channel)&lt;/li&gt;
+&lt;li&gt;人工智能时代的分布式机器学习 (GPU 和 Parameter Server)&lt;/li&gt;
+&lt;li&gt;用户身边的并发编程 (Web 和异步编程)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;并发-bugs&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发-bugs&#34;&gt;#&lt;/a&gt; 并发 Bugs&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;常见的并发 bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;死锁&lt;/li&gt;
+&lt;li&gt;数据竞争&lt;/li&gt;
+&lt;li&gt;原子性和顺序违反&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;并发-bug-的应对&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#并发-bug-的应对&#34;&gt;#&lt;/a&gt; 并发 Bug 的应对&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：我们在编写并发程序时，难免会遇到死锁、数据竞争、原子性 / 顺序违反等类型的并发 bugs。即便我们知道它们的定义和触发条件，直接在编程时消灭它们依然是十分困难的。以数据竞争为例，它的定义貌似简单：两个线程同时访问同一内存地址，并且至少有一个是写。但 “访问内存” 则可能出其不意 —— 例如 ret 指令和栈上数据的修改产生的数据竞争。那么，我们应该如何应对这些并发 bugs？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：&lt;strong&gt;一节真正的 “编程” 课&lt;/strong&gt;：如何正确地 (并发) 编程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lock ordering&lt;/li&gt;
+&lt;li&gt;防御性编程&lt;/li&gt;
+&lt;li&gt;运行时检查&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;多处理器系统与中断机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多处理器系统与中断机制&#34;&gt;#&lt;/a&gt; 多处理器系统与中断机制&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：我们已经了解并发编程实践需要的几乎全部内容 —— 线程、内存模型、互斥、同步和并发 bugs 的应对。但我们一直是在简化的线程模型 (thread.h) 上讲解的。但我们还没有回答一个关键问题：线程到底在计算机硬件上是如何实现的？即便系统中只有一个处理器，我们依然可以创建很多并发执行的线程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：操作系统内核实现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多处理器和中断&lt;/li&gt;
+&lt;li&gt;AbstractMachine API&lt;/li&gt;
+&lt;li&gt;50 行实现嵌入式操作系统&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;虚拟化&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#虚拟化&#34;&gt;#&lt;/a&gt; = 虚拟化 =&lt;/h1&gt;
 &lt;h1 id=&#34;操作系统上的进程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#操作系统上的进程&#34;&gt;#&lt;/a&gt; 操作系统上的进程&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;背景回顾&lt;/strong&gt;：有关状态机、并发和中断的讨论给我们真正理解操作系统奠定了基础，现在我们正式进入操作系统和应用程序的 “边界” 了。让我们把视角回到单线程应用程序，即 “执行计算指令和系统调用指令的状态机”，开始对操作系统和进程的讨论。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本讲内容&lt;/strong&gt;：操作系统上的进程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程、进程和操作系统&lt;/li&gt;
+&lt;li&gt;UNIX/Linux 进程管理 API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;进程process线程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#进程process线程&#34;&gt;#&lt;/a&gt; 进程（Process）&amp;amp; 线程（）&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进程映像（静态）由程序段，数据段和进程控制块 (PCB) 组成&lt;/p&gt;
+&lt;p&gt;进程（动态）是具有独立功能的程序在一个数据集合上运行的过程&lt;/p&gt;
+&lt;p&gt;进程是系统进行资源分配基本单位，线程是处理机分配的基本单元。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;进程状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行态&lt;/li&gt;
+&lt;li&gt;就绪态&lt;/li&gt;
+&lt;li&gt;阻塞态&lt;/li&gt;
+&lt;li&gt;创建态&lt;/li&gt;
+&lt;li&gt;结束态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;线程即 “轻量型进程”，他是一个基本的 CPU 执行单元，是程序执行流的最小单元。&lt;/p&gt;
+&lt;p&gt;线程由线程 ID、程序计数器、寄存器集合和堆栈组成。&lt;/p&gt;
+&lt;p&gt;线程自己不拥有资源，和同一进程的其他线程共享进程的所有资源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;引入进程的目的是更好地使多道程序并发执行，提高资源利用率和系统吞吐量；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;引入线程的目的是减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能。&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;linux-操作系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-操作系统&#34;&gt;#&lt;/a&gt; Linux 操作系统&lt;/h1&gt;
-&lt;h1 id=&#34;linux-进程的地址空间&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux-进程的地址空间&#34;&gt;#&lt;/a&gt; Linux 进程的地址空间&lt;/h1&gt;
+&lt;h1 id=&#34;进程的地址空间&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#进程的地址空间&#34;&gt;#&lt;/a&gt; 进程的地址空间&lt;/h1&gt;
 &lt;h1 id=&#34;系统调用和-unix-shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用和-unix-shell&#34;&gt;#&lt;/a&gt; 系统调用和 UNIX Shell&lt;/h1&gt;
 &lt;h1 id=&#34;c-标准库的实现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#c-标准库的实现&#34;&gt;#&lt;/a&gt; C 标准库的实现&lt;/h1&gt;
 &lt;h1 id=&#34;可执行文件的加载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可执行文件的加载&#34;&gt;#&lt;/a&gt; 可执行文件的加载&lt;/h1&gt;
