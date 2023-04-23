@@ -9,10 +9,10 @@
     <category term="Qt" />
     <category term="QML" />
     <category term="Linux" />
-    <category term="设计模式" />
-    <category term="STL" />
-    <category term="算法" />
     <category term="操作系统" />
+    <category term="STL" />
+    <category term="设计模式" />
+    <category term="算法" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/</id>
         <title>CMU15-445 Project#0 字典树trie</title>
