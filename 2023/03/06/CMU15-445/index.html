@@ -691,7 +691,7 @@ SELECT * FROM cteSource;
 </code></pre>
 </li>
 </ul>
-<h1 id="lesson03-存储引擎一"><a class="markdownIt-Anchor" href="#lesson03-存储引擎一">#</a> Lesson#03. 存储引擎（一）</h1>
+<h1 id="lesson0304-存储引擎"><a class="markdownIt-Anchor" href="#lesson0304-存储引擎">#</a> Lesson#03&amp;04. 存储引擎</h1>
 <h2 id="storage"><a class="markdownIt-Anchor" href="#storage">#</a> Storage</h2>
 <ul>
 <li>
@@ -835,7 +835,6 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 </li>
 <li>
 <p><strong>log-structured</strong></p>
-<p>下一课介绍。</p>
 </li>
 </ol>
 </li>
@@ -874,7 +873,273 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
  tuples</p>
 </li>
 </ul>
-<h1 id="lesson04-存储引擎二"><a class="markdownIt-Anchor" href="#lesson04-存储引擎二">#</a> Lesson#04. 存储引擎（二）</h1>
+<h2 id="log-structured-storage"><a class="markdownIt-Anchor" href="#log-structured-storage">#</a> Log-Structured Storage</h2>
+<p>（也叫 Append-only Sequence of Data） 参考: <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbXV6aG9uZ2ppYW5nL3AvMTUxNTE3NTguaHRtbA==">Log-Structured 结构</span></p>
+<ul>
+<li>
+<p>与 Slotted-Page Design 有关的问题是：</p>
+<ul>
+<li>
+<p>Fragmentation:</p>
+<p>删除 tuple 会在 page 中留下空隙。</p>
+</li>
+<li>
+<p>Useless Disk I/O:</p>
+<p>由于非易失性存储的 block-oriented 的性质，需要读取整个块来获取 tuple。</p>
+</li>
+<li>
+<p>Random Disk I/O:</p>
+<p>磁盘阅读器可能不得不跳到 20 个不同的地方来更新 20 个不同的 tuples，这可能会非常慢。</p>
+</li>
+</ul>
+<p>如果我们在一个只允许创建新数据而不允许覆盖的系统上工作呢？日志结构的存储模型与这个假设相配合，解决了上面列出的一些问题。</p>
+</li>
+<li>
+<p><strong>Log-Structured Storage:</strong> DBMS 不存储 tuples，只存储日志记录。</p>
+<ul>
+<li>将数据库如何被修改的记录存储到文件中（放入和删除）。每条日志包含 tuples 的唯一标识符</li>
+<li>要读取一条记录，DBMS 会从最新的到最旧的逆向扫描日志文件，并 &quot;重新创建&quot; 这个 tuple。</li>
+<li>写的快，读的可能慢。磁盘写入是连续的，现有的页面是不可改变的，这导致了随机磁盘 I/O 的减少。</li>
+<li>在 append-only 的存储上工作得很好，因为 DBMS 不能回溯并更新数据。</li>
+<li>为了避免长时间的读取，DBMS 可以有索引来允许它跳到日志中的特定位置。它还可以定期地压缩日志。(如果它有一个 tuple，然后对其进行了更新，它可以将其压缩到只插入更新的 tuple）。</li>
+<li>由于不再需要时间信息，数据库可以将日志压缩到一个按 id 排序的表中。这些被称为分类字符串表（SSTables），它们可以使 tuple 搜索非常快。</li>
+<li>紧凑化的问题是，DBMS 最终会出现写入放大的情况。(它一次又一次地重写相同的数据）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-representation"><a class="markdownIt-Anchor" href="#data-representation">#</a> Data Representation</h2>
+<ul>
+<li>
+<p>tuple 的数据本质就是字节数组！DBMS 要知道如何解释这些字节，来推导出属性的值。数据表示方案 (data representation scheme) 是 DBMS 如何为一个值存储字节。</p>
+</li>
+<li>
+<p>有 5 种 high level datatypes 可以存储在 tuples 中：integer，variable-precision numbers，fixed-point precision numbers，variable length values， dates/times</p>
+<ul>
+<li>
+<p>Integers</p>
+<p>大多数 DBMS 使用 IEEE-754 标准规定的 &quot;native&quot;C/C++ 类型来存储整数。这些值是固定长度的。</p>
+<ul>
+<li>例子：<br>
+ <code>INTEGER, BIGINT, SMALLINT, TINYINT.</code></li>
+</ul>
+</li>
+<li>
+<p>Variable Precision Numbers</p>
+<p>这些是不精确的、可变精度的数字类型，使用 IEEE-754 规定的 &quot;native&quot;C/C<ins> 类型。标准规定的 &quot;native&quot;C/C</ins> 类型。这些值也是固定长度的。</p>
+<p>变精度数的运算比任意精度数的运算更快，因为 CPU 可以直接对其执行指令。然而，在进行计算时可能会出现精度损失！</p>
+<ul>
+<li>例子：<br>
+ <code>FLOAT, REAL</code></li>
+</ul>
+</li>
+<li>
+<p>Fixed-Point Precision Numbers<br>
+ 这些是具有任意精度和比例的数字数据类型。它们通常以精确的、可变长度的二进制表示法（像一个字符串）来存储，并带有额外的元数据，这些数据将告诉系统诸如数据的长度和小数点应该在哪里。<br>
+当误差不可接受的时候，DBMS 就要付出性能的代价来提高精度。</p>
+<ul>
+<li>例子：<br>
+ <code>NUMERIC, DECIMAL.</code></li>
+</ul>
+</li>
+<li>
+<p>Variable-Length Data</p>
+<ul>
+<li>代表任意长度的数据类型。它们通常是用一个 header 来存储的，这个 header 可以追踪到字符串的长度，以便于跳转到下一个值。它还可能包含一个数据的校验和。</li>
+<li><strong>大多数 DBMS 不允许一个 tuple 超过一个页面的大小。</strong> ** 但是！** 那些允许的系统将数据存储在一个特殊的 &quot;溢出&quot; 页上，并让 tuple 包含一个对该页的引用。这些溢出页可以包含指向其他溢出页的指针，直到所有的数据都可以被存储。</li>
+<li>有些系统会让你把这些大的数值存储在一个外部文件中，然后元组会包含一个指向该文件的指针。例如，如果数据库存储的是照片信息，DBMS 可以将照片存储在外部文件中，而不是让它们占用 DBMS 中的大量空间。这样做的一个缺点是，DBMS 不能操作这个文件的内容。因此，没有耐久性或交易 保护。</li>
+<li>例子：<br>
+ <code>VARCHAR, VARBINARY, TEXT, BLOB.</code></li>
+</ul>
+</li>
+<li>
+<p>Dates and Times<br>
+ 不同的系统对日期 / 时间的表示方法不同。通常情况下，它们被表示为一些单位时间 (自 unix 时代的（微 / 毫）秒）。</p>
+<ul>
+<li>例子：<br>
+ <code>TIME, DATE, TIMESTAMP.</code></li>
+</ul>
+</li>
+<li>
+<p>System Catalogs</p>
+<p>为了使 DBMS 能够识别 tuple 的内容，它维护了一个内部目录来告诉它关于数据库的元数据。元数据将包含关于数据库有哪些表和列的信息，以及它们的类型和值的顺序。</p>
+<p>大多数 DBMS 将其目录以其表的格式存储在自己的内部。他们使用<br>
+特殊代码来 &quot;bootstrap&quot; 这些目录表。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h2>
+<ul>
+<li>数据库的数据是按页组织的，把页拼在一起就是一个数据库</li>
+<li>怎么找到页（链表、目录）</li>
+<li>页怎么存（slots、log-structured）</li>
+<li>页里的元组怎么存</li>
+</ul>
+<h1 id="lesson05-存储模型数据压缩"><a class="markdownIt-Anchor" href="#lesson05-存储模型数据压缩">#</a> Lesson#05. 存储模型 &amp; 数据压缩</h1>
+<p>（Storage Models &amp; Compression）</p>
+<h2 id="数据库工作负载"><a class="markdownIt-Anchor" href="#数据库工作负载">#</a> 数据库工作负载</h2>
+<p>Database Workloads</p>
+<p><strong>OLTP: Online Transaction Processing 在线事务处理</strong></p>
+<ul>
+<li>OLTP work load 的特点是快速、短时运行的操作，一次对单个实体进行操作的简单查询，以及重复性的操作。<br>
+<strong>一个 OLTP work load 通常会处理更多的写而不是读。</strong></li>
+<li>一个 OLTP work load 的例子是亚马逊的店面。用户可以把东西添加到他们的 Manag 购物车，他们可以 进行购买，但这些行为只影响他们的账户。</li>
+</ul>
+<p><strong>OLAP: Online Analytical Processing 在线分析处理</strong></p>
+<ul>
+<li>OLAP work load 的特点是<strong>长期运行的、复杂的查询</strong>，<strong>对数据库的很大一部分进行读取</strong>。在 OLAP 工作中，数据库系统正在分析并从 OLTP-side 收集的现有数据中得出新的数据。</li>
+<li>一个 OLAP 工作负载的例子是亚马逊计算匹兹堡在下雨天购买最多的商品。</li>
+</ul>
+<p><strong>HTAP: Hybrid Transaction + Analytical Processing</strong></p>
+<ul>
+<li>最近流行的一种新的 work load 类型是 HTAP，它就像一个组合，试图在同一个数据库上做 OLTP 和 OLAP。 Manag Manag</li>
+</ul>
+<h2 id="存储模型"><a class="markdownIt-Anchor" href="#存储模型">#</a> 存储模型</h2>
+<p>Storage Models</p>
+<p>DBMS 的存储模型规定了它如何在磁盘和内存中物理地组织 tuple。</p>
+<ul>
+<li>选择 #1：N-ary 存储模型，即行存 (NSM)</li>
+<li>选择 #2：分解存储模型，即列存 (DSM : Decomposition Storage Model)</li>
+<li>选择 #3：混合存储模型 (PAX)</li>
+</ul>
+<h3 id="nsmn-ary-storage-model"><a class="markdownIt-Anchor" href="#nsmn-ary-storage-model">#</a> NSM，N-ary Storage Model</h3>
+<p>行式存储模型。数据的物理结构和他们的逻辑结构是一样的。磁盘是由一个一个 block 组成的，因此连续的数据也分在了连续的 block 里。</p>
+<p>这种方法是 OLTP work load 的理想选择，在这种 work load 中，请求是大量插入的，而事务往往只操作一个单独的实体。<br>
+它是理想的，因为它只需要一次获取就可以得到一个元组的所有的所有属性</p>
+<ul>
+<li>优点：
+<ul>
+<li>插入、更新、删除快速 Manag Manag</li>
+<li>对需要整个 tuple 的查询有利</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>不利于扫描表的大部分和 / 或属性的一个子集。</li>
+</ul>
+</li>
+</ul>
+<h3 id="dsmdecomposition-storage-model"><a class="markdownIt-Anchor" href="#dsmdecomposition-storage-model">#</a> DSM，Decomposition Storage Model</h3>
+<p>在 DSM 中，DBMS 将所有 tuples 的单一属性（列）连续地存储在一个数据块中。</p>
+<blockquote>
+<p>其实是关系表的一种设计方式，即每一行记录都分解成二元关系表，每个二元表对应一个属性加一个 ID 主键，这样两张表还可以 Join 起来。</p>
+</blockquote>
+<p>因此，它也被称为 “<strong>列存储</strong>”。这种模式是 OLAP 工作负载的理想选择，它有许多只读查询，在表的属性子集上进行大量扫描。</p>
+<ul>
+<li>
+<p>优点：</p>
+<ul>
+<li>减少了 I/O 的浪费，因为 DBMS 只读取它需要 Manag 的数据来进行查询。</li>
+<li>更好的查询处理和数据压缩</li>
+</ul>
+</li>
+<li>
+<p>缺点：</p>
+<ul>
+<li>因为 tuple 之间是 spliting 和 stitching 的，所以点查询、插入、更新和删除的速度很慢。</li>
+</ul>
+</li>
+<li>
+<p>在使用列存储时，要把 tuple 重新组合起来，有两种常见的方法</p>
+<ol>
+<li>
+<p>(常用) 固定长度的偏移量。<br>
+知道一个给定的列中的值将与另一列中相同偏移量的值相匹配，它们将对应于同一个 tuple。因此，列内的每一个值都必须是相同的长度。</p>
+</li>
+<li>
+<p>(更不常用) 使用嵌入式元组 ID。</p>
+<p>对于列中的每个属性，DBMS 存储一个 Manag 元组 ID（例如：一个主键）与它。然后，系统还将存储一个映射，告诉它如何跳到具有该 ID 的每个属性。<br>
+<strong>请注意，这种方法有很大的存储开销，因为它需要为每个属性条目存储一个元组 ID。</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="数据库压缩database-compression"><a class="markdownIt-Anchor" href="#数据库压缩database-compression">#</a> 数据库压缩 Database Compression</h2>
+<ul>
+<li>
+<p>压缩操作被在<strong> disk-based</strong> DBMSs 广泛应用。因为 disk 的 I/O 总是瓶颈，所以压缩可以让系统提升性能，尤其是只读 analyt Managical workloads 上。</p>
+<p>如果事先对 tuples 进行了压缩，DBMS 可以获取更多有用的 tuple，但代价是要付出更大的压缩和解压的计算开销。</p>
+</li>
+<li>
+<p>内存中的 DBMS 更加复杂，因为它们不必从磁盘中获取数据来执行一个查询。<br>
+内存比磁盘快得多，但压缩数据库可以减少 DRAM 需求和处理。</p>
+<p>而且必须在速度和压缩率中取得一个平衡。压缩数据库可以减少 DRAM 的需求和查询执行过程中的 CPU 成本。</p>
+</li>
+<li>
+<p>如果数据集是完全随机的 bits，那么我们没有办法进行压缩。然而，现实世界中的数据集有一些 key properties 是可以进行压缩的。</p>
+<ul>
+<li>数据集往往具有高度倾斜的属性值分布（例如，Brown 语料库的 Zipfian 分布）。</li>
+<li>数据集往往在同一元组的属性之间有很高的相关性（例如，邮政编码到城市。订单日期与发货日期）。 Manag</li>
+</ul>
+</li>
+<li>
+<p>鉴于此，我们希望一个数据库压缩方案具有以下特性。</p>
+<ul>
+<li>必须产生固定长度的值。唯一的例外是存储在独立池中的变长数据。这因为 DBMS 应该遵循单词对齐的原则，并且能够使用偏移量访问数据。</li>
+<li><strong>允许 DBMS 在查询执行过程中尽可能地推迟解压</strong> （late materialization）</li>
+<li>必须是<strong>无损方案</strong>，因为人们不喜欢丢失数据。任何种类的有损压缩都必须在应用层面上进行</li>
+</ul>
+</li>
+</ul>
+<p>压缩颗粒度 Compression Granularity</p>
+<p>在给 DBMS 增加压缩功能之前，我们需要决定我们要压缩什么样的数据。这个决定决定了压缩方案的可用性。有四个级别的压缩 Manag 颗粒度（granularity）</p>
+<ul>
+<li>
+<p>Block Level:<br>
+ 压缩同一张表的 tuple 块。</p>
+</li>
+<li>
+<p>Tuple Level:<br>
+ 压缩整个 tuples 的内容（仅 NSM）。</p>
+</li>
+<li>
+<p>Attribute Level:<br>
+ 在一个 tuple 内压缩单个属性值。可以针对同一 tuple 的多个属性。</p>
+</li>
+<li>
+<p>Columnar Level:</p>
+<p>为多个 tuple 存储的一个或多个属性压缩多个值<br>
+ (只限于 DSM)。这允许更复杂的压缩方案。</p>
+</li>
+</ul>
+<h2 id="naive-compression"><a class="markdownIt-Anchor" href="#naive-compression">#</a> Naive Compression</h2>
+<ul>
+<li>
+<p>DBMS 使用一个通用的算法对数据进行压缩 (e.g., gzip, LZO, LZ4, Snappy, Brotli, Oracle OZIP, Zstd)。 尽管 DBMS 可以使用几种压缩算法，但工程师们往往选择那些经常提供较低压缩率以换取更快的压缩 / 解压的算法。</p>
+</li>
+<li>
+<p>naive compression 例子： <strong>MySQL InnoDB</strong></p>
+<p>DBMS 对磁盘页面进行压缩，将其压缩到 2KB 的幂数，并将其存储到缓冲池中。然而，每次 DBMS 试图读取数据时，缓冲池中的压缩数据必须被解压</p>
+</li>
+<li>
+<p>由于访问数据需要对压缩的数据进行解压，这就限制了压缩方案的范围。<br>
+如果目标是将整个表压缩成一个巨大的块，使用 naive compression 方案是不可能的，因为每次访问都需要对整个表进行压缩 / 解压缩。<br>
+因此，对于 MySQL 来说，由于压缩范围有限，它将表分解成更小的块状。</p>
+</li>
+<li>
+<p>另一个问题是，这些 naive 方案也没有考虑到数据的高级含义或语义。<br>
+该算法既不考虑数据的结构，也不考虑查询打算如何访问 数据。因此，这就失去了利用 late materialization 的机会，因为 DBMS 不能知道它何时能够延迟数据的解压。</p>
+</li>
+</ul>
+<h2 id="列压缩columnar-compression"><a class="markdownIt-Anchor" href="#列压缩columnar-compression">#</a> <strong>列压缩</strong> Columnar Compression</h2>
+<ol>
+<li>
+<p>游程编码</p>
+</li>
+<li>
+<p>字典编码</p>
+</li>
+<li>
+<p>位图编码</p>
+</li>
+<li>
+<p>增量编码 Delta Encoding</p>
+</li>
+<li>
+<p>比特打包 Bit-Packing</p>
+</li>
+</ol>
+<h1 id="lesson06-内存管理"><a class="markdownIt-Anchor" href="#lesson06-内存管理">#</a> Lesson#06. 内存管理</h1>
 
       <div class="tags">
           <a href="/tags/DataBase/" rel="tag"><i class="ic i-tag"></i> DataBase</a>
@@ -889,7 +1154,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-22 13:13:30" itemprop="dateModified" datetime="2023-04-22T13:13:30+08:00">2023-04-22</time>
+    <time title="修改时间：2023-04-24 18:46:59" itemprop="dateModified" datetime="2023-04-24T18:46:59+08:00">2023-04-24</time>
   </span>
   <span id="2023/03/06/CMU15-445/" class="item leancloud_visitors" data-flag-title="CMU15-445（2022Fall）" title="阅读次数">
       <span class="icon">
@@ -961,7 +1226,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson01-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> Lesson#01. 关系模型 &amp; 关系代数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flat-file-strawman"><span class="toc-number">1.2.</span> <span class="toc-text"> Flat File Strawman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text"> 数据库管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 关系模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5%E8%AF%AD%E8%A8%80"><span class="toc-number">1.5.</span> <span class="toc-text"> 数据操纵语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text"> 关系代数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson02-%E9%AB%98%E7%BA%A7sql"><span class="toc-number">2.</span> <span class="toc-text"> Lesson#02. 高级 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text"> SQL 基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins"><span class="toc-number">2.2.</span> <span class="toc-text"> Joins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aggregate%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text"> Aggregate 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-operations"><span class="toc-number">2.4.</span> <span class="toc-text"> String Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date-and-time"><span class="toc-number">2.5.</span> <span class="toc-text"> Date and Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">2.6.</span> <span class="toc-text"> 输出重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8E%A7%E5%88%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 输出控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97"><span class="toc-number">2.8.</span> <span class="toc-text"> 内部查询 &#x2F; 查询嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">2.9.</span> <span class="toc-text"> 窗口函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A1%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.10.</span> <span class="toc-text"> 通用表表达式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson03-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%80"><span class="toc-number">3.</span> <span class="toc-text"> Lesson#03. 存储引擎（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#storage"><span class="toc-number">3.1.</span> <span class="toc-text"> Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#disk-oriented-dbms-overview"><span class="toc-number">3.2.</span> <span class="toc-text"> Disk-Oriented DBMS Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dbms-vs-os"><span class="toc-number">3.3.</span> <span class="toc-text"> DBMS vs. OS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-storage"><span class="toc-number">3.4.</span> <span class="toc-text"> File Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-pages"><span class="toc-number">3.5.</span> <span class="toc-text"> Database Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-heap"><span class="toc-number">3.6.</span> <span class="toc-text"> Database Heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page-layout"><span class="toc-number">3.7.</span> <span class="toc-text"> Page Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple-layout"><span class="toc-number">3.8.</span> <span class="toc-text"> Tuple Layout</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson04-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BA%8C"><span class="toc-number">4.</span> <span class="toc-text"> Lesson#04. 存储引擎（二）</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson01-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> Lesson#01. 关系模型 &amp; 关系代数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flat-file-strawman"><span class="toc-number">1.2.</span> <span class="toc-text"> Flat File Strawman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text"> 数据库管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 关系模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5%E8%AF%AD%E8%A8%80"><span class="toc-number">1.5.</span> <span class="toc-text"> 数据操纵语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text"> 关系代数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson02-%E9%AB%98%E7%BA%A7sql"><span class="toc-number">2.</span> <span class="toc-text"> Lesson#02. 高级 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text"> SQL 基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins"><span class="toc-number">2.2.</span> <span class="toc-text"> Joins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aggregate%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text"> Aggregate 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-operations"><span class="toc-number">2.4.</span> <span class="toc-text"> String Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date-and-time"><span class="toc-number">2.5.</span> <span class="toc-text"> Date and Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">2.6.</span> <span class="toc-text"> 输出重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8E%A7%E5%88%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 输出控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97"><span class="toc-number">2.8.</span> <span class="toc-text"> 内部查询 &#x2F; 查询嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">2.9.</span> <span class="toc-text"> 窗口函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A1%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.10.</span> <span class="toc-text"> 通用表表达式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson0304-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">3.</span> <span class="toc-text"> Lesson#03&amp;04. 存储引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#storage"><span class="toc-number">3.1.</span> <span class="toc-text"> Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#disk-oriented-dbms-overview"><span class="toc-number">3.2.</span> <span class="toc-text"> Disk-Oriented DBMS Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dbms-vs-os"><span class="toc-number">3.3.</span> <span class="toc-text"> DBMS vs. OS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-storage"><span class="toc-number">3.4.</span> <span class="toc-text"> File Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-pages"><span class="toc-number">3.5.</span> <span class="toc-text"> Database Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#database-heap"><span class="toc-number">3.6.</span> <span class="toc-text"> Database Heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page-layout"><span class="toc-number">3.7.</span> <span class="toc-text"> Page Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple-layout"><span class="toc-number">3.8.</span> <span class="toc-text"> Tuple Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#log-structured-storage"><span class="toc-number">3.9.</span> <span class="toc-text"> Log-Structured Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-representation"><span class="toc-number">3.10.</span> <span class="toc-text"> Data Representation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.11.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson05-%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9"><span class="toc-number">4.</span> <span class="toc-text"> Lesson#05. 存储模型 &amp; 数据压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD"><span class="toc-number">4.1.</span> <span class="toc-text"> 数据库工作负载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text"> 存储模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nsmn-ary-storage-model"><span class="toc-number">4.2.1.</span> <span class="toc-text"> NSM，N-ary Storage Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dsmdecomposition-storage-model"><span class="toc-number">4.2.2.</span> <span class="toc-text"> DSM，Decomposition Storage Model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%8B%E7%BC%A9database-compression"><span class="toc-number">4.3.</span> <span class="toc-text"> 数据库压缩 Database Compression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#naive-compression"><span class="toc-number">4.4.</span> <span class="toc-text"> Naive Compression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E5%8E%8B%E7%BC%A9columnar-compression"><span class="toc-number">4.5.</span> <span class="toc-text"> 列压缩 Columnar Compression</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lesson06-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text"> Lesson#06. 内存管理</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -979,7 +1244,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">12</span>
+        <span class="count">13</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -1083,17 +1348,27 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/01/Linux/" title="Linux">Linux</a></span>
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
   </li>
 
       
@@ -1103,7 +1378,36 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/04/02/C++11/" title="C++11特性">C++11特性</a></span>
+    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/04/24/CMU15-445%20Project1/" title="CMU15-445：Project">CMU15-445：Project</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
   </li>
 
       
@@ -1123,7 +1427,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+    <span><a href="/2023/04/02/C++11/" title="C++11&#x2F;14&#x2F;17">C++11/14/17</a></span>
   </li>
 
       
@@ -1133,47 +1437,7 @@ Header page 持有指向自由页列表和数据页列表的指针。然而，�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
   </li>
 
   </ul>
