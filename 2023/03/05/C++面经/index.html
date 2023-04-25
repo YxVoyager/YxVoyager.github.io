@@ -965,8 +965,8 @@ weak_ptr 用来表达临时所有权的概念，当某个对象只有存在时�
 <ul>
 <li>A 原子性：要么都做，要么都不做。</li>
 <li>C 一致性：如果运行中发生故障，必须回滚。不能让数据不一致。比如两人转钱，一半坏了，不一致俩人都没有钱。</li>
-<li>I 隔离性：一个事物不能被其他事物干扰。</li>
-<li>D 持续性：事物一旦提交，他对数据库的改变就应该是永久的。接下来的操作和故障不应该对刚才结果有任何影响。</li>
+<li>I 隔离性：一个事务不能被其他事物干扰。</li>
+<li>D 持续性：事务一旦提交，他对数据库的改变就应该是永久的。接下来的操作和故障不应该对刚才结果有任何影响。</li>
 </ul>
 <h2 id="数据库中锁有什么作用什么是只读锁-什么是只写锁"><a class="markdownIt-Anchor" href="#数据库中锁有什么作用什么是只读锁-什么是只写锁">#</a> 数据库中锁有什么作用？什么是只读锁、什么是只写锁？</h2>
 <p>一个事物对数据加锁可以保证事物的四个特性，加锁后其他事物不能更新此数据对象，不会产生数据不一致性。<br>
@@ -1003,7 +1003,7 @@ weak_ptr 用来表达临时所有权的概念，当某个对象只有存在时�
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-25 01:06:36" itemprop="dateModified" datetime="2023-04-25T01:06:36+08:00">2023-04-25</time>
+    <time title="修改时间：2023-04-25 15:16:45" itemprop="dateModified" datetime="2023-04-25T15:16:45+08:00">2023-04-25</time>
   </span>
   <span id="2023/03/05/C++面经/" class="item leancloud_visitors" data-flag-title="C++面经" title="阅读次数">
       <span class="icon">
@@ -1194,6 +1194,46 @@ weak_ptr 用来表达临时所有权的概念，当某个对象只有存在时�
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/04/20/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/04/02/C++11/" title="C++11&#x2F;14&#x2F;17">C++11/14/17</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
@@ -1217,45 +1257,6 @@ weak_ptr 用来表达临时所有权的概念，当某个对象只有存在时�
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/04/24/CMU15-445%20Project1/" title="CMU15-445：Project">CMU15-445：Project</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
     <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
   </li>
 
@@ -1266,17 +1267,17 @@ weak_ptr 用来表达临时所有权的概念，当某个对象只有存在时�
 <a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
   </li>
 
       

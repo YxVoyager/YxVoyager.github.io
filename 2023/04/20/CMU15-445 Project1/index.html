@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
+  <meta name="keywords" content="DataBase" />
 
-<link rel="canonical" href="https://adventure-yx.github.io/2023/04/24/CMU15-445%20Project1/">
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/04/20/CMU15-445%20Project1/">
 
 
 
   <title>
-CMU15-445：Project |
+CMU15-445：Project#1 Buffer Pool - DataBase |
 Adventure =  = 心有所向。日复一日，必有精进</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,16 +60,16 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">CMU15-445：Project
+  <h1 itemprop="name headline">CMU15-445：Project#1 Buffer Pool
   </h1>
   
 <div class="meta">
-  <span class="item" title="创建时间：2023-04-24 14:03:05">
+  <span class="item" title="创建时间：2023-04-20 14:03:05">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">发表于</span>
-    <time itemprop="dateCreated datePublished" datetime="2023-04-24T14:03:05+08:00">2023-04-24</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-04-20T14:03:05+08:00">2023-04-20</time>
   </span>
 </div>
 
@@ -100,12 +102,12 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
         </ul>
       </div>
     </header>
@@ -130,11 +132,13 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
-<span><a href="/">首页</a></span>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/DataBase/" itemprop="item" rel="index" title="分类于 DataBase"><span itemprop="name">DataBase</span></a>
+<meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/04/24/CMU15-445%20Project1/">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/04/20/CMU15-445%20Project1/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -173,7 +177,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p>在这个项目的第一部分，我们将建立一个通用的哈希表，使用无序的桶 (unordered buckets) 来存储唯一的键值对 (key/value pairs)。<br>
 我们的哈希表必须支持</p>
 <ul>
-<li>插入 / 删除 键值对的能力。</li>
+<li>插入 / 删除键值对的能力。</li>
 <li>我们无需指定表的最大 size，表应该可以根据需要逐步增加大小，但是我们不需要缩小表。也就是说，我们不需要实现对缩小或者压缩哈希表的功能。</li>
 <li>我们还需要支持检查一个键是否存在于哈希表中，并返回相应的值。</li>
 </ul>
@@ -190,7 +194,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>增加桶的局部深度。</li>
 <li>分割桶。并重新分配目录指针和桶中的 K/V 对。</li>
 </ol>
-<p><strong>有限实现是在插入后，如果桶满了就分割桶，但是在这个项目桶，请检测桶是否溢出，并在插入之前执行分割！</strong></p>
+<p><strong>有限实现是在插入后，如果桶满了就分割桶，但是在这个项目中，请检测桶是否溢出，并在插入之前执行分割！</strong></p>
 </li>
 <li>
 <p><code>Remove(K)</code> ：给定 K, 从哈希表删除其对应的键值对，并返回 true。如果不存在，返回 false。</p>
@@ -229,17 +233,15 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p><strong>桶:</strong> 桶被用于哈希真实的数据。</p>
 </li>
 </ul>
-<p><strong>Basic Structure of Extendible Hashing</strong>**😗*</p>
+<p><strong>Basic Structure of Extendible Hashing</strong></p>
 <p>可扩展哈希的基本结构</p>
-<p>![image-20230424230000782](D:\Blog\source_posts\CMU15-445 Project1\image-20230424230000782.png)</p>
-<p><strong>Frequently used terms in Extendible Hashing</strong>**😗*</p>
+<p>![image-20230424230000782.png)</p>
+<p><strong>Frequently used terms in Extendible Hashing</strong></p>
 <p>在可扩展哈希中常用术语</p>
 <ul>
-<li>
+<li 全局深度="">
 <p><strong>Directories:</strong> These containers store pointers to buckets. Each directory is given a unique id which may change each time when expansion takes place. The hash function returns this directory id which is used to navigate to the appropriate bucket. Number of Directories = 2^Global Depth.</p>
-<p><strong>目录:</strong> 这个容器存储指向桶的指针。每个目录给定一个唯一的 id，当扩张发生时 <code>id</code>  可能随之改变。哈希函数返回这个目录的 id，这个 <code>id</code>  被用来指向合适的桶。</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>目录的数量</mtext><mo>=</mo><msup><mn>2</mn><mtext>全局深度</mtext></msup></mrow><annotation encoding="application/x-tex">目录的数量 = 2^{全局深度}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">录</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8913309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913309999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">全</span><span class="mord cjk_fallback mtight">局</span><span class="mord cjk_fallback mtight">深</span><span class="mord cjk_fallback mtight">度</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p><strong>目录:</strong> 这个容器存储指向桶的指针。每个目录给定一个唯一的 id，当扩张发生时 <code>id</code>  可能随之改变。哈希函数返回这个目录的 id，这个 <code>id</code>  被用来指向合适的桶。目录的数量 = 2^</p>
 </li>
 <li>
 <p><strong>Buckets:</strong> They store the hashed keys. Directories point to buckets. A bucket may contain more than one pointers to it if its local depth is less than the global depth.</p>
@@ -264,23 +266,23 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </ul>
 <p><strong>Basic Working of Extendible Hashing</strong>:</p>
 <p>可扩展哈希基本工作流程</p>
-<p>![image-20230424230307442](D:\Blog\source_posts\CMU15-445 Project1\image-20230424230307442.png)</p>
+<p><img data-src="image-20230424230307442.png" alt="image-20230424230307442"></p>
 <ol>
 <li>
 <p><strong>Step 1 – Analyze Data Elements:</strong> Data elements may exist in various forms eg. Integer, String, Float, etc… Currently, let us consider data elements of type integer. eg: 49.</p>
-<p>** 步骤 1 – 分析数据元素：** 数据元素可能以各种形式存在，比如整形，字符串，浮点数等等… 当前，我们考虑整形这类数据元素，比如 49。</p>
+<p><strong>步骤 1 – 分析数据元素</strong>：数据元素可能以各种形式存在，比如整形，字符串，浮点数等等… 当前，我们考虑整形这类数据元素，比如 49。</p>
 </li>
 <li>
 <p><strong>Step 2 – Convert into binary format:</strong> Convert the data element in Binary form. For string elements, consider the ASCII equivalent integer of the starting character and then convert the integer into binary form. Since we have 49 as our data element, its binary form is 110001.</p>
-<p>** 步骤 2 - 转换成二进制形式：** 将数据元素转换为二进制形式。对于字符串元素，考虑 ASCII 码起始字符的对应整数，然后转换成二进制形式。因为我们是将 49 作为数据元素，它的二进制形式是 11001。</p>
+<p><strong>步骤 2 - 转换成二进制形式</strong>：将数据元素转换为二进制形式。对于字符串元素，考虑 ASCII 码起始字符的对应整数，然后转换成二进制形式。因为我们是将 49 作为数据元素，它的二进制形式是 11001。</p>
 </li>
 <li>
 <p><strong>Step 3 – Check Global Depth of the directory.</strong> Suppose the global depth of the Hash-directory is 3.</p>
-<p>** 步骤 3 - 检查目录的全局深度：** 假设哈希目录的全局深度是 3。</p>
+<p><strong>步骤 3 - 检查目录的全局深度</strong>：假设哈希目录的全局深度是 3。</p>
 </li>
 <li>
 <p><strong>Step 4 – Identify the Directory:</strong> Consider the ‘Global-Depth’ number of LSBs in the binary number and match it to the directory id.  Eg. The binary obtained is: 110001 and the global-depth is 3. So, the hash function will return 3 LSBs of 110<strong>001</strong> viz. 001.</p>
-<p><strong>步骤 4 - 识别目录：<strong>考虑在二进制下最低 “全局深度” 位，然后去匹配目录 id。比如，二进制是：110001，全局深度是 3，所以哈希函数会返回 110</strong>001</strong> 最后三位，即 001。</p>
+<p><strong>步骤 4 - 识别目录</strong>：考虑在二进制下最低 “全局深度” 位，然后去匹配目录 id。比如，二进制是：110001，全局深度是 3，所以哈希函数会返回 110<strong>001</strong> 最后三位，即 001。</p>
 </li>
 <li>
 <p><strong>Step 5 – Navigation:</strong> Now, navigate to the bucket pointed by the directory with directory-id 001.</p>
@@ -288,7 +290,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </li>
 <li>
 <p><strong>Step 6 – Insertion and Overflow Check:</strong> Insert the element and check if the bucket overflows. If an overflow is encountered, go to <strong>step 7</strong> followed by <strong>Step 8</strong>, otherwise, go to <strong>step 9</strong>.</p>
-<p>** 步骤 6 – 插入和溢出检查：** 插入元素并且检查桶是否溢出。如果遇到溢出，转向步骤 7 和步骤 8，否则转到步骤 9。</p>
+<p><strong>步骤 6 – 插入和溢出检查</strong>：插入元素并且检查桶是否溢出。如果遇到溢出，转向步骤 7 和步骤 8，否则转到步骤 9。</p>
 </li>
 <li>
 <p><strong>Step 7 – Tackling Over Flow Condition during Data Insertion:</strong> Many times, while inserting data in the buckets, it might happen that the Bucket overflows. In such cases, we need to follow an appropriate procedure to avoid mishandling of data.  First, Check if the local depth is less than or equal to the global depth. Then choose one of the cases below.</p>
@@ -301,7 +303,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>
 <p><strong>Case2:</strong> In case the local depth is less than the global depth, then only Bucket Split takes place. Then increment only the local depth value by 1. And, assign appropriate pointers.</p>
 <p><strong>情况 2:</strong> 如果本地深度小于全局深度，那么仅仅发生桶分裂。然后仅仅把局部深度增加 1。并且指定合适的指针。</p>
-<p>![image-20230424231204645](D:\Blog\source_posts\CMU15-445 Project1\image-20230424231204645.png)</p>
+<p><img data-src="image-20230424231204645.png" alt="image-20230424231204645"></p>
 </li>
 </ul>
 </li>
@@ -314,12 +316,14 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <p><strong>步骤 9</strong> - 元素被成功哈希。</p>
 </li>
 </ol>
+<blockquote>
 <p><strong>Example based on Extendible Hashing:</strong> Now, let us consider a prominent example of hashing the following elements: <strong>16,4,6,22,24,10,31,7,9,20,26.</strong></p>
-<p>** 基于可扩展哈希的样例：** 现在让我们考虑一个哈希以下元素的典型样例：16,4,6,22,24,10,31,7,9,20,26。（共 11 个元素）</p>
+<p><strong>基于可扩展哈希的样例</strong>：现在让我们考虑一个哈希以下元素的典型样例：16,4,6,22,24,10,31,7,9,20,26。（共 11 个元素）</p>
 <p><strong>Bucket Size:</strong> 3 (Assume)</p>
-<p>** 桶大小：**3（假设）</p>
+<p><strong>桶大小</strong>：3（假设）</p>
 <p><strong>Hash Function:</strong> Suppose the global depth is X. Then the Hash Function returns X LSBs.</p>
-<p>** 哈希函数：** 假设全局深度是 X，那么哈希函数返回 X 的最低位。</p>
+<p><strong>哈希函数</strong>：假设全局深度是 X，那么哈希函数返回 X 的最低位。</p>
+</blockquote>
 <ol>
 <li>
 <p><strong>Solution:</strong> First, calculate the binary forms of each of the given numbers.</p>
@@ -339,68 +343,68 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>
 <p>Initially, the global-depth and local-depth is always 1. Thus, the hashing frame looks like this:</p>
 <p>首先，全局深度和局部深度总是 1。因此哈希图看起来像这样：</p>
-<p>![image-20230424231857524](D:\Blog\source_posts\CMU15-445 Project1\image-20230424231857524.png)</p>
+<p><img data-src="image-20230424231857524.png" alt="image-20230424231857524"></p>
 </li>
 <li>
 <p><strong>Inserting 16:</strong>  The binary format of 16 is 10000 and global-depth is 1. The hash function returns 1 LSB of 1000<strong>0</strong> which is 0. Hence, 16 is mapped to the directory with id=0.</p>
-<p><strong>Inserting 16:</strong>  16 的二进制形式是 10000，且全局深度是 1。哈希函数返回 1000<strong>0</strong> 最低 1 位为 0。因此，16 映射到目录的 <code>id=0</code> 。</p>
-<p>![image-20230424231954017](D:\Blog\source_posts\CMU15-445 Project1\image-20230424231954017.png)</p>
+<p><strong>插入 16:</strong>  16 的二进制形式是 10000，且全局深度是 1。哈希函数返回 1000<strong>0</strong> 最低 1 位为 0。因此，16 映射到目录的 <code>id=0</code> 。</p>
+<p><img data-src="image-20230424231954017.png" alt="image-20230424231954017"></p>
 </li>
 <li>
 <p><strong>Inserting 4 and 6:</strong>  Both 4(10<strong>0</strong>) and 6(11<strong>0</strong>)have 0 in their LSB. Hence, they are hashed as follows:</p>
-<p><strong>插入 4 和 6：<strong>4(10</strong>0</strong>) and 6(11<strong>0</strong>) 的最低 1 位都是 0。因此，他们哈希结果如下：</p>
-<p>![image-20230424232039916](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232039916.png)</p>
+<p><strong>插入 4 和 6</strong>：4(10<strong>0</strong>) and 6(11<strong>0</strong>) 的最低 1 位都是 0。因此，他们哈希结果如下：</p>
+<p><img data-src="image-20230424232039916.png" alt="image-20230424232039916"></p>
 </li>
 <li>
 <p><strong>Inserting 22:</strong> The binary form of 22 is 1011<strong>0</strong>. Its LSB is 0. The bucket pointed by directory 0 is already full. Hence, Over Flow occurs.</p>
-<p>** 插入 22：<strong>22 的二进制形式是 1011</strong>0。** 它的最低位是 0。目录 0 指向的桶已经满了。因此溢出发生了。</p>
-<p>![image-20230424232131329](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232131329.png)</p>
+<p><strong>插入 22</strong>：22 的二进制形式是 1011**0。** 它的最低位是 0。目录 0 指向的桶已经满了。因此溢出发生了。</p>
+<p><img data-src="image-20230424232131329.png" alt="image-20230424232131329"></p>
 </li>
 <li>
 <p>As directed by <strong>Step 7-Case 1</strong>, Since Local Depth = Global Depth, the bucket splits and directory expansion takes place. Also, rehashing of numbers present in the overflowing bucket takes place after the split. And, since the global depth is incremented by 1, now,the global depth is 2. Hence, 16,4,6,22 are now rehashed w.r.t 2 LSBs.[ 16(100<strong>00</strong>),4(1<strong>00</strong>),6(1<strong>10</strong>),22(101<strong>10</strong>) ]</p>
 <p>正如<strong> Step 7-Case 1</strong> 指示的，因为局部深度 = 全局深度，桶分裂且目录扩张。同时，分裂之后在溢出的桶中重新哈希数值。并且因为全局深度增加了 1，所以现在全局深度是 2。因此，16,4,6,22 被重新哈希为最低 2 位。[16 (100<strong>00</strong>),4(1<strong>00</strong>),6(1<strong>10</strong>),22(101<strong>10</strong>) ]</p>
-<p>![image-20230424232239402](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232239402.png)</p>
+<p><img data-src="image-20230424232239402.png" alt="image-20230424232239402"></p>
 <blockquote>
-<p>*<em>Notice that the bucket which was underflow has remained untouched. But, since the number of directories has doubled, we now have 2 directories 01 and 11 pointing to the same bucket. This is because the local-depth of the bucket has remained 1. And, any bucket having a local depth less than the global depth is pointed-to by more than one directories.</em></p>
+<p><em>Notice that the bucket which was underflow has remained untouched. But, since the number of directories has doubled, we now have 2 directories 01 and 11 pointing to the same bucket. This is because the local-depth of the bucket has remained 1. And, any bucket having a local depth less than the global depth is pointed-to by more than one directories.</em></p>
 <p>注意，未溢出的桶存在没有触及的。但是，因为目录的数量已经翻倍，我们现在有 2 个目录 01 和 11 指向了同一个桶。这是因为桶的局部深度保持为 1。并且，任何局部深度小于全局深度的桶会被不止一个目录指向。</p>
 </blockquote>
 </li>
 <li>
 <p><strong>Inserting 24 and 10:</strong> 24(110<strong>00</strong>) and 10 (10<strong>10</strong>) can be hashed based on directories with id 00 and 10. Here, we encounter no overflow condition.</p>
 <p><strong>插入 24 and 10:</strong> 24(110<strong>00</strong>) 和 10 (10<strong>10</strong>) 基于目录 id 00 和 10 可以被哈希。此处，我们没有遇到溢出的情况。</p>
-<p>![image-20230424232401349](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232401349.png)</p>
+<p><img data-src="image-20230424232401349.png" alt="image-20230424232401349"></p>
 </li>
 <li>
 <p><strong>Inserting 31,7,9:</strong> All of these elements[ 31(111<strong>11</strong>), 7(1<strong>11</strong>), 9(10<strong>01</strong>) ] have either 01 or 11 in their LSBs. Hence, they are mapped on the bucket pointed out by 01 and 11. We do not encounter any overflow condition here.</p>
 <p><strong>插入 31,7,9:</strong> 所有这些元素 [ 31 (111<strong>11</strong>), 7(1<strong>11</strong>), 9(10<strong>01</strong>) ] 在最低 2 位要么 01，要么 11。因此，我们映射到 01 和 11 对应的桶。我们没有遇到任何溢出的情况。</p>
-<p>![image-20230424232504474](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232504474.png)</p>
+<p><img data-src="image-20230424232504474.png" alt="image-20230424232504474"></p>
 </li>
 <li>
 <p><strong>Inserting 20:</strong> Insertion of data element 20 (101<strong>00</strong>) will again cause the overflow problem.</p>
 <p><strong>插入 20:</strong> 插入元素 20 (101<strong>00</strong>) 时再一次遇到了溢出问题。</p>
-<p>![image-20230424232547238](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232547238.png)</p>
+<p><img data-src="image-20230424232547238.png" alt="image-20230424232547238"></p>
 </li>
 <li>
 <p>20 is inserted in bucket pointed out by 00. As directed by <strong>Step 7-Case 1</strong>, since the <strong>local depth of the bucket = global-depth</strong>, directory expansion (doubling) takes place along with bucket splitting. Elements present in overflowing bucket are rehashed with the new global depth. Now, the new Hash table looks like this:</p>
 <p>20 插入的桶被 00 所指向。正如<strong> Step 7-Case 1</strong> 提示的那样，因为<strong>桶的局部深度 = 全局深度</strong>，目录扩张和桶分裂发生了。在溢出桶中的元素在新的全局深度下重新哈希。现在，新的哈希表如下：</p>
-<p>![image-20230424232653483](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232653483.png)</p>
+<p><img data-src="image-20230424232653483.png" alt="image-20230424232653483"></p>
 </li>
 <li>
 <p><strong>Inserting 26:</strong> Global depth is 3. Hence, 3 LSBs of 26(11<strong>010</strong>) are considered. Therefore 26 best fits in the bucket pointed out by directory 010.</p>
-<p><strong>插入 26：<strong>全局深度是 3。因此 26 (11</strong>010</strong>) 的最低 3 位被考虑。因此 26 最适合的桶被目录 010 指向。</p>
+<p><strong>插入 26</strong>：全局深度是 3。因此 26 (11<strong>010</strong>) 的最低 3 位被考虑。因此 26 最适合的桶被目录 010 指向。</p>
 <p>![image-20230424232743216](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232743216.png)</p>
 </li>
 <li>
 <p>The bucket overflows, and, as directed by <strong>Step 7-Case 2,</strong> since the <strong>local depth of bucket &lt; Global depth (2&lt;3)</strong>, directories are not doubled but, only the bucket is split and elements are rehashed.  Finally, the output of hashing the given list of numbers is obtained.</p>
 <p>桶发生了溢出，并且按照<strong> Step 7-Case 2</strong> 的指示，因此桶的<strong>局部深度小于全局深度（2&lt;3）</strong>，目录不会翻倍，仅仅是桶分裂和元素重新哈希。最后，哈希给定数值列表的结果已经获得。</p>
-<p>![image-20230424232914876](D:\Blog\source_posts\CMU15-445 Project1\image-20230424232914876.png)</p>
+<p><img data-src="image-20230424232914876.png" alt="image-20230424232914876"></p>
 </li>
 <li>
 <p><strong>Hashing of 11 Numbers is Thus Completed.</strong></p>
 <p>11 个数值的哈希已经完成。</p>
 </li>
 </ol>
-<p><strong>Key Observations:</strong>   <strong>关键观察：</strong></p>
+<p><strong>Key Observations 关键观察：</strong></p>
 <ol>
 <li>A Bucket will have more than one pointers pointing to it if its local depth is less than the global depth. 如果局部深度小于全局深度，一个桶会被超过 1 个指针指向。</li>
 <li>When overflow condition occurs in a bucket, all the entries in the bucket are rehashed with a new local depth. 当桶发生溢出时，在这个桶里的所有元素都要用新的局部深度重新哈希。</li>
@@ -444,7 +448,16 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <li>实现的方法取决于我们。我们被允许使用内置的 STL 容器。而且可以假定不会耗尽内存，但必须保证操作是线程安全的 (thread-safe)。</li>
 </ul>
 <h2 id="lru-k算法原理"><a class="markdownIt-Anchor" href="#lru-k算法原理">#</a> LRU-K 算法原理</h2>
-<p>LRU-K 算法参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jNGU0ZDU1NzA2ZmY=">LRU-K 和 2Q 缓存算法介绍</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9scnUtY2FjaGUv">146. LRU 缓存 - 力扣（LeetCode）</span></p>
+<p>请你设计并实现一个<strong>满足 LRU (Least Recently Used 最近最少使用) 缓存</strong>约束的数据结构。<br>
+实现  <code>LRUCache</code>  类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code>  以 <strong>正整数</strong> 作为容量  <code>capacity</code>  初始化 LRU 缓存</li>
+<li><code>int get(int key)</code>  如果关键字  <code>key</code>  存在于缓存中，则返回关键字的值，否则返回  <code>-1</code>  。</li>
+<li><code>void put(int key, int value)</code>  如果关键字  <code>key</code>  已经存在，则变更其数据值  <code>value</code>  ；如果不存在，则向缓存中插入该组  <code>key-value</code>  。如果插入操作导致关键字数量超过  <code>capacity</code>  ，则应该 逐出 最久未使用的关键字。</li>
+</ul>
+<p>函数  <code>get</code>  和  <code>put</code>  必须以  <code>O(1)</code>  的平均时间复杂度运行。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 输入</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">[</span><span class="token string">"LRUCache"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 输出</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">[</span>null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 解释</span></pre></td></tr><tr><td data-num="8"></td><td><pre>LRUCache lRUCache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">LRUCache</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 缓存是 &#123;1=1&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 缓存是 &#123;1=1, 2=2&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 1</span></pre></td></tr><tr><td data-num="12"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 -1 (未找到)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 -1 (未找到)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 3</span></pre></td></tr><tr><td data-num="17"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 4</span></pre></td></tr></table></figure><figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">LRUCache</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">// 1. 哈希表</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// 2. 双向链表</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">int</span> key<span class="token punctuation">,</span> val<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        Node <span class="token operator">*</span>prev<span class="token punctuation">,</span> <span class="token operator">*</span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">key</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">val</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">prev</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> Node<span class="token operator">*</span><span class="token operator">></span> mp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token comment">//3. 容量</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">int</span> n<span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token comment">// 哨兵</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    Node <span class="token operator">*</span>L <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    Node <span class="token operator">*</span>R <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token function">LRUCache</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        n <span class="token operator">=</span> capacity<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>        L<span class="token operator">-></span>next <span class="token operator">=</span> R<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        R<span class="token operator">-></span>prev <span class="token operator">=</span> L<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    </pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>mp<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            Node <span class="token operator">*</span>node <span class="token operator">=</span> mp<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>            <span class="token comment">// 最近使用</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token function">remove</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 从链表中移除该节点</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            <span class="token function">insert</span><span class="token punctuation">(</span>node<span class="token operator">-></span>key<span class="token punctuation">,</span> node<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 在链表的最右边插入该节点</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            <span class="token keyword">return</span> node<span class="token operator">-></span>val<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    </pre></td></tr><tr><td data-num="35"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>mp<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            Node<span class="token operator">*</span> node <span class="token operator">=</span> mp<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>            <span class="token function">remove</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            <span class="token function">insert</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>            <span class="token keyword">if</span><span class="token punctuation">(</span>mp<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>                Node <span class="token operator">*</span>node <span class="token operator">=</span> L<span class="token operator">-></span>next<span class="token punctuation">;</span>   <span class="token comment">// 最久未使用。左哨兵的下一个节点</span></pre></td></tr><tr><td data-num="43"></td><td><pre>                <span class="token function">remove</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>                <span class="token function">insert</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="46"></td><td><pre>                <span class="token function">insert</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="47"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token comment">// 4. 同时在链表和哈希表中删除节点</span></pre></td></tr><tr><td data-num="51"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Node <span class="token operator">*</span>node<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        <span class="token keyword">auto</span> pre <span class="token operator">=</span> node<span class="token operator">-></span>prev<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token keyword">auto</span> nxt <span class="token operator">=</span> node<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        </pre></td></tr><tr><td data-num="55"></td><td><pre>        pre<span class="token operator">-></span>next <span class="token operator">=</span> nxt<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        nxt<span class="token operator">-></span>prev <span class="token operator">=</span> pre<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        </pre></td></tr><tr><td data-num="58"></td><td><pre>        mp<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>node<span class="token operator">-></span>key<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="59"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="60"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="61"></td><td><pre>        <span class="token keyword">auto</span> node <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="62"></td><td><pre>        </pre></td></tr><tr><td data-num="63"></td><td><pre>        <span class="token keyword">auto</span> pre <span class="token operator">=</span> R<span class="token operator">-></span>prev<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="64"></td><td><pre>        <span class="token keyword">auto</span> nxt <span class="token operator">=</span> R<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="65"></td><td><pre>        </pre></td></tr><tr><td data-num="66"></td><td><pre>        <span class="token comment">// 从左往右</span></pre></td></tr><tr><td data-num="67"></td><td><pre>        pre<span class="token operator">-></span>next <span class="token operator">=</span> node<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="68"></td><td><pre>        node<span class="token operator">-></span>next <span class="token operator">=</span> nxt<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="69"></td><td><pre>        <span class="token comment">// 从右往左</span></pre></td></tr><tr><td data-num="70"></td><td><pre>        nxt<span class="token operator">-></span>prev <span class="token operator">=</span> node<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="71"></td><td><pre>        node<span class="token operator">-></span>prev <span class="token operator">=</span> pre<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="72"></td><td><pre>        </pre></td></tr><tr><td data-num="73"></td><td><pre>        mp<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="74"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="75"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="76"></td><td><pre><span class="token comment">/**</pre></td></tr><tr><td data-num="77"></td><td><pre> * Your LRUCache object will be instantiated and called as such:</pre></td></tr><tr><td data-num="78"></td><td><pre> * LRUCache* obj = new LRUCache(capacity);</pre></td></tr><tr><td data-num="79"></td><td><pre> * int param_1 = obj->get(key);</pre></td></tr><tr><td data-num="80"></td><td><pre> * obj->put(key,value);</pre></td></tr><tr><td data-num="81"></td><td><pre> */</span></pre></td></tr></table></figure><p>LRU-K 算法参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jNGU0ZDU1NzA2ZmY=">LRU-K 和 2Q 缓存算法介绍</span></p>
 <ul>
 <li>
 <p>算法思想</p>
@@ -483,22 +496,20 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </ol>
 </li>
 </ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9scnUtY2FjaGUv">146. LRU 缓存 - 力扣（LeetCode）</span></p>
-<p>请你设计并实现一个<strong>满足 LRU (最近最少使用) 缓存</strong>约束的数据结构。<br>
-实现  <code>LRUCache</code>  类：</p>
+<h1 id="buffer-pool-manager-instance"><a class="markdownIt-Anchor" href="#buffer-pool-manager-instance">#</a> Buffer Pool Manager Instance</h1>
+<h2 id="review"><a class="markdownIt-Anchor" href="#review">#</a> review</h2>
+<p>实现缓冲池的两个重要数据结构：</p>
 <ul>
-<li><code>LRUCache(int capacity)</code>  以 <strong>正整数</strong> 作为容量  <code>capacity</code>  初始化 LRU 缓存</li>
-<li><code>int get(int key)</code>  如果关键字  <code>key</code>  存在于缓存中，则返回关键字的值，否则返回  <code>-1</code>  。</li>
-<li><code>void put(int key, int value)</code>  如果关键字  <code>key</code>  已经存在，则变更其数据值  <code>value</code>  ；如果不存在，则向缓存中插入该组  <code>key-value</code>  。如果插入操作导致关键字数量超过  <code>capacity</code>  ，则应该 逐出 最久未使用的关键字。</li>
+<li>可扩展哈希表</li>
+<li>LRU-K</li>
 </ul>
-<p>函数  <code>get</code>  和  <code>put</code>  必须以  <code>O(1)</code>  的平均时间复杂度运行。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 输入</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">[</span><span class="token string">"LRUCache"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"put"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 输出</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">[</span>null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 解释</span></pre></td></tr><tr><td data-num="8"></td><td><pre>LRUCache lRUCache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">LRUCache</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 缓存是 &#123;1=1&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 缓存是 &#123;1=1, 2=2&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 1</span></pre></td></tr><tr><td data-num="12"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 -1 (未找到)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 -1 (未找到)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 3</span></pre></td></tr><tr><td data-num="17"></td><td><pre>lRUCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 返回 4</span></pre></td></tr></table></figure><h1 id="buffer-pool-manager-instance"><a class="markdownIt-Anchor" href="#buffer-pool-manager-instance">#</a> Buffer Pool Manager Instance</h1>
+<p>本节将介绍缓冲池实现的具体细节，通过模式关系图和代码，加深对传统关系型数据库中缓冲池的理解。</p>
 <h2 id="task-3"><a class="markdownIt-Anchor" href="#task-3">#</a> task</h2>
 <p>最后我们需要实现缓冲池管理系统 ( <code>BufferPoolManagerInstance</code> )。 <code>BufferPoolManagerInstance</code>  是用来从 <code>DiskManager</code>  中获取数据库的页的，以及在内存中存储它们。 <code>BufferPoolManagerInstance</code>  也可以将脏页 (dirty page) 写到磁盘上，当它被明确指示的时候，或者当它需要驱逐一个页面来腾出空间给新的页面的时候。(计组和 OS 的知识)。</p>
 <p>为了确保我们的实现能和系统的其他部分正常工作，本项目将提供一些已经填写好的函数。我们也不需要实现向磁盘实际读写数据的代码 (这些在我们的实现中被称为:  <code>DiskManager</code> )。本项目将提供这一功能。</p>
 <p>系统中的所有内存页都由 <code>Page</code>  对象表示。 <code>BufferPoolManagerInstance</code>  不需要理解这些页面的内容。但是作为系统开发者，我们必须了解 <code>Page</code>  对象只是缓冲池中内容的容器，因此并不特定于某个独立的页面。也就是说，每个 <code>Page</code>  对象都包含一个内存块， <code>DiskManager</code>  将把它作为一个位置来复制从磁盘读取的物理页的内容。</p>
 <p><code>BufferPoolManagerInstance</code>  将重复使用同一个 <code>Page</code>  对象来存储数据，因为它从磁盘来回移动。这意味着在系统的整个生命周期中，同一个 <code>Page</code>  对象可能包含不同的物理页。 <code>Page</code>  对象的标识符 ( <code>page_id</code> ) 可以跟踪它所包含的物理页。如果一个 <code>Page</code>  对象不包含一个物理页，那么 <code>page_id</code>  被设为 <code>INVALID_PAGE_ID</code></p>
-<p>每个页面对象也维护一个计数器，用于记录 Pinned 该页面的线程数量。我们的 <code>BufferPoolManagerInstance</code>  不允许释放一个被 Pinned 住的页面！每个页面对象也会记录它是否是脏的，我们的工作就是记录一个页面在被接触 Pinned 住之前，是否被修改过。 我们的 <code>BufferPoolManagerInstance</code>  必须将一个脏页的内容写回到磁盘上。然后该对象才能被重新使用。</p>
+<p>每个页面对象也维护一个计数器，用于记录 Pinned 该页面的线程数量。我们的 <code>BufferPoolManagerInstance</code>  不允许释放一个被 Pinned 住的页面！每个页面对象也会记录它是否是脏的，我们的工作就是记录一个页面在被解除 Pinned 住之前，是否被修改过。 我们的 <code>BufferPoolManagerInstance</code>  必须将一个脏页的内容写回到磁盘上。然后该对象才能被重新使用。</p>
 <p>我们的 <code>BufferPoolManagerInstance</code>  实现将使用我们在本作业中前几步中创建的 <code>ExtendibleHashTable</code>  和 <code>LRUReplacer</code>  类。它将使用 <code>ExtendibleHashTable</code>  表来映射 <code>page_id</code>  到 <code>frame_id</code> 。它还将使用 <code>LRUKReplacer</code>  来跟踪 <code>Page</code>  对象被访问的时间，这样当它必须释放一个 frame 以便为从磁盘复制一个新的物理页腾出空间的时候，它就可以决定驱逐哪个。</p>
 <p>我们需要实现定义在头文件 ( <code>src/include/buffer/buffer_pool_manager_instance.h</code> ) 的源文件 ( <code>src/buffer/buffer_pool_manager_instance.cpp</code> )</p>
 <ul>
@@ -530,7 +541,21 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
 </ul>
 <p>Disk Manager</p>
 <p>磁盘管理器类 ( <code>src/include/storage/disk/disk_manager.h</code> ), 从磁盘读取和写入页面数据。当我们的缓冲池管理器将在需要向缓冲池获取页面，或者向磁盘刷新页面的时候，使用 <code>DiskManager::ReadPage()</code>  和 <code>DiskManager::WritePage()</code> 。</p>
+<h2 id="难点"><a class="markdownIt-Anchor" href="#难点">#</a> 难点</h2>
+<ol>
+<li>NewPage 和 FetchPage 两个函数有什么区别？</li>
+<li>page 和 frame 是什么关系？</li>
+<li>flush 到磁盘后要不要清空 page 中的数据？</li>
+<li>pip-count 引用计数不为 0 能不能 flush 刷新到磁盘？</li>
+</ol>
+<h2 id="架构关系图"><a class="markdownIt-Anchor" href="#架构关系图">#</a> 架构关系图</h2>
+<ul>
+<li></li>
+</ul>
 
+      <div class="tags">
+          <a href="/tags/DataBase/" rel="tag"><i class="ic i-tag"></i> DataBase</a>
+      </div>
   </div>
 
    <footer>
@@ -541,9 +566,9 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-04-25 00:56:16" itemprop="dateModified" datetime="2023-04-25T00:56:16+08:00">2023-04-25</time>
+    <time title="修改时间：2023-04-25 16:38:31" itemprop="dateModified" datetime="2023-04-25T16:38:31+08:00">2023-04-25</time>
   </span>
-  <span id="2023/04/24/CMU15-445 Project1/" class="item leancloud_visitors" data-flag-title="CMU15-445：Project" title="阅读次数">
+  <span id="2023/04/20/CMU15-445 Project1/" class="item leancloud_visitors" data-flag-title="CMU15-445：Project#1 Buffer Pool" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -562,7 +587,7 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://adventure-yx.github.io/2023/04/24/CMU15-445%20Project1/" title="CMU15-445：Project">https://adventure-yx.github.io/2023/04/24/CMU15-445 Project1/</a>
+    <a href="https://adventure-yx.github.io/2023/04/20/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">https://adventure-yx.github.io/2023/04/20/CMU15-445 Project1/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -605,9 +630,12 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#overview"><span class="toc-number">1.</span> <span class="toc-text"> Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#project-specification"><span class="toc-number">2.</span> <span class="toc-text"> Project Specification</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#extendible-hash-table"><span class="toc-number">3.</span> <span class="toc-text"> Extendible Hash Table</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#task"><span class="toc-number">3.1.</span> <span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E5%93%88%E5%B8%8C%E8%A1%A8%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 可扩展哈希表原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lru-k-replacement-policy"><span class="toc-number">4.</span> <span class="toc-text"> LRU-K Replacement Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#task-2"><span class="toc-number">4.1.</span> <span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lru-k%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text"> LRU-K 算法原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#buffer-pool-manager-instance"><span class="toc-number">5.</span> <span class="toc-text"> Buffer Pool Manager Instance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#task-3"><span class="toc-number">5.1.</span> <span class="toc-text"> task</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#overview"><span class="toc-number">1.</span> <span class="toc-text"> Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#project-specification"><span class="toc-number">2.</span> <span class="toc-text"> Project Specification</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#extendible-hash-table"><span class="toc-number">3.</span> <span class="toc-text"> Extendible Hash Table</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#task"><span class="toc-number">3.1.</span> <span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E5%93%88%E5%B8%8C%E8%A1%A8%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 可扩展哈希表原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lru-k-replacement-policy"><span class="toc-number">4.</span> <span class="toc-text"> LRU-K Replacement Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#task-2"><span class="toc-number">4.1.</span> <span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lru-k%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text"> LRU-K 算法原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#buffer-pool-manager-instance"><span class="toc-number">5.</span> <span class="toc-text"> Buffer Pool Manager Instance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#review"><span class="toc-number">5.1.</span> <span class="toc-text"> review</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-3"><span class="toc-number">5.2.</span> <span class="toc-text"> task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9"><span class="toc-number">5.3.</span> <span class="toc-text"> 难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-number">5.4.</span> <span class="toc-text"> 架构关系图</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/03/06/CMU15-445/" rel="bookmark" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></li><li><a href="/2023/03/06/CMU15-445%20Project0/" rel="bookmark" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></li><li class="active"><a href="/2023/04/20/CMU15-445%20Project1/" rel="bookmark" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -719,10 +747,10 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+    <span><a href="/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
   </li>
 
       
@@ -732,7 +760,7 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -749,10 +777,20 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
   </li>
 
       
@@ -769,6 +807,26 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/04/20/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
@@ -779,40 +837,10 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
     <span><a href="/2023/03/12/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/04/02/C++11/" title="C++11&#x2F;14&#x2F;17">C++11/14/17</a></span>
   </li>
 
   </ul>
@@ -843,7 +871,7 @@ On the other hand, the  <code>DeallocatePage()</code>  method is a no-op that im
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2023/04/24/CMU15-445 Project1/',
+    path: '2023/04/20/CMU15-445 Project1/',
     favicon: {
       show: "（●´3｀●）やれやれだぜ",
       hide: "(´Д｀)大変だ！"
