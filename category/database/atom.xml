@@ -3,7 +3,7 @@
     <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;database&#34; category</title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-04-20T06:03:05.000Z</updated>
+    <updated>2023-03-08T02:03:05.000Z</updated>
     <category term="C++" />
     <category term="DataBase" />
     <category term="Qt" />
@@ -11,12 +11,12 @@
     <category term="Linux" />
     <category term="STL" />
     <category term="算法" />
-    <category term="设计模式" />
     <category term="操作系统" />
+    <category term="设计模式" />
     <entry>
-        <id>https://adventure-yx.github.io/2023/04/20/CMU15-445%20Project1/</id>
+        <id>https://adventure-yx.github.io/2023/03/08/CMU15-445%20Project1/</id>
         <title>CMU15-445：Project#1 Buffer Pool</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/04/20/CMU15-445%20Project1/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/08/CMU15-445%20Project1/"/>
         <content type="html">&lt;h1 id=&#34;overview&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt; Overview&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;本课程要求为 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2NtdS1kYi9idXN0dWI=&#34;&gt;BusTub&lt;/span&gt; DBMS 实现一个新的面向磁盘的存储管理器 (disk-oriented storage manager)。这样的存储管理器假定数据库的主要存储位置是磁盘上。&lt;/li&gt;
@@ -418,7 +418,7 @@ On the other hand, the  &lt;code&gt;DeallocatePage()&lt;/code&gt;  method is a n
 &lt;/ul&gt;
 </content>
         <category term="DataBase" />
-        <updated>2023-04-20T06:03:05.000Z</updated>
+        <updated>2023-03-08T02:03:05.000Z</updated>
     </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/</id>
