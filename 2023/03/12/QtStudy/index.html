@@ -159,7 +159,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <ul>
 <li>基类 <code>QObject</code> ：任何需要使用元对象系统功能的类必须继承自 <code>QObject</code> 。 <code>QObject</code>  是 Qt 中最基本的类，是所有 Qt 对象的基类。</li>
 <li><code>Q_OBJECT</code>  宏： <code>Q_OBJECT</code>  宏必须出现在类的私有声明区，用于启动元对象的特性。</li>
-<li>元对象编译器（moc, Meta-Object Compiler）：为 <code>QObject</code>  子类实现元对象特性提供必要的代码实现。（将 Qt 对 C<ins> 的语法拓展编译还原为 ** 标准 C</ins> 代码 **）</li>
+<li>元对象编译器（moc, Meta-Object Compiler）：为 <code>QObject</code>  子类实现元对象特性提供必要的代码实现。（将 Qt 对 <code>C++</code>  的语法拓展编译还原为<strong>标准 C++ 代码</strong>）</li>
 </ul>
 <h3 id="信号和槽"><a class="markdownIt-Anchor" href="#信号和槽">#</a> 信号和槽</h3>
 <ul>
@@ -366,13 +366,311 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <h3 id="qvariant类"><a class="markdownIt-Anchor" href="#qvariant类">#</a> QVariant 类</h3>
 <h3 id="qflags类"><a class="markdownIt-Anchor" href="#qflags类">#</a> QFlags 类</h3>
 <h3 id="qrandomgenerator类"><a class="markdownIt-Anchor" href="#qrandomgenerator类">#</a> QRandomGenerator 类</h3>
-<h1 id="i常用界面组件"><a class="markdownIt-Anchor" href="#i常用界面组件">#</a> i 常用界面组件</h1>
+<h1 id="常用界面组件"><a class="markdownIt-Anchor" href="#常用界面组件">#</a> 常用界面组件</h1>
 <h2 id="界面组件概述"><a class="markdownIt-Anchor" href="#界面组件概述">#</a> 界面组件概述</h2>
+<p>QWidget 是所有界面组件类的直接或间接父类。</p>
+<ul>
+<li>widget 组件：所有界面组件的统称，它从操作系统接收鼠标、键盘和其他事件，并在屏幕上显示自己。每个组件都是矩形的，并且按 z 轴顺序排列。</li>
+<li>window：没有嵌入到父组件中的组件。通常，它有一个 frame 和一个标题栏（可以使用 window flags 创建没有这两个装饰的窗口）。在 Qt 中，QMainWindow 和 QDialog 的各种子类是最常见的 window 类型。</li>
+</ul>
+<h3 id="按钮类组件"><a class="markdownIt-Anchor" href="#按钮类组件">#</a> 按钮类组件</h3>
+<p><img data-src="D:%5CBlog%5Csource_posts%5CQtStudy%5Cimage-20230504155804671.png" alt="image-20230504155804671"></p>
+<h3 id="输入类组件"><a class="markdownIt-Anchor" href="#输入类组件">#</a> 输入类组件</h3>
+<p><img data-src="D:%5CBlog%5Csource_posts%5CQtStudy%5Cimage-20230504160142238.png" alt="image-20230504160142238"></p>
+<h3 id="显示类组件"><a class="markdownIt-Anchor" href="#显示类组件">#</a> 显示类组件</h3>
+<p><img data-src="D:%5CBlog%5Csource_posts%5CQtStudy%5Cimage-20230504160235791.png" alt="image-20230504160235791"></p>
+<h3 id="容器类组件"><a class="markdownIt-Anchor" href="#容器类组件">#</a> 容器类组件</h3>
+<p><img data-src="D:%5CBlog%5Csource_posts%5CQtStudy%5Cimage-20230504160329538.png" alt="image-20230504160329538"></p>
+<h3 id="item组件"><a class="markdownIt-Anchor" href="#item组件">#</a> Item 组件</h3>
+<p><img data-src="D:%5CBlog%5Csource_posts%5CQtStudy%5Cimage-20230504160431263.png" alt="image-20230504160431263"></p>
+<h3 id="其他界面组件"><a class="markdownIt-Anchor" href="#其他界面组件">#</a> 其他界面组件</h3>
+<ul>
+<li>菜单栏（QMenuBar 类）</li>
+<li>菜单（QMenu 类）</li>
+<li>工具栏（QToolBar 类）</li>
+<li>状态栏（QStatusBar 类）</li>
+</ul>
+<h3 id="qwidget类的主要属性和接口函数"><a class="markdownIt-Anchor" href="#qwidget类的主要属性和接口函数">#</a> QWidget 类的主要属性和接口函数</h3>
+<p>QWidget 是所有界面组件类的基类，所以，QWidget 定义的一些属性、接口函数、信号和槽是所有界面组件共有的。了解 QWidget 的基本特性，通常就能了解界面组件的通用特性。</p>
+<p>一个属性一般有一个读取函数和一个设置函数，例如属性 font 的读取函数是 font ()，设置函数是 setFont ()</p>
+<ol>
+<li>
+<p>QWidget 作为界面组件时的属性</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>属性值类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enable</td>
+<td>bool</td>
+<td>组件的使能状态</td>
+</tr>
+<tr>
+<td>geometry</td>
+<td>QRect</td>
+<td>组件的几何形状，表示组件在界面上所占的矩形区域</td>
+</tr>
+<tr>
+<td>sizePolicy</td>
+<td>QSizePolicy</td>
+<td></td>
+</tr>
+<tr>
+<td>minimumSize</td>
+<td>QSize</td>
+<td></td>
+</tr>
+<tr>
+<td>maximumSize</td>
+<td>QSize</td>
+<td></td>
+</tr>
+<tr>
+<td>palette</td>
+<td>QPalette</td>
+<td>组件的调色板，如背景色，文字颜色等</td>
+</tr>
+<tr>
+<td>font</td>
+<td>QFont</td>
+<td></td>
+</tr>
+<tr>
+<td>cursor</td>
+<td>QCursor</td>
+<td>鼠标光标移动到组件上时的形状</td>
+</tr>
+<tr>
+<td>mouseTracking</td>
+<td>bool</td>
+<td>若为 true，只要鼠标在组件上移动，组件就接收鼠标移动事件；若为 false，只有在某个鼠标键被按下时，组件才接受鼠标移动事件。</td>
+</tr>
+<tr>
+<td>tabletTracking</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>focusPolicy</td>
+<td>Qt::FocusPolicy</td>
+<td></td>
+</tr>
+<tr>
+<td>contextMenuPolicy</td>
+<td>Qt::ContextMenuPolicy</td>
+<td></td>
+</tr>
+<tr>
+<td>acceptDrops</td>
+<td>bool</td>
+<td>组件是否接受拖动来的其他对象</td>
+</tr>
+<tr>
+<td>toolTip</td>
+<td>QString</td>
+<td>鼠标移动到组件上时，在光标处显示简短提示文字</td>
+</tr>
+<tr>
+<td>statusTip</td>
+<td>QString</td>
+<td></td>
+</tr>
+<tr>
+<td>autoFillBackground</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>styleSheet</td>
+<td>QString</td>
+<td>组件的样式表</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>QWidget 作为窗口时的属性</p>
+<p>QWidget 可以作为独立的窗口，其子类 QMainWindow、QDialog 也是常用的窗口类</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>windowTitle</td>
+<td>QString</td>
+<td></td>
+</tr>
+<tr>
+<td>windowIcon</td>
+<td>QIcon</td>
+<td></td>
+</tr>
+<tr>
+<td>windowOpacity</td>
+<td>qreal</td>
+<td>窗口的不透明度，0~1。0.0 表示完全透明，1.0 表示完全不透明，默认 1.0</td>
+</tr>
+<tr>
+<td>windowFilePath</td>
+<td>QString</td>
+<td></td>
+</tr>
+<tr>
+<td>windowModified</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>windowModality</td>
+<td>Qt::WindowModality</td>
+<td></td>
+</tr>
+<tr>
+<td>windowFlags</td>
+<td>Qt::WindowFlags</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>QWidget 的其他接口函数</p>
+<p>当 QWidget 作为独立的窗口时，有一些与窗口显示有关的共有槽函数</p>
+<ul>
+<li>bool close();</li>
+<li>void hide();</li>
+<li>void show();</li>
+<li>void showFullScreen();</li>
+<li>void showMaximized();</li>
+<li>void showMinimized();</li>
+<li>void showNormal();</li>
+</ul>
+</li>
+</ol>
 <h2 id="布局管理"><a class="markdownIt-Anchor" href="#布局管理">#</a> 布局管理</h2>
 <h2 id="qstring字符串操作"><a class="markdownIt-Anchor" href="#qstring字符串操作">#</a> QString 字符串操作</h2>
+<blockquote>
+<p>字符集与编码</p>
+</blockquote>
+<h3 id="qchar的功能"><a class="markdownIt-Anchor" href="#qchar的功能">#</a> QChar 的功能</h3>
+<h3 id="qstring常用操作"><a class="markdownIt-Anchor" href="#qstring常用操作">#</a> QString 常用操作</h3>
+<h3 id="qstring字符串与数值的转换"><a class="markdownIt-Anchor" href="#qstring字符串与数值的转换">#</a> QString 字符串与数值的转换</h3>
 <h2 id="qspinbox和qdoublespinbox"><a class="markdownIt-Anchor" href="#qspinbox和qdoublespinbox">#</a> QSpinBox 和 QDoubleSpinBox</h2>
+<ul>
+<li>QAbstractSpinBox
+<ul>
+<li>QSpinBox</li>
+<li>QDoubleSpinBox</li>
+</ul>
+</li>
+</ul>
 <h2 id="常用按钮组件"><a class="markdownIt-Anchor" href="#常用按钮组件">#</a> 常用按钮组件</h2>
+<ul>
+<li>QAbstractButton
+<ul>
+<li>QPushButton</li>
+<li>QToolButton</li>
+<li>QRadioButton</li>
+<li>QCheckBox</li>
+</ul>
+</li>
+</ul>
 <h2 id="qslider和qprogressbar"><a class="markdownIt-Anchor" href="#qslider和qprogressbar">#</a> QSlider 和 QProgressBar</h2>
+<ul>
+<li>QAbstractSlider
+<ul>
+<li>QSlider</li>
+<li>QScrollBar</li>
+<li>QDial</li>
+</ul>
+</li>
+<li>QProgressBar</li>
+</ul>
+<h3 id="qabstractslider"><a class="markdownIt-Anchor" href="#qabstractslider">#</a> QAbstractSlider</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minimum</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>singleStep</td>
+<td>int</td>
+<td>滑块变化最小值，默认 1</td>
+</tr>
+<tr>
+<td>pageStep</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td>int</td>
+<td>组件当前值</td>
+</tr>
+<tr>
+<td>sliderPosition</td>
+<td>int</td>
+<td>滑块的位置，tracking 值为 true，sliderPosition 值就等于 value 值</td>
+</tr>
+<tr>
+<td>tracking</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>orientation</td>
+<td>Qt::Orientation</td>
+<td>控件滑动方向，水平或垂直</td>
+</tr>
+<tr>
+<td>invertedAppearance</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>invertControls</td>
+<td>bool</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>常用接口函数：</p>
+<p><code>setRange()</code>  设置组件的最小值和最大值</p>
+<p>QAbstractSlider 类信号：</p>
+<pre><code class="language-CPP">void actionTriggered(int action);		
+void rangeChanged(int min, int max);	
+void sliderMoved(int value);
+void sliderPressed();
+void sliderReleased();
+void valueChanged(int value);
+</code></pre>
+<p>value 属性值改变时，组件会发射 valueChanged () 信号，可以通过拖动滑块改变 value 属性的值，也可以在程序中运行函数 setValue () 改变 value 属性的值。</p>
+<p>用鼠标拖动滑块移动时，组件会发射 sliderMoved (int value) 信号，参数 value 是组件的当前值。</p>
+<p>如果 tracking 属性设置为 true，在拖动滑块时组件还会发射 valueChanged () 信号；如果 tracking 属性设置为 false，则只有在拖动结束并释放鼠标时组件才会发射 valueChange () 信号。</p>
 <h2 id="日期和时间"><a class="markdownIt-Anchor" href="#日期和时间">#</a> 日期和时间</h2>
 <h2 id="qtimer和qelapsedtimer"><a class="markdownIt-Anchor" href="#qtimer和qelapsedtimer">#</a> QTimer 和 QElapsedTimer</h2>
 <h2 id="qcombobox"><a class="markdownIt-Anchor" href="#qcombobox">#</a> QComboBox</h2>
@@ -523,7 +821,91 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </ul>
 <p>键盘事件</p>
 <h1 id="对话框和多窗口程序设计"><a class="markdownIt-Anchor" href="#对话框和多窗口程序设计">#</a> 对话框和多窗口程序设计</h1>
-<h1 id="文件系统操作和文件读写"><a class="markdownIt-Anchor" href="#文件系统操作和文件读写">#</a> 文件系统操作和文件读写</h1>
+<h1 id="qt-文件系统操作和文件读写"><a class="markdownIt-Anchor" href="#qt-文件系统操作和文件读写">#</a> Qt 文件系统操作和文件读写</h1>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述">#</a> 概述</h2>
+<ol>
+<li>
+<p>I/O 设备类</p>
+<ul>
+<li>QIODevice
+<ul>
+<li>QFileDevice
+<ul>
+<li>QFile
+<ul>
+<li>QTemporaryFile</li>
+</ul>
+</li>
+<li>QSaveFile</li>
+</ul>
+</li>
+<li>QAbstractSocket
+<ul>
+<li>QTcpSocket
+<ul>
+<li>QSctpSocket</li>
+<li>QSsLSocket</li>
+</ul>
+</li>
+<li>QUdpSocket</li>
+</ul>
+</li>
+<li>QSerialPort</li>
+<li>QBluetoothSocket</li>
+<li>QProcess</li>
+<li>QBuffer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>文件读写操作类</p>
+</li>
+<li>
+<p>特定格式文件的读写</p>
+<ul>
+<li>
+<p><strong>读写 XML 文件</strong></p>
+<p>XML 是用于标记结构化数据的一种标记语言，基于 XML 标记的文件与平台无关，是互联网上广泛使用的一种交换数据的文件。Qt 中有 Qt XML 模块，提供了用于读写 XML 文件的相关类</p>
+</li>
+<li>
+<p><strong>读写 JSON 文件</strong></p>
+<p>JS 对象标记（JavaScript object notation,JSON）是一种轻量级的数据交换格式</p>
+</li>
+<li>
+<p><strong>读写图片文件</strong></p>
+<p>使用 <code>QImage</code>  和 <code>QPixmap</code>  可以直接读取图片文件，这两个类都是从 QPaintDevice 继承来的，他们在读取图片文件时总是按图片原始大小读取整张图片。</p>
+<p>Qt 还提供了一个类 QImageReader 用于在读取图片文件时进行更多的控制</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="目录与文件操作"><a class="markdownIt-Anchor" href="#目录与文件操作">#</a> 目录与文件操作</h2>
+<ul>
+<li>QCoreApplication：可以提取应用程序路径、程序名等信息。</li>
+<li>QFile：可进行文件的复制、删除、重命名等操作。</li>
+<li>QFileInfo：用于获取文件的各种信息，如文件的路径、基本文件名、文件名后缀、文件大小等。</li>
+<li>QDir：用于目录信息获取和目录操作，包括新建目录、删除目录、获取目录下的文件或子目录等。</li>
+<li>QTemporaryDir</li>
+<li>QTemporaryFile</li>
+<li>QFileSystemWatcher：用于监视设定的目录和文件</li>
+</ul>
+<h3 id="qcoreapplication类"><a class="markdownIt-Anchor" href="#qcoreapplication类">#</a> QCoreApplication 类</h3>
+<ul>
+<li>QCoreApplication：为无 UI 的应用程序提供事件循环的类，是所有应用程序类的基类
+<ul>
+<li>QGuiApplication：具有 GUI 的应用程序类，具有主事件循环，能处理和派发来自操作系统的事件或其他来源的事件。
+<ul>
+<li>QApplication：为基于 QWidget 的应用程序提供支持，包括界面的初始化等。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>使用 Qt Creator 的向导创建的 Qt Widget Application 项目都是基于 QApplication 类的应用程序。</p>
+<h3 id="qfile类"><a class="markdownIt-Anchor" href="#qfile类">#</a> QFile 类</h3>
+<h3 id="qfileinfo类"><a class="markdownIt-Anchor" href="#qfileinfo类">#</a> QFileInfo 类</h3>
+<p>用于获取文件的各种信息。</p>
 <h1 id="qt-数据库"><a class="markdownIt-Anchor" href="#qt-数据库">#</a> Qt 数据库</h1>
 <h2 id="qt-数据库编程概述"><a class="markdownIt-Anchor" href="#qt-数据库编程概述">#</a> Qt 数据库编程概述</h2>
 <ul>
@@ -587,6 +969,28 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <h2 id="基于qt框架实现学生成绩管理系统"><a class="markdownIt-Anchor" href="#基于qt框架实现学生成绩管理系统">#</a> 基于 Qt 框架实现学生成绩管理系统</h2>
 <h1 id="qt-绘图"><a class="markdownIt-Anchor" href="#qt-绘图">#</a> Qt 绘图</h1>
 <h2 id="qpainter绘图"><a class="markdownIt-Anchor" href="#qpainter绘图">#</a> QPainter 绘图</h2>
+<ul>
+<li>QPaintDevice
+<ul>
+<li>QWidget</li>
+<li>QImage</li>
+<li>QPixmap
+<ul>
+<li>QBitmap</li>
+</ul>
+</li>
+<li>QPicture</li>
+<li>QSvgGenerator</li>
+<li>QOpenGLPaintDevice</li>
+<li>QPagePaintDevice
+<ul>
+<li>QPrinter</li>
+<li>QPdfWriter</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="坐标系统和坐标变换"><a class="markdownIt-Anchor" href="#坐标系统和坐标变换">#</a> 坐标系统和坐标变换</h2>
 <h2 id="图形视图架构"><a class="markdownIt-Anchor" href="#图形视图架构">#</a> 图形 / 视图架构</h2>
 <h2 id="图像处理"><a class="markdownIt-Anchor" href="#图像处理">#</a> 图像处理</h2>
@@ -810,96 +1214,7 @@ static QThreadPool * QThreadPool::globalInstance();
 	    <td>IEEE802.1A、IEEE802.2-IEEE802.11</td>
 	</tr>
 </table>
-+ 物理层
-<p>负责最后将信息编码成电流脉冲或其它信号用于网上传输</p>
-<ul>
-<li>
-<p>数据链路层</p>
-<p>数据链路层通过物理网络链路供数据传输。<br>
-规定了 0 和 1 的分包形式，确定了网络数据包的形式；</p>
-</li>
-<li>
-<p>网络层</p>
-<p>网络层负责在源和终点之间建立连接；<br>
-此处需要确定计算机的位置，通过 IPv4，IPv6 格式的 IP 地址来找到对应的主机</p>
-</li>
-<li>
-<p>传输层</p>
-<p>传输层向高层提供可靠的端到端的网络数据流服务。<br>
-每一个应用程序都会在网卡注册一个端口号，该层就是端口与端口的通信</p>
-</li>
-<li>
-<p>会话层</p>
-<p>会话层建立、管理和终止表示层与实体之间的通信会话；<br>
-建立一个连接（自动的手机信息、自动的网络寻址）;</p>
-</li>
-<li>
-<p>表示层:</p>
-<p>对应用层数据编码和转化，确保以一个系统应用层发送的信息 可以被另一个系统应用层识别；</p>
-</li>
-</ul>
-<p>TCP 通信流程</p>
-<p>TCP 是一个面向连接的，安全的，流式传输协议，这个协议是一个传输层协议。</p>
-<ul>
-<li>面向连接：是一个双向连接，通过三次握手完成，断开连接需要通过四次挥手完成。</li>
-<li>安全：tcp 通信过程中，会对发送的每一数据包都会进行校验，如果发现数据丢失，会自动重传</li>
-<li>流式传输：发送端和接收端处理数据的速度，数据的量都可以不一致</li>
-</ul>
-<p>服务器端通信流程</p>
-<ol>
-<li>
-<p>创建用于监听的套接字，这个套接字是一个文件描述符 (监听的)</p>
-<p><code>int lfd = socket();</code></p>
-</li>
-<li>
-<p>将得到的监听的文件描述符和本地的 IP 端口进行绑定</p>
-<p><code>bind();</code></p>
-</li>
-<li>
-<p>设置监听 (成功之后开始监听，监听的是客户端的连接)</p>
-<p><code>listen();</code></p>
-</li>
-<li>
-<p>等待并接受客户端的连接请求，建立新的连接，会得到一个新的文件描述符 (通信的)，没有新连接请求就阻塞</p>
-<p><code>int cfd = accept();</code></p>
-</li>
-<li>
-<p>通信，读写操作默认都是阻塞的</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>断开连接，关闭套接字</p>
-<p><code>close();</code></p>
-</li>
-</ol>
-<blockquote>
-<p>在 tcp 的服务器端，有两类文件描述符</p>
-<p>监听的文件描述符<br>
-只需要有一个<br>
-不负责和客户端通信，负责检测客户端的连接请求，检测到之后调用 accept 就可以建立新的连接<br>
-通信的文件描述符<br>
-负责和建立连接的客户端通信<br>
-如果有 N 个客户端和服务器建立了新的连接，通信的文件描述符就有 N 个，每个客户端和服务器都对应一个通信的文件描述符</p>
-</blockquote>
-<p>客户端的通信流程</p>
-<p>在单线程的情况下客户端通信的文件描述符有一个，没有监听的文件描述符</p>
-<ol>
-<li>
-<p>创建一个通信的套接字</p>
-<p><code>int cfd = socket();</code></p>
-</li>
-<li>
-<p>连接服务器，需要知道服务器绑定的 IP 和端口</p>
-<p><code>connect();</code></p>
-</li>
-<li>
-<p>通信</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 接收数据</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 发送数据</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
-<li>
-<p>断开连接，关闭文件描述符 (套接字)</p>
-<p><code>close();</code></p>
-</li>
-</ol>
-<h2 id="套接字"><a class="markdownIt-Anchor" href="#套接字">#</a> 套接字</h2>
+## 套接字
 <p>在标准 C++ 没有提供专门用于套接字通信的类，所以只能使用操作系统提供的基于 C 的 API 函数，基于这些 C 的 API 函数我们也可以封装自己的 C++ 类。</p>
 <p>但是 Qt 就不一样了，它是 C++ 的一个框架并且里边提供了用于套接字通信的类（TCP、UDP）这样就使得我们的操作变得更加简单了（当然，在 Qt 中使用标准 C 的 API 进行套接字通信也是完全没有问题的）。下面，给大家讲一下如果使用相关类的进行 TCP 通信。</p>
 <p>使用 Qt 提供的类进行基于 TCP 的套接字通信需要用到两个类：</p>
@@ -1010,7 +1325,7 @@ static QThreadPool * QThreadPool::globalInstance();
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-05-04 01:01:15" itemprop="dateModified" datetime="2023-05-04T01:01:15+08:00">2023-05-04</time>
+    <time title="修改时间：2023-05-09 23:37:05" itemprop="dateModified" datetime="2023-05-09T23:37:05+08:00">2023-05-09</time>
   </span>
   <span id="2023/03/12/QtStudy/" class="item leancloud_visitors" data-flag-title="Qt Study" title="阅读次数">
       <span class="icon">
@@ -1082,11 +1397,11 @@ static QThreadPool * QThreadPool::globalInstance();
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> Qt 功能概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt6-%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text"> Qt6 框架中的模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Qt 基础模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E9%99%84%E5%8A%A0%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Qt 附加模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text"> Qt 元对象系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 元对象系统概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 信号和槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%91"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 对象树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text"> Qt 中使用到的设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%8F%82%E8%80%83stl"><span class="toc-number">1.3.</span> <span class="toc-text"> Qt 容器类（参考 STL）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qlistqvector"><span class="toc-number">1.3.1.</span> <span class="toc-text"> QList&amp;QVector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qstack"><span class="toc-number">1.3.2.</span> <span class="toc-text"> QStack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qqueue"><span class="toc-number">1.3.3.</span> <span class="toc-text"> QQueue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qset"><span class="toc-number">1.3.4.</span> <span class="toc-text"> QSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qmap"><span class="toc-number">1.3.5.</span> <span class="toc-text"> QMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qmultimap"><span class="toc-number">1.3.6.</span> <span class="toc-text"> QMultiMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qhash"><span class="toc-number">1.3.7.</span> <span class="toc-text"> QHash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text"> 其他常用基础类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qvariant%E7%B1%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text"> QVariant 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qflags%E7%B1%BB"><span class="toc-number">1.4.2.</span> <span class="toc-text"> QFlags 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrandomgenerator%E7%B1%BB"><span class="toc-number">1.4.3.</span> <span class="toc-text"> QRandomGenerator 类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#i%E5%B8%B8%E7%94%A8%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text"> i 常用界面组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text"> 界面组件概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text"> 布局管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.</span> <span class="toc-text"> QString 字符串操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qspinbox%E5%92%8Cqdoublespinbox"><span class="toc-number">2.4.</span> <span class="toc-text"> QSpinBox 和 QDoubleSpinBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text"> 常用按钮组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qslider%E5%92%8Cqprogressbar"><span class="toc-number">2.6.</span> <span class="toc-text"> QSlider 和 QProgressBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">2.7.</span> <span class="toc-text"> 日期和时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtimer%E5%92%8Cqelapsedtimer"><span class="toc-number">2.8.</span> <span class="toc-text"> QTimer 和 QElapsedTimer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qcombobox"><span class="toc-number">2.9.</span> <span class="toc-text"> QComboBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qmainwindow%E5%92%8Cqaction"><span class="toc-number">2.10.</span> <span class="toc-text"> QMainWindow 和 QAction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtoolbutton%E5%92%8Cqlistwidget"><span class="toc-number">2.11.</span> <span class="toc-text"> QToolButton 和 QListWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtreewidget"><span class="toc-number">2.12.</span> <span class="toc-text"> QTreeWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtablewidget"><span class="toc-number">2.13.</span> <span class="toc-text"> QTableWidget</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text"> 模型 &#x2F; 视图结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text"> 事件处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 什么是事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text"> 如何处理事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text"> 绘图事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text"> 定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%92%8C%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.5.</span> <span class="toc-text"> 鼠标和键盘事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%92%8C%E5%A4%9A%E7%AA%97%E5%8F%A3%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.</span> <span class="toc-text"> 对话框和多窗口程序设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%92%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text"> 文件系统操作和文件读写</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">7.</span> <span class="toc-text"> Qt 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">7.1.</span> <span class="toc-text"> Qt 数据库编程概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqltablemodel"><span class="toc-number">7.2.</span> <span class="toc-text"> QSqlTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquerymodel"><span class="toc-number">7.3.</span> <span class="toc-text"> QSqlQueryModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquery"><span class="toc-number">7.4.</span> <span class="toc-text"> QSqlQuery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlrelationaltablemodel"><span class="toc-number">7.5.</span> <span class="toc-text"> QSqlRelationalTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.6.</span> <span class="toc-text"> 基于 Qt 框架实现学生成绩管理系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BB%98%E5%9B%BE"><span class="toc-number">8.</span> <span class="toc-text"> Qt 绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qpainter%E7%BB%98%E5%9B%BE"><span class="toc-number">8.1.</span> <span class="toc-text"> QPainter 绘图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">8.2.</span> <span class="toc-text"> 坐标系统和坐标变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E8%A7%86%E5%9B%BE%E6%9E%B6%E6%9E%84"><span class="toc-number">8.3.</span> <span class="toc-text"> 图形 &#x2F; 视图架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">8.4.</span> <span class="toc-text"> 图像处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%92%8C%E5%BA%93"><span class="toc-number">9.</span> <span class="toc-text"> 自定义插件和库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-charts"><span class="toc-number">10.</span> <span class="toc-text"> Qt  Charts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#charts%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">10.1.</span> <span class="toc-text"> Charts 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="toc-number">10.2.</span> <span class="toc-text"> 折线图绘制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E6%A0%87%E4%BA%A4%E4%BA%92%E6%93%8D%E4%BD%9C"><span class="toc-number">10.3.</span> <span class="toc-text"> 图标交互操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E5%92%8C%E9%A5%BC%E5%9B%BE"><span class="toc-number">10.4.</span> <span class="toc-text"> 柱状图和饼图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-data-visualization"><span class="toc-number">11.</span> <span class="toc-text"> Qt Data Visualization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-visualization%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">11.1.</span> <span class="toc-text"> Data Visualization 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="toc-number">11.2.</span> <span class="toc-text"> 三维柱状图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="toc-number">11.3.</span> <span class="toc-text"> 三维散点图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9B%B2%E9%9D%A2%E5%9B%BE"><span class="toc-number">11.4.</span> <span class="toc-text"> 三维曲面图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">12.</span> <span class="toc-text"> Qt 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBqthread"><span class="toc-number">12.1.</span> <span class="toc-text"> 线程类 QThread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%85%B1%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.1.</span> <span class="toc-text"> 常用公共成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD"><span class="toc-number">12.1.2.</span> <span class="toc-text"> 信号槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.3.</span> <span class="toc-text"> 静态函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.4.</span> <span class="toc-text"> 任务处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F1"><span class="toc-number">12.2.</span> <span class="toc-text"> 线程使用方式 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F2"><span class="toc-number">12.3.</span> <span class="toc-text"> 线程使用方式 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE"><span class="toc-number">12.4.</span> <span class="toc-text"> 线程资源释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">12.5.</span> <span class="toc-text"> Qt 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">12.5.1.</span> <span class="toc-text"> 线程池的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrunnable"><span class="toc-number">12.5.2.</span> <span class="toc-text"> QRunnable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qthreadpool"><span class="toc-number">12.5.3.</span> <span class="toc-text"> QThreadPool</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">13.</span> <span class="toc-text"> Qt 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="toc-number">13.1.</span> <span class="toc-text"> 套接字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpserve"><span class="toc-number">13.2.</span> <span class="toc-text"> QTcpServe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpsocket"><span class="toc-number">13.3.</span> <span class="toc-text"> QTcpSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Btcp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">13.4.</span> <span class="toc-text"> 描述 Qt 下 Tcp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Budp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">13.5.</span> <span class="toc-text"> 描述 QT 下 udp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%A1%B9%E7%9B%AE"><span class="toc-number">13.6.</span> <span class="toc-text"> 基于 Qt 框架实现网络聊天室项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-number">14.</span> <span class="toc-text"> Qt 多媒体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E7%BC%96%E7%A8%8B"><span class="toc-number">15.</span> <span class="toc-text"> 串口编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%8A%80%E6%9C%AF"><span class="toc-number">16.</span> <span class="toc-text"> 其他工具软件和技术</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> Qt 功能概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt6-%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text"> Qt6 框架中的模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Qt 基础模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E9%99%84%E5%8A%A0%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Qt 附加模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text"> Qt 元对象系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 元对象系统概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 信号和槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%91"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 对象树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qt%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text"> Qt 中使用到的设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%8F%82%E8%80%83stl"><span class="toc-number">1.3.</span> <span class="toc-text"> Qt 容器类（参考 STL）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qlistqvector"><span class="toc-number">1.3.1.</span> <span class="toc-text"> QList&amp;QVector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qstack"><span class="toc-number">1.3.2.</span> <span class="toc-text"> QStack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qqueue"><span class="toc-number">1.3.3.</span> <span class="toc-text"> QQueue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qset"><span class="toc-number">1.3.4.</span> <span class="toc-text"> QSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qmap"><span class="toc-number">1.3.5.</span> <span class="toc-text"> QMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qmultimap"><span class="toc-number">1.3.6.</span> <span class="toc-text"> QMultiMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qhash"><span class="toc-number">1.3.7.</span> <span class="toc-text"> QHash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text"> 其他常用基础类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qvariant%E7%B1%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text"> QVariant 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qflags%E7%B1%BB"><span class="toc-number">1.4.2.</span> <span class="toc-text"> QFlags 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrandomgenerator%E7%B1%BB"><span class="toc-number">1.4.3.</span> <span class="toc-text"> QRandomGenerator 类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text"> 常用界面组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text"> 界面组件概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 按钮类组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 输入类组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 显示类组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 容器类组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#item%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.5.</span> <span class="toc-text"> Item 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 其他界面组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qwidget%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E5%B1%9E%E6%80%A7%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.7.</span> <span class="toc-text"> QWidget 类的主要属性和接口函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text"> 布局管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.</span> <span class="toc-text"> QString 字符串操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qchar%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">2.3.1.</span> <span class="toc-text"> QChar 的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qstring%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.2.</span> <span class="toc-text"> QString 常用操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%95%B0%E5%80%BC%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.3.</span> <span class="toc-text"> QString 字符串与数值的转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qspinbox%E5%92%8Cqdoublespinbox"><span class="toc-number">2.4.</span> <span class="toc-text"> QSpinBox 和 QDoubleSpinBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text"> 常用按钮组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qslider%E5%92%8Cqprogressbar"><span class="toc-number">2.6.</span> <span class="toc-text"> QSlider 和 QProgressBar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qabstractslider"><span class="toc-number">2.6.1.</span> <span class="toc-text"> QAbstractSlider</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">2.7.</span> <span class="toc-text"> 日期和时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtimer%E5%92%8Cqelapsedtimer"><span class="toc-number">2.8.</span> <span class="toc-text"> QTimer 和 QElapsedTimer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qcombobox"><span class="toc-number">2.9.</span> <span class="toc-text"> QComboBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qmainwindow%E5%92%8Cqaction"><span class="toc-number">2.10.</span> <span class="toc-text"> QMainWindow 和 QAction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtoolbutton%E5%92%8Cqlistwidget"><span class="toc-number">2.11.</span> <span class="toc-text"> QToolButton 和 QListWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtreewidget"><span class="toc-number">2.12.</span> <span class="toc-text"> QTreeWidget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtablewidget"><span class="toc-number">2.13.</span> <span class="toc-text"> QTableWidget</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text"> 模型 &#x2F; 视图结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text"> 事件处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 什么是事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text"> 如何处理事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text"> 绘图事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text"> 定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%92%8C%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.5.</span> <span class="toc-text"> 鼠标和键盘事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%92%8C%E5%A4%9A%E7%AA%97%E5%8F%A3%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.</span> <span class="toc-text"> 对话框和多窗口程序设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%92%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text"> Qt 文件系统操作和文件读写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">6.1.</span> <span class="toc-text"> 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E4%B8%8E%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.</span> <span class="toc-text"> 目录与文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qcoreapplication%E7%B1%BB"><span class="toc-number">6.2.1.</span> <span class="toc-text"> QCoreApplication 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qfile%E7%B1%BB"><span class="toc-number">6.2.2.</span> <span class="toc-text"> QFile 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qfileinfo%E7%B1%BB"><span class="toc-number">6.2.3.</span> <span class="toc-text"> QFileInfo 类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">7.</span> <span class="toc-text"> Qt 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qt-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">7.1.</span> <span class="toc-text"> Qt 数据库编程概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqltablemodel"><span class="toc-number">7.2.</span> <span class="toc-text"> QSqlTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquerymodel"><span class="toc-number">7.3.</span> <span class="toc-text"> QSqlQueryModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlquery"><span class="toc-number">7.4.</span> <span class="toc-text"> QSqlQuery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsqlrelationaltablemodel"><span class="toc-number">7.5.</span> <span class="toc-text"> QSqlRelationalTableModel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.6.</span> <span class="toc-text"> 基于 Qt 框架实现学生成绩管理系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BB%98%E5%9B%BE"><span class="toc-number">8.</span> <span class="toc-text"> Qt 绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qpainter%E7%BB%98%E5%9B%BE"><span class="toc-number">8.1.</span> <span class="toc-text"> QPainter 绘图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">8.2.</span> <span class="toc-text"> 坐标系统和坐标变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E8%A7%86%E5%9B%BE%E6%9E%B6%E6%9E%84"><span class="toc-number">8.3.</span> <span class="toc-text"> 图形 &#x2F; 视图架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">8.4.</span> <span class="toc-text"> 图像处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%92%8C%E5%BA%93"><span class="toc-number">9.</span> <span class="toc-text"> 自定义插件和库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-charts"><span class="toc-number">10.</span> <span class="toc-text"> Qt  Charts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#charts%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">10.1.</span> <span class="toc-text"> Charts 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="toc-number">10.2.</span> <span class="toc-text"> 折线图绘制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E6%A0%87%E4%BA%A4%E4%BA%92%E6%93%8D%E4%BD%9C"><span class="toc-number">10.3.</span> <span class="toc-text"> 图标交互操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E5%92%8C%E9%A5%BC%E5%9B%BE"><span class="toc-number">10.4.</span> <span class="toc-text"> 柱状图和饼图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-data-visualization"><span class="toc-number">11.</span> <span class="toc-text"> Qt Data Visualization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-visualization%E6%A8%A1%E5%9D%97%E6%A6%82%E8%BF%B0"><span class="toc-number">11.1.</span> <span class="toc-text"> Data Visualization 模块概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="toc-number">11.2.</span> <span class="toc-text"> 三维柱状图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="toc-number">11.3.</span> <span class="toc-text"> 三维散点图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%9B%B2%E9%9D%A2%E5%9B%BE"><span class="toc-number">11.4.</span> <span class="toc-text"> 三维曲面图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">12.</span> <span class="toc-text"> Qt 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBqthread"><span class="toc-number">12.1.</span> <span class="toc-text"> 线程类 QThread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%85%B1%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.1.</span> <span class="toc-text"> 常用公共成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD"><span class="toc-number">12.1.2.</span> <span class="toc-text"> 信号槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.3.</span> <span class="toc-text"> 静态函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">12.1.4.</span> <span class="toc-text"> 任务处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F1"><span class="toc-number">12.2.</span> <span class="toc-text"> 线程使用方式 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F2"><span class="toc-number">12.3.</span> <span class="toc-text"> 线程使用方式 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE"><span class="toc-number">12.4.</span> <span class="toc-text"> 线程资源释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qt%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">12.5.</span> <span class="toc-text"> Qt 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">12.5.1.</span> <span class="toc-text"> 线程池的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qrunnable"><span class="toc-number">12.5.2.</span> <span class="toc-text"> QRunnable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qthreadpool"><span class="toc-number">12.5.3.</span> <span class="toc-text"> QThreadPool</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">13.</span> <span class="toc-text"> Qt 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpserve"><span class="toc-number">13.1.</span> <span class="toc-text"> QTcpServe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtcpsocket"><span class="toc-number">13.2.</span> <span class="toc-text"> QTcpSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Btcp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">13.3.</span> <span class="toc-text"> 描述 Qt 下 Tcp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0qt%E4%B8%8Budp%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B"><span class="toc-number">13.4.</span> <span class="toc-text"> 描述 QT 下 udp 通信的整个流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eqt%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%A1%B9%E7%9B%AE"><span class="toc-number">13.5.</span> <span class="toc-text"> 基于 Qt 框架实现网络聊天室项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt-%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-number">14.</span> <span class="toc-text"> Qt 多媒体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E7%BC%96%E7%A8%8B"><span class="toc-number">15.</span> <span class="toc-text"> 串口编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%8A%80%E6%9C%AF"><span class="toc-number">16.</span> <span class="toc-text"> 其他工具软件和技术</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/2023/03/12/QtStudy/" rel="bookmark" title="Qt Study">Qt Study</a></li><li><a href="/2023/03/26/QML&QtQuick/" rel="bookmark" title="QML & Qt Quick">QML & Qt Quick</a></li><li><a href="/2023/04/20/qtchat/" rel="bookmark" title="基于Qt框架实现网络聊天室">基于Qt框架实现网络聊天室</a></li>
+          <li class="active"><a href="/2023/03/12/QtStudy/" rel="bookmark" title="Qt Study">Qt Study</a></li><li><a href="/2023/03/26/QML&QtQuick/" rel="bookmark" title="QML & Qt Quick">QML & Qt Quick</a></li><li><a href="/2023/04/20/qtchat/" rel="bookmark" title="基于Qt框架实现网络聊天室">基于Qt框架实现网络聊天室</a></li><li><a href="/2023/05/04/showimg/" rel="bookmark" title="基于Qt的图片浏览器">基于Qt的图片浏览器</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -1100,7 +1415,7 @@ static QThreadPool * QThreadPool::globalInstance();
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">14</span>
+        <span class="count">16</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -1112,7 +1427,7 @@ static QThreadPool * QThreadPool::globalInstance();
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">9</span>
+        <span class="count">10</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -1201,40 +1516,20 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
     <span><a href="/2023/03/15/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
   </li>
 
       
@@ -1254,7 +1549,7 @@ static QThreadPool * QThreadPool::globalInstance();
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/04/02/C++11/" title="C++11&#x2F;14&#x2F;17">C++11/14/17</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
   </li>
 
       
@@ -1271,10 +1566,30 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/03/08/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+    <span><a href="/2023/04/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="C++网络编程">C++网络编程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
   </li>
 
       
@@ -1291,10 +1606,10 @@ static QThreadPool * QThreadPool::globalInstance();
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
   </li>
 
   </ul>
