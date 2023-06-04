@@ -9,14 +9,16 @@
         <lastBuildDate>Tue, 18 Apr 2023 23:07:30 +0800</lastBuildDate>
         <category>C++</category>
         <category>DataBase</category>
-        <category>Linux</category>
         <category>Qt</category>
         <category>QML</category>
-        <category>STL</category>
+        <category>MFC</category>
+        <category>Linux</category>
+        <category>XML</category>
         <category>操作系统</category>
-        <category>算法</category>
-        <category>设计模式</category>
+        <category>STL</category>
         <category>计算机网络</category>
+        <category>设计模式</category>
+        <category>算法</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/04/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
             <title>C++网络编程</title>
@@ -156,6 +158,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230510234343879.png&#34; alt=&#34;image-20230510234343879&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;网络协议&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#网络协议&#34;&gt;#&lt;/a&gt; 网络协议&lt;/h2&gt;
 &lt;p&gt;网络协议指的是计算机网络中互相通信的对等实体之间交换信息时所必须遵守的规则的集合。一般系统网络协议包括五个部分：通信环境，传输服务，词汇表，信息的编码格式，时序、规则和过程。先来通过下面几幅图了解一下常用的网络协议的格式：&lt;/p&gt;
 &lt;ul&gt;
