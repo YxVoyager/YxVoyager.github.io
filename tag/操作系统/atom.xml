@@ -7,14 +7,15 @@
     <category term="C++" />
     <category term="Boost" />
     <category term="DataBase" />
-    <category term="MFC" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="Linux" />
+    <category term="MFC" />
     <category term="XML" />
-    <category term="操作系统" />
-    <category term="设计模式" />
+    <category term="debug" />
+    <category term="Linux" />
     <category term="计算机网络" />
+    <category term="设计模式" />
+    <category term="操作系统" />
     <category term="STL" />
     <category term="算法" />
     <entry>

@@ -1,0 +1,21 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "null • All posts by \"debug\" tag",
+    "description": "",
+    "home_page_url": "https://adventure-yx.github.io",
+    "items": [
+        {
+            "id": "https://adventure-yx.github.io/2023/06/12/TiXML%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/",
+            "url": "https://adventure-yx.github.io/2023/06/12/TiXML%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/",
+            "title": "TiXML打开文件失败解决办法",
+            "date_published": "2023-06-12T07:12:08.000Z",
+            "content_html": "<p>TiXML 打开文件失败解决办法</p>\n<p>问题描述</p>\n<p>在 Dlg.cpp 中 <code>std::auto_ptr&lt;TiXmlDocument&gt; pDoc(new TiXmlDocument(&quot;config.cfg&quot;));</code>  加载文件失败</p>\n<p>解决方法</p>\n<p>把包含在 Dlg.cpp 中的 TiXML 头文件移除，包含在 stdafx.h 中</p>\n<figure class=\"highlight cpp\"><figcaption data-lang=\"C++\"><span>p</span></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token macro property\"><span class=\"token directive-hash\">#</span><span class=\"token directive keyword\">define</span> <span class=\"token macro-name\">TIXML_USE_STL</span></span></pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token macro property\"><span class=\"token directive-hash\">#</span><span class=\"token directive keyword\">include</span> <span class=\"token string\">\"TinyXml/tinyxml.h\"</span></span></pre></td></tr></table></figure>",
+            "tags": [
+                "C++",
+                "MFC",
+                "XML",
+                "debug"
+            ]
+        }
+    ]
+}

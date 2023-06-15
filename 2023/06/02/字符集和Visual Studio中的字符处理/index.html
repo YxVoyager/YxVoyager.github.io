@@ -1,0 +1,634 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="C++,MFC" />
+
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">
+
+
+
+  <title>
+字符集和Visual Studio中的字符处理 - C++ |
+Adventure =  = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">字符集和Visual Studio中的字符处理
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-06-02 15:12:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-06-02T15:12:08+08:00">2023-06-02</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Adventure</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/C/" itemprop="item" rel="index" title="分类于 C++"><span itemprop="name">C++</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="AdventureYX">
+    <meta itemprop="description" content="心有所向。日复一日，必有精进, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="字符集"><a class="markdownIt-Anchor" href="#字符集">#</a> 字符集</h1>
+<ul>
+<li>
+<p>ASCII（American Standard Code for Information Interchange）</p>
+<p>一个字节（8bit）表示的字符编码，其中只用到了前 7 位，表示 127 个字符。</p>
+</li>
+<li>
+<p>ANSI 多字节字符集（American National Standard Institute）</p>
+<p>由字节数据的最高位判断：</p>
+<ul>
+<li>最高位为 0，代表是单字节，按照 ASCII 表进行编码</li>
+<li>最高位为 1，代表是本地化扩展字符，需要将相邻的两个字节组成一个整体，来进行码值求取，得到的码值对应的本地化字符集中可以得到相应的字符是什么。
+<ul>
+<li>简体中文系统下，ANSI 编码代表 GB2312 编码 (GBK 是 GB2312 的扩展，兼容 GB2312)</li>
+<li>繁体中文系统下，ANSI 编码代表 BIG5 编码</li>
+<li>日文系统下，ANSI 编码代表 JIS 编码</li>
+</ul>
+</li>
+<li>不同 ANSI 编码之间互不兼容，当信息在国际间交流时，无法将属于两种语言的文字，存储在同一段 ANSI 编码的文本中。需要将不同的 ANSI 编码都转换成 UTF-8 编码，进而存储。</li>
+</ul>
+</li>
+<li>
+<p>Unicode 编码（Universal Multiple-Octet Coded Character Set，通用多八位编码字符集）</p>
+<p>国际组织制定的可以容纳世界上所有文字和字符的编码方案，使用定宽 2 个字节 <code>Ox0000-OxFFFF</code>  来表示一个字符。对于英文浪费了一个字节。</p>
+</li>
+<li>
+<p>UTF-8（8bit Unicode Transformation Format，8 位 Unicode 通用转换格式）</p>
+<p>UTF-8 是 Unicode 的实现方式之一，是一种针对 Unicode 的可变长度字符编码，使用 1-4 个字节进行编码</p>
+<p>对单字节字符，第一位为 0，后 7 位与 ASCII 码一致。</p>
+</li>
+<li>
+<p>UTF-16</p>
+<p>可变长度字符编码，将字符编码成 2 字节或者 4 字节</p>
+</li>
+<li>
+<p>UTF-32</p>
+<p>固定长度的编码，始终占用 4 字节。</p>
+</li>
+</ul>
+<h1 id="字符类型"><a class="markdownIt-Anchor" href="#字符类型">#</a> 字符类型</h1>
+<ul>
+<li>
+<p><strong>char</strong></p>
+<p>字符型，单位是字节，占 8bit</p>
+</li>
+<li>
+<p><strong>wchar_t</strong></p>
+<p>宽字符，单位是双字节，占 16bit</p>
+<p>wchar_t 是 Unicode 定义的数据类型，定义在 <code>&lt;string.h&gt;</code>  中。在 ANSI 中使用 wchar_t 会报错，wchar_t 类型的字符是按 Unicode 的编码方式存储的。</p>
+<blockquote>
+<p>给 wchar_t 类型变量赋值时，要注意类型以及编码方式是否匹配。</p>
+<p><code>wchar_t *str = L&quot;aaabbb&quot;;</code></p>
+<p>str 是 wchar_t 类型，而 wchar_t 是 Unicode 数据类型，所以后面的字符串要用 L 指令转化为 Unicode 编码</p>
+</blockquote>
+</li>
+<li>
+<p><strong>TCHAR</strong></p>
+<p>TCHAR 是一个宏，并不是实际的某一个类型。当使用多字节字符集时，TCHAR 就是 char；当使用 Unicode 字符集时，TCHAR 就可以当作 wchar_t 来用。使用 TCHAR，编译器会根据我们字符集来进行相应的转化。TCHAR 定义在 &lt;tchar.h&gt; 中，使用要先包含头文件。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span>  <span class="token expression">UNICODE</span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token keyword">typedef</span> <span class="token keyword">wchar_t</span> TCHAR<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> TCHAR<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span></pre></td></tr></table></figure></li>
+<li>
+<p><strong>LPSTR</strong>：32bit 指针，指向一个字符串，每个字符占 1 个字节。相当于 <code>char*</code></p>
+</li>
+<li>
+<p><strong>LPCSTR</strong>：32bit 指针，指向一个常字符串，每个字符占 1 个字节。相当于 <code>const char*</code></p>
+</li>
+<li>
+<p><strong>LPTSTR</strong>：32bit 指针，指向一个字符串，每个字节可能占 1 个字节或 2 个字节，取决于 Unicode 是否定义。相当于 <code>tchar*</code></p>
+</li>
+<li>
+<p><strong>LPCTSTR</strong>：32bit 指针，指向一个常字符串，每个字节可能占 1 个字节或 2 个字节，取决于 Unicode 是否定义。相当于 <code>const tchar*</code></p>
+</li>
+<li>
+<p><strong>LPWSTR</strong>：32bit 指针，指向一个 Unicode 字符串的指针，每个字符占 2 字节。相当于 <code>wchar_t*</code></p>
+</li>
+<li>
+<p><strong>LPCWSTR</strong>：32bit 指针，指向一个 Unicode 常字符串的指针，每个字符占 2 字节。相当于 <code>const wchar_t*</code></p>
+</li>
+</ul>
+<h1 id="l指令"><a class="markdownIt-Anchor" href="#l指令">#</a> L 指令</h1>
+<p>字符串前面加 L 表示该字符串是 Unicode 字符串，可以将 ANSI 字符串转换为 Unicode 字符串，就是每个字符占 2 个字节。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">strlen</span><span class="token punctuation">(</span>L<span class="token string">"abc"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h1 id="_t宏"><a class="markdownIt-Anchor" href="#_t宏">#</a> _T () 宏</h1>
+<p>_T (&quot;&quot;) 是一个宏定义在 tchar.h 下。</p>
+<p>_T () 或者 TEXT () 宏，可以把引号括起来的字符串，根据环境选择合适的编码方式。</p>
+<ul>
+<li>如果定义的是 Unicode，那么_T (“abc”) 就相当于 L&quot;abc&quot;，也就是宽字符；</li>
+<li>如果是多字节编码，那么英文采用单字节，汉字采用单字节；</li>
+<li>在 Unicode 环境下，要求 LPCWSTR 的地方不可以给一个 char*，而在多字节编码下可以。</li>
+</ul>
+<blockquote>
+<p>Windows 使用两种字符集 ANSI 和 UNICODE，前者就是通常使用的单字节方式，但这种方式处理中文这样的双字节字符不方便，容易出现半个汉字的情况。而后者是双字节，方便处理双字节字符。Windows NT 的所有与字符有关的函数都提供两种方式的版本，Windows 9x 只支持 ANSI 方式。</p>
+</blockquote>
+<blockquote>
+<p>比如</p>
+<p><code>wchar_t Str[] = L&quot;Hello World!&quot;;</code>  是双字节存储字符串，_T 是与之适配的宏。</p>
+</blockquote>
+<p>当有 <code>#ifdef _UNICODE</code>  的时候，_T () 就是 L；</p>
+<p>当没有 <code>#ifdef _UNICODE</code>  的时候，_T () 就是 ANSI 的。</p>
+<h1 id="mfc中cstring和stdstring的转换"><a class="markdownIt-Anchor" href="#mfc中cstring和stdstring的转换">#</a> MFC 中 CString 和 std::string 的转换</h1>
+<p>CString 实际是 CStringT，也就是模板类</p>
+<p>在 Unicode 环境下，实际是 CStringW</p>
+<p>在多字符集环境下，实际是 CStringA</p>
+<p>std::string 是多字符集环境下的</p>
+<h2 id="unicode环境下"><a class="markdownIt-Anchor" href="#unicode环境下">#</a> Unicode 环境下</h2>
+<ul>
+<li>
+<p>CString 转换 std::string</p>
+<p>CString 实际是 CStringW，要转换为多字符集，需要进行转码。使用 WideCharToMultiByte 转换成多字符集，然后再构造 std::string</p>
+</li>
+<li>
+<p>std::string 转换 CString</p>
+<p>CStringT 模板类会自动做 char* 到 wchar_t * 的转码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//CString -> std::string</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">strCS</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>USES_CONVERSION<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>std<span class="token double-colon punctuation">::</span>string <span class="token function">strS</span><span class="token punctuation">(</span><span class="token function">W2A</span><span class="token punctuation">(</span>strCS<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>			</pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">//std::string -> CString</span></pre></td></tr><tr><td data-num="7"></td><td><pre>CString strCStemp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>strCStemp <span class="token operator">=</span> strS<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 不能写在同一行</span></pre></td></tr></table></figure><h2 id="多字符集环境下"><a class="markdownIt-Anchor" href="#多字符集环境下">#</a> 多字符集环境下</h2>
+<p>CString 就是 CStringA</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//CString -> std::string</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">strCS</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>std<span class="token double-colon punctuation">::</span>string str1 str2<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>str1 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">GetBuffer</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>str2 <span class="token operator">=</span> <span class="token punctuation">(</span>CStringA<span class="token punctuation">)</span>str<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">//std::string -> CString</span></pre></td></tr><tr><td data-num="8"></td><td><pre>std<span class="token double-colon punctuation">::</span>string strTemp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>CString str <span class="token operator">=</span> strTemp<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment">// 可以写在一行</span></pre></td></tr></table></figure>
+      <div class="tags">
+          <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
+          <a href="/tags/MFC/" rel="tag"><i class="ic i-tag"></i> MFC</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-06-14 19:20:01" itemprop="dateModified" datetime="2023-06-14T19:20:01+08:00">2023-06-14</time>
+  </span>
+  <span id="2023/06/02/字符集和Visual Studio中的字符处理/" class="item leancloud_visitors" data-flag-title="字符集和Visual Studio中的字符处理" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>AdventureYX <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://adventure-yx.github.io/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" title="字符集和Visual Studio中的字符处理">https://adventure-yx.github.io/2023/06/02/字符集和Visual Studio中的字符处理/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/05/29/XML/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-19f963fbc408cf0014.png" title="XML &amp; TinyXML">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> XML</span>
+  <h3>XML & TinyXML</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/06/02/VS%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-99681dcf7dddeea33.jpeg" title="字符集和Visual Studio中的字符处理">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>字符集和Visual Studio中的字符处理</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text"> 字符集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 字符类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#l%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text"> L 指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#_t%E5%AE%8F"><span class="toc-number">4.</span> <span class="toc-text"> _T () 宏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E4%B8%ADcstring%E5%92%8Cstdstring%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text"> MFC 中 CString 和 std::string 的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unicode%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.1.</span> <span class="toc-text"> Unicode 环境下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E7%AC%A6%E9%9B%86%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.2.</span> <span class="toc-text"> 多字符集环境下</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/02/24/C++Study/" rel="bookmark" title="C++ Study">C++ Study</a></li><li><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" rel="bookmark" title="C++面经">C++面经</a></li><li><a href="/2023/03/10/STL/" rel="bookmark" title="STL">STL</a></li><li><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="bookmark" title="设计模式">设计模式</a></li><li><a href="/2023/03/30/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" rel="bookmark" title="算法进阶">算法进阶</a></li><li><a href="/2023/04/02/C++11/" rel="bookmark" title="C++11/14/17">C++11/14/17</a></li><li><a href="/2023/05/25/MFC/" rel="bookmark" title="MFC">MFC</a></li><li><a href="/2023/06/02/VS%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" rel="bookmark" title="字符集和Visual Studio中的字符处理">字符集和Visual Studio中的字符处理</a></li><li class="active"><a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" rel="bookmark" title="字符集和Visual Studio中的字符处理">字符集和Visual Studio中的字符处理</a></li><li><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" rel="bookmark" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></li><li><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="bookmark" title="C++Boost库 内存管理">C++Boost库 内存管理</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">23</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">14</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>friends</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/links/" rel="section"><i class="ic i-magic"></i>links</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/05/29/XML/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/06/02/VS%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/04/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="C++网络编程">C++网络编程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/05/04/showimg/" title="基于Qt的图片浏览器">基于Qt的图片浏览器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/08/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/debug/" title="分类于 debug">debug</a>
+</div>
+
+    <span><a href="/2023/06/12/TiXML%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="TiXML打开文件失败解决办法">TiXML打开文件失败解决办法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/04/20/qtchat/" title="基于Qt框架实现网络聊天室">基于Qt框架实现网络聊天室</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="C++Boost库 内存管理">C++Boost库 内存管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Adventure</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/06/02/字符集和Visual Studio中的字符处理/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
