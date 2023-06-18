@@ -7,17 +7,17 @@
     <category term="C++" />
     <category term="Boost" />
     <category term="DataBase" />
+    <category term="Qt" />
     <category term="MFC" />
-    <category term="STL" />
     <category term="XML" />
     <category term="debug" />
-    <category term="Qt" />
-    <category term="QML" />
     <category term="Linux" />
+    <category term="QML" />
     <category term="操作系统" />
-    <category term="算法" />
+    <category term="STL" />
     <category term="设计模式" />
     <category term="计算机网络" />
+    <category term="算法" />
     <entry>
         <id>https://adventure-yx.github.io/2023/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/</id>
         <title>操作系统（南大2023）</title>

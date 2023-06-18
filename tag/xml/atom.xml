@@ -7,17 +7,17 @@
     <category term="C++" />
     <category term="Boost" />
     <category term="DataBase" />
+    <category term="Qt" />
     <category term="MFC" />
-    <category term="STL" />
     <category term="XML" />
     <category term="debug" />
-    <category term="Qt" />
-    <category term="QML" />
     <category term="Linux" />
+    <category term="QML" />
     <category term="操作系统" />
-    <category term="算法" />
+    <category term="STL" />
     <category term="设计模式" />
     <category term="计算机网络" />
+    <category term="算法" />
     <entry>
         <id>https://adventure-yx.github.io/2023/06/12/TiXML%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
         <title>TiXML打开文件失败解决办法</title>
