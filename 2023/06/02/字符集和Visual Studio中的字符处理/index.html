@@ -102,12 +102,12 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
-          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
         </ul>
       </div>
     </header>
@@ -268,7 +268,10 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </ul>
 <figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//CString -> std::string</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">strCS</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>USES_CONVERSION<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>std<span class="token double-colon punctuation">::</span>string <span class="token function">strS</span><span class="token punctuation">(</span><span class="token function">W2A</span><span class="token punctuation">(</span>strCS<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>			</pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">//std::string -> CString</span></pre></td></tr><tr><td data-num="7"></td><td><pre>CString strCStemp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>strCStemp <span class="token operator">=</span> strS<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 不能写在同一行</span></pre></td></tr></table></figure><h2 id="多字符集环境下"><a class="markdownIt-Anchor" href="#多字符集环境下">#</a> 多字符集环境下</h2>
 <p>CString 就是 CStringA</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//CString -> std::string</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">strCS</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>std<span class="token double-colon punctuation">::</span>string str1 str2<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>str1 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">GetBuffer</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>str2 <span class="token operator">=</span> <span class="token punctuation">(</span>CStringA<span class="token punctuation">)</span>str<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">//std::string -> CString</span></pre></td></tr><tr><td data-num="8"></td><td><pre>std<span class="token double-colon punctuation">::</span>string strTemp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>CString str <span class="token operator">=</span> strTemp<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment">// 可以写在一行</span></pre></td></tr></table></figure>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//CString -> std::string</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">strCS</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>std<span class="token double-colon punctuation">::</span>string str1 str2<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>str1 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">GetBuffer</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>str2 <span class="token operator">=</span> <span class="token punctuation">(</span>CStringA<span class="token punctuation">)</span>str<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">//std::string -> CString</span></pre></td></tr><tr><td data-num="8"></td><td><pre>std<span class="token double-colon punctuation">::</span>string strTemp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>CString str <span class="token operator">=</span> strTemp<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment">// 可以写在一行</span></pre></td></tr></table></figure><h1 id="tixml写入配置文件时bool类型转stdstring"><a class="markdownIt-Anchor" href="#tixml写入配置文件时bool类型转stdstring">#</a> TiXML 写入配置文件时 bool 类型转 std::string</h1>
+<p>定义：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> <span class="token class-name">DeviceConfigDlg</span><span class="token double-colon punctuation">::</span><span class="token function">BoolToStr</span><span class="token punctuation">(</span><span class="token keyword">bool</span> is<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> is <span class="token operator">?</span> <span class="token string">"true"</span> <span class="token operator">:</span> <span class="token string">"false"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>调用：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>pXmlElem<span class="token operator">-></span><span class="token function">SetAttribute</span><span class="token punctuation">(</span><span class="token string">"Enabled"</span><span class="token punctuation">,</span> <span class="token function">BoolToStr</span><span class="token punctuation">(</span>isXmlElem<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
           <a href="/tags/MFC/" rel="tag"><i class="ic i-tag"></i> MFC</a>
@@ -323,7 +326,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     <div class="item left">
       
 
-  <a href="/2023/05/29/XML/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-99681dcf7dddeea33.jpeg" title="XML &amp; TinyXML">
+  <a href="/2023/05/29/XML/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-134a7b41dbac28cfdf.jpeg" title="XML &amp; TinyXML">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> XML</span>
   <h3>XML & TinyXML</h3>
@@ -333,7 +336,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     <div class="item right">
       
 
-  <a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-187e4d08bbd3af08b1.png" title="C++Boost库 函数与回调">
+  <a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-3b2f6d510326b07dd.jpeg" title="C++Boost库 函数与回调">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> C++</span>
   <h3>C++Boost库 函数与回调</h3>
@@ -355,7 +358,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text"> 字符集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 字符类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#l%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text"> L 指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#_t%E5%AE%8F"><span class="toc-number">4.</span> <span class="toc-text"> _T () 宏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E4%B8%ADcstring%E5%92%8Cstdstring%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text"> MFC 中 CString 和 std::string 的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unicode%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.1.</span> <span class="toc-text"> Unicode 环境下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E7%AC%A6%E9%9B%86%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.2.</span> <span class="toc-text"> 多字符集环境下</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text"> 字符集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 字符类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#l%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text"> L 指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#_t%E5%AE%8F"><span class="toc-number">4.</span> <span class="toc-text"> _T () 宏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E4%B8%ADcstring%E5%92%8Cstdstring%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text"> MFC 中 CString 和 std::string 的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unicode%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.1.</span> <span class="toc-text"> Unicode 环境下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E7%AC%A6%E9%9B%86%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-number">5.2.</span> <span class="toc-text"> 多字符集环境下</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tixml%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%97%B6bool%E7%B1%BB%E5%9E%8B%E8%BD%ACstdstring"><span class="toc-number">6.</span> <span class="toc-text"> TiXML 写入配置文件时 bool 类型转 std::string</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -474,30 +477,10 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
+<a href="/categories/XML/" title="分类于 XML">XML</a>
 </div>
 
-    <span><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+    <span><a href="/2023/05/29/XML/" title="XML &amp; TinyXML">XML & TinyXML</a></span>
   </li>
 
       
@@ -507,37 +490,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/03/30/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
-</div>
-
-    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
   </li>
 
       
@@ -557,7 +510,57 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="C++Boost库 内存管理">C++Boost库 内存管理</a></span>
+    <span><a href="/2023/03/30/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/25/MFC/" title="MFC">MFC</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/01/Linux/" title="Linux">Linux</a></span>
   </li>
 
       
