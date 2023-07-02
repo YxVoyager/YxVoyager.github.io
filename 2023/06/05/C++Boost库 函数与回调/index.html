@@ -102,12 +102,12 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
           <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-3b2f6d510326b07dd.jpeg"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
-          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
         </ul>
       </div>
     </header>
@@ -154,7 +154,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     
 
     <h1 id="函数与回调"><a class="markdownIt-Anchor" href="#函数与回调">#</a> 函数与回调</h1>
-<p>围绕函数与函数对象，共有 4 个 Boost 库，应用了 C<ins> 中高级的语言特性和技巧，功能很强大，相应的用法也比较复杂灵活。其中前三个 ref、bind、function 已经被收入 C</ins>11 标准。</p>
+<p>围绕函数与函数对象，共有 4 个 Boost 库，应用了 <code>C++</code>  中高级的语言特性和技巧，功能很强大，相应的用法也比较复杂灵活。其中前三个 ref、bind、function 已经被收入 <code>C++11</code>  标准。</p>
 <ul>
 <li>
 <p><strong>ref 工具类</strong></p>
@@ -162,11 +162,11 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </li>
 <li>
 <p><strong>bind</strong></p>
-<p>是 C<ins> 标准库中函数适配器的增强，可以适配任意的可调用对象 —— 包括函数指针，函数引用和函数对象，把它们变成一个新的函数对象，是迈向 C</ins> 函数式编程的第一步。</p>
+<p>是 <code>C++标准库</code> 中函数适配器的增强，可以适配任意的可调用对象 —— 包括函数指针，函数引用和函数对象，把它们变成一个新的函数对象，是迈向 C++ 函数式编程的第一步。</p>
 </li>
 <li>
 <p><strong>function</strong></p>
-<p>是对 C/C++ 中函数指针类型的增强，能够容纳任意的可调用对象，可以配合 bind 使用。</p>
+<p>是对 <code>C/C++</code>  中函数指针类型的增强，能够容纳任意的可调用对象，可以配合 bind 使用。</p>
 </li>
 <li>
 <p><strong>signals2</strong></p>
@@ -174,12 +174,12 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 </li>
 </ul>
 <h2 id="ref"><a class="markdownIt-Anchor" href="#ref">#</a> ref</h2>
-<p>C++ 标准库和 Boost 中的算法大量使用了函数对象作为判断式或谓词参数，而这些参数都是传值语义，算法或函数在内部保留函数对象的拷贝并使用，例如：</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">struct</span> <span class="token class-name">square</span>								<span class="token comment">// 函数对象，计算整数的平方</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">typedef</span> <span class="token keyword">void</span> result_type<span class="token punctuation">;</span>				<span class="token comment">// 返回结果的类型定义</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">void</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token punctuation">&#123;</span>	x <span class="token operator">=</span> x <span class="token operator">*</span> x<span class="token punctuation">;</span>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    </pre></td></tr><tr><td data-num="10"></td><td><pre>    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token function">for_each</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>一般情况下，传值语义都是可行的，但也有很多特殊情况：作为参数的函数对象拷贝代价过高（具有复杂的内部状态），不希望拷贝对象（内部状态不应该被改变），甚至拷贝是不可行的（noncopyable、singleton）。</p>
+<p><code>C++标准库</code> 和 <code>Boost</code>  中的算法大量使用了函数对象作为判断式或谓词参数，而这些参数都是传值语义，算法或函数在内部保留函数对象的拷贝并使用，例如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">// 函数对象，计算整数的平方</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">struct</span> <span class="token class-name">square</span>								</pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment">// 返回结果的类型定义</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">typedef</span> <span class="token keyword">void</span> result_type<span class="token punctuation">;</span>				</pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">void</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#123;</span>	x <span class="token operator">=</span> x <span class="token operator">*</span> x<span class="token punctuation">;</span>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    </pre></td></tr><tr><td data-num="12"></td><td><pre>    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token function">for_each</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>一般情况下，传值语义都是可行的，但也有很多特殊情况：作为参数的函数对象拷贝代价过高（具有复杂的内部状态），不希望拷贝对象（内部状态不应该被改变），甚至拷贝是不可行的（noncopyable、singleton）。</p>
 <p><code> boost.ref</code>  应用代理模式，引入对象引用的包装器概念解决了这个问题。它位于命名空间 boost，为了使用 ref 组件，需要包含头文件 <code> include &lt;boost/ref.hpp&gt;</code></p>
 <h3 id="类摘要"><a class="markdownIt-Anchor" href="#类摘要">#</a> 类摘要</h3>
 <p>ref 库定义了一个很小很简单的引用类型的包装器，名字叫 reference_wrapper</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">reference_wrapper</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">explicit</span> <span class="token function">reference_wrapper</span><span class="token punctuation">(</span>T<span class="token operator">&amp;</span> t<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">t_</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span>	<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>				<span class="token comment">// 构造函数</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    </pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">operator</span> T<span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>	<span class="token keyword">return</span> <span class="token operator">*</span>t_<span class="token punctuation">;</span>	<span class="token punctuation">&#125;</span>					<span class="token comment">// 隐式转换</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    </pre></td></tr><tr><td data-num="9"></td><td><pre>    T<span class="token operator">&amp;</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token operator">*</span>t_<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>							<span class="token comment">// 访问被包装的对象</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    T<span class="token operator">*</span> <span class="token function">get_pointer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> t_<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    T<span class="token operator">*</span> t_<span class="token punctuation">;</span>													<span class="token comment">// 保存对象指针</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>reference_wrapper 的构造函数接受类型 T 的引用类型，内部使用指针存储指向 t 的引用，构造出一个 reference_wrapper 对象，从而包装了引用。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">reference_wrapper</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token comment">// 构造函数</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">explicit</span> <span class="token function">reference_wrapper</span><span class="token punctuation">(</span>T<span class="token operator">&amp;</span> t<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">t_</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span>	<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>				</pre></td></tr><tr><td data-num="7"></td><td><pre>    </pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token comment">// 隐式转换</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">operator</span> T<span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>	<span class="token keyword">return</span> <span class="token operator">*</span>t_<span class="token punctuation">;</span>	<span class="token punctuation">&#125;</span>					</pre></td></tr><tr><td data-num="10"></td><td><pre>    </pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token comment">// 访问被包装的对象</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    T<span class="token operator">&amp;</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token operator">*</span>t_<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>							</pre></td></tr><tr><td data-num="13"></td><td><pre>    T<span class="token operator">*</span> <span class="token function">get_pointer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> t_<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token comment">// 保存对象指针</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    T<span class="token operator">*</span> t_<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>reference_wrapper 的构造函数接受类型 T 的引用类型，内部使用指针存储指向 t 的引用，构造出一个 reference_wrapper 对象，从而包装了引用。</p>
 <p>get () 和 get_pointer () 这两个函数分别返回存储的引用和指针，相当于解开对 t 的包装。</p>
 <blockquote>
 <p>reference_wrapper 的构造函数被声明为 explicit，因此必须在创建对象时就赋值初始化，就像是使用一个引用类型的变量。</p>
@@ -369,7 +369,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     <div class="item left">
       
 
-  <a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-19f963fbc408cf0014.png" title="字符集和Visual Studio中的字符处理">
+  <a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-542a9d073b04482e8.jpeg" title="字符集和Visual Studio中的字符处理">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> C++</span>
   <h3>字符集和Visual Studio中的字符处理</h3>
@@ -379,7 +379,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
     <div class="item right">
       
 
-  <a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-19f963fbc408cf0014.png" title="C++Boost库 内存管理">
+  <a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-134a7b41dbac28cfdf.jpeg" title="C++Boost库 内存管理">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> C++</span>
   <h3>C++Boost库 内存管理</h3>
@@ -520,30 +520,10 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/XML/" title="分类于 XML">XML</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/05/29/XML/" title="XML &amp; TinyXML">XML & TinyXML</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
-</div>
-
-    <span><a href="/2023/02/24/C++Study/" title="C++ Study">C++ Study</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
-</div>
-
-    <span><a href="/2023/04/20/qtchat/" title="基于Qt框架实现网络聊天室">基于Qt框架实现网络聊天室</a></span>
+    <span><a href="/2023/04/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="C++网络编程">C++网络编程</a></span>
   </li>
 
       
@@ -553,7 +533,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/03/01/Linux/" title="Linux">Linux</a></span>
+    <span><a href="/2023/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%8D%97%E5%A4%A72023%EF%BC%89/" title="操作系统（南大2023）">操作系统（南大2023）</a></span>
   </li>
 
       
@@ -563,7 +543,7 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="C++Boost库 内存管理">C++Boost库 内存管理</a></span>
+    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
   </li>
 
       
@@ -573,17 +553,27 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
 </div>
 
-    <span><a href="/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></span>
+    <span><a href="/2023/03/08/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/C/" title="分类于 C++">C++</a>
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
 </div>
 
-    <span><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></span>
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/05/04/showimg/" title="基于Qt的图片浏览器">基于Qt的图片浏览器</a></span>
   </li>
 
       
@@ -603,17 +593,27 @@ Adventure =  = 心有所向。日复一日，必有精进</title>
 <a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+    <span><a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CVisual%20Studio%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" title="字符集和Visual Studio中的字符处理">字符集和Visual Studio中的字符处理</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/debug/" title="分类于 debug">debug</a>
+<a href="/categories/C/" title="分类于 C++">C++</a>
 </div>
 
-    <span><a href="/2023/06/12/TiXML%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="TiXML打开文件失败解决办法">TiXML打开文件失败解决办法</a></span>
+    <span><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/25/MFC/" title="MFC">MFC</a></span>
   </li>
 
   </ul>
