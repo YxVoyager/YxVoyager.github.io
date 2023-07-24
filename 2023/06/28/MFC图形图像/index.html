@@ -1,0 +1,621 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="C++,MFC" />
+
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/">
+
+
+
+  <title>
+MFC 图形图像 - C++ |
+Adventure =  = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">MFC 图形图像
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-06-28 10:12:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-06-28T10:12:08+08:00">2023-06-28</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Adventure</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/C/" itemprop="item" rel="index" title="分类于 C++"><span itemprop="name">C++</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="AdventureYX">
+    <meta itemprop="description" content="心有所向。日复一日，必有精进, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="cdc类及其屏幕绘图函数"><a class="markdownIt-Anchor" href="#cdc类及其屏幕绘图函数">#</a> CDC 类及其屏幕绘图函数</h1>
+<p>CDC 类是一个设备上下文类。（Device Context）</p>
+<p>CDC 类提供了用来处理显示器或者打印机等设备上下文的成员函数，还有处理与窗口客户区关联的显示上下文的成员函数。使用 CDC 的成员函数可以进行所有的绘图操作，包括处理绘图工具、GDI 对象的选择、颜色和调色板的处理、获取和设置绘图属性、映射、窗口范围、坐标转换、剪切以及绘制直线、简单图形、椭圆和多边形等。另外，它还为文本输出、处理字体、使用打印机跳转和滚动等提供了成员函数。</p>
+<p>如上所述，CDC 类几乎封装了所有的 Windows GDI 函数，另外，MFC 中还有几个由 CDC 类派生的子类，包括 CWindowDC、CPaintDC、CClientDC、CMetaFileDC，它们用来进行一些特定的绘图操作。</p>
+<blockquote>
+<p>一般在使用完 CDC 对象要记得删除它，否则会有内存泄漏。很多情况下我们可以调用 <code>CWnd::GetDC()</code>  函数来获取设备上下文指针，即 CDC 指针，这个时候记得用完后调用 <code>CWnd::ReleaseDC()</code>  函数释放上下文。</p>
+</blockquote>
+<ul>
+<li>
+<p><code>HDC</code>  是 DC 的句柄，API 中的一个类似指针的数据类型。</p>
+</li>
+<li>
+<p><code>CDC</code>  是 MFC 的 DC 的一个类，设备上下文类都有一个成员变量 <code>m_nHdc</code> ，即 HDC 类型的句柄</p>
+</li>
+<li>
+<p><code>CPaintDC</code> ：封装 BeginPaint 和 EndPaint 两个 API 的调用</p>
+<ul>
+<li>用于响应窗口重绘消息 <code>WM_PAINT</code>  的绘图输出</li>
+<li>CPaintDC 在构造函数中调用 <code>BeginPaint()</code>  取得设备上下文，在析构函数中调用 <code>EndPaint()</code>  释放设备上下文。</li>
+<li><code>EndPaint()</code>  除了释放设备上下文外，还负责从消息队列中清除 <code>WM_PAINT</code>  消息。因此<strong>在处理窗口重绘时，必须使用 CPaintDC，否则 WM_PAINT 消息无法从消息队列中清除，将引起不断地窗口重绘</strong>。</li>
+<li>CPaintDC 也只能用在 WM_PAINT 消息处理中。</li>
+</ul>
+</li>
+<li>
+<p><code>CClientDC</code> ：客户区设备上下文，处理显示器描述表的相关的窗体客户区域。</p>
+<p>构造时自动调用 <code>GetDC</code>  函数，析构时自动调用 <code>ReleaseDC</code>  函数，一般应用于客户区窗口的绘制。</p>
+<p>当需要处理一个鼠标的单击，然后马上画出一个圆，不能等到下个 WM_PAINT 的消息到来才画图，而是马上，这时就需要 CClientDC 了，它可以在 <code>OnPaint</code>  的外面创建一个客户区 DC。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CMainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">OnLButtonDown</span> <span class="token punctuation">(</span>UINT nFlags<span class="token punctuation">,</span> CPoint ppoint<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    CRect rect<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token function">GetClientRect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    </pre></td></tr><tr><td data-num="6"></td><td><pre>    CClientDC <span class="token function">dc</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    dc<span class="token punctuation">.</span><span class="token function">MoveTo</span><span class="token punctuation">(</span>rect<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rect<span class="token punctuation">.</span>top<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    dc<span class="token punctuation">.</span><span class="token function">LineTo</span><span class="token punctuation">(</span>rect<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rect<span class="token punctuation">.</span>bottom<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    dc<span class="token punctuation">.</span><span class="token function">MoveTo</span><span class="token punctuation">(</span>rect<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rect<span class="token punctuation">.</span>top<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    dc<span class="token punctuation">.</span><span class="token function">LineTo</span><span class="token punctuation">(</span>rect<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rect<span class="token punctuation">.</span>bottom<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p><code>CWindowDC</code> ：处理显示器描述表相关的整个窗体区域，包括了框架和控件（子窗体）</p>
+<ul>
+<li>可在非客户区绘制图形，而 CClientDC，CPaintDC 只能在客户去绘制图形；</li>
+<li>坐标原点是在屏幕的左上角，而 CClientDC，CPaintDC 下坐标原点是在客户区的左上角；</li>
+<li>关联一特定窗口，允许开发者在目标窗口的任何一部分进行绘图包括边界与标题，这种 DC 同 <code>WM_NCPAINT</code>  消息一起发送。</li>
+</ul>
+</li>
+<li>
+<p><code>CMetaFileDC</code> ：与元文件相关的设备描述表关联。</p>
+</li>
+</ul>
+<h1 id="关于wm_paint事件为什么窗口不能立即重绘"><a class="markdownIt-Anchor" href="#关于wm_paint事件为什么窗口不能立即重绘">#</a> 关于 WM_PAINT 事件（为什么窗口不能立即重绘）</h1>
+<p>系统会在多个不同的时机发送 WM_PAINT 消息：</p>
+<ul>
+<li>当第一次创建一个窗口时；</li>
+<li>当改变窗口的大小时；</li>
+<li>当把窗口从另一个窗口背后移出时；</li>
+<li>当最大化最小化窗口时等等</li>
+</ul>
+<p>这些动作都是由系统管理的，应用只是被动地接受该消息，在消息处理函数中进行绘制操作，大多数地时候应用也需要能够主动引发窗口中的绘制操作，比如当窗口显示的数据改变的时候，这一般是通过 <code>InvalidateRect()</code>  和 <code>InvalidateRgn()</code>  函数来完成的。 <code>InvalidateRect()</code>  和 <code>InvalidateRgn()</code>  把指定的区域加到窗口的 <code>Update Region</code>  中，当应用的消息队列没有其他消息时，如果窗口的 <code>Update Region</code>  不为空时，系统就会自动产生 WM_PAINT 消息。</p>
+<blockquote>
+<p>系统为什么不在调用 Invalidate 时发送 WM_PAINT 消息？又为什么要等到消息队列为空时才发送 WM_PAINT 消息？</p>
+</blockquote>
+<p>这是因为，系统把窗口中的绘制操作当作一种低优先级的操作，于是尽可能地推后做。不过这样也有利于提高绘制的效率：两个 WM_PAINT 消息之间通过 <code>InvalidateRect()</code>  和 <code>InvalidateRgn()</code>  函数使之失效的区域就会被累加起来，然后在一个 WM_PAINT 消息中一次的得到更新。不仅能避免多次重复地更新同一区域，也优化了应用的更新操作。像这种通过 <code>InvalidateRect()</code>  和 <code>InvalidateRgn()</code>  函数来使窗口区域无效，依赖于系统在合适的时机发送 WM_PAINT 消息的机制实际上是一种<strong>异步工作方式</strong>，也就是说，在无效化窗口区域和发送 WM_PAINT 消息之间是有延迟的。</p>
+<p>有时这种延迟并不是我们所期望的，这时我们当然可以在无效化窗口区域后利用 SendMessage 发送一条 WM_PAINT 消息来强制立即重绘，但不如使用 Windows GDI 为我们提供的更方便和更强大的函数： <code>UpdateWindow()</code>  和 <code>RedrawWindow()</code> 。</p>
+<p><code>UpdateWindow()</code>  会检查窗口的 Update Region，当其不为空时才发送 WM_PAINT 消息；</p>
+<p><code>RedrawWindow()</code>  则给我们更多的控制：是否重绘非客户区和背景，是否总是发送 WM_PAINT 消息而不管 Update Region 是否为空等。</p>
+<h1 id="cpaintdc与onpaint的使用"><a class="markdownIt-Anchor" href="#cpaintdc与onpaint的使用">#</a> CPaintDC 与 OnPaint 的使用</h1>
+<h2 id="cbitmap-hbitmap-bitmap的区别"><a class="markdownIt-Anchor" href="#cbitmap-hbitmap-bitmap的区别">#</a> CBitmap、HBITMAP、BITMAP 的区别</h2>
+<ul>
+<li>
+<p>BITMAP 是 C++ 中定义的位图结构体</p>
+<p>封装着 bitmap 的一些信息，定义了逻辑位图的高、宽、颜色格式以及位值。</p>
+<blockquote>
+<p>This structure defines the type, width, height, color format, and bit values of a bit map.</p>
+</blockquote>
+</li>
+<li>
+<p>HBITMAP 是 Windows 中使用的位图句柄</p>
+<p>相当于 bitmap 的指针。</p>
+<blockquote>
+<p>Handle to a bitmap.</p>
+<p>typedef HANDLE HBITMAP;</p>
+</blockquote>
+</li>
+<li>
+<p>CBitmap 是 MFC 封装的位图类</p>
+<blockquote>
+<p>Encapsulates a Windows graphics device interface(GDI) bitmap and provides member functions to manipulate the bitmap.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="三者之间的关系转换"><a class="markdownIt-Anchor" href="#三者之间的关系转换">#</a> 三者之间的关系转换</h2>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>HBITMAP hBitmap<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CBitmap bitmap<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>BITMAP bm<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 由 HBITMAP 得到关联的 CBtimap</span></pre></td></tr><tr><td data-num="6"></td><td><pre>bitmap<span class="token punctuation">.</span><span class="token function">Attach</span><span class="token punctuation">(</span>hBitmap<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 得到 bm 指向的位图</span></pre></td></tr><tr><td data-num="8"></td><td><pre>bitmap<span class="token punctuation">.</span><span class="token function">GetBitmap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>bm<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 由 CBitmap 得到相关的 HBITMAP</span></pre></td></tr><tr><td data-num="10"></td><td><pre>hBitmap <span class="token operator">=</span> <span class="token punctuation">(</span>HBITMAP<span class="token punctuation">)</span>bitmap<span class="token punctuation">.</span><span class="token function">GetSafeHandle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h2 id="attach和detach"><a class="markdownIt-Anchor" href="#attach和detach">#</a> Attach 和 Detach</h2>
+<p><code>Attach()</code>  是<strong>把一个 C++ 对象与一个 WINDOW 对象相关联</strong>，直到用 Detach () 把关联去掉。</p>
+<p>如果 Attach 了之后没有 Detach，则 C++ 对象销毁时 WINDOW 对象会跟着一起销毁。</p>
+<p>Attach 了以后，C<ins> 对象的指针和 WINDOWS 对象的 HWND 会有一个映射关系，其作用相当于直接用一个 C</ins> 对象去 Create 一个 WINDOWS 对象，例如 <code>CEdit edit;</code>   <code>edit.create()</code>  并且此映射是永久的，直到此对象销毁为止。</p>
+<blockquote>
+<p>如果用类似 <code>GetDlgItem()</code>  函数也可以返回一个指针，并可以强制转换。</p>
+<p><code>GetDlgItem()</code>  会到映射表里找，有两种映射表，一种是永久的，一种是临时的。</p>
+<p><strong>直接用 C++ 对象创建的 WINDOWS 对象或者是通过 Attach 的对象的映射关系都被放到永久表中，否则就在临时表中创建映射关系。</strong></p>
+<p>所以 <code>GetDlgItem()</code>  不推荐保存返回的指针，因为很难保证 WINDOWS 对象跟 C++ 对象的关联是否放在永久表中。如果映射是放在临时表中，那么在空闲时间会被自动删除。<strong>因为 Attach 完全是为了方便使用 MFC 类的成员函数去操纵 WINDOWS 对象。</strong></p>
+</blockquote>
+<h1 id="gdi对象之画笔cpen"><a class="markdownIt-Anchor" href="#gdi对象之画笔cpen">#</a> GDI 对象之画笔 CPen</h1>
+<p>图形设备接口 GDI（Graphics Device Interface）</p>
+<p>在 MFC 中，CGdiObject 类是 GDI 对象的基类，CGdiObject 类有 6 个直接的派生类，GDI 对象主要也是这 6 个，分别是：CBitmap、CBrush、CFont、CPalette、CPen、CRgn。其中最常用的是画笔 CPen 和画刷 CBrush</p>
+<h1 id="gdi对象之画刷cbrush"><a class="markdownIt-Anchor" href="#gdi对象之画刷cbrush">#</a> GDI 对象之画刷 CBrush</h1>
+<p>创建 Picture Control 控件，添加 CStatic 变量 mPicColor。创建 “选择颜色” 的按钮控件，添加事件响应函数，功能实现如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CBrushExampleDlg</span><span class="token double-colon punctuation">::</span><span class="token function">OnBnClickedBtnColorSelect</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	COLORREF color <span class="token operator">=</span> <span class="token function">RGB</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 颜色对话框的初始颜色</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	CColorDialog <span class="token function">colorDlg</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">// 构造颜色对话框</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>	CRect rectPicture<span class="token punctuation">;</span>		<span class="token comment">// 图片控件的矩形区域坐标</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	CBrush newBrush<span class="token punctuation">;</span>		<span class="token comment">// 创建新画刷</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	CBrush <span class="token operator">*</span>pOldBrush<span class="token punctuation">;</span>		<span class="token comment">// 旧画刷指针</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	CClientDC <span class="token function">clientDC</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 构建客户区的设备上下文对象</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>IDOK <span class="token operator">==</span> colorDlg<span class="token punctuation">.</span><span class="token function">DoModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>		<span class="token comment">// 如果点击了颜色对话框的确定按钮，则执行下列操作。</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>		<span class="token comment">// 获取颜色对话框中选择的颜色</span></pre></td></tr><tr><td data-num="15"></td><td><pre>		color <span class="token operator">=</span> colorDlg<span class="token punctuation">.</span><span class="token function">GetColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>		<span class="token comment">// 用选择的颜色创建新画刷</span></pre></td></tr><tr><td data-num="17"></td><td><pre>		newBrush<span class="token punctuation">.</span><span class="token function">CreateSolidBrush</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>		<span class="token comment">// 获取图片控件矩形区域屏幕坐标</span></pre></td></tr><tr><td data-num="20"></td><td><pre>		mPicColor<span class="token punctuation">.</span><span class="token function">GetWindowRect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>		<span class="token comment">// 将图片控件矩形区域的屏幕坐标转换为其父窗口即对话框的客户区坐标</span></pre></td></tr><tr><td data-num="22"></td><td><pre>		<span class="token function">ScreenToClient</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre>		<span class="token comment">// 选择新画刷，并保存旧画刷的指针</span></pre></td></tr><tr><td data-num="25"></td><td><pre>		pOldBrush <span class="token operator">=</span> clientDC<span class="token punctuation">.</span><span class="token function">SelectObject</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>newBrush<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>		<span class="token comment">// 以新画刷为图片控件填充颜色</span></pre></td></tr><tr><td data-num="27"></td><td><pre>		clientDC<span class="token punctuation">.</span><span class="token function">Rectangle</span><span class="token punctuation">(</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre>		<span class="token comment">// 恢复旧画刷</span></pre></td></tr><tr><td data-num="30"></td><td><pre>		clientDC<span class="token punctuation">.</span><span class="token function">SelectObject</span><span class="token punctuation">(</span>pOldBrush<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>		<span class="token comment">// 删除旧画刷</span></pre></td></tr><tr><td data-num="32"></td><td><pre>		newBrush<span class="token punctuation">.</span><span class="token function">DeleteObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>CClientDC 类是 CDC 类的派生类，它生成的设备上下文对应于窗口的客户区，另一个类 CWindowDC 类也是 CDC 类的派生类，它对应的则包括客户区和非客户区，也就是说，CClientDC 只能在客户区绘图，而 CWindowDC 可以在客户区和非客户区绘图。</p>
+<ul>
+<li>非客户区包括窗口中的标题栏、菜单栏、状态栏、滚动条边框等区域。</li>
+<li>客户区就是除去非客户区之外的主要工作区域</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
+          <a href="/tags/MFC/" rel="tag"><i class="ic i-tag"></i> MFC</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-07-12 17:20:01" itemprop="dateModified" datetime="2023-07-12T17:20:01+08:00">2023-07-12</time>
+  </span>
+  <span id="2023/06/28/MFC图形图像/" class="item leancloud_visitors" data-flag-title="MFC 图形图像" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>AdventureYX <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/" title="MFC 图形图像">https://adventure-yx.github.io/2023/06/28/MFC图形图像/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-134a7b41dbac28cfdf.jpeg" title="MFC 文档&#x2F;视图框架">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>MFC 文档/视图框架</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Adventure-yx&#x2F;img&#x2F;banner&#x2F;sky-8.jpg" title="MFC Debug记录">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>MFC Debug记录</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cdc%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%B1%8F%E5%B9%95%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> CDC 类及其屏幕绘图函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ewm_paint%E4%BA%8B%E4%BB%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E7%AA%97%E5%8F%A3%E4%B8%8D%E8%83%BD%E7%AB%8B%E5%8D%B3%E9%87%8D%E7%BB%98"><span class="toc-number">2.</span> <span class="toc-text"> 关于 WM_PAINT 事件（为什么窗口不能立即重绘）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cpaintdc%E4%B8%8Eonpaint%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> CPaintDC 与 OnPaint 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cbitmap-hbitmap-bitmap%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.1.</span> <span class="toc-text"> CBitmap、HBITMAP、BITMAP 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E8%80%85%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.</span> <span class="toc-text"> 三者之间的关系转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attach%E5%92%8Cdetach"><span class="toc-number">3.3.</span> <span class="toc-text"> Attach 和 Detach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gdi%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%94%BB%E7%AC%94cpen"><span class="toc-number">4.</span> <span class="toc-text"> GDI 对象之画笔 CPen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gdi%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%94%BB%E5%88%B7cbrush"><span class="toc-number">5.</span> <span class="toc-text"> GDI 对象之画刷 CBrush</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/02/24/C++Study/" rel="bookmark" title="C++ Study">C++ Study</a></li><li><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" rel="bookmark" title="C++面经">C++面经</a></li><li><a href="/2023/03/10/STL/" rel="bookmark" title="STL">STL</a></li><li><a href="/2023/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="bookmark" title="设计模式">设计模式</a></li><li><a href="/2023/03/30/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" rel="bookmark" title="算法进阶">算法进阶</a></li><li><a href="/2023/04/02/C++11/" rel="bookmark" title="C++11/14/17">C++11/14/17</a></li><li><a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" rel="bookmark" title="MFC 应用程序框架">MFC 应用程序框架</a></li><li><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" rel="bookmark" title="MFC 消息映射机制">MFC 消息映射机制</a></li><li><a href="/2023/06/01/MFC%E5%AF%B9%E8%AF%9D%E6%A1%86/" rel="bookmark" title="MFC 对话框">MFC 对话框</a></li><li><a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" rel="bookmark" title="字符集与VS中的字符处理">字符集与VS中的字符处理</a></li><li><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" rel="bookmark" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></li><li><a href="/2023/06/09/MFC%E5%B8%B8%E7%94%A8%E7%B1%BB/" rel="bookmark" title="MFC 常用类">MFC 常用类</a></li><li><a href="/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/" rel="bookmark" title="MFC 常用控件">MFC 常用控件</a></li><li><a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" rel="bookmark" title="MFC 文档/视图框架">MFC 文档/视图框架</a></li><li class="active"><a href="/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/" rel="bookmark" title="MFC 图形图像">MFC 图形图像</a></li><li><a href="/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/" rel="bookmark" title="MFC Debug记录">MFC Debug记录</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">27</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">5</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">13</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>friends</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/links/" rel="section"><i class="ic i-magic"></i>links</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/04/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="C++网络编程">C++网络编程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/30/%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6/" title="算法进阶">算法进阶</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/" title="MFC 常用控件">MFC 常用控件</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" title="MFC 消息映射机制">MFC 消息映射机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/" title="MFC 图形图像">MFC 图形图像</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/05/04/showimg/" title="基于Qt的图片浏览器">基于Qt的图片浏览器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" title="C++面经">C++面经</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/XML/" title="分类于 XML">XML</a>
+</div>
+
+    <span><a href="/2023/05/29/XML/" title="XML &amp; TinyXML">XML & TinyXML</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/08/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Adventure</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/06/28/MFC图形图像/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
