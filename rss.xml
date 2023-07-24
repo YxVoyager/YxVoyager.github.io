@@ -11,15 +11,15 @@
         <category>Boost</category>
         <category>DataBase</category>
         <category>MFC</category>
+        <category>Linux</category>
         <category>Qt</category>
         <category>QML</category>
-        <category>Linux</category>
         <category>XML</category>
-        <category>操作系统</category>
-        <category>设计模式</category>
         <category>STL</category>
+        <category>操作系统</category>
         <category>计算机网络</category>
         <category>算法</category>
+        <category>设计模式</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/</guid>
             <title>MFC Debug记录</title>
@@ -1276,7 +1276,7 @@
             <category>MFC</category>
             <pubDate>Thu, 01 Jun 2023 09:12:08 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;创建对话框&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#创建对话框&#34;&gt;#&lt;/a&gt; 创建对话框&lt;/h1&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5CAdministrator%5CDocuments%5CMFC%5Cimage-20230525105517622.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230525105517622.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;创建对话框资源，添加控件。&lt;/li&gt;
 &lt;li&gt;创建对话框类，添加控件变量，添加控件的消息处理函数。&lt;/li&gt;
@@ -1310,16 +1310,16 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;使用类向导添加消息处理函数&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5CAdministrator%5CDocuments%5CMFC%5Cimage-20230525133212478.png&#34; alt=&#34;image-20230525133212478&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230525133212478.png&#34; alt=&#34;image-20230525133212478&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;通过资源视图 “Add Event Handler…” 添加消息处理函数&lt;/p&gt;
 &lt;p&gt;在按钮控件上点击右键进入&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:/Users/Administrator/Documents%5CMFC%5Cimage-20230525133538866.png&#34; alt=&#34;image-20230525133538866&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230525133538866.png&#34; alt=&#34;image-20230525133538866&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在控件的属性视图中添加消息处理函数&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:/Users/Administrator/Documents%5CMFC%5Cimage-20230525133733319.png&#34; alt=&#34;image-20230525133733319&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-20230525133733319.png&#34; alt=&#34;image-20230525133733319&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;双击控件添加消息处理函数&lt;/p&gt;
