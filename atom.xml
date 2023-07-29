@@ -3,7 +3,7 @@
     <id>https://adventure-yx.github.io</id>
     <title></title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-07-29T15:56:20.000Z</updated>
+    <updated>2023-06-28T02:12:08.000Z</updated>
     <category term="C++" />
     <category term="Boost" />
     <category term="DataBase" />
@@ -18,9 +18,197 @@
     <category term="计算机网络" />
     <category term="设计模式" />
     <entry>
-        <id>https://adventure-yx.github.io/2023/07/29/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</id>
+        <id>https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/</id>
+        <title>MFC 图形图像</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/"/>
+        <content type="html">&lt;h1 id=&#34;cdc类及其屏幕绘图函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cdc类及其屏幕绘图函数&#34;&gt;#&lt;/a&gt; CDC 类及其屏幕绘图函数&lt;/h1&gt;
+&lt;p&gt;CDC 类是一个设备上下文类。（Device Context）&lt;/p&gt;
+&lt;p&gt;CDC 类提供了用来处理显示器或者打印机等设备上下文的成员函数，还有处理与窗口客户区关联的显示上下文的成员函数。使用 CDC 的成员函数可以进行所有的绘图操作，包括处理绘图工具、GDI 对象的选择、颜色和调色板的处理、获取和设置绘图属性、映射、窗口范围、坐标转换、剪切以及绘制直线、简单图形、椭圆和多边形等。另外，它还为文本输出、处理字体、使用打印机跳转和滚动等提供了成员函数。&lt;/p&gt;
+&lt;p&gt;如上所述，CDC 类几乎封装了所有的 Windows GDI 函数，另外，MFC 中还有几个由 CDC 类派生的子类，包括 CWindowDC、CPaintDC、CClientDC、CMetaFileDC，它们用来进行一些特定的绘图操作。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般在使用完 CDC 对象要记得删除它，否则会有内存泄漏。很多情况下我们可以调用 &lt;code&gt;CWnd::GetDC()&lt;/code&gt;  函数来获取设备上下文指针，即 CDC 指针，这个时候记得用完后调用 &lt;code&gt;CWnd::ReleaseDC()&lt;/code&gt;  函数释放上下文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;HDC&lt;/code&gt;  是 DC 的句柄，API 中的一个类似指针的数据类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CDC&lt;/code&gt;  是 MFC 的 DC 的一个类，设备上下文类都有一个成员变量 &lt;code&gt;m_nHdc&lt;/code&gt; ，即 HDC 类型的句柄&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CPaintDC&lt;/code&gt; ：封装 BeginPaint 和 EndPaint 两个 API 的调用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于响应窗口重绘消息 &lt;code&gt;WM_PAINT&lt;/code&gt;  的绘图输出&lt;/li&gt;
+&lt;li&gt;CPaintDC 在构造函数中调用 &lt;code&gt;BeginPaint()&lt;/code&gt;  取得设备上下文，在析构函数中调用 &lt;code&gt;EndPaint()&lt;/code&gt;  释放设备上下文。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;EndPaint()&lt;/code&gt;  除了释放设备上下文外，还负责从消息队列中清除 &lt;code&gt;WM_PAINT&lt;/code&gt;  消息。因此&lt;strong&gt;在处理窗口重绘时，必须使用 CPaintDC，否则 WM_PAINT 消息无法从消息队列中清除，将引起不断地窗口重绘&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;CPaintDC 也只能用在 WM_PAINT 消息处理中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CClientDC&lt;/code&gt; ：客户区设备上下文，处理显示器描述表的相关的窗体客户区域。&lt;/p&gt;
+&lt;p&gt;构造时自动调用 &lt;code&gt;GetDC&lt;/code&gt;  函数，析构时自动调用 &lt;code&gt;ReleaseDC&lt;/code&gt;  函数，一般应用于客户区窗口的绘制。&lt;/p&gt;
+&lt;p&gt;当需要处理一个鼠标的单击，然后马上画出一个圆，不能等到下个 WM_PAINT 的消息到来才画图，而是马上，这时就需要 CClientDC 了，它可以在 &lt;code&gt;OnPaint&lt;/code&gt;  的外面创建一个客户区 DC。&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CMainWindow&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;OnLButtonDown&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;UINT nFlags&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; CPoint ppoint&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    CRect rect&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token function&#34;&gt;GetClientRect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    CClientDC &lt;span class=&#34;token function&#34;&gt;dc&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;MoveTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;left&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;top&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;LineTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;right&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bottom&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;MoveTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;right&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;top&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;LineTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;left&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bottom&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CWindowDC&lt;/code&gt; ：处理显示器描述表相关的整个窗体区域，包括了框架和控件（子窗体）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可在非客户区绘制图形，而 CClientDC，CPaintDC 只能在客户去绘制图形；&lt;/li&gt;
+&lt;li&gt;坐标原点是在屏幕的左上角，而 CClientDC，CPaintDC 下坐标原点是在客户区的左上角；&lt;/li&gt;
+&lt;li&gt;关联一特定窗口，允许开发者在目标窗口的任何一部分进行绘图包括边界与标题，这种 DC 同 &lt;code&gt;WM_NCPAINT&lt;/code&gt;  消息一起发送。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CMetaFileDC&lt;/code&gt; ：与元文件相关的设备描述表关联。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;关于wm_paint事件为什么窗口不能立即重绘&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于wm_paint事件为什么窗口不能立即重绘&#34;&gt;#&lt;/a&gt; 关于 WM_PAINT 事件（为什么窗口不能立即重绘）&lt;/h1&gt;
+&lt;p&gt;系统会在多个不同的时机发送 WM_PAINT 消息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当第一次创建一个窗口时；&lt;/li&gt;
+&lt;li&gt;当改变窗口的大小时；&lt;/li&gt;
+&lt;li&gt;当把窗口从另一个窗口背后移出时；&lt;/li&gt;
+&lt;li&gt;当最大化最小化窗口时等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些动作都是由系统管理的，应用只是被动地接受该消息，在消息处理函数中进行绘制操作，大多数地时候应用也需要能够主动引发窗口中的绘制操作，比如当窗口显示的数据改变的时候，这一般是通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数来完成的。 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  把指定的区域加到窗口的 &lt;code&gt;Update Region&lt;/code&gt;  中，当应用的消息队列没有其他消息时，如果窗口的 &lt;code&gt;Update Region&lt;/code&gt;  不为空时，系统就会自动产生 WM_PAINT 消息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;系统为什么不在调用 Invalidate 时发送 WM_PAINT 消息？又为什么要等到消息队列为空时才发送 WM_PAINT 消息？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这是因为，系统把窗口中的绘制操作当作一种低优先级的操作，于是尽可能地推后做。不过这样也有利于提高绘制的效率：两个 WM_PAINT 消息之间通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数使之失效的区域就会被累加起来，然后在一个 WM_PAINT 消息中一次的得到更新。不仅能避免多次重复地更新同一区域，也优化了应用的更新操作。像这种通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数来使窗口区域无效，依赖于系统在合适的时机发送 WM_PAINT 消息的机制实际上是一种&lt;strong&gt;异步工作方式&lt;/strong&gt;，也就是说，在无效化窗口区域和发送 WM_PAINT 消息之间是有延迟的。&lt;/p&gt;
+&lt;p&gt;有时这种延迟并不是我们所期望的，这时我们当然可以在无效化窗口区域后利用 SendMessage 发送一条 WM_PAINT 消息来强制立即重绘，但不如使用 Windows GDI 为我们提供的更方便和更强大的函数： &lt;code&gt;UpdateWindow()&lt;/code&gt;  和 &lt;code&gt;RedrawWindow()&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;UpdateWindow()&lt;/code&gt;  会检查窗口的 Update Region，当其不为空时才发送 WM_PAINT 消息；&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RedrawWindow()&lt;/code&gt;  则给我们更多的控制：是否重绘非客户区和背景，是否总是发送 WM_PAINT 消息而不管 Update Region 是否为空等。&lt;/p&gt;
+&lt;h1 id=&#34;cpaintdc与onpaint的使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cpaintdc与onpaint的使用&#34;&gt;#&lt;/a&gt; CPaintDC 与 OnPaint 的使用&lt;/h1&gt;
+&lt;h2 id=&#34;cbitmap-hbitmap-bitmap的区别&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cbitmap-hbitmap-bitmap的区别&#34;&gt;#&lt;/a&gt; CBitmap、HBITMAP、BITMAP 的区别&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;BITMAP 是 C++ 中定义的位图结构体&lt;/p&gt;
+&lt;p&gt;封装着 bitmap 的一些信息，定义了逻辑位图的高、宽、颜色格式以及位值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This structure defines the type, width, height, color format, and bit values of a bit map.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HBITMAP 是 Windows 中使用的位图句柄&lt;/p&gt;
+&lt;p&gt;相当于 bitmap 的指针。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Handle to a bitmap.&lt;/p&gt;
+&lt;p&gt;typedef HANDLE HBITMAP;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CBitmap 是 MFC 封装的位图类&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Encapsulates a Windows graphics device interface(GDI) bitmap and provides member functions to manipulate the bitmap.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;三者之间的关系转换&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#三者之间的关系转换&#34;&gt;#&lt;/a&gt; 三者之间的关系转换&lt;/h2&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;HBITMAP hBitmap&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CBitmap bitmap&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;BITMAP bm&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 由 HBITMAP 得到关联的 CBtimap&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;Attach&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;hBitmap&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 得到 bm 指向的位图&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetBitmap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;bm&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 由 CBitmap 得到相关的 HBITMAP&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hBitmap &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;HBITMAP&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetSafeHandle&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;attach和detach&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#attach和detach&#34;&gt;#&lt;/a&gt; Attach 和 Detach&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Attach()&lt;/code&gt;  是&lt;strong&gt;把一个 C++ 对象与一个 WINDOW 对象相关联&lt;/strong&gt;，直到用 Detach () 把关联去掉。&lt;/p&gt;
+&lt;p&gt;如果 Attach 了之后没有 Detach，则 C++ 对象销毁时 WINDOW 对象会跟着一起销毁。&lt;/p&gt;
+&lt;p&gt;Attach 了以后，C&lt;ins&gt; 对象的指针和 WINDOWS 对象的 HWND 会有一个映射关系，其作用相当于直接用一个 C&lt;/ins&gt; 对象去 Create 一个 WINDOWS 对象，例如 &lt;code&gt;CEdit edit;&lt;/code&gt;   &lt;code&gt;edit.create()&lt;/code&gt;  并且此映射是永久的，直到此对象销毁为止。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果用类似 &lt;code&gt;GetDlgItem()&lt;/code&gt;  函数也可以返回一个指针，并可以强制转换。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GetDlgItem()&lt;/code&gt;  会到映射表里找，有两种映射表，一种是永久的，一种是临时的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;直接用 C++ 对象创建的 WINDOWS 对象或者是通过 Attach 的对象的映射关系都被放到永久表中，否则就在临时表中创建映射关系。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所以 &lt;code&gt;GetDlgItem()&lt;/code&gt;  不推荐保存返回的指针，因为很难保证 WINDOWS 对象跟 C++ 对象的关联是否放在永久表中。如果映射是放在临时表中，那么在空闲时间会被自动删除。&lt;strong&gt;因为 Attach 完全是为了方便使用 MFC 类的成员函数去操纵 WINDOWS 对象。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;gdi对象之画笔cpen&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gdi对象之画笔cpen&#34;&gt;#&lt;/a&gt; GDI 对象之画笔 CPen&lt;/h1&gt;
+&lt;p&gt;图形设备接口 GDI（Graphics Device Interface）&lt;/p&gt;
+&lt;p&gt;在 MFC 中，CGdiObject 类是 GDI 对象的基类，CGdiObject 类有 6 个直接的派生类，GDI 对象主要也是这 6 个，分别是：CBitmap、CBrush、CFont、CPalette、CPen、CRgn。其中最常用的是画笔 CPen 和画刷 CBrush&lt;/p&gt;
+&lt;h1 id=&#34;gdi对象之画刷cbrush&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gdi对象之画刷cbrush&#34;&gt;#&lt;/a&gt; GDI 对象之画刷 CBrush&lt;/h1&gt;
+&lt;p&gt;创建 Picture Control 控件，添加 CStatic 变量 mPicColor。创建 “选择颜色” 的按钮控件，添加事件响应函数，功能实现如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CBrushExampleDlg&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;OnBnClickedBtnColorSelect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	COLORREF color &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;RGB&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;255&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 颜色对话框的初始颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CColorDialog &lt;span class=&#34;token function&#34;&gt;colorDlg&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;color&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;			&lt;span class=&#34;token comment&#34;&gt;// 构造颜色对话框&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CRect rectPicture&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 图片控件的矩形区域坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CBrush newBrush&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 创建新画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CBrush &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;pOldBrush&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 旧画刷指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CClientDC &lt;span class=&#34;token function&#34;&gt;clientDC&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;// 构建客户区的设备上下文对象&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;IDOK &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; colorDlg&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;DoModal&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 如果点击了颜色对话框的确定按钮，则执行下列操作。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 获取颜色对话框中选择的颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		color &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; colorDlg&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetColor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 用选择的颜色创建新画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		newBrush&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;CreateSolidBrush&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;color&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 获取图片控件矩形区域屏幕坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		mPicColor&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetWindowRect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 将图片控件矩形区域的屏幕坐标转换为其父窗口即对话框的客户区坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;ScreenToClient&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 选择新画刷，并保存旧画刷的指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		pOldBrush &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;SelectObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;newBrush&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 以新画刷为图片控件填充颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;Rectangle&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 恢复旧画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;SelectObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;pOldBrush&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 删除旧画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		newBrush&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;DeleteObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;CClientDC 类是 CDC 类的派生类，它生成的设备上下文对应于窗口的客户区，另一个类 CWindowDC 类也是 CDC 类的派生类，它对应的则包括客户区和非客户区，也就是说，CClientDC 只能在客户区绘图，而 CWindowDC 可以在客户区和非客户区绘图。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非客户区包括窗口中的标题栏、菜单栏、状态栏、滚动条边框等区域。&lt;/li&gt;
+&lt;li&gt;客户区就是除去非客户区之外的主要工作区域&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="C++" />
+        <category term="MFC" />
+        <updated>2023-06-28T02:12:08.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://adventure-yx.github.io/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/</id>
+        <title>MFC 文档/视图框架</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/"/>
+        <content type="html">&lt;h1 id=&#34;文档视图框架&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文档视图框架&#34;&gt;#&lt;/a&gt; 文档 / 视图框架&lt;/h1&gt;
+&lt;p&gt;MFC 向导自动生成的项目中包含 CxxxDoc 类，CxxxView 类和 CMainFrame 类。&lt;/p&gt;
+&lt;p&gt;文档 / 视图结构是 MFC 提供的一种设计，它将数据的处理和显示分开，这样更便于对程序的维护和扩展。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;文档&lt;/p&gt;
+&lt;p&gt;文档对象用于管理和维护数据，包括保存数据，取出数据以及修改数据等操作，在数据被修改以后，文档可以通知其对应的所有视图更新显示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;视图&lt;/p&gt;
+&lt;p&gt;视图对象将文档中的数据可视化，负责从文档对象中取出数据显示给用户，并接受用户的输入和编辑，将数据的改变反映给文档对象。视图充当了文档和用户之间媒介的角色。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;框架&lt;/p&gt;
+&lt;p&gt;一个文档可能有多个视图界面，这就需要有框架来管理。框架就是用来管理文档和视图的。框架窗口是应用程序的主窗口，应用程序执行时会先创建一个最顶层的框架窗口。视图窗口是没有菜单和边界的子窗口，它必须包含在框架窗口中，即置于框架窗口的客户区内。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;文档模板&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文档模板&#34;&gt;#&lt;/a&gt; 文档模板&lt;/h1&gt;
+&lt;p&gt;文档模板中存放了文档、视图和框架相关的信息，应用程序通过文档模板创建文档对象，框架窗口对象和视图对象。另外，文档、视图、框架之间的关系也是文档模板来管理的。&lt;/p&gt;
+&lt;p&gt;在 HelloWorld.cpp 中，CHelloWorldApp 应用程序类的成员函数 &lt;code&gt;CHelloWorldApp::InitInstance()&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;BOOL &lt;span class=&#34;token class-name&#34;&gt;CHelloWorldApp&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;InitInstance&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;// 注册应用程序的文档模板。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;// 文档模板将用作文档、框架窗口和视图之间的连接&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CSingleDocTemplate&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	pDocTemplate &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;CSingleDocTemplate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		IDR_MAINFRAME&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CHelloWorldDoc&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CMainFrame&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;       &lt;span class=&#34;token comment&#34;&gt;// 主 SDI 框架窗口&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CHelloWorldView&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; FALSE&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;AddDocTemplate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在构造文档模板类 CSingleDocTemplate 的对象时，第一个参数是资源 ID:IDR_MAINFRAME，它包括框架窗口图标等，后面 3 个参数是 RUNTIME_CLASS 宏的调用，RUNTIME_CLASS 用于获取类的运行信息，文档模板可以根据这些动态创建信息来创建相应类的对象，即文档对象、框架窗口对象和视图对象。&lt;/p&gt;
+&lt;p&gt;AddDocTemplate (pDocTemplate) 函数用来注册文档模板对象。&lt;/p&gt;
+&lt;h1 id=&#34;框架类-文档类-视图类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#框架类-文档类-视图类&#34;&gt;#&lt;/a&gt; 框架类、文档类、视图类&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CMainFrame 框架类继承于 CFrameWndEx 类，而 CFrameWndEx 类又继承于 CFrameWnd 类，CFrameWnd 类中用于管理文档和视图的成员函数有：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获得当前活动视图对象对应文档对象的指针，如果不存在返回 NULL&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;virtual&lt;/span&gt; CDocument&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetActiveDocument&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获得当前活动视图对象的指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CView&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetActiveView&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 设置活动视图。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 参数 pViewNew 为要激活的视图对象的指针。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 参数 bNotify 指定视图是否接受激活通知。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;SetActiveView&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CView&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pViewNew&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; BOLL bNotify &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; TRUE&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CHelloWorldDoc 文档类继承于 CDocument 类，主要成员函数有：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CHelloWorldView 视图类继承于 CView 类，CView 类中与文档 / 视图结构相关的成员函数包括：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获取视图关联的文档对象的指针，如果视图没有关联到文档上则返回 NULL&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CDocument&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetDocument&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;各对象之间关系&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#各对象之间关系&#34;&gt;#&lt;/a&gt; 各对象之间关系&lt;/h1&gt;
+&lt;p&gt;涉及到的对象包括&lt;strong&gt;应用程序对象&lt;/strong&gt;、&lt;strong&gt;文档模板对象&lt;/strong&gt;、&lt;strong&gt;文档对象&lt;/strong&gt;、&lt;strong&gt;视图对象&lt;/strong&gt;和&lt;strong&gt;框架窗口对象&lt;/strong&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;应用程序对象保存了一个文档模板的列表。&lt;/p&gt;
+&lt;p&gt;在任何对象中调用全局函数 &lt;code&gt;AfxGetApp()&lt;/code&gt;  都可以获得应用程序对象的指针。通过调用 &lt;code&gt;CWinAppEx::GetFirstDocTemplatePosition()&lt;/code&gt; 、 &lt;code&gt;CWinAppEx::GetNextDocTemplate()&lt;/code&gt;  函数可以遍历所有的文档模板。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文档模板对象用于维护文档、视图和框架窗口的映射关系，它包含一个已打开文档的列表。&lt;/p&gt;
+&lt;p&gt;我们可以通过调用 CDocTemplate::GetFirstDocPosition ()、CDocTemplate::GetNextDoc () 来遍历该文档模板对应的所有文档。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;框架窗口对象中包含有指向当前活动视图对象的指针。&lt;/p&gt;
+&lt;p&gt;AfxGetApp ()-&amp;gt;m_pMainWnd 即为主框架窗口对象的指针，可以通过调用 CFrameWndEx::GetActiveView 来获取当前活动视图对象的指针，并且使用 CFrameWndEx::GetActiveDocument 函数获取当前活动视图对应的文档。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文档对象中维护着该文档的视图列表，已经创建该文档的文档模板对象的指针。&lt;/p&gt;
+&lt;p&gt;可以通过调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;视图是框架窗口的子窗口，它保存有指向对应文档对象的指针。&lt;/p&gt;
+&lt;p&gt;可以通过调用 CView::GetParentFrame 获取其所属的框架窗口对象的指针，调用 CView::GetDocument 获取该视图对应的文档对象的指针。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;另外，在 MDI 多文档程序中，调用 CMDIFrameWnd::MDIGetActive 可以获取当前活动的 MDI 子窗口。&lt;/p&gt;
+&lt;h1 id=&#34;分割窗口和csplitterwnd类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#分割窗口和csplitterwnd类&#34;&gt;#&lt;/a&gt; 分割窗口和 CSplitterWnd 类&lt;/h1&gt;
+&lt;p&gt;将一个窗口分割成多个窗口，每个窗口都包含视图。&lt;/p&gt;
+&lt;p&gt;MFC 分割窗口：动态分割，静态分割。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;动态分割通常用于创建同一文档对应的多个视图，而且这些视图一般都是同一类型的视图，能够在用户编辑文档的不同部分时提供方便。动态分割窗口最多可以有两行两列。&lt;/li&gt;
+&lt;li&gt;静态分割比较常见，窗口创建时分割的窗格就已经生成了，而且用户不能改变窗格的数量和顺序。静态分割窗口最多支持 16 行 16 列。通常静态分割的每个窗格中包含不同类的视图，当然也可以包含同一类的视图。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="C++" />
+        <category term="MFC" />
+        <updated>2023-06-25T00:50:08.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</id>
         <title>MFC 常用控件</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/07/29/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/"/>
         <content type="html">&lt;h1 id=&#34;常用控件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常用控件&#34;&gt;#&lt;/a&gt; 常用控件&lt;/h1&gt;
 &lt;p&gt;控件的消息通知&lt;/p&gt;
 &lt;p&gt;当控件有事件发生时，他会向父窗口发送通知消息。最常发生的事件就是鼠标单击了，此时控件会向父窗口发送 BN_CLICKED 消息，实际上也就是给父窗口发送 WM_COMMAND 消息，在 wParam 参数中包含有通知消息码（鼠标单击的通知消息码就是 BN_CLICKED）和控件 ID，IParam 参数中包含了控件的句柄。在 MFC 消息映射机制中，消息就是由三部分组成：消息值，wParam 参数，IParam 参数。&lt;/p&gt;
@@ -403,195 +591,9 @@
 &lt;/ol&gt;
 &lt;h1 id=&#34;&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#&#34;&gt;#&lt;/a&gt; &lt;/h1&gt;
 </content>
-        <updated>2023-07-29T15:56:20.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/</id>
-        <title>MFC 图形图像</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/"/>
-        <content type="html">&lt;h1 id=&#34;cdc类及其屏幕绘图函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cdc类及其屏幕绘图函数&#34;&gt;#&lt;/a&gt; CDC 类及其屏幕绘图函数&lt;/h1&gt;
-&lt;p&gt;CDC 类是一个设备上下文类。（Device Context）&lt;/p&gt;
-&lt;p&gt;CDC 类提供了用来处理显示器或者打印机等设备上下文的成员函数，还有处理与窗口客户区关联的显示上下文的成员函数。使用 CDC 的成员函数可以进行所有的绘图操作，包括处理绘图工具、GDI 对象的选择、颜色和调色板的处理、获取和设置绘图属性、映射、窗口范围、坐标转换、剪切以及绘制直线、简单图形、椭圆和多边形等。另外，它还为文本输出、处理字体、使用打印机跳转和滚动等提供了成员函数。&lt;/p&gt;
-&lt;p&gt;如上所述，CDC 类几乎封装了所有的 Windows GDI 函数，另外，MFC 中还有几个由 CDC 类派生的子类，包括 CWindowDC、CPaintDC、CClientDC、CMetaFileDC，它们用来进行一些特定的绘图操作。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一般在使用完 CDC 对象要记得删除它，否则会有内存泄漏。很多情况下我们可以调用 &lt;code&gt;CWnd::GetDC()&lt;/code&gt;  函数来获取设备上下文指针，即 CDC 指针，这个时候记得用完后调用 &lt;code&gt;CWnd::ReleaseDC()&lt;/code&gt;  函数释放上下文。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;HDC&lt;/code&gt;  是 DC 的句柄，API 中的一个类似指针的数据类型。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;CDC&lt;/code&gt;  是 MFC 的 DC 的一个类，设备上下文类都有一个成员变量 &lt;code&gt;m_nHdc&lt;/code&gt; ，即 HDC 类型的句柄&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;CPaintDC&lt;/code&gt; ：封装 BeginPaint 和 EndPaint 两个 API 的调用&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用于响应窗口重绘消息 &lt;code&gt;WM_PAINT&lt;/code&gt;  的绘图输出&lt;/li&gt;
-&lt;li&gt;CPaintDC 在构造函数中调用 &lt;code&gt;BeginPaint()&lt;/code&gt;  取得设备上下文，在析构函数中调用 &lt;code&gt;EndPaint()&lt;/code&gt;  释放设备上下文。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;EndPaint()&lt;/code&gt;  除了释放设备上下文外，还负责从消息队列中清除 &lt;code&gt;WM_PAINT&lt;/code&gt;  消息。因此&lt;strong&gt;在处理窗口重绘时，必须使用 CPaintDC，否则 WM_PAINT 消息无法从消息队列中清除，将引起不断地窗口重绘&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;CPaintDC 也只能用在 WM_PAINT 消息处理中。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;CClientDC&lt;/code&gt; ：客户区设备上下文，处理显示器描述表的相关的窗体客户区域。&lt;/p&gt;
-&lt;p&gt;构造时自动调用 &lt;code&gt;GetDC&lt;/code&gt;  函数，析构时自动调用 &lt;code&gt;ReleaseDC&lt;/code&gt;  函数，一般应用于客户区窗口的绘制。&lt;/p&gt;
-&lt;p&gt;当需要处理一个鼠标的单击，然后马上画出一个圆，不能等到下个 WM_PAINT 的消息到来才画图，而是马上，这时就需要 CClientDC 了，它可以在 &lt;code&gt;OnPaint&lt;/code&gt;  的外面创建一个客户区 DC。&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CMainWindow&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;OnLButtonDown&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;UINT nFlags&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; CPoint ppoint&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    CRect rect&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token function&#34;&gt;GetClientRect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    CClientDC &lt;span class=&#34;token function&#34;&gt;dc&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;MoveTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;left&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;top&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;LineTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;right&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bottom&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;MoveTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;right&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;top&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    dc&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;LineTo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;left&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; rect&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bottom&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;CWindowDC&lt;/code&gt; ：处理显示器描述表相关的整个窗体区域，包括了框架和控件（子窗体）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;可在非客户区绘制图形，而 CClientDC，CPaintDC 只能在客户去绘制图形；&lt;/li&gt;
-&lt;li&gt;坐标原点是在屏幕的左上角，而 CClientDC，CPaintDC 下坐标原点是在客户区的左上角；&lt;/li&gt;
-&lt;li&gt;关联一特定窗口，允许开发者在目标窗口的任何一部分进行绘图包括边界与标题，这种 DC 同 &lt;code&gt;WM_NCPAINT&lt;/code&gt;  消息一起发送。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;CMetaFileDC&lt;/code&gt; ：与元文件相关的设备描述表关联。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;关于wm_paint事件为什么窗口不能立即重绘&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于wm_paint事件为什么窗口不能立即重绘&#34;&gt;#&lt;/a&gt; 关于 WM_PAINT 事件（为什么窗口不能立即重绘）&lt;/h1&gt;
-&lt;p&gt;系统会在多个不同的时机发送 WM_PAINT 消息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;当第一次创建一个窗口时；&lt;/li&gt;
-&lt;li&gt;当改变窗口的大小时；&lt;/li&gt;
-&lt;li&gt;当把窗口从另一个窗口背后移出时；&lt;/li&gt;
-&lt;li&gt;当最大化最小化窗口时等等&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这些动作都是由系统管理的，应用只是被动地接受该消息，在消息处理函数中进行绘制操作，大多数地时候应用也需要能够主动引发窗口中的绘制操作，比如当窗口显示的数据改变的时候，这一般是通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数来完成的。 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  把指定的区域加到窗口的 &lt;code&gt;Update Region&lt;/code&gt;  中，当应用的消息队列没有其他消息时，如果窗口的 &lt;code&gt;Update Region&lt;/code&gt;  不为空时，系统就会自动产生 WM_PAINT 消息。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;系统为什么不在调用 Invalidate 时发送 WM_PAINT 消息？又为什么要等到消息队列为空时才发送 WM_PAINT 消息？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这是因为，系统把窗口中的绘制操作当作一种低优先级的操作，于是尽可能地推后做。不过这样也有利于提高绘制的效率：两个 WM_PAINT 消息之间通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数使之失效的区域就会被累加起来，然后在一个 WM_PAINT 消息中一次的得到更新。不仅能避免多次重复地更新同一区域，也优化了应用的更新操作。像这种通过 &lt;code&gt;InvalidateRect()&lt;/code&gt;  和 &lt;code&gt;InvalidateRgn()&lt;/code&gt;  函数来使窗口区域无效，依赖于系统在合适的时机发送 WM_PAINT 消息的机制实际上是一种&lt;strong&gt;异步工作方式&lt;/strong&gt;，也就是说，在无效化窗口区域和发送 WM_PAINT 消息之间是有延迟的。&lt;/p&gt;
-&lt;p&gt;有时这种延迟并不是我们所期望的，这时我们当然可以在无效化窗口区域后利用 SendMessage 发送一条 WM_PAINT 消息来强制立即重绘，但不如使用 Windows GDI 为我们提供的更方便和更强大的函数： &lt;code&gt;UpdateWindow()&lt;/code&gt;  和 &lt;code&gt;RedrawWindow()&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;UpdateWindow()&lt;/code&gt;  会检查窗口的 Update Region，当其不为空时才发送 WM_PAINT 消息；&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;RedrawWindow()&lt;/code&gt;  则给我们更多的控制：是否重绘非客户区和背景，是否总是发送 WM_PAINT 消息而不管 Update Region 是否为空等。&lt;/p&gt;
-&lt;h1 id=&#34;cpaintdc与onpaint的使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cpaintdc与onpaint的使用&#34;&gt;#&lt;/a&gt; CPaintDC 与 OnPaint 的使用&lt;/h1&gt;
-&lt;h2 id=&#34;cbitmap-hbitmap-bitmap的区别&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cbitmap-hbitmap-bitmap的区别&#34;&gt;#&lt;/a&gt; CBitmap、HBITMAP、BITMAP 的区别&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;BITMAP 是 C++ 中定义的位图结构体&lt;/p&gt;
-&lt;p&gt;封装着 bitmap 的一些信息，定义了逻辑位图的高、宽、颜色格式以及位值。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This structure defines the type, width, height, color format, and bit values of a bit map.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;HBITMAP 是 Windows 中使用的位图句柄&lt;/p&gt;
-&lt;p&gt;相当于 bitmap 的指针。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Handle to a bitmap.&lt;/p&gt;
-&lt;p&gt;typedef HANDLE HBITMAP;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CBitmap 是 MFC 封装的位图类&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Encapsulates a Windows graphics device interface(GDI) bitmap and provides member functions to manipulate the bitmap.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;三者之间的关系转换&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#三者之间的关系转换&#34;&gt;#&lt;/a&gt; 三者之间的关系转换&lt;/h2&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;HBITMAP hBitmap&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CBitmap bitmap&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;BITMAP bm&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 由 HBITMAP 得到关联的 CBtimap&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;Attach&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;hBitmap&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 得到 bm 指向的位图&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetBitmap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;bm&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 由 CBitmap 得到相关的 HBITMAP&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hBitmap &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;HBITMAP&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;bitmap&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetSafeHandle&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;attach和detach&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#attach和detach&#34;&gt;#&lt;/a&gt; Attach 和 Detach&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;Attach()&lt;/code&gt;  是&lt;strong&gt;把一个 C++ 对象与一个 WINDOW 对象相关联&lt;/strong&gt;，直到用 Detach () 把关联去掉。&lt;/p&gt;
-&lt;p&gt;如果 Attach 了之后没有 Detach，则 C++ 对象销毁时 WINDOW 对象会跟着一起销毁。&lt;/p&gt;
-&lt;p&gt;Attach 了以后，C&lt;ins&gt; 对象的指针和 WINDOWS 对象的 HWND 会有一个映射关系，其作用相当于直接用一个 C&lt;/ins&gt; 对象去 Create 一个 WINDOWS 对象，例如 &lt;code&gt;CEdit edit;&lt;/code&gt;   &lt;code&gt;edit.create()&lt;/code&gt;  并且此映射是永久的，直到此对象销毁为止。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果用类似 &lt;code&gt;GetDlgItem()&lt;/code&gt;  函数也可以返回一个指针，并可以强制转换。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;GetDlgItem()&lt;/code&gt;  会到映射表里找，有两种映射表，一种是永久的，一种是临时的。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;直接用 C++ 对象创建的 WINDOWS 对象或者是通过 Attach 的对象的映射关系都被放到永久表中，否则就在临时表中创建映射关系。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;所以 &lt;code&gt;GetDlgItem()&lt;/code&gt;  不推荐保存返回的指针，因为很难保证 WINDOWS 对象跟 C++ 对象的关联是否放在永久表中。如果映射是放在临时表中，那么在空闲时间会被自动删除。&lt;strong&gt;因为 Attach 完全是为了方便使用 MFC 类的成员函数去操纵 WINDOWS 对象。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;gdi对象之画笔cpen&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gdi对象之画笔cpen&#34;&gt;#&lt;/a&gt; GDI 对象之画笔 CPen&lt;/h1&gt;
-&lt;p&gt;图形设备接口 GDI（Graphics Device Interface）&lt;/p&gt;
-&lt;p&gt;在 MFC 中，CGdiObject 类是 GDI 对象的基类，CGdiObject 类有 6 个直接的派生类，GDI 对象主要也是这 6 个，分别是：CBitmap、CBrush、CFont、CPalette、CPen、CRgn。其中最常用的是画笔 CPen 和画刷 CBrush&lt;/p&gt;
-&lt;h1 id=&#34;gdi对象之画刷cbrush&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gdi对象之画刷cbrush&#34;&gt;#&lt;/a&gt; GDI 对象之画刷 CBrush&lt;/h1&gt;
-&lt;p&gt;创建 Picture Control 控件，添加 CStatic 变量 mPicColor。创建 “选择颜色” 的按钮控件，添加事件响应函数，功能实现如下：&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CBrushExampleDlg&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;OnBnClickedBtnColorSelect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	COLORREF color &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;RGB&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;255&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 颜色对话框的初始颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CColorDialog &lt;span class=&#34;token function&#34;&gt;colorDlg&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;color&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;			&lt;span class=&#34;token comment&#34;&gt;// 构造颜色对话框&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CRect rectPicture&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 图片控件的矩形区域坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CBrush newBrush&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 创建新画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CBrush &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;pOldBrush&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 旧画刷指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CClientDC &lt;span class=&#34;token function&#34;&gt;clientDC&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;// 构建客户区的设备上下文对象&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;IDOK &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; colorDlg&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;DoModal&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 如果点击了颜色对话框的确定按钮，则执行下列操作。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 获取颜色对话框中选择的颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		color &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; colorDlg&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetColor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 用选择的颜色创建新画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		newBrush&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;CreateSolidBrush&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;color&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 获取图片控件矩形区域屏幕坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		mPicColor&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetWindowRect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 将图片控件矩形区域的屏幕坐标转换为其父窗口即对话框的客户区坐标&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;ScreenToClient&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 选择新画刷，并保存旧画刷的指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		pOldBrush &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;SelectObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;newBrush&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 以新画刷为图片控件填充颜色&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;Rectangle&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rectPicture&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 恢复旧画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		clientDC&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;SelectObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;pOldBrush&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token comment&#34;&gt;// 删除旧画刷&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		newBrush&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;DeleteObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;CClientDC 类是 CDC 类的派生类，它生成的设备上下文对应于窗口的客户区，另一个类 CWindowDC 类也是 CDC 类的派生类，它对应的则包括客户区和非客户区，也就是说，CClientDC 只能在客户区绘图，而 CWindowDC 可以在客户区和非客户区绘图。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;非客户区包括窗口中的标题栏、菜单栏、状态栏、滚动条边框等区域。&lt;/li&gt;
-&lt;li&gt;客户区就是除去非客户区之外的主要工作区域&lt;/li&gt;
-&lt;/ul&gt;
-</content>
         <category term="C++" />
         <category term="MFC" />
-        <updated>2023-06-28T02:12:08.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://adventure-yx.github.io/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/</id>
-        <title>MFC 文档/视图框架</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/"/>
-        <content type="html">&lt;h1 id=&#34;文档视图框架&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文档视图框架&#34;&gt;#&lt;/a&gt; 文档 / 视图框架&lt;/h1&gt;
-&lt;p&gt;MFC 向导自动生成的项目中包含 CxxxDoc 类，CxxxView 类和 CMainFrame 类。&lt;/p&gt;
-&lt;p&gt;文档 / 视图结构是 MFC 提供的一种设计，它将数据的处理和显示分开，这样更便于对程序的维护和扩展。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;文档&lt;/p&gt;
-&lt;p&gt;文档对象用于管理和维护数据，包括保存数据，取出数据以及修改数据等操作，在数据被修改以后，文档可以通知其对应的所有视图更新显示。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;视图&lt;/p&gt;
-&lt;p&gt;视图对象将文档中的数据可视化，负责从文档对象中取出数据显示给用户，并接受用户的输入和编辑，将数据的改变反映给文档对象。视图充当了文档和用户之间媒介的角色。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;框架&lt;/p&gt;
-&lt;p&gt;一个文档可能有多个视图界面，这就需要有框架来管理。框架就是用来管理文档和视图的。框架窗口是应用程序的主窗口，应用程序执行时会先创建一个最顶层的框架窗口。视图窗口是没有菜单和边界的子窗口，它必须包含在框架窗口中，即置于框架窗口的客户区内。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;文档模板&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文档模板&#34;&gt;#&lt;/a&gt; 文档模板&lt;/h1&gt;
-&lt;p&gt;文档模板中存放了文档、视图和框架相关的信息，应用程序通过文档模板创建文档对象，框架窗口对象和视图对象。另外，文档、视图、框架之间的关系也是文档模板来管理的。&lt;/p&gt;
-&lt;p&gt;在 HelloWorld.cpp 中，CHelloWorldApp 应用程序类的成员函数 &lt;code&gt;CHelloWorldApp::InitInstance()&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;BOOL &lt;span class=&#34;token class-name&#34;&gt;CHelloWorldApp&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;InitInstance&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;// 注册应用程序的文档模板。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;// 文档模板将用作文档、框架窗口和视图之间的连接&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	CSingleDocTemplate&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	pDocTemplate &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;CSingleDocTemplate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		IDR_MAINFRAME&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CHelloWorldDoc&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CMainFrame&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;       &lt;span class=&#34;token comment&#34;&gt;// 主 SDI 框架窗口&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token function&#34;&gt;RUNTIME_CLASS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CHelloWorldView&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; FALSE&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;AddDocTemplate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;pDocTemplate&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在构造文档模板类 CSingleDocTemplate 的对象时，第一个参数是资源 ID:IDR_MAINFRAME，它包括框架窗口图标等，后面 3 个参数是 RUNTIME_CLASS 宏的调用，RUNTIME_CLASS 用于获取类的运行信息，文档模板可以根据这些动态创建信息来创建相应类的对象，即文档对象、框架窗口对象和视图对象。&lt;/p&gt;
-&lt;p&gt;AddDocTemplate (pDocTemplate) 函数用来注册文档模板对象。&lt;/p&gt;
-&lt;h1 id=&#34;框架类-文档类-视图类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#框架类-文档类-视图类&#34;&gt;#&lt;/a&gt; 框架类、文档类、视图类&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;CMainFrame 框架类继承于 CFrameWndEx 类，而 CFrameWndEx 类又继承于 CFrameWnd 类，CFrameWnd 类中用于管理文档和视图的成员函数有：&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获得当前活动视图对象对应文档对象的指针，如果不存在返回 NULL&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;virtual&lt;/span&gt; CDocument&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetActiveDocument&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获得当前活动视图对象的指针&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CView&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetActiveView&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 设置活动视图。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 参数 pViewNew 为要激活的视图对象的指针。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 参数 bNotify 指定视图是否接受激活通知。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;SetActiveView&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CView&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pViewNew&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; BOLL bNotify &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; TRUE&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CHelloWorldDoc 文档类继承于 CDocument 类，主要成员函数有：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CHelloWorldView 视图类继承于 CView 类，CView 类中与文档 / 视图结构相关的成员函数包括：&lt;/p&gt;
-&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获取视图关联的文档对象的指针，如果视图没有关联到文档上则返回 NULL&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CDocument&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;GetDocument&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;各对象之间关系&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#各对象之间关系&#34;&gt;#&lt;/a&gt; 各对象之间关系&lt;/h1&gt;
-&lt;p&gt;涉及到的对象包括&lt;strong&gt;应用程序对象&lt;/strong&gt;、&lt;strong&gt;文档模板对象&lt;/strong&gt;、&lt;strong&gt;文档对象&lt;/strong&gt;、&lt;strong&gt;视图对象&lt;/strong&gt;和&lt;strong&gt;框架窗口对象&lt;/strong&gt;。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;应用程序对象保存了一个文档模板的列表。&lt;/p&gt;
-&lt;p&gt;在任何对象中调用全局函数 &lt;code&gt;AfxGetApp()&lt;/code&gt;  都可以获得应用程序对象的指针。通过调用 &lt;code&gt;CWinAppEx::GetFirstDocTemplatePosition()&lt;/code&gt; 、 &lt;code&gt;CWinAppEx::GetNextDocTemplate()&lt;/code&gt;  函数可以遍历所有的文档模板。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;文档模板对象用于维护文档、视图和框架窗口的映射关系，它包含一个已打开文档的列表。&lt;/p&gt;
-&lt;p&gt;我们可以通过调用 CDocTemplate::GetFirstDocPosition ()、CDocTemplate::GetNextDoc () 来遍历该文档模板对应的所有文档。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;框架窗口对象中包含有指向当前活动视图对象的指针。&lt;/p&gt;
-&lt;p&gt;AfxGetApp ()-&amp;gt;m_pMainWnd 即为主框架窗口对象的指针，可以通过调用 CFrameWndEx::GetActiveView 来获取当前活动视图对象的指针，并且使用 CFrameWndEx::GetActiveDocument 函数获取当前活动视图对应的文档。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;文档对象中维护着该文档的视图列表，已经创建该文档的文档模板对象的指针。&lt;/p&gt;
-&lt;p&gt;可以通过调用&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;视图是框架窗口的子窗口，它保存有指向对应文档对象的指针。&lt;/p&gt;
-&lt;p&gt;可以通过调用 CView::GetParentFrame 获取其所属的框架窗口对象的指针，调用 CView::GetDocument 获取该视图对应的文档对象的指针。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;另外，在 MDI 多文档程序中，调用 CMDIFrameWnd::MDIGetActive 可以获取当前活动的 MDI 子窗口。&lt;/p&gt;
-&lt;h1 id=&#34;分割窗口和csplitterwnd类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#分割窗口和csplitterwnd类&#34;&gt;#&lt;/a&gt; 分割窗口和 CSplitterWnd 类&lt;/h1&gt;
-&lt;p&gt;将一个窗口分割成多个窗口，每个窗口都包含视图。&lt;/p&gt;
-&lt;p&gt;MFC 分割窗口：动态分割，静态分割。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;动态分割通常用于创建同一文档对应的多个视图，而且这些视图一般都是同一类型的视图，能够在用户编辑文档的不同部分时提供方便。动态分割窗口最多可以有两行两列。&lt;/li&gt;
-&lt;li&gt;静态分割比较常见，窗口创建时分割的窗格就已经生成了，而且用户不能改变窗格的数量和顺序。静态分割窗口最多支持 16 行 16 列。通常静态分割的每个窗格中包含不同类的视图，当然也可以包含同一类的视图。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-        <category term="C++" />
-        <category term="MFC" />
-        <updated>2023-06-25T00:50:08.000Z</updated>
+        <updated>2023-06-10T03:12:08.000Z</updated>
     </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</id>
