@@ -3,9 +3,139 @@
     <id>https://adventure-yx.github.io</id>
     <title></title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-05-26T02:12:08.000Z</updated>
+    <updated>2023-06-02T07:12:08.000Z</updated>
     <category term="C++" />
     <category term="MFC" />
+    <entry>
+        <id>https://adventure-yx.github.io/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/</id>
+        <title>字符集与VS中的字符处理</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/"/>
+        <content type="html">&lt;h1 id=&#34;字符集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#字符集&#34;&gt;#&lt;/a&gt; 字符集&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ASCII（American Standard Code for Information Interchange）&lt;/p&gt;
+&lt;p&gt;一个字节（8bit）表示的字符编码，其中只用到了前 7 位，表示 127 个字符。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ANSI 多字节字符集（American National Standard Institute）&lt;/p&gt;
+&lt;p&gt;由字节数据的最高位判断：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最高位为 0，代表是单字节，按照 ASCII 表进行编码&lt;/li&gt;
+&lt;li&gt;最高位为 1，代表是本地化扩展字符，需要将相邻的两个字节组成一个整体，来进行码值求取，得到的码值对应的本地化字符集中可以得到相应的字符是什么。
+&lt;ul&gt;
+&lt;li&gt;简体中文系统下，ANSI 编码代表 GB2312 编码 (GBK 是 GB2312 的扩展，兼容 GB2312)&lt;/li&gt;
+&lt;li&gt;繁体中文系统下，ANSI 编码代表 BIG5 编码&lt;/li&gt;
+&lt;li&gt;日文系统下，ANSI 编码代表 JIS 编码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;不同 ANSI 编码之间互不兼容，当信息在国际间交流时，无法将属于两种语言的文字，存储在同一段 ANSI 编码的文本中。需要将不同的 ANSI 编码都转换成 UTF-8 编码，进而存储。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Unicode 编码（Universal Multiple-Octet Coded Character Set，通用多八位编码字符集）&lt;/p&gt;
+&lt;p&gt;国际组织制定的可以容纳世界上所有文字和字符的编码方案，使用定宽 2 个字节 &lt;code&gt;Ox0000-OxFFFF&lt;/code&gt;  来表示一个字符。对于英文浪费了一个字节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-8（8bit Unicode Transformation Format，8 位 Unicode 通用转换格式）&lt;/p&gt;
+&lt;p&gt;UTF-8 是 Unicode 的实现方式之一，是一种针对 Unicode 的可变长度字符编码，使用 1-4 个字节进行编码&lt;/p&gt;
+&lt;p&gt;对单字节字符，第一位为 0，后 7 位与 ASCII 码一致。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-16&lt;/p&gt;
+&lt;p&gt;可变长度字符编码，将字符编码成 2 字节或者 4 字节&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-32&lt;/p&gt;
+&lt;p&gt;固定长度的编码，始终占用 4 字节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;字符类型&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#字符类型&#34;&gt;#&lt;/a&gt; 字符类型&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;char&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;字符型，单位是字节，占 8bit&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;wchar_t&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;宽字符，单位是双字节，占 16bit&lt;/p&gt;
+&lt;p&gt;wchar_t 是 Unicode 定义的数据类型，定义在 &lt;code&gt;&amp;lt;string.h&amp;gt;&lt;/code&gt;  中。在 ANSI 中使用 wchar_t 会报错，wchar_t 类型的字符是按 Unicode 的编码方式存储的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给 wchar_t 类型变量赋值时，要注意类型以及编码方式是否匹配。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wchar_t *str = L&amp;quot;aaabbb&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;str 是 wchar_t 类型，而 wchar_t 是 Unicode 数据类型，所以后面的字符串要用 L 指令转化为 Unicode 编码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCHAR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;TCHAR 是一个宏，并不是实际的某一个类型。当使用多字节字符集时，TCHAR 就是 char；当使用 Unicode 字符集时，TCHAR 就可以当作 wchar_t 来用。使用 TCHAR，编译器会根据我们字符集来进行相应的转化。TCHAR 定义在 &amp;lt;tchar.h&amp;gt; 中，使用要先包含头文件。&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;ifdef&lt;/span&gt;  &lt;span class=&#34;token expression&#34;&gt;UNICODE&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;wchar_t&lt;/span&gt; TCHAR&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;char&lt;/span&gt; TCHAR&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPSTR&lt;/strong&gt;：32bit 指针，指向一个字符串，每个字符占 1 个字节。相当于 &lt;code&gt;char*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPCSTR&lt;/strong&gt;：32bit 指针，指向一个常字符串，每个字符占 1 个字节。相当于 &lt;code&gt;const char*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPTSTR&lt;/strong&gt;：32bit 指针，指向一个字符串，每个字节可能占 1 个字节或 2 个字节，取决于 Unicode 是否定义。相当于 &lt;code&gt;tchar*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPCTSTR&lt;/strong&gt;：32bit 指针，指向一个常字符串，每个字节可能占 1 个字节或 2 个字节，取决于 Unicode 是否定义。相当于 &lt;code&gt;const tchar*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPWSTR&lt;/strong&gt;：32bit 指针，指向一个 Unicode 字符串的指针，每个字符占 2 字节。相当于 &lt;code&gt;wchar_t*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LPCWSTR&lt;/strong&gt;：32bit 指针，指向一个 Unicode 常字符串的指针，每个字符占 2 字节。相当于 &lt;code&gt;const wchar_t*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;l指令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#l指令&#34;&gt;#&lt;/a&gt; L 指令&lt;/h1&gt;
+&lt;p&gt;字符串前面加 L 表示该字符串是 Unicode 字符串，可以将 ANSI 字符串转换为 Unicode 字符串，就是每个字符占 2 个字节。&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;strlen&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;abc&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;strlen&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;L&lt;span class=&#34;token string&#34;&gt;&#34;abc&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;_t宏&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#_t宏&#34;&gt;#&lt;/a&gt; _T () 宏&lt;/h1&gt;
+&lt;p&gt;_T (&amp;quot;&amp;quot;) 是一个宏定义在 tchar.h 下。&lt;/p&gt;
+&lt;p&gt;_T () 或者 TEXT () 宏，可以把引号括起来的字符串，根据环境选择合适的编码方式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果定义的是 Unicode，那么_T (“abc”) 就相当于 L&amp;quot;abc&amp;quot;，也就是宽字符；&lt;/li&gt;
+&lt;li&gt;如果是多字节编码，那么英文采用单字节，汉字采用双字节；&lt;/li&gt;
+&lt;li&gt;在 Unicode 环境下，要求 LPCWSTR 的地方不可以给一个 char*，而在多字节编码下可以。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Windows 使用两种字符集 ANSI 和 UNICODE，前者就是通常使用的单字节方式，但这种方式处理中文这样的双字节字符不方便，容易出现半个汉字的情况。而后者是双字节，方便处理双字节字符。Windows NT 的所有与字符有关的函数都提供两种方式的版本，Windows 9x 只支持 ANSI 方式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;比如&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wchar_t Str[] = L&amp;quot;Hello World!&amp;quot;;&lt;/code&gt;  是双字节存储字符串，_T 是与之适配的宏。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当有 &lt;code&gt;#ifdef _UNICODE&lt;/code&gt;  的时候，_T () 就是 L；&lt;/p&gt;
+&lt;p&gt;当没有 &lt;code&gt;#ifdef _UNICODE&lt;/code&gt;  的时候，_T () 就是 ANSI 的。&lt;/p&gt;
+&lt;h1 id=&#34;mfc中cstring和stdstring的转换&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mfc中cstring和stdstring的转换&#34;&gt;#&lt;/a&gt; MFC 中 CString 和 std::string 的转换&lt;/h1&gt;
+&lt;p&gt;CString 实际是 CStringT，也就是模板类&lt;/p&gt;
+&lt;p&gt;在 Unicode 环境下，实际是 CStringW&lt;/p&gt;
+&lt;p&gt;在多字符集环境下，实际是 CStringA&lt;/p&gt;
+&lt;p&gt;std::string 是多字符集环境下的&lt;/p&gt;
+&lt;h2 id=&#34;unicode环境下&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#unicode环境下&#34;&gt;#&lt;/a&gt; Unicode 环境下&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CString 转换 std::string&lt;/p&gt;
+&lt;p&gt;CString 实际是 CStringW，要转换为多字符集，需要进行转码。使用 WideCharToMultiByte 转换成多字符集，然后再构造 std::string&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;std::string 转换 CString&lt;/p&gt;
+&lt;p&gt;CStringT 模板类会自动做 char* 到 wchar_t * 的转码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//CString -&gt; std::string&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CString &lt;span class=&#34;token function&#34;&gt;strCS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;HelloWorld&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;USES_CONVERSION&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;string &lt;span class=&#34;token function&#34;&gt;strS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;W2A&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;strCS&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;			&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//std::string -&gt; CString&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CString strCStemp&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;strCStemp &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; strS&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;c_str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 不能写在同一行&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;多字符集环境下&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多字符集环境下&#34;&gt;#&lt;/a&gt; 多字符集环境下&lt;/h2&gt;
+&lt;p&gt;CString 就是 CStringA&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//CString -&gt; std::string&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CString &lt;span class=&#34;token function&#34;&gt;strCS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;HelloWorld&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;string str1 str2&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;str1 &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; str&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;GetBuffer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;str2 &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CStringA&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;str&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//std::string -&gt; CString&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;string strTemp&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CString str &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; strTemp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;c_str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;		&lt;span class=&#34;token comment&#34;&gt;// 可以写在一行&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;tixml写入配置文件时bool类型转stdstring&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tixml写入配置文件时bool类型转stdstring&#34;&gt;#&lt;/a&gt; TiXML 写入配置文件时 bool 类型转 std::string&lt;/h1&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DeviceConfigDlg&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;BoolToStr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;bool&lt;/span&gt; is&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; is &lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;true&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;false&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;调用：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pCheckSelfXRayConnect&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;SetAttribute&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Enabled&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;BoolToStr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;isCheckSelfXRayConnect&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="C++" />
+        <category term="MFC" />
+        <updated>2023-06-02T07:12:08.000Z</updated>
+    </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/</id>
         <title>MFC 消息映射机制</title>
