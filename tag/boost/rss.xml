@@ -10,16 +10,15 @@
         <category>C++</category>
         <category>Boost</category>
         <category>DataBase</category>
-        <category>Linux</category>
         <category>MFC</category>
+        <category>Linux</category>
         <category>Qt</category>
         <category>QML</category>
         <category>STL</category>
-        <category>XML</category>
-        <category>算法</category>
         <category>操作系统</category>
-        <category>计算机网络</category>
         <category>设计模式</category>
+        <category>算法</category>
+        <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
             <title>C++Boost库 内存管理</title>
@@ -208,7 +207,7 @@
             <link>https://adventure-yx.github.io/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/</link>
             <category>C++</category>
             <category>Boost</category>
-            <pubDate>Mon, 05 Jun 2023 10:10:08 +0800</pubDate>
+            <pubDate>Mon, 05 Jun 2023 10:15:08 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;函数与回调&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#函数与回调&#34;&gt;#&lt;/a&gt; 函数与回调&lt;/h1&gt;
 &lt;p&gt;围绕函数与函数对象，共有 4 个 Boost 库，应用了 &lt;code&gt;C++&lt;/code&gt;  中高级的语言特性和技巧，功能很强大，相应的用法也比较复杂灵活。其中前三个 ref、bind、function 已经被收入 &lt;code&gt;C++11&lt;/code&gt;  标准。&lt;/p&gt;
 &lt;ul&gt;
