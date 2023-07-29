@@ -16,9 +16,6 @@
         <category>QML</category>
         <category>STL</category>
         <category>操作系统</category>
-        <category>设计模式</category>
-        <category>算法</category>
-        <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://adventure-yx.github.io/2023/05/04/showimg/</guid>
             <title>基于Qt的图片浏览器</title>
