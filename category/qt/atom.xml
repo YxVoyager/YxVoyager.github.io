@@ -7,11 +7,16 @@
     <category term="C++" />
     <category term="Boost" />
     <category term="DataBase" />
-    <category term="MFC" />
     <category term="Linux" />
+    <category term="MFC" />
     <category term="Qt" />
     <category term="QML" />
     <category term="STL" />
+    <category term="XML" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="计算机网络" />
+    <category term="设计模式" />
     <entry>
         <id>https://adventure-yx.github.io/2023/05/04/showimg/</id>
         <title>基于Qt的图片浏览器</title>
