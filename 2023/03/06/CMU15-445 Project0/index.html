@@ -1,0 +1,612 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="DataBase" />
+
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/">
+
+
+
+  <title>
+CMU15-445 Project#0 字典树trie - DataBase |
+Adventure =  = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">CMU15-445 Project#0 字典树trie
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-03-06 20:10:50">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-03-06T20:10:50+08:00">2023-03-06</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Adventure</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/2023/03/06/CMU15-445%20Project0/cover-12.jpg">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/DataBase/" itemprop="item" rel="index" title="分类于 DataBase"><span itemprop="name">DataBase</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="AdventureYX">
+    <meta itemprop="description" content="心有所向。日复一日，必有精进, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p><img data-src="image-20230422131532761.png" alt="image-20230422131532761"></p>
+<h1 id="什么是字典树前缀树trie"><a class="markdownIt-Anchor" href="#什么是字典树前缀树trie">#</a> 什么是字典树 / 前缀树 /trie</h1>
+<p>前缀树，又称字典树。是  <code>N叉树</code>  的一种特殊形式。<strong>前缀树用于存储、查找字符串</strong>。前缀树的每一个节点代表一个字符串（前缀）。每一个节点会有多个子节点，通往不同子节点的路径上有着不同的字符。子节点代表的字符串是由节点本身的<strong>原始字符串</strong> ，以及<strong>通往该子节点路径上所有的字符</strong>组成的。</p>
+<p><img data-src="screen-shot-2018-01-31-at-163403.png" alt="img"></p>
+<p>在上图示例中，我们在节点中标记的值是该节点对应表示的字符串。例如，我们从根节点开始，选择第二条路径 ‘b’，然后选择它的第一个子节点 ‘a’，接下来继续选择子节点 ‘d’，我们最终会到达叶节点 “bad”。节点的值是由从根节点开始，与其经过的路径中的字符按顺序形成的。</p>
+<p>值得注意的是，根节点表示<strong>空字符串</strong>。</p>
+<p>前缀树的一个重要的特性是，节点所有的后代都与该节点相关的字符串有着共同的前缀。这就是 前缀树 名称的由来。</p>
+<p>我们再来看这个例子。例如，以节点 “b” 为根的子树中的节点表示的字符串，都具有共同的前缀 “b”。反之亦然，具有公共前缀 “b” 的字符串，全部位于以 “b” 为根的子树中，并且具有不同前缀的字符串来自不同的分支。</p>
+<p>前缀树有着广泛的应用，例如自动补全，拼写检查等等。</p>
+<h1 id="如何表示一个前缀树"><a class="markdownIt-Anchor" href="#如何表示一个前缀树">#</a> 如何表示一个前缀树</h1>
+<ol>
+<li>
+<p>用<strong>数组</strong>存储子节点</p>
+<p>例如，如果我们只存储含有字母 <code>a</code>  到  <code>z</code>  的字符串，我们可以在每个节点中声明一个大小为 26 的数组来存储其子节点。对于特定字符  <code>c</code>  ，我们可以使用  <code>c - 'a'</code>  作为索引来查找数组中相应的子节点。</p>
+<figure class="highlight c"><figcaption data-lang="c"><span>c</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">N</span> <span class="token expression"><span class="token number">26</span></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">struct</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    TrieNode<span class="token operator">*</span> children<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    </pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// you might need some extra values according to different cases</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">/** Usage:</pre></td></tr><tr><td data-num="10"></td><td><pre> *  Initialization: TrieNode root = new TrieNode();</pre></td></tr><tr><td data-num="11"></td><td><pre> *  Return a specific child node with char c: (root->children)[c - 'a']</pre></td></tr><tr><td data-num="12"></td><td><pre> */</span></pre></td></tr></table></figure><p>访问子节点十分快捷。访问一个特定的子节点比较容易，因为在大多数情况下，我们很容易将一个字符转换为索引。但并非所有的子节点都需要这样的操作，所以这可能会导致<strong>空间的浪费</strong>。</p>
+</li>
+<li>
+<p>用 Hashmap 来存储子节点</p>
+<p>我们可以在每个节点中声明一个 Hashmap 。Hashmap 的键是字符，值是相对应的子节点。</p>
+<figure class="highlight c"><figcaption data-lang="c"><span>c</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">struct</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    unordered_map<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span> TrieNode<span class="token operator">*</span><span class="token operator">></span> children<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    </pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// you might need some extra values according to different cases</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">/** Usage:</pre></td></tr><tr><td data-num="8"></td><td><pre> *  Initialization: TrieNode root = new TrieNode();</pre></td></tr><tr><td data-num="9"></td><td><pre> *  Return a specific child node with char c: (root->children)[c]</pre></td></tr><tr><td data-num="10"></td><td><pre> */</span></pre></td></tr></table></figure><p>通过相应的字符来访问特定的子节点更为容易。但它可能比使用数组稍慢一些。但是，由于我们只存储我们需要的子节点，因此节省了空间。这个方法也更加灵活，因为我们不受到固定长度和固定范围的限制。</p>
+</li>
+</ol>
+<blockquote>
+<p>我们已经提到过如何表示前缀树中的子节点。除此之外，我们也需要用到一些其他的值。</p>
+<p>例如，我们知道，前缀树的每个节点表示一个字符串，但并不是所有由前缀树表示的字符串都是有意义的。如果我们只想在前缀树中存储单词，那么我们可能需要在每个节点中声明一个布尔值（Boolean）作为标志，来表明该节点所表示的字符串是否为一个单词。</p>
+</blockquote>
+<h1 id="前缀树中的插入操作"><a class="markdownIt-Anchor" href="#前缀树中的插入操作">#</a> 前缀树中的插入操作</h1>
+<p>review：如何在二叉搜索树中插入一个新的节点？</p>
+<p>当我们在二叉搜索树中插入目标值时，在每个节点中，我们都需要根据 节点值 和 目标值 之间的关系，来确定目标值需要去往哪个子节点。同样地，当我们向前缀树中插入一个目标值时，我们也需要根据插入的 目标值 来决定我们的路径。</p>
+<p>更具体地说，如果我们在前缀树中插入一个字符串  <code>S</code> ，我们要从根节点开始。 我们将根据  <code>S[0]</code> （S 中的第一个字符），选择一个子节点或添加一个新的子节点。然后到达第二个节点，并根据  <code>S[1]</code>  做出选择。 再到第三个节点，以此类推。 最后，我们依次遍历  <code>S</code>  中的所有字符并到达末尾。 末端节点将是表示字符串  <code>S</code>  的节点。</p>
+<p>通常情况情况下，你需要自己构建前缀树。构建前缀树实际上就是多次调用插入函数。但请记住在插入字符串之前<strong>要初始化根节点</strong></p>
+<h1 id="实现trie经典的字典树"><a class="markdownIt-Anchor" href="#实现trie经典的字典树">#</a> 实现 trie (经典的字典树)</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9pbXBsZW1lbnQtdHJpZS1wcmVmaXgtdHJlZS8=">208. 实现 Trie (前缀树) - 力扣（LeetCode）</span></p>
+<p>请你实现 Trie 类：</p>
+<ul>
+<li><code>Trie()</code>  初始化前缀树对象。</li>
+<li><code>void insert(String word)</code>  向前缀树中插入字符串  <code>word</code>  。</li>
+<li><code>boolean search(String word)</code>  如果字符串  <code>word</code>  在前缀树中，返回  <code>true</code> （即，在检索之前已经插入）；否则，返回  <code>false</code>  。</li>
+<li><code>boolean startsWith(String prefix)</code>  如果之前已经插入的字符串  <code>word</code>  的前缀之一为  <code>prefix</code>  ，返回  <code>true</code>  ；否则，返回  <code>false</code>  。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 输入</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">[</span><span class="token string">"Trie"</span><span class="token punctuation">,</span> <span class="token string">"insert"</span><span class="token punctuation">,</span> <span class="token string">"search"</span><span class="token punctuation">,</span> <span class="token string">"search"</span><span class="token punctuation">,</span> <span class="token string">"startsWith"</span><span class="token punctuation">,</span> <span class="token string">"insert"</span><span class="token punctuation">,</span> <span class="token string">"search"</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"app"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"app"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"app"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"app"</span><span class="token punctuation">]</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 输出</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">[</span>null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">// 解释</span></pre></td></tr><tr><td data-num="9"></td><td><pre>Trie trie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 返回 True</span></pre></td></tr><tr><td data-num="12"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 返回 False</span></pre></td></tr><tr><td data-num="13"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回 True</span></pre></td></tr><tr><td data-num="14"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>trie<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 返回 True</span></pre></td></tr></table></figure><p>提示：</p>
+<ul>
+<li><code>1 &lt;= word.length, prefix.length &lt;= 2000</code></li>
+<li><code>word</code>  和  <code>prefix</code>  仅由小写英文字母组成</li>
+<li><code>insert</code> 、 <code>search</code>  和  <code>startsWith</code>  调用次数总计不超过 3 * 10^^4 次</li>
+</ul>
+<p><strong>力扣解析：</strong></p>
+<blockquote>
+<p><strong>字典树，一棵有根树，其每个节点包含以下字段</strong>：</p>
+<ul>
+<li>指向子节点的指针数组  <code>children</code> 。对于本题而言，数组长度为 26，即小写英文字母的数量。此时 <code>children[0]</code>  对应小写字母 a， <code>children[1]</code>  对应小写字母 b，…， <code>children[25]</code>  对应小写字母 z。</li>
+<li>布尔字段  <code>isEnd</code> ，表示该节点是否为字符串的结尾。</li>
+</ul>
+<p><strong>插入字符串</strong></p>
+<p>我们从字典树的根开始，插入字符串。对于当前字符对应的子节点，有两种情况：</p>
+<ul>
+<li>子节点存在。沿着指针移动到子节点，继续处理下一个字符。</li>
+<li>子节点不存在。创建一个新的子节点，记录在 children 数组的对应位置上，然后沿着指针移动到子节点，继续搜索下一个字符。</li>
+</ul>
+<p>重复以上步骤，直到处理字符串的最后一个字符，然后将当前节点标记为字符串的结尾。</p>
+<p><strong>查找前缀</strong></p>
+<p>我们从字典树的根开始，查找前缀。对于当前字符对应的子节点，有两种情况：</p>
+<ul>
+<li>子节点存在。沿着指针移动到子节点，继续搜索下一个字符。</li>
+<li>子节点不存在。说明字典树中不包含该前缀，返回空指针。</li>
+</ul>
+<p>重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。</p>
+<p>若搜索到了前缀的末尾，就说明字典树中存在该前缀。此外，若前缀末尾对应节点的 <code>isEnd</code>  为真，则说明字典树中存在该字符串。</p>
+</blockquote>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Trie</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    vector<span class="token operator">&lt;</span>Trie<span class="token operator">*</span><span class="token operator">></span> children<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">bool</span> isEnd<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>    Trie<span class="token operator">*</span> <span class="token function">searchPrefix</span><span class="token punctuation">(</span>string prefix<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        Trie<span class="token operator">*</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> ch <span class="token operator">:</span> prefix<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            ch <span class="token operator">-=</span> <span class="token char">'a'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                <span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            node <span class="token operator">=</span> node<span class="token operator">-></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token keyword">return</span> node<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token function">Trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">children</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">isEnd</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span>string word<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        Trie<span class="token operator">*</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> ch <span class="token operator">:</span> word<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            ch <span class="token operator">-=</span> <span class="token char">'a'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>                node<span class="token operator">-></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            node <span class="token operator">=</span> node<span class="token operator">-></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        node<span class="token operator">-></span>isEnd <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token keyword">bool</span> <span class="token function">search</span><span class="token punctuation">(</span>string word<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        Trie<span class="token operator">*</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">searchPrefix</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token keyword">return</span> node <span class="token operator">!=</span> <span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> node<span class="token operator">-></span>isEnd<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token keyword">bool</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>string prefix<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">searchPrefix</span><span class="token punctuation">(</span>prefix<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="41"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p><strong>首先构建节点（Node）；弄清了节点的结构和含义，一棵树（Tree）的构建就会水到渠成</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    boolean isWord<span class="token punctuation">;</span>							  <span class="token comment">// 从 root 根节点至此是否是一个完整的单词（即这个节点是否是一个单词的结尾）</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	TrieNode<span class="token punctuation">[</span><span class="token punctuation">]</span> children <span class="token operator">=</span> <span class="token keyword">new</span> TrieNode<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>		<span class="token comment">// 巧妙的用数组的下标作为 26 个字母；数组的值则为子节点</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token keyword">public</span> <span class="token function">TrieNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>		<span class="token comment">// 无参构造函数 (不写也行)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><blockquote>
+<p>如果没有 a-z 的限制，就不能用数组，而使用<strong>哈希表</strong>。</p>
+</blockquote>
+<p><strong>构建好了节点，下面开始构建树，并写出树的一些方法：</strong></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">&#123;</span>		<span class="token comment">// 节点</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token keyword">bool</span> isWord<span class="token punctuation">;</span>								</pre></td></tr><tr><td data-num="3"></td><td><pre>	TrieNode<span class="token punctuation">[</span><span class="token punctuation">]</span> children <span class="token operator">=</span> <span class="token keyword">new</span> TrieNode<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>		</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Trie</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    TrieNode root<span class="token punctuation">;</span>       <span class="token comment">// 根节点</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token function">Trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>		root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TrieNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 构造字典树，就是先构造出一个空的根节点</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    </pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token comment">//【向字典树插入单词 word】</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token comment">// 思路：按照 word 的字符，从根节点开始，一直向下走：</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token comment">// 如果遇到 null，就 new 出新节点；如果节点已经存在，cur 顺着往下走就可以</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span>string word<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        TrieNode cur <span class="token operator">=</span> root<span class="token punctuation">;</span>		<span class="token comment">// 先指向根节点</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        </pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> word<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token comment">// 如果是【后缀树】而不是【前缀树】，把单词倒着插就可以了，即 for (len-1; 0; i--)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>             <span class="token keyword">int</span> c <span class="token operator">=</span> word<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">;</span>           <span class="token comment">// (关键) 将一个字符用数字表示出来，并作为下标</span></pre></td></tr><tr><td data-num="21"></td><td><pre>             <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>                cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TrieNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>             cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        cur<span class="token punctuation">.</span>isWord <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    </pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token comment">//【判断一个单词 word 是否完整存在于字典树中】</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token comment">// 思路：cur 从根节点开始，按照 word 的字符一直尝试向下走：</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token comment">// 如果走到了 null，说明这个 word 不是前缀树的任何一条路径，返回 false;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token comment">// 如果按照 word 顺利的走完，就要判断此时 cur 是否为单词尾端：如果是，返回 true；如果不是，说明 word 仅仅是一个前缀，并不完整，返回 false</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token keyword">bool</span> <span class="token function">search</span><span class="token punctuation">(</span>string word<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        TrieNode cur <span class="token operator">=</span> root<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        </pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> word<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            <span class="token keyword">int</span> c <span class="token operator">=</span> word<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>	    <span class="token keyword">return</span> cur<span class="token punctuation">.</span>isWord<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>    </pre></td></tr><tr><td data-num="46"></td><td><pre>    <span class="token comment">//【判断一个单词 word 是否是字典树中的前缀】</span></pre></td></tr><tr><td data-num="47"></td><td><pre>    <span class="token comment">// 思路：和 sesrch 方法一样，根据 word 从根节点开始一直尝试向下走：</span></pre></td></tr><tr><td data-num="48"></td><td><pre>    <span class="token comment">// 如果遇到 null 了，说明这个 word 不是前缀树的任何一条路径，返回 false;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>    <span class="token comment">// 如果安全走完了，直接返回 true 就行了 ——— 我们并不关心此事 cur 是不是末尾 (isWord)</span></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token keyword">bool</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>string prefix<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        TrieNode cur <span class="token operator">=</span> root<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        </pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> word<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="54"></td><td><pre>            <span class="token keyword">int</span> c <span class="token operator">=</span> word<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="55"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="56"></td><td><pre>                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="58"></td><td><pre>            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="59"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="60"></td><td><pre>        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="61"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="62"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="63"></td><td><pre></pre></td></tr><tr><td data-num="64"></td><td><pre><span class="token comment">/**</pre></td></tr><tr><td data-num="65"></td><td><pre> * Your Trie object will be instantiated and called as such:</pre></td></tr><tr><td data-num="66"></td><td><pre> * Trie* obj = new Trie();</pre></td></tr><tr><td data-num="67"></td><td><pre> * obj->insert(word);</pre></td></tr><tr><td data-num="68"></td><td><pre> * bool param_2 = obj->search(word);</pre></td></tr><tr><td data-num="69"></td><td><pre> * bool param_3 = obj->startsWith(prefix);</pre></td></tr><tr><td data-num="70"></td><td><pre> */</span></pre></td></tr></table></figure><h1 id="单词的压缩编码"><a class="markdownIt-Anchor" href="#单词的压缩编码">#</a> 单词的压缩编码</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9zaG9ydC1lbmNvZGluZy1vZi13b3Jkcy8=">820. 单词的压缩编码 - 力扣（LeetCode）</span></p>
+<p>单词数组 words 的 有效编码 由任意助记字符串 s 和下标数组 indices 组成，且满足：</p>
+<ul>
+<li>words.length == indices.length</li>
+<li>助记字符串 s 以 ‘#’ 字符结尾</li>
+<li>对于每个下标 indices [i] ，s 的一个从 indices [i] 开始、到下一个 ‘#’ 字符结束（但不包括 ‘#’）的 子字符串 恰好与 words [i] 相等</li>
+</ul>
+<p>给你一个单词数组 words ，返回成功对 words 进行编码的最小助记字符串 s 的长度 。</p>
+<p>示例 1：</p>
+<p>输入：words = [“time”, “me”, “bell”]<br>
+ 输出：10<br>
+ 解释：一组有效编码为 s = “time#bell#” 和 indices = [0, 2, 5] 。<br>
+words [0] = “time” ，s 开始于 indices [0] = 0 到下一个 ‘#’ 结束的子字符串，如加粗部分所示 “time#bell#”<br>
+words [1] = “me” ，s 开始于 indices [1] = 2 到下一个 ‘#’ 结束的子字符串，如加粗部分所示 “time#bell#”<br>
+words [2] = “bell” ，s 开始于 indices [2] = 5 到下一个 ‘#’ 结束的子字符串，如加粗部分所示 “time#bell#”</p>
+<p>示例 2：</p>
+<p>输入：words = [“t”]<br>
+ 输出：2<br>
+ 解释：一组有效编码为 s = “t#” 和 indices = [0] 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 2000</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 7</code></li>
+<li><code>words[i]</code>  仅由小写字母组成</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> <span class="token function">minimumLengthEncoding</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token operator">&amp;</span> words<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure>
+      <div class="tags">
+          <a href="/tags/DataBase/" rel="tag"><i class="ic i-tag"></i> DataBase</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-03-08 19:20:01" itemprop="dateModified" datetime="2023-03-08T19:20:01+08:00">2023-03-08</time>
+  </span>
+  <span id="2023/03/06/CMU15-445 Project0/" class="item leancloud_visitors" data-flag-title="CMU15-445 Project#0 字典树trie" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>AdventureYX <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://adventure-yx.github.io/2023/03/06/CMU15-445%20Project0/" title="CMU15-445 Project#0 字典树trie">https://adventure-yx.github.io/2023/03/06/CMU15-445 Project0/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/03/06/CMU15-445/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;cover-3d001679d9230e286.jpeg" title="CMU15-445（2022Fall）">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> DataBase</span>
+  <h3>CMU15-445（2022Fall）</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/03/08/CMU15-445%20Project1/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-20aaa4da442993f8b8.png" title="CMU15-445：Project#1 Buffer Pool">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> DataBase</span>
+  <h3>CMU15-445：Project#1 Buffer Pool</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E5%85%B8%E6%A0%91%E5%89%8D%E7%BC%80%E6%A0%91trie"><span class="toc-number">1.</span> <span class="toc-text"> 什么是字典树 &#x2F; 前缀树 &#x2F;trie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-number">2.</span> <span class="toc-text"> 如何表示一个前缀树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text"> 前缀树中的插入操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0trie%E7%BB%8F%E5%85%B8%E7%9A%84%E5%AD%97%E5%85%B8%E6%A0%91"><span class="toc-number">4.</span> <span class="toc-text"> 实现 trie (经典的字典树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D%E7%9A%84%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text"> 单词的压缩编码</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/03/06/CMU15-445/" rel="bookmark" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></li><li class="active"><a href="/2023/03/06/CMU15-445%20Project0/" rel="bookmark" title="CMU15-445 Project#0 字典树trie">CMU15-445 Project#0 字典树trie</a></li><li><a href="/2023/03/08/CMU15-445%20Project1/" rel="bookmark" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">24</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">8</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>friends</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/links/" rel="section"><i class="ic i-magic"></i>links</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/03/06/CMU15-445/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/03/08/CMU15-445%20Project1/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/26/QML&QtQuick/" title="QML &amp; Qt Quick">QML & Qt Quick</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/01/MFC%E5%AF%B9%E8%AF%9D%E6%A1%86/" title="MFC 对话框">MFC 对话框</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/05/04/showimg/" title="基于Qt的图片浏览器">基于Qt的图片浏览器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" title="MFC 文档&#x2F;视图框架">MFC 文档/视图框架</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/01/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/08/CMU15-445%20Project1/" title="CMU15-445：Project#1 Buffer Pool">CMU15-445：Project#1 Buffer Pool</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" title="字符集与VS中的字符处理">字符集与VS中的字符处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/03/12/QtStudy/" title="Qt Study">Qt Study</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/25/MFC/" title="MFC">MFC</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Adventure</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/03/06/CMU15-445 Project0/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

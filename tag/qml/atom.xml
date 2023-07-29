@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://adventure-yx.github.io</id>
+    <title> • Posts by &#34;qml&#34; tag</title>
+    <link href="https://adventure-yx.github.io" />
+    <updated>2023-03-26T02:12:08.000Z</updated>
+    <category term="C++" />
+    <category term="Boost" />
+    <category term="DataBase" />
+    <category term="MFC" />
+    <category term="Linux" />
+    <category term="Qt" />
+    <category term="QML" />
+    <category term="STL" />
+    <entry>
+        <id>https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/</id>
+        <title>QML &amp; Qt Quick</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/03/26/QML&amp;QtQuick/"/>
+        <content type="html">&lt;h1 id=&#34;概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#概述&#34;&gt;#&lt;/a&gt; 概述&lt;/h1&gt;
+&lt;p&gt;具体来说，Qt Quick 是框架，QML 是语言。Qt Quick 是用 C++ 搭建起来的一套 DirectUI/Immediate UI 框架，在这个框架上可以用和 js 语法一样的 QML 语言开发界面。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;和原来的 QWidgets 框架有什么关系：&lt;/p&gt;
+&lt;p&gt;没有太大关系，实际上，Qt Quick 是一个新框架，它仅仅继承了 Qt 原有的元对象系统，也就是带信号槽的对象系统，其他的理念都是新的。&lt;/p&gt;
+&lt;p&gt;类似 DirectUI 和经典的 GUI 库，如 MFC、WTL 的区别。DirectUI 把所有控件都在一个主窗口的绘制事件里绘制，从硬件原理上说就是界面是统一刷新的，而不是根据事件选择部分区域刷新。这样的好处是这些控件容易协作变化，特别适合制作动态界面，例如控件拖拽、变形、变色、皮肤、透明、3D 等等。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;为什么要引入 qml 或者说 javascript ？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;提高开发效率。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;传统上 native 的 UI 开发普遍使用 C++，C#，java 或者 Objective-C，基本上是一类语言，就是静态语言。但是近年来本地应用也有使用 HTML5+js 的趋势。这个趋势一是因为 web 技术让 js 的解析速度更快了，另一方面是硬件资源越来越丰富了。当然最关键的是 google 开源了其牛逼的 js 引擎。Node.js 加上一个前端框架也可以开发本地应用了。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;QT Quick 的目的就是提供一套类似的但是集成程度更高的解决方案，Qt Quick 内部集成了 google V8 引擎作为 qml 的解释器，摒弃了 html，取而代之的是直接使用 js 作为 UI 的设计语言。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;和 Node.js 类似，Qt Quick 也提供了一系列 js 和 C++ 交互的接口，便于 js 和 C++ 通信。复杂逻辑、文件系统、网络通信、传感器（像摄像头）的操作都可以在 C++ 侧完成。而界面设计和一些简单逻辑（例如按钮变色、换肤、变形等）都可以在 js 侧完成。这样避免了传统上本地应用开发前端设计和后台逻辑混合的情况，让界面设计者专心设计界面成为了可能。由于 C++ 提供了内存的快速操作方法（也可以使用 js 的 Typed Array），这种方案的开发效率更高、运行速度还不慢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;移动端 or 桌面端应用开发：&lt;/p&gt;
+&lt;p&gt;Qt Quick 适合移动端的开发，Qt Quick 同样适合桌面的开发，不仅仅是因为 Qt Quick 提供了 js 和 C++ 的交互接口，而且是因为越来越多的桌面应用需要动态界面，有的还是 3D 界面。&lt;/p&gt;
+&lt;p&gt;如前文所说，Qt Quick 的优点就在于它是 DirectUI，其构造界面的机制充分考虑了控件实时动态变化的情形，所以只要是应用是动态界面，那么 Qt Quick 就是适合的，例如仿真系统、监控系统、游戏等等。&lt;br&gt;
+有什么应用是不适合的吗，当然，如果界面中有大量静态控件，例如邮箱，表格或者像 Ps 这样按钮特别多的复杂界面就是静态界面，界面中有大片的区域不需要刷新，那么就不适合用 Qt Quick，因为全局刷新会消耗更多 CPU 和内存资源。&lt;/p&gt;
+&lt;h1 id=&#34;qml-基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#qml-基础&#34;&gt;#&lt;/a&gt; QML 基础&lt;/h1&gt;
+&lt;p&gt;QML（Qt Meta Language，Qt 元语言）是一个用来描述应用程序界面的&lt;strong&gt;声明式&lt;/strong&gt;脚本语言。QML 具有良好的易读性，它以可视化组件及其交互和相互关联的方式来描述界面，使组件能在动态行为中互相连接，并支持在一个用户界面上很方便的复用和定制组件。&lt;/p&gt;
+&lt;p&gt;Qt Quick 是 Qt 为 QML 提供的一套标准类库，由 QML 标准类型和功能组成，包括可视化类型、交互类型、动画类型、模型和视图、粒子系统和渲染效果等，编程时只需要一条 import 语句，就能访问所有这些功能。使用 Qt Quick，能够很容易地用 QML 构建出高品质、流畅的 UI 界面，从而开发出具有视觉吸引力的应用程序。&lt;/p&gt;
+&lt;h2 id=&#34;基本语法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#基本语法&#34;&gt;#&lt;/a&gt; 基本语法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;import&lt;/code&gt;  语句导入一个模块。Qt6 可以不写版本号，自动加载最高版本模块。&lt;/li&gt;
+&lt;li&gt;每个 QML 文件都需要有一个唯一的根元素（像 HTML 一样&lt;/li&gt;
+&lt;li&gt;元素声明形式： &lt;code&gt;type&amp;#123;  &amp;#125;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;元素属性： &lt;code&gt;name:value&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;QML 文档中的任意元素可以通过使用其 id 进行访问&lt;/li&gt;
+&lt;li&gt;元素可以嵌套，父元素可以有子元素。子元素可以使用 parent 关键字访问父元素。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="C++" />
+        <category term="Qt" />
+        <category term="QML" />
+        <updated>2023-03-26T02:12:08.000Z</updated>
+    </entry>
+</feed>

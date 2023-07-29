@@ -1,0 +1,1491 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="C++,MFC" />
+
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/05/25/MFC/">
+
+
+
+  <title>
+MFC - C++ |
+Adventure =  = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">MFC
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-05-25 10:12:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-05-25T10:12:08+08:00">2023-05-25</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Adventure</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-1683c8e10dd42012a8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://cdn.jsdelivr.net/gh/Adventure-yx/img/banner/sky-8.jpg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-19f963fbc408cf0014.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/C/" itemprop="item" rel="index" title="分类于 C++"><span itemprop="name">C++</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/05/25/MFC/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="AdventureYX">
+    <meta itemprop="description" content="心有所向。日复一日，必有精进, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="vs应用程序工程中文件的组成结构"><a class="markdownIt-Anchor" href="#vs应用程序工程中文件的组成结构">#</a> VS 应用程序工程中文件的组成结构</h1>
+<p>如果已经以 Debug 方式编译链接过程序，则会在解决方案文件夹下和工程子文件夹下各有一个名为 “Debug” 的文件夹，而如果是 Release 方式编译则会有名为 “Release” 的文件夹。这两种编译方式将产生两种不同版本的可执行文件：</p>
+<ul>
+<li>
+<p>Debug 版本</p>
+<p>可执行文件中包含了用于调试的信息和代码。</p>
+</li>
+<li>
+<p>Release 版本</p>
+<p>没有调试信息，不能进行调试，但可执行文件较小。</p>
+</li>
+</ul>
+<p>工程中文件结构：</p>
+<ol>
+<li>
+<p>解决方案相关文件</p>
+<p>包括解决方案文件夹下的.sdf 文件、.sln 文件、.suo 文件和 ipch 文件夹。</p>
+<p>.sdf 文件和 ipch 目录一般与智能提示、错误提示、代码恢复和团队本地仓库有关。</p>
+<p>.sln 文件和.suo 文件为 MFC 自动生成的解决方案文件，它包含当前解决方案中的工程信息，存储解决方案的设置。</p>
+</li>
+<li>
+<p>工程相关文件</p>
+<p>包括工程文件夹下的.vcxproj 文件和.vcxproj.filters 文件。</p>
+<p>.vcxproj 文件是 MFC 生成的工程文件，它包含当前工程的设置和工程所包含的文件等信息。</p>
+<p>.vcxproj.filters 文件存放工程的虚拟目录信息，也就是在解决方案浏览器中的目录结构信息。</p>
+</li>
+<li>
+<p>应用程序头文件和源文件</p>
+<p>应用程序向导（MFC Application Wizard）会根据应用程序的类型（单文档、多文档或基于对话框的程序）自动生成一些头文件和源文件，这些文件是工程的主体部分，用于实现主框架、文档、视图等。</p>
+<ul>
+<li>HelloWorld.h：应用程序的主头文件。主要包含由 CWinAppEx 类派生的 CHelloWorldApp 类的声明，以及 CHelloWorldApp 类的全局对象 theApp 的声明。</li>
+<li>HelloWorld.cpp：应用程序的主源文件。主要包含 CHelloWorldApp 类的实现，CHelloWorldApp 类的全局对象 theApp 的声明。</li>
+<li>MainFrm.h 和 MainFrm.cpp：从 CFrameWndEx 类派生出 CMainFrame 类，用于创建主框架、菜单栏、工具栏、状态栏等。</li>
+<li>HelloWorldDoc.h 和 HelloWorldDoc.cpp：从 CDocument 类派生出 CHelloWorldDoc 文档类，包含一些用来初始化文档、串行化（保存和装入）文档和调试的成员函数。</li>
+<li>HelloWorldView.h 和 HelloWorldView.cpp：从 CView 类派生出 CHelloWorldView 视图类，用来显示和打印文档数据，包含了一些绘图和用于调试的成员函数。</li>
+<li>ClassView.h 和 ClassView.cpp：从 CDockablePane 类派生出 CClassView 类，用于实现应用程序左侧面板的 Class View。</li>
+<li>FlieView.h 和 FlieView.cpp：从 CDockablePane 类派生出 CFlieView 类，用于实现应用程序左侧面板的 Flie View。</li>
+<li>OutputWnd.h 和 OutputWnd.cpp：从 CDockablePane 类派生出 COutputWnd 类，用于实现应用程序下侧面板的 Output。</li>
+<li>PropertiesWnd.h 和 PropertiesWnd.cpp：从 CDockablePane 类派生出 CPropertiesWnd 类，用于实现应用程序右侧面板的 Properties。</li>
+<li>ViewTree.h 和 ViewTree.cpp：由 CTreeCtrl 类派生出 CViewTree 类，用于实现出现在 ClassView 和 FileView 中的树视图。</li>
+</ul>
+</li>
+<li>
+<p>资源文件</p>
+<p>一般使用 MFC 生成窗口程序都会有对话框、图标、菜单等资源，应用程序向导会生成资源相关文件：res 目录、HelloWorld.rc 文件和 Resource.h 文件。</p>
+<ul>
+<li>res 目录：工程文件夹下的 res 目录中含有应用程序默认图标、工具栏使用图标等图标文件。</li>
+<li>HelloWorld.rc：包含默认菜单定义、字符串表和加速键表，制定了默认的 About 对话框和应用程序默认图标文件等。</li>
+<li>Resource.h：含有各种资源的 ID 定义。</li>
+</ul>
+</li>
+<li>
+<p>预编译头文件</p>
+<p>几乎所有 MFC 程序的文件都要包含 afxwin.h 等文件（外部依赖项），如果每次都编译一次则会大大减慢编译速度。所以把常用的 MFC 头文件都放到了 stdafx.h 中，然后由 stdafx.cpp 包含 stdafx.h 文件，编译器对 stdafx.cpp 只编译一次，并生成编译后的预编译头 HelloWorld.pch（Precomplied Header Flie），大大提高了编译效率。</p>
+</li>
+<li>
+<p>编译链接生成的文件</p>
+<p>工程文件夹下的 Debug 和 Release 子文件夹中包含了编译链接时产生的中间文件。</p>
+<p>解决方案文件夹下的 Debug 和 Release 子文件夹中主要包含有应用程序的可执行文件。</p>
+</li>
+</ol>
+<h1 id="mfc应用程序框架分析"><a class="markdownIt-Anchor" href="#mfc应用程序框架分析">#</a> MFC 应用程序框架分析</h1>
+<p>程序运行都有入口函数，Windows 应用程序的入口函数时 WinMain 函数，MFC 程序也是从 WinMain 函数开始的。</p>
+<ul>
+<li>MFC 应用程序，使用 MFC 库，应用程序框架开发。</li>
+<li>SDK 应用程序，不使用 MFC 库，直接用 Windows API 函数进行软件开发。</li>
+</ul>
+<h2 id="sdk应用程序"><a class="markdownIt-Anchor" href="#sdk应用程序">#</a> SDK 应用程序</h2>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;windows.h></span>    </span></pre></td></tr><tr><td data-num="2"></td><td><pre>  </pre></td></tr><tr><td data-num="3"></td><td><pre>LRESULT CALLBACK <span class="token function">myWndProc</span><span class="token punctuation">(</span>HWND hWindow<span class="token punctuation">,</span> UINT msg<span class="token punctuation">,</span> WPARAM wParam<span class="token punctuation">,</span> LPARAM lParam<span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="4"></td><td><pre>     </pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">int</span> WINAPI <span class="token function">WinMain</span><span class="token punctuation">(</span>HINSTANCE hInstance<span class="token punctuation">,</span> HINSTANCE hPrevInstance<span class="token punctuation">,</span> PSTR szCmdLine<span class="token punctuation">,</span> <span class="token keyword">int</span> iCmdShow<span class="token punctuation">)</span>      </pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token keyword">const</span> <span class="token keyword">static</span> TCHAR appName<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"Hello world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="8"></td><td><pre>  WNDCLASSEX myWin<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="9"></td><td><pre>  myWin<span class="token punctuation">.</span>cbSize <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>myWin<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="10"></td><td><pre>  myWin<span class="token punctuation">.</span>style <span class="token operator">=</span> CS_HREDRAW <span class="token operator">|</span> CS_VREDRAW<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="11"></td><td><pre>  myWin<span class="token punctuation">.</span>lpfnWndProc <span class="token operator">=</span> myWndProc<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="12"></td><td><pre>  myWin<span class="token punctuation">.</span>cbClsExtra <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="13"></td><td><pre>  myWin<span class="token punctuation">.</span>cbWndExtra <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="14"></td><td><pre>  myWin<span class="token punctuation">.</span>hInstance <span class="token operator">=</span> hInstance<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="15"></td><td><pre>  myWin<span class="token punctuation">.</span>hIcon <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="16"></td><td><pre>  myWin<span class="token punctuation">.</span>hIconSm  <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="17"></td><td><pre>  myWin<span class="token punctuation">.</span>hCursor <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="18"></td><td><pre>  myWin<span class="token punctuation">.</span>hbrBackground <span class="token operator">=</span> <span class="token punctuation">(</span>HBRUSH<span class="token punctuation">)</span><span class="token punctuation">(</span>COLOR_WINDOW <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="19"></td><td><pre>  myWin<span class="token punctuation">.</span>lpszMenuName <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="20"></td><td><pre>  myWin<span class="token punctuation">.</span>lpszClassName <span class="token operator">=</span> appName<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="21"></td><td><pre>  <span class="token comment">//Register      </span></pre></td></tr><tr><td data-num="22"></td><td><pre>  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">RegisterClassEx</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>myWin<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="23"></td><td><pre>  <span class="token keyword">const</span> HWND hWindow <span class="token operator">=</span> <span class="token function">CreateWindow</span><span class="token punctuation">(</span>      </pre></td></tr><tr><td data-num="24"></td><td><pre>    appName<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="25"></td><td><pre>    appName<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="26"></td><td><pre>    WS_OVERLAPPEDWINDOW<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="27"></td><td><pre>    CW_USEDEFAULT<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="28"></td><td><pre>    CW_USEDEFAULT<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="29"></td><td><pre>    CW_USEDEFAULT<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="30"></td><td><pre>    CW_USEDEFAULT<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token number">0</span><span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token number">0</span><span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="33"></td><td><pre>    hInstance<span class="token punctuation">,</span>      </pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="35"></td><td><pre>  <span class="token function">ShowWindow</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">,</span>iCmdShow<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="36"></td><td><pre>  <span class="token function">UpdateWindow</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="37"></td><td><pre>  <span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="38"></td><td><pre>    MSG msg<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">GetMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>msg<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>      </pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="41"></td><td><pre>      <span class="token function">TranslateMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="42"></td><td><pre>      <span class="token function">DispatchMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="43"></td><td><pre>    <span class="token punctuation">&#125;</span>      </pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>msg<span class="token punctuation">.</span>wParam<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="45"></td><td><pre>  <span class="token punctuation">&#125;</span>      </pre></td></tr><tr><td data-num="46"></td><td><pre><span class="token punctuation">&#125;</span>      </pre></td></tr><tr><td data-num="47"></td><td><pre>     </pre></td></tr><tr><td data-num="48"></td><td><pre>LRESULT CALLBACK <span class="token function">myWndProc</span><span class="token punctuation">(</span>HWND hWindow<span class="token punctuation">,</span> UINT msg<span class="token punctuation">,</span> WPARAM wParam<span class="token punctuation">,</span> LPARAM lParam<span class="token punctuation">)</span>      </pre></td></tr><tr><td data-num="49"></td><td><pre><span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="50"></td><td><pre>  <span class="token keyword">if</span> <span class="token punctuation">(</span>msg<span class="token operator">==</span>WM_PAINT<span class="token punctuation">)</span>      </pre></td></tr><tr><td data-num="51"></td><td><pre>  <span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="52"></td><td><pre>    PAINTSTRUCT ps<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="53"></td><td><pre>    <span class="token keyword">const</span> HDC hDC <span class="token operator">=</span> <span class="token function">BeginPaint</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">,</span><span class="token operator">&amp;</span>ps<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="54"></td><td><pre>    RECT rect<span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="55"></td><td><pre>    <span class="token function">GetClientRect</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">,</span><span class="token operator">&amp;</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="56"></td><td><pre>    <span class="token function">DrawText</span><span class="token punctuation">(</span>hDC<span class="token punctuation">,</span><span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"HELLO WORLD"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>rect<span class="token punctuation">,</span> DT_SINGLELINE <span class="token operator">|</span> DT_CENTER <span class="token operator">|</span> DT_VCENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="57"></td><td><pre>    <span class="token function">EndPaint</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">,</span><span class="token operator">&amp;</span>ps<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="58"></td><td><pre>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="59"></td><td><pre>  <span class="token punctuation">&#125;</span>      </pre></td></tr><tr><td data-num="60"></td><td><pre>  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>msg<span class="token operator">==</span>WM_DESTROY<span class="token punctuation">)</span>      </pre></td></tr><tr><td data-num="61"></td><td><pre>  <span class="token punctuation">&#123;</span>      </pre></td></tr><tr><td data-num="62"></td><td><pre>    <span class="token function">PostQuitMessage</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="63"></td><td><pre>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="64"></td><td><pre>  <span class="token punctuation">&#125;</span>      </pre></td></tr><tr><td data-num="65"></td><td><pre>  <span class="token keyword">return</span> <span class="token function">DefWindowProc</span><span class="token punctuation">(</span>hWindow<span class="token punctuation">,</span>msg<span class="token punctuation">,</span>wParam<span class="token punctuation">,</span>lParam<span class="token punctuation">)</span><span class="token punctuation">;</span>      </pre></td></tr><tr><td data-num="66"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="程序运行流程"><a class="markdownIt-Anchor" href="#程序运行流程">#</a> 程序运行流程</h3>
+<ol>
+<li>进入 WinMain 函数</li>
+<li>初始化 WNDCLASSEX，调用 RegisterClassEx 函数注册窗口类</li>
+<li>调用 ShowWindow 和 UpdateWindow 函数显示并更新窗口</li>
+<li>进入消息循环</li>
+</ol>
+<blockquote>
+<p>关于消息循环</p>
+<p>Windows 应用程序是消息驱动的，系统或用户让应用程序进行某项操作或完成某个任务时会发送消息，进入程序的消息队列，然后消息循环会将消息队列中的消息取出，交予相应的窗口过程处理。</p>
+<p>此程序的窗口过程函数就是 myWndProc 函数，窗口过程函数处理完消息就完成了某项操作或任务。本例是要显示 “HELLO WORLD” 字符串，UpdateWindow 函数会发送 WM_PAINT 消息，但是此消息不经过消息队列而是直接送到窗口过程处理，在窗口过程函数中最终绘制了 “HELLO WORLD” 字符串。</p>
+</blockquote>
+<h2 id="mfc应用程序"><a class="markdownIt-Anchor" href="#mfc应用程序">#</a> MFC 应用程序</h2>
+<p>下面是 MFC 应用程序的运行流程，通过 MFC 库中代码进行分析：</p>
+<p>首先在 HelloWorld.cpp 中定义全局对象 theApp： <code>CHelloWorldApp theApp;</code> 。调用 CWinApp 和 CHelloWorldApp 的构造函数后，进入 WinMain 函数（位于 appmodul.cpp 中）。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">extern</span> <span class="token string">"C"</span> <span class="token keyword">int</span> WINAPI   </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">_tWinMain</span><span class="token punctuation">(</span>HINSTANCE hInstance<span class="token punctuation">,</span> HINSTANCE hPrevInstance<span class="token punctuation">,</span>   </pre></td></tr><tr><td data-num="3"></td><td><pre>    _In_ LPTSTR lpCmdLine<span class="token punctuation">,</span> <span class="token keyword">int</span> nCmdShow<span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression"><span class="token function">warning</span><span class="token punctuation">(</span>suppress<span class="token operator">:</span> <span class="token number">4985</span><span class="token punctuation">)</span>   </span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#123;</span>   </pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// call shared/exported WinMain   </span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">return</span> <span class="token function">AfxWinMain</span><span class="token punctuation">(</span>hInstance<span class="token punctuation">,</span> hPrevInstance<span class="token punctuation">,</span> lpCmdLine<span class="token punctuation">,</span> nCmdShow<span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在 <code>TCHAR.h</code>  中，有此定义： <code>#define _tWinMain  WinMain</code> ，所以这里的 <code>_tWinMain</code>  就是 <code>WinMain</code>  函数。它调用了 <code>AfxWinMain</code>  函数（位于 <code>WinMain.cpp</code>  中）。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>pp</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> AFXAPI <span class="token function">AfxWinMain</span><span class="token punctuation">(</span>HINSTANCE hInstance<span class="token punctuation">,</span> HINSTANCE hPrevInstance<span class="token punctuation">,</span>LPTSTR lpCmdLine<span class="token punctuation">,</span> <span class="token keyword">int</span> nCmdShow<span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span>    </pre></td></tr><tr><td data-num="3"></td><td><pre>       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略   </pre></td></tr><tr><td data-num="4"></td><td><pre>       <span class="token comment">// App global initializations (rare)   </span></pre></td></tr><tr><td data-num="5"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span>pApp <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>pApp<span class="token operator">-></span><span class="token function">InitApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="6"></td><td><pre>              <span class="token keyword">goto</span> InitFailure<span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="7"></td><td><pre>  </pre></td></tr><tr><td data-num="8"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pThread<span class="token operator">-></span><span class="token function">InitInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="9"></td><td><pre>       <span class="token punctuation">&#123;</span>   </pre></td></tr><tr><td data-num="10"></td><td><pre>              <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略   </pre></td></tr><tr><td data-num="11"></td><td><pre>       <span class="token punctuation">&#125;</span>   </pre></td></tr><tr><td data-num="12"></td><td><pre>  </pre></td></tr><tr><td data-num="13"></td><td><pre>       <span class="token comment">// Run 函数位于 THRDCORE.cpp 中，由此函数进入消息循环   </span></pre></td></tr><tr><td data-num="14"></td><td><pre>       nReturnCode <span class="token operator">=</span> pThread<span class="token operator">-></span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="15"></td><td><pre>  </pre></td></tr><tr><td data-num="16"></td><td><pre>       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略   </pre></td></tr><tr><td data-num="17"></td><td><pre>  </pre></td></tr><tr><td data-num="18"></td><td><pre>       <span class="token keyword">return</span> nReturnCode<span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>上面 InitInstance 函数的代码如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>BOOL <span class="token class-name">CTestApp</span><span class="token double-colon punctuation">::</span><span class="token function">InitInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>        </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span>       </pre></td></tr><tr><td data-num="3"></td><td><pre>       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略       </pre></td></tr><tr><td data-num="4"></td><td><pre>       CSingleDocTemplate<span class="token operator">*</span> pDocTemplate<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="5"></td><td><pre>       pDocTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">CSingleDocTemplate</span><span class="token punctuation">(</span>       </pre></td></tr><tr><td data-num="6"></td><td><pre>              IDR_MAINFRAME<span class="token punctuation">,</span>       </pre></td></tr><tr><td data-num="7"></td><td><pre>              <span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CTestDoc<span class="token punctuation">)</span><span class="token punctuation">,</span>       </pre></td></tr><tr><td data-num="8"></td><td><pre>              <span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CMainFrame<span class="token punctuation">)</span><span class="token punctuation">,</span>      <span class="token comment">// main SDI frame window       </span></pre></td></tr><tr><td data-num="9"></td><td><pre>              <span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CTestView<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     </pre></td></tr><tr><td data-num="10"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pDocTemplate<span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="11"></td><td><pre>             <span class="token keyword">return</span> FALSE<span class="token punctuation">;</span>     </pre></td></tr><tr><td data-num="12"></td><td><pre>       <span class="token function">AddDocTemplate</span><span class="token punctuation">(</span>pDocTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="13"></td><td><pre>       <span class="token comment">// Parse command line for standard shell commands, DDE, file open       </span></pre></td></tr><tr><td data-num="14"></td><td><pre>      </pre></td></tr><tr><td data-num="15"></td><td><pre>       CCommandLineInfo cmdInfo<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="16"></td><td><pre>       <span class="token function">ParseCommandLine</span><span class="token punctuation">(</span>cmdInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="17"></td><td><pre>      </pre></td></tr><tr><td data-num="18"></td><td><pre>       <span class="token comment">//ProcessShellCommand 位于 AppUI2.cpp 中，注册并创建窗口       </span></pre></td></tr><tr><td data-num="19"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">ProcessShellCommand</span><span class="token punctuation">(</span>cmdInfo<span class="token punctuation">)</span><span class="token punctuation">)</span>       </pre></td></tr><tr><td data-num="20"></td><td><pre>             <span class="token keyword">return</span> FALSE<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="21"></td><td><pre>      </pre></td></tr><tr><td data-num="22"></td><td><pre>       m_pMainWnd<span class="token operator">-></span><span class="token function">ShowWindow</span><span class="token punctuation">(</span>SW_SHOW<span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="23"></td><td><pre>       m_pMainWnd<span class="token operator">-></span><span class="token function">UpdateWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="24"></td><td><pre>      </pre></td></tr><tr><td data-num="25"></td><td><pre>       <span class="token keyword">return</span> TRUE<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><code>InitInstance</code>  中的 <code>ProcessShellCommand</code>  函数又调用了 <code>CMainFrame</code>  的 <code>LoadFrame</code>  函数注册并创建了窗口，执行完 <code>ProcessShellCommand</code>  函数以后，调用了 <code>m_pMainWnd</code>  的 <code>ShowWindow</code>  和 <code>UpdateWindow</code>  函数显示并更新框架窗口。这些与上面的 SDK 程序十分类似</p>
+<p>接下来该是消息循环了，上面的 <code>AfxWinMain</code>  函数中调用了 <code>pThread</code>  的 <code>Run</code>  函数（位于 <code>THRDCORE.cpp</code>  中），在 Run 中包含了消息循环。Run 函数的代码如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token class-name">CWinThread</span><span class="token double-colon punctuation">::</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>       </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span>       </pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略       </pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token comment">// phase2: pump messages while available       </span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">do</span>      </pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token punctuation">&#123;</span>       </pre></td></tr><tr><td data-num="7"></td><td><pre>              <span class="token comment">// pump message, but quit on WM_QUIT       </span></pre></td></tr><tr><td data-num="8"></td><td><pre>              <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">PumpMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>       </pre></td></tr><tr><td data-num="9"></td><td><pre>                     <span class="token keyword">return</span> <span class="token function">ExitInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="10"></td><td><pre>      </pre></td></tr><tr><td data-num="11"></td><td><pre>              <span class="token comment">// reset "no idle" state after pumping "normal" message       </span></pre></td></tr><tr><td data-num="12"></td><td><pre>              <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsIdleMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_msgCur<span class="token punctuation">)</span><span class="token punctuation">)</span>       </pre></td></tr><tr><td data-num="13"></td><td><pre>              <span class="token punctuation">&#123;</span>       </pre></td></tr><tr><td data-num="14"></td><td><pre>                     bIdle <span class="token operator">=</span> TRUE<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="15"></td><td><pre>      </pre></td></tr><tr><td data-num="16"></td><td><pre>                     lIdleCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="17"></td><td><pre>      </pre></td></tr><tr><td data-num="18"></td><td><pre>              <span class="token punctuation">&#125;</span>       </pre></td></tr><tr><td data-num="19"></td><td><pre>       <span class="token punctuation">&#125;</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token double-colon punctuation">::</span><span class="token function">PeekMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_msgCur<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> PM_NOREMOVE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="20"></td><td><pre>       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略       </pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span>       </pre></td></tr><tr><td data-num="22"></td><td><pre>        </pre></td></tr><tr><td data-num="23"></td><td><pre>BOOL <span class="token class-name">CWinThread</span><span class="token double-colon punctuation">::</span><span class="token function">PumpMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>       </pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token punctuation">&#123;</span>     </pre></td></tr><tr><td data-num="25"></td><td><pre>       <span class="token keyword">return</span> <span class="token function">AfxInternalPumpMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    </pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token punctuation">&#125;</span>    </pre></td></tr><tr><td data-num="27"></td><td><pre>  </pre></td></tr><tr><td data-num="28"></td><td><pre>BOOL AFXAPI <span class="token function">AfxInternalPumpMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token punctuation">&#123;</span>   </pre></td></tr><tr><td data-num="30"></td><td><pre>       _AFX_THREAD_STATE <span class="token operator">*</span>pState <span class="token operator">=</span> <span class="token function">AfxGetThreadState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="31"></td><td><pre>      </pre></td></tr><tr><td data-num="32"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token double-colon punctuation">::</span><span class="token function">GetMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>pState<span class="token operator">-></span>m_msgCur<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span>          </pre></td></tr><tr><td data-num="33"></td><td><pre>       <span class="token punctuation">&#123;</span>       </pre></td></tr><tr><td data-num="34"></td><td><pre>             <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略       </pre></td></tr><tr><td data-num="35"></td><td><pre>       <span class="token punctuation">&#125;</span>       </pre></td></tr><tr><td data-num="36"></td><td><pre>       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>略       </pre></td></tr><tr><td data-num="37"></td><td><pre>       <span class="token keyword">if</span> <span class="token punctuation">(</span>pState<span class="token operator">-></span>m_msgCur<span class="token punctuation">.</span>message <span class="token operator">!=</span> WM_KICKIDLE <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">AfxPreTranslateMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>pState<span class="token operator">-></span>m_msgCur<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="38"></td><td><pre>       <span class="token punctuation">&#123;</span>   </pre></td></tr><tr><td data-num="39"></td><td><pre>             <span class="token double-colon punctuation">::</span><span class="token function">TranslateMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>pState<span class="token operator">-></span>m_msgCur<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="40"></td><td><pre>             <span class="token double-colon punctuation">::</span><span class="token function">DispatchMessage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>pState<span class="token operator">-></span>m_msgCur<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="41"></td><td><pre>       <span class="token punctuation">&#125;</span>     </pre></td></tr><tr><td data-num="42"></td><td><pre>      </pre></td></tr><tr><td data-num="43"></td><td><pre>       <span class="token keyword">return</span> TRUE<span class="token punctuation">;</span>       </pre></td></tr><tr><td data-num="44"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>我们看到 <code>PumpMessage</code>  中通过调用 <code>GetMessage</code> 、 <code>TranslateMessage</code> 、 <code>DispatchMessage</code>  等建立了消息循环并投递消息。</p>
+<p>窗口过程函数 <code>AfxWinProc</code>  形式如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>LRESULT CALLBACK <span class="token function">AfxWndProc</span><span class="token punctuation">(</span>HWND hWnd<span class="token punctuation">,</span>UINT nMsg<span class="token punctuation">,</span>WPARAM wParam<span class="token punctuation">,</span> LPARAM lParam<span class="token punctuation">)</span>   </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span>   </pre></td></tr><tr><td data-num="3"></td><td><pre>      ……   </pre></td></tr><tr><td data-num="4"></td><td><pre>      CWnd<span class="token operator">*</span>pWnd<span class="token operator">=</span><span class="token class-name">CWnd</span><span class="token double-colon punctuation">::</span><span class="token function">FromHandlePermanent</span><span class="token punctuation">(</span>hWnd<span class="token punctuation">)</span><span class="token punctuation">;</span>  </pre></td></tr><tr><td data-num="5"></td><td><pre>      <span class="token function">ReturnAfxCallWndProc</span><span class="token punctuation">(</span>pWnd<span class="token punctuation">,</span>hWnd<span class="token punctuation">,</span>nMsg<span class="token punctuation">,</span>wParam<span class="token punctuation">,</span>lParam<span class="token punctuation">)</span><span class="token punctuation">;</span>   </pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="sdk应用程序和mfc应用程序对比"><a class="markdownIt-Anchor" href="#sdk应用程序和mfc应用程序对比">#</a> SDK 应用程序和 MFC 应用程序对比</h2>
+<p>运行流程是类似的，都是<strong>先进行初始化过程，再注册并创建窗口，然后显示、更新窗口，最后进入消息循环，消息都由窗口过程函数处理。</strong></p>
+<h2 id="mfc应用程序框架主要类之间的关系"><a class="markdownIt-Anchor" href="#mfc应用程序框架主要类之间的关系">#</a> MFC 应用程序框架主要类之间的关系</h2>
+<p>自动生成的框架中比较重要的类包括：CHelloWorldApp、CMainFrame、CHelloWorldDoc 和 CHelloWorldView</p>
+<ul>
+<li><code>CHelloWorldApp</code>  类处理消息，将收到的消息分发给相应的对象。</li>
+<li><code>CMainFrame</code>  类是视图类 <code>CHelloWorldView</code>  的父窗口，CHelloWorldView 就显示在 <code>CMainFrame</code>  的客户区中。</li>
+<li>视图类 <code>CHelloWorldView</code>  用来显示文档类 <code>CHelloWorldDoc</code>  中的数据，并根据对视图类的操作修改文档类的数据。一个视图类只能跟一个文档类相联系，而一个文档类可以跟多个视图类相联系。</li>
+</ul>
+<h1 id="mfc消息映射机制"><a class="markdownIt-Anchor" href="#mfc消息映射机制">#</a> MFC 消息映射机制</h1>
+<p><strong>Windows 应用程序是消息驱动的</strong>。在 MFC 软件开发中，界面操作或者线程之间通信都会用到消息，<strong>通过对消息的处理实现相应的操作</strong>。比较典型的过程是，用户操作窗口，然后有消息产生，送给窗口的消息处理函数处理，对用户的操作做出响应。</p>
+<h2 id="什么是消息"><a class="markdownIt-Anchor" href="#什么是消息">#</a> 什么是消息</h2>
+<p>窗口消息一般由三个部分组成：</p>
+<ul>
+<li>一个无符号整数，是消息值；</li>
+<li>消息附带的 WPARAM 类型的参数；</li>
+<li>消息附带的 LPARAM 类型的参数。</li>
+</ul>
+<p>实际一般所说的是狭义上的消息值，也就是一个无符号整数，经常被定义为宏。</p>
+<h2 id="什么是消息映射机制"><a class="markdownIt-Anchor" href="#什么是消息映射机制">#</a> 什么是消息映射机制</h2>
+<p>MFC 使用一种消息映射机制来处理消息，在应用程序框架中的表现就是，<strong>一个消息与消息处理函数 —— 对应的消息映射表，以及消息处理函数的声明和实现等代码</strong>。</p>
+<p>当窗口收到消息时，会到消息映射表中查找该消息对应的消息处理函数，然后由消息处理函数进行相应的处理。</p>
+<p>SDK 编程时需要在窗口过程中 —— 判断消息值进行相应的处理，相比之下 MFC 的消息映射机制要方便好用的多。</p>
+<h2 id="windows消息分类"><a class="markdownIt-Anchor" href="#windows消息分类">#</a> Windows 消息分类</h2>
+<p>Windows 消息分为<strong>系统消息</strong>和<strong>用户自定义消息</strong>。系统消息有三种：</p>
+<ul>
+<li><strong>标准 Windows 消息</strong>。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。</li>
+<li><strong>命令消息</strong>。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。</li>
+<li><strong>通知消息</strong>。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。</li>
+</ul>
+<p><strong>CWnd 的派生类都可以接收到标准 Windows 消息、通知消息和命令消息。命令消息还可以由文档类等接收。</strong></p>
+<p><strong>用户自定义消息实际上就是用户定义一个宏作为消息，此宏的值应该大于等于 WM_USER，然后宏就可以跟系统消息一样使用，窗口类中可以定义它的处理函数。</strong></p>
+<h2 id="消息映射表"><a class="markdownIt-Anchor" href="#消息映射表">#</a> 消息映射表</h2>
+<p>除了一些没有基类的类或 CObject 的直接派生类外，其他的类都可以自动生成消息映射表。</p>
+<p>消息映射表如下（CMainFrame.cpp）：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">BEGIN_MESSAGE_MAP</span><span class="token punctuation">(</span>CMainFrame<span class="token punctuation">,</span> CFrameWndEx<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token function">ON_WM_CREATE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token function">ON_REGISTERED_MESSAGE</span><span class="token punctuation">(</span>AFX_WM_CREATETOOLBAR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnToolbarCreateNew<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	<span class="token function">ON_UPDATE_COMMAND_UI_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnUpdateApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token function">ON_WM_SETTINGCHANGE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">END_MESSAGE_MAP</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>在 <code>BEGIN_MESSAGE_MAP</code>  和 <code>END_MESSAGE_MAP</code>  之间的内容成为消息映射入口项。</p>
+<p>消息映射除了在 <code>CMainFrame</code>  的实现文件中添加消息映射表外，在类的定义文件 <code>MainFrm.h</code>  中还会添加一个宏调用： <code> DECLEAR_MESSAGE_MAP</code></p>
+<p>一般这个宏调用写在类定义的结尾处。</p>
+<h2 id="添加消息处理函数"><a class="markdownIt-Anchor" href="#添加消息处理函数">#</a> 添加消息处理函数</h2>
+<ol>
+<li>
+<p>在类定义中加入消息处理函数的函数声明，以 <code>afx_msg</code>  打头。例如 MainFrm.h 中的声明：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>afx_msg <span class="token keyword">int</span> <span class="token function">OnCreate</span><span class="token punctuation">(</span>LPCREATESTRUCT lpCreateStruct<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnViewCustomize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>afx_msg LRESULT <span class="token function">OnToolbarCreateNew</span><span class="token punctuation">(</span>WPARAM wp<span class="token punctuation">,</span> LPARAM lp<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnApplicationLook</span><span class="token punctuation">(</span>UINT id<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnUpdateApplicationLook</span><span class="token punctuation">(</span>CCmdUI<span class="token operator">*</span> pCmdUI<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnSettingChange</span><span class="token punctuation">(</span>UINT uFlags<span class="token punctuation">,</span> LPCTSTR lpszSection<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>在类的消息映射表中添加该消息的消息映射入口项。例如 MainFrm.h 中的</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_WM_CREATE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">ON_REGISTERED_MESSAGE</span><span class="token punctuation">(</span>AFX_WM_CREATETOOLBAR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnToolbarCreateNew<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">ON_UPDATE_COMMAND_UI_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnUpdateApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">ON_WM_SETTINGCHANGE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure></li>
+<li>
+<p>在类的实现中添加消息处理函数的函数实现。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token class-name">CMainFrame</span><span class="token double-colon punctuation">::</span><span class="token function">OnCreate</span><span class="token punctuation">(</span>LPCREATESTRUCT lpCreateStruct<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+</ol>
+<p>通过以上 3 个步骤后， <code>WM_CREATE</code>  等消息就可以在窗口类中被消息处理函数处理了。</p>
+<h2 id="各种windows消息的消息处理函数"><a class="markdownIt-Anchor" href="#各种windows消息的消息处理函数">#</a> 各种 Windows 消息的消息处理函数</h2>
+<blockquote>
+<p>标准 Windows 消息。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。</p>
+</blockquote>
+<p>标准 Windows 消息的消息处理函数都与 WM_CREATE 消息类似。</p>
+<blockquote>
+<p>命令消息。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。</p>
+</blockquote>
+<p>命令消息的消息映射入口如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>消息为 <code>ID_VIEW_CUSTOMIZE</code></li>
+<li>消息处理函数为 <code>OnViewCustomize</code></li>
+</ul>
+<p>如果想用批量处理函数批量处理这些命令消息，则可以像 CMainFrame 消息映射表中的：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>值在 <code>ID_VIEW_APPLOOK_WIN_2000</code>  到 <code>ID_VIEW_APPLOOK_WINDOWS_7</code>  之间的菜单项等命令消息都由 CMainFrame 的 <code>OnApplicationLook</code>  函数处理。</li>
+<li>函数原型为 <code>afx_msg void OnApplicationLook(UINT id);</code></li>
+<li>参数 id 为用户操作的菜单项等的 ID</li>
+</ul>
+<blockquote>
+<p>通知消息。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。</p>
+</blockquote>
+<p>在操作列表框等控件时往往会给父窗口发送 <code>WM_NOTIFY</code>  通知消息。</p>
+<p><code>WM_NOTIFY</code>  消息的 <code>WPARAM</code>  参数为发送通知消息的控件的 ID； <code> LPARAM</code>  参数指向一个结构体，可能是 NMHDR 结构体，也可能是第一个元素为 NMHDR 结构体变量的其他结构体。</p>
+<p>NMHDR 结构体定义如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>Typedef <span class="token keyword">struct</span> <span class="token class-name">tagNMHDR</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    HWND hwndFrom<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    UINT idFrom<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    UINT code<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span>NMHDR<span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>hwndFrom 为发送通知消息控件的句柄；</li>
+<li>idFrom 为控件 ID；</li>
+<li>code 为要处理的通知消息的通知码，例如 NM_CLICK</li>
+</ul>
+<p>通知消息的消息映射入口形式如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_NOTIFY</span><span class="token punctuation">(</span>wNotifyCode<span class="token punctuation">,</span> id<span class="token punctuation">,</span> memberFxn<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>wNotifyCode 为要处理的通知消息通知码；</li>
+<li>id 为控件标识 ID；</li>
+<li>memberFxn 为此消息的消息处理函数。</li>
+</ul>
+<blockquote>
+<p>用户自定义消息</p>
+<ol>
+<li>定义消息宏</li>
+<li>在消息映射表中添加消息映射入口项</li>
+<li>在 MainFrm.h 中添加消息处理函数的函数声明</li>
+<li>在 MainFrm.cpp 中实现此函数</li>
+</ol>
+</blockquote>
+<h1 id="对话框-创建对话框"><a class="markdownIt-Anchor" href="#对话框-创建对话框">#</a> 对话框 - 创建对话框</h1>
+<p><img data-src="image-20230525105517622.png" alt="image-20230525105517622"></p>
+<ol>
+<li>创建对话框资源，添加控件。</li>
+<li>创建对话框类，添加控件变量，添加控件的消息处理函数。</li>
+</ol>
+<blockquote>
+<p>添加控件变量时，类的成员变量一般以 m 开头，标识它是一个成员变量。</p>
+</blockquote>
+<h1 id="对话框类的数据交换和检验"><a class="markdownIt-Anchor" href="#对话框类的数据交换和检验">#</a> 对话框类的数据交换和检验</h1>
+<p>在程序运行界面中，用户往往会改变控件的属性，例如在编辑框中输入字符串，或者改变组合框中的选中项，又或者改变复选框的选中状态等。</p>
+<p><strong>控件的属性改变后，MFC 会相应的修改控件关联变量的值</strong>。这种同步的改变是通过<strong> MFC 为对话框类自动生成的成员函数 DoDataExchange () 函数</strong>实现的，这也叫做<strong>对话框的数据交换和检验机制</strong>。</p>
+<p>为三个编辑框添加了变量之后，在 <code>AdditionTestDlg.cpp</code>  中 <code>CAdditionTestDlg::DoDataExchange()</code>  函数的函数体中多了三条 <code>DDX_Text</code>  调用语句。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CAdditionTestDlg</span><span class="token double-colon punctuation">::</span><span class="token function">DoDataExchange</span><span class="token punctuation">(</span>CDataExchange<span class="token operator">*</span> pDX<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token comment">// 处理 MFC 默认的数据交换</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token class-name">CDialogEx</span><span class="token double-colon punctuation">::</span><span class="token function">DoDataExchange</span><span class="token punctuation">(</span>pDX<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token comment">// 处理控件 IDC_SUMMAND_EDIT 和变量 m_editSummand 之间的数据交换</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	<span class="token function">DDX_Text</span><span class="token punctuation">(</span>pDX<span class="token punctuation">,</span> IDC_SUMMAND_EDIT<span class="token punctuation">,</span> m_editSummand<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token comment">// 处理控件 IDC_ADDEND_EDIT 和变量 m_editAddend 之间的数据交换</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	<span class="token function">DDX_Text</span><span class="token punctuation">(</span>pDX<span class="token punctuation">,</span> IDC_ADDEND_EDIT<span class="token punctuation">,</span> m_editAddend<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	<span class="token comment">// 处理控件 IDC_SUM_EDIT 和变量 m_editSum 之间的数据交换</span></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token function">DDX_Text</span><span class="token punctuation">(</span>pDX<span class="token punctuation">,</span> IDC_SUM_EDIT<span class="token punctuation">,</span> m_editSum<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><blockquote>
+<p><strong>数据交换机制</strong>：</p>
+<p>如果在程序运行界面中输入被加数，通过 <code>CAdditionTestDlg</code>  的 <code>DoDataExchange()</code>  函数可以将输入的值保存到 <code>m_editSummand</code>  变量中；反之，如果程序运行中修改了变量 <code>m_editSummand</code>  的值，则通过 <code>CAdditionTestDlg</code>  的 <code>DoDataExchange()</code>  函数也可以将新的变量值显示到被加数的编辑框中。</p>
+<p><strong>但这种数据交换机制中，DoDataExchange () 函数并不是自动调用的，而是需要我们在程序中调用 CDialogEx::UpdateData () 函数，由 UpdateData () 再去自动调用 DoDataExchange ()</strong></p>
+</blockquote>
+<p><code>CDialogEx::UpdateData()</code>  函数原型：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>BOOL <span class="token function">UpdateData</span><span class="token punctuation">(</span>BOOL bSaveAndValidate <span class="token operator">=</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>bSaveAndValidate</code>  用于指示数据传输的方向， <code>TRUE</code>  表示从控件传给变量， <code>FALSE</code>  表示从变量传给控件。默认为 <code>TRUE</code> ，从控件传给变量。</li>
+<li>返回值表示操作是否成功。</li>
+</ul>
+<h1 id="对话框-为控件添加消息处理函数"><a class="markdownIt-Anchor" href="#对话框-为控件添加消息处理函数">#</a> 对话框 - 为控件添加消息处理函数</h1>
+<h2 id="添加消息处理函数-2"><a class="markdownIt-Anchor" href="#添加消息处理函数-2">#</a> 添加消息处理函数</h2>
+<ul>
+<li>
+<p>使用类向导添加消息处理函数</p>
+<p><img data-src="image-20230525133212478.png" alt="image-20230525133212478"></p>
+</li>
+<li>
+<p>通过资源视图 “Add Event Handler…” 添加消息处理函数</p>
+<p>在按钮控件上点击右键进入</p>
+<p><img data-src="image-20230525133538866.png" alt="image-20230525133538866"></p>
+</li>
+<li>
+<p>在控件的属性视图中添加消息处理函数</p>
+<p><img data-src="image-20230525133733319.png" alt="image-20230525133733319"></p>
+</li>
+<li>
+<p>双击控件添加消息处理函数</p>
+<p>最直接最简单的方法，双击 “计算” 按钮，MFC 会自动为其在 CAdditionDlg 类中添加 <code>BN_CLICKED</code>  消息的处理函数 <code>OnBnClickedAddButton()</code></p>
+</li>
+</ul>
+<h2 id="在消息处理函数中添加自定义功能"><a class="markdownIt-Anchor" href="#在消息处理函数中添加自定义功能">#</a> 在消息处理函数中添加自定义功能</h2>
+<p>添加消息处理函数之后，得到一个空的 <code>OnBnClickedAddButton()</code>  函数的函数体，要实现我们想要的功能，还需要在函数体中加入自定义功能代码。</p>
+<p>要实现加法功能：获取被加数和加数的数值，然后计算他们的和并显示到和的编辑框里。函数体为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CAdditionTestDlg</span><span class="token double-colon punctuation">::</span><span class="token function">OnBnClickedAddButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token comment">// TODO: 在此添加控件通知处理程序代码</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token comment">// 将各控件中的数据保存到相应的位置</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token comment">// 将被加数和加数的和赋值给 m_editSum</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	m_editSum <span class="token operator">=</span> m_editSummand <span class="token operator">+</span> m_editAddend<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token comment">// 根据各变量的值更新相应的控件。和编辑框会显示 m_editSum 的值</span></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="设置控件的tab顺序"><a class="markdownIt-Anchor" href="#设置控件的tab顺序">#</a> 设置控件的 Tab 顺序</h2>
+<ul>
+<li>Ctrl+D</li>
+<li>主菜单 -&gt;format-&gt;tab order</li>
+</ul>
+<h1 id="对话框-模态与非模态对话框及其弹出过程"><a class="markdownIt-Anchor" href="#对话框-模态与非模态对话框及其弹出过程">#</a> 对话框 - 模态与非模态对话框及其弹出过程</h1>
+<ul>
+<li>
+<p>模态对话框</p>
+<p>弹出后，本应用程序其他窗口不再接受用户输入，只有该对话框相应用户输入，在对他进行操作退出后，其他窗口才能继续与用户交互。</p>
+</li>
+<li>
+<p>非模态对话框</p>
+<p>弹出后，本应用程序其他窗口仍能相应用户输入。非模态对话框一般用来显示提示信息等。</p>
+</li>
+<li>
+<p><strong>对话框是怎么弹出的？</strong></p>
+<p>应用程序 App 类实例的初始化工作由 <code>CAdditionTestApp::InitInstance()</code>  实现</p>
+<p>其中后半段有定义对话框对象并弹出对话框：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CAdditionTestDlg dlg<span class="token punctuation">;</span>								<span class="token comment">// 定义对话框类 CAdditionDlg dlg</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	m_pMainWnd <span class="token operator">=</span> <span class="token operator">&amp;</span>dlg<span class="token punctuation">;</span>									<span class="token comment">// 将 dlg 设置为主窗口</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  	INT_PTR nResponse <span class="token operator">=</span> dlg<span class="token punctuation">.</span><span class="token function">DoModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>					<span class="token comment">// 弹出对话框 dlg，并将 DoModal 函数返回值（退出时点击按钮的 ID）赋值给 nResponse</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>nResponse <span class="token operator">==</span> IDOK<span class="token punctuation">)</span>								<span class="token comment">// 判断返回值是否为 OK 按钮（其 ID 为 IDOK，已删除）</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>		<span class="token comment">// TODO: “确定” 来关闭对话框的代码</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nResponse <span class="token operator">==</span> IDCANCEL<span class="token punctuation">)</span>						<span class="token comment">// 判断返回值是否为 Cancel 按钮（其 ID 为 IDCANCEL，退出按钮）</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>		<span class="token comment">// TODO: “取消” 来关闭对话框的代码</span></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>弹出对话框比较关键的一个函数，就是对话框类的<strong> DoModal () 函数</strong>。</p>
+<p><code>CDialog::DoModal()</code>  函数的原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">virtual</span> INT_PTR <span class="token function">DoModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>返回值：整数值，指定了传递给 <code>CDialog::EndDialog</code> （该函数用于关闭对话框）的 <code>nResult</code>  参数值。如果不能创建对话框，则返回 <code>-1</code> ；如果出现其他错误，则返回 <code>IDABORT</code></li>
+<li>调用了它对话框就会弹出，<strong>返回值是退出对话框时所点的按钮的 ID</strong>，比如，点击 “退出” 按钮，那么 <code>DoModal</code>  返回值就是 <code>IDCANCEL</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="添加模态对话框并弹出它"><a class="markdownIt-Anchor" href="#添加模态对话框并弹出它">#</a> 添加模态对话框并弹出它</h2>
+<ol>
+<li>
+<p>右键资源文件中 “Dialog” 文件夹，插入 Dialog，创建一个新的对话框模板</p>
+<p>设置 ID 为 <code>IDD_TIP_DIALOG</code> ，Caption 为 “提示 “</p>
+</li>
+<li>
+<p>在对话框模板上右键选择 Add Class… 添加对话框类</p>
+<p>设置 &quot;class name&quot; 为 CTipDlg，在 Solution Explorer 中生成 TipDlg.h 和 TipDlg.cpp.</p>
+</li>
+<li>
+<p>要在点” 计算 “按钮之后弹出此提示对话框，那么就要在” 计算 “按钮的消息处理函数 <code>OnBnClickedAddButton()</code>  中访问提示对话框类。所以为了访问 CTipDlg 类，在 AdditionTestDlg.cpp 中包含 CTipDlg 的头文件 <code>#include &quot;TipDlg.h&quot;</code></p>
+</li>
+<li>
+<p>修改 <code>OnBnClickedAddButton()</code>  的函数体，在所有代码之前，构造 CTipDlg 类的对象 tipDlg，并通过语句 <code>tipDlg.DoModal();</code>  弹出对话框，最后判断 <code>DoModal()</code>  函数的返回值是 <code>IDOK</code>  还是 <code>IDCANCEL</code>  来确定是否继续进行计算。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CAdditionTestDlg</span><span class="token double-colon punctuation">::</span><span class="token function">OnBnClickedAddButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">// 用于保存 DoModal 函数的返回值</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	INT_PTR nRes<span class="token punctuation">;</span>							</pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// 构造对话框类 CTipDlg 的实例</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	CTipDlg tipDlg<span class="token punctuation">;</span>							</pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token comment">// 弹出对话框</span></pre></td></tr><tr><td data-num="10"></td><td><pre>	nRes <span class="token operator">=</span> tipDlg<span class="token punctuation">.</span><span class="token function">DoModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>				</pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token comment">// 判断对话框退出后返回值是否为 IDCANCEL，如果是则 return, 否则继续向下执行</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>IDCANCEL <span class="token operator">==</span> nRes<span class="token punctuation">)</span>					</pre></td></tr><tr><td data-num="14"></td><td><pre>		<span class="token keyword">return</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>	<span class="token comment">// 将各控件中的数据保存到相应的位置</span></pre></td></tr><tr><td data-num="17"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>	<span class="token comment">// 将被加数和加数的和赋值给 m_editSum</span></pre></td></tr><tr><td data-num="20"></td><td><pre>	m_editSum <span class="token operator">=</span> m_editSummand <span class="token operator">+</span> m_editAddend<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>	<span class="token comment">// 根据各变量的值更新相应的控件。和编辑框会显示 m_editSum 的值</span></pre></td></tr><tr><td data-num="23"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>测试</p>
+</li>
+</ol>
+<h2 id="添加非模态对话框并显示"><a class="markdownIt-Anchor" href="#添加非模态对话框并显示">#</a> 添加非模态对话框并显示</h2>
+<p>非模态对话框显示后，程序其他窗口仍然能正常运行，可以响应用户输入，还可以相互切换。</p>
+<p>实际上，模态和非模态对话框在创建对话框资源和生成对话框类上是没有区别的。</p>
+<p>需要修改的是，对话框类实例的创建和显示，也就是在 <code>CAdditionTestDlg::OnBnClickedAddButton()</code>  函数体中添加的对话框显示代码。具体步骤：</p>
+<ol>
+<li>
+<p>在 AdditionTestDlg.h 中包含 CTipDlg 头文件并定义 CTipDlg 类型的指针成员变量。</p>
+<p>删除 <code>AdditionTestDlg.cpp</code>  中包含的 <code>#include &quot;TipDlg.h&quot;</code> ，而在 <code>AdditionTestDlg.h</code>  中包含 <code>#include &quot;TipDlg.h&quot;</code> ，因为我们要在 <code>AdditionTestDlg.h</code>  中定义 CTipDlg 类型的指针变量，所以要先包含它的头文件；然后在 <code>AdditionTestDlg.h</code>  中为 CAdditionTestDlg 类添加 private 成员变量 <code>CTipDlg *m_pTipDlg;</code></p>
+</li>
+<li>
+<p>在 <code>CAdditionTestDlg</code>  类的狗在函数中初始化成员变量 <code>m_pTipDlg(NULL)</code></p>
+</li>
+<li>
+<p>修改 <code>CAdditionTestDlg::OnBnClickedAddButton()</code>  函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CAdditionTestDlg</span><span class="token double-colon punctuation">::</span><span class="token function">OnBnClickedAddButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token comment">// TODO: 在此添加控件通知处理程序代码</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token comment">// 模态对话框</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token comment">/* </pre></td></tr><tr><td data-num="6"></td><td><pre>	INT_PTR nRes;							// 用于保存 DoModal 函数的返回值</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>	CTipDlg tipDlg;							// 构造对话框类 CTipDlg 的实例</pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>	nRes = tipDlg.DoModal ();				// 弹出对话框</pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>	if (IDCANCEL == nRes)					// 判断对话框退出后返回值是否为 IDCANCEL，如果是则 return, 否则继续向下执行</pre></td></tr><tr><td data-num="13"></td><td><pre>		return;</pre></td></tr><tr><td data-num="14"></td><td><pre>	*/</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>	<span class="token comment">// 非模态对话框</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre>	<span class="token comment">// 动态创建对话框</span></pre></td></tr><tr><td data-num="19"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>m_pTipDlg <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>		<span class="token comment">// 创建非模态对话框实例</span></pre></td></tr><tr><td data-num="21"></td><td><pre>		m_pTipDlg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">CTipDlg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>		m_pTipDlg<span class="token operator">-></span><span class="token function">Create</span><span class="token punctuation">(</span>IDD_TIP_DIALOG<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre>	<span class="token comment">// 显示非模态对话框</span></pre></td></tr><tr><td data-num="26"></td><td><pre>	m_pTipDlg<span class="token operator">-></span><span class="token function">ShowWindow</span><span class="token punctuation">(</span>SW_SHOW<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre>	<span class="token comment">// 将各控件中的数据保存到相应的位置</span></pre></td></tr><tr><td data-num="29"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre></pre></td></tr><tr><td data-num="31"></td><td><pre>	<span class="token comment">// 将被加数和加数的和赋值给 m_editSum</span></pre></td></tr><tr><td data-num="32"></td><td><pre>	m_editSum <span class="token operator">=</span> m_editSummand <span class="token operator">+</span> m_editAddend<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre></pre></td></tr><tr><td data-num="34"></td><td><pre>	<span class="token comment">// 根据各变量的值更新相应的控件。和编辑框会显示 m_editSum 的值</span></pre></td></tr><tr><td data-num="35"></td><td><pre>	<span class="token function">UpdateData</span><span class="token punctuation">(</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>因为此对话框实例是动态创建的，所以需要手动删除动态对象来销毁对话框。我们在 CAdditionTestDlg 类的析构函数中添加删除代码。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">CAdditionTestDlg</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">CAdditionTestDlg</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token comment">// 如果非模态对话框已经创建则删除它</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>m_pTipDlg <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>		<span class="token keyword">delete</span> m_pTipDlg<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>测试。</p>
+</li>
+</ol>
+<h1 id="对话框-属性页对话框及其相关类"><a class="markdownIt-Anchor" href="#对话框-属性页对话框及其相关类">#</a> 对话框 - 属性页对话框及其相关类</h1>
+<p>右键点属性弹出的对话框，通过标签切换各个界面。</p>
+<p>主要用到的类：CPropertyPage 类和 CPropertySheet 类。</p>
+<ul>
+<li>
+<p>CPropertyPage 类</p>
+<p>CPropertyPage 类继承自 CDialog 类，它被用于处理某单个属性页，所以要为每个属性页都创建一个继承自 CPropertyPage 类的子类</p>
+<ul>
+<li>
+<p>构造函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 第一个是没有任何参数的构造函数。</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">CPropertyPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 第二个构造函数中，参数 nIDTemplate 是属性页的对话框资源 ID，参数 nIDCaption 是属性页对话框选项卡的标题所用字符串资源的 ID，若设为 0，则选项卡标题就使用该属性页的对话框资源的标题。</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">explicit</span> <span class="token function">CPropertyPage</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	UINT nIDTemplate<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    UINT nIDCaption <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    DWORD dwSize <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>PROPSHEETPAGE<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment">// 第三个构造函数中，参数 lpszTemplateName 为属性页的对话框资源的名称字符串，不能为 NULL。参数 nIDCaption 同上。</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">explicit</span> <span class="token function">CPropertyPage</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	LPCTSTR lpszTemplateName<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    UINT nIDCaption <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    DWORD dwSize <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>PROPSHEETPAGE<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p><code>CancelToClose()</code>  函数</p>
+<p>在模态属性页对话框的属性页进行了某不可恢复的操作后，使用 <code>CancelToClose()</code>  函数将 “OK” 按钮改为 “Close” 按钮，并禁用 “Cancel” 按钮。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">CancelToClose</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p><code>SetModified()</code>  函数</p>
+<p>调用此函数可激活或禁用 “Apply” 按钮，函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">SetModified</span><span class="token punctuation">(</span>BOOL bChanged <span class="token operator">=</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>可重载函数</p>
+<p>CPropertyPage 类提供了一些消息处理函数，来响应属性页对话框的各种消息。我们重载这些消息处理函数，就可以自定义对属性页对话框操作的处理。可重载的消息处理函数包括：</p>
+<ul>
+<li><code>OnApply</code> ：处理属性页的 “Apply” 按钮被单击的消息</li>
+<li><code>OnCancel</code> ：处理属性页的 “Cancel” 按钮被单击的消息</li>
+<li><code>OnKillActive</code> ：处理属性页当前活动状态被切换的消息，常用于数据验证</li>
+<li><code>OnOK</code> ：处理属性页的 “OK” 按钮、“Apply” 按钮或者 “Close” 按钮被单击的消息</li>
+<li><code>OnQueryCancel</code> ：处理属性页的 “Cancel” 按钮被单击前发出的消息</li>
+<li><code>OnReset</code> ：处理属性页的 “Reset” 按钮被单击的消息</li>
+<li><code>OnSetActive</code> ：处理属性页被切换为当前活动页的消息</li>
+<li><code>OnWizardBack</code> ：处理属性页的 “Back” 按钮被单击的消息，仅在向导对话框中有效</li>
+<li><code>OnWizardFinish</code> ：处理属性页的 “Finish” 按钮被单击的消息，仅在向导对话框中有效</li>
+<li><code>OnWizardNext</code> ：处理属性页的 “Next” 按钮被单击的消息，仅在向导对话框中有效</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>CPropertySheet</code>  类</p>
+<p><code>CPropertySheet</code>  类继承自 <code>CWnd</code>  类，它是属性表类，负责加载、打开或删除属性页，并可以在属性页对话框中切换属性页，和对话框类似有模态和非模态两种。</p>
+<ul>
+<li>
+<p>构造函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">CPropertySheet</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">explicit</span> <span class="token function">CPropertySheet</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    UINT nIDCaption<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    CWnd<span class="token operator">*</span> pParentWnd <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    UINT iSelectPage <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">explicit</span> <span class="token function">CPropertySheet</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    LPCTSTR pszCaption<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    CWnd<span class="token operator">*</span> pParentWnd <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    UINT iSelectPage <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>nIDCaption</code> ：标题的字符串资源的 ID。</li>
+<li>参数 <code>pParentWnd</code> ：属性页对话框的父窗口，若设为 NULL，则父窗口为应用程序的主窗口。</li>
+<li>参数 <code>iSelectPage</code> ：初始状态时，活动属性页的索引，默认为第一个添加到属性表的属性页。</li>
+<li>参数 <code>pszCaption</code> ：标题字符串。</li>
+</ul>
+</li>
+<li>
+<p><code>GetActiveIndex()</code>  函数</p>
+<p>获取当前活动属性页的索引。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token function">GetActiveIndex</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>返回值：当前活动属性页的索引。</li>
+</ul>
+</li>
+<li>
+<p><code>GetActivePage()</code>  函数</p>
+<p>获取当前活动属性页对象。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CPropertyPage<span class="token operator">*</span> <span class="token function">GetActivePage</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>返回值：当前活动属性页对象的指针。</li>
+</ul>
+</li>
+<li>
+<p><code>GetPage()</code>  函数</p>
+<p>获取某个属性页对象。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CPropertyPage<span class="token operator">*</span> <span class="token function">GetPage</span><span class="token punctuation">(</span><span class="token keyword">int</span> nPage<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>nPage</code> ：目标属性页的索引。</li>
+<li>返回值：目标属性页对象的指针。</li>
+</ul>
+</li>
+<li>
+<p><code>GetPageCount()</code>  函数</p>
+<p>获取属性页的数量。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token function">GetPageCount</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p><code>GetPageIndex()</code>  函数</p>
+<p>获取某属性页在属性页对话框中的索引。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token function">GetPageIndex</span><span class="token punctuation">(</span>CPropertyPage<span class="token operator">*</span> pPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>pPage</code> ：要获取索引的属性页对象的指针。</li>
+<li>返回值：属性页对象在属性页对话框中的索引。</li>
+</ul>
+</li>
+<li>
+<p><code>SetActivePage()</code>  函数</p>
+<p>设置某个属性页为活动属性页。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>BOOL <span class="token function">SetActivePage</span><span class="token punctuation">(</span><span class="token keyword">int</span> nPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>BOOL <span class="token function">SetActivePage</span><span class="token punctuation">(</span>CPropertyPage<span class="token operator">*</span> pPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>nPage</code> ：要设置为活动属性页的索引。</li>
+<li>参数 <code>pPage</code> ：要设置为活动属性页的对象指针。</li>
+</ul>
+</li>
+<li>
+<p><code>SetWizardButtons()</code>  函数</p>
+<p>在向导对话框上启用或禁用 Back、Next 或 Finish 按钮，应在调用 DoModal 之前调用此函数。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">SetWizardButtons</span><span class="token punctuation">(</span>DWORD dwFlags<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>参数 <code>dwFlags</code> ：设置向导按钮的外观和功能属性。可以是以下值的组合：</p>
+<ul>
+<li>PSWIZB_BACK          启用 “Back” 按钮，如果不包含此值则禁用 “Back” 按钮。</li>
+<li>PSWIZB_NEXT          启用 “Next” 按钮，如果不包含此值则禁用 “Next” 按钮。</li>
+<li>PSWIZB_FINISH         启用 “Finish” 按钮。</li>
+<li>PSWIZB_DISABLEDFINISH  显示禁用的 “Finish” 按钮。</li>
+</ul>
+</li>
+<li>
+<p><code>SetWizardMode()</code>  函数</p>
+<p>设置属性页对话框为向导对话框模式，应在调用 DoModal 之前调用此函数。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">SetWizardMode</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p><code>SetTitle()</code>  函数</p>
+<p>设置属性对话框的标题。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">SetTitle</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    LPCTSTR lpszText<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    UINT nStyle <span class="token operator">=</span> <span class="token number">0</span> </pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>
+<p>参数 <code>lpszText</code> ：标题字符串。</p>
+</li>
+<li>
+<p>参数 <code>nStyle</code> ：指定属性表标题的风格。应当为 0 或 PSH_PROPTITLE。如果设为 PSH_PROPTITLE，则单词 “Properties” 会出现在指定标题之后。</p>
+<p>例如， <code>SetTitle(&quot;Simple&quot;,PSH_PROPTITLE)</code>  这种调用会使得属性表标题为 “Simple Properties”。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>AddPage()</code>  函数</p>
+<p>为属性对话框添加新的属性页。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">AddPage</span><span class="token punctuation">(</span>CPropertyPage <span class="token operator">*</span>pPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>参数 <code>pPage</code> ：要添加的新的属性页的对象指针。</p>
+</li>
+<li>
+<p><code>PressButton()</code>  函数</p>
+<p>模拟按下某指定的按钮。函数原型为</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">PressButton</span><span class="token punctuation">(</span><span class="token keyword">int</span> nButton<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>参数 <code>nButton</code> ：要模拟按下的按钮，它可以是下列值之一：</p>
+<ul>
+<li>PSBTN_BACK  选择 “Back” 按钮。</li>
+<li>PSBTN_NEXT  选择 “Next” 按钮。</li>
+<li>PSBTN_FINISH  选择 “Finish” 按钮。</li>
+<li>PSBTN_OK  选择 “OK” 按钮。</li>
+<li>PSBTN_APPLYNOW  选择 “Apply” 按钮。</li>
+<li>PSBTN_CANCEL  选择 “Cancel” 按钮。</li>
+<li>PSBTN_HELP  选择 “帮助” 按钮。</li>
+</ul>
+</li>
+<li>
+<p><code>RemovePage()</code>  函数</p>
+<p>删除某属性页。函数原型为：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">RemovePage</span><span class="token punctuation">(</span>CPropertyPage <span class="token operator">*</span>pPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">void</span> <span class="token function">RemovePage</span><span class="token punctuation">(</span><span class="token keyword">int</span> nPage<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 <code>pPage</code> ：要删除的属性页的对象指针。</li>
+<li>参数 <code>nPage</code> ：要删除的属性页的索引。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="对话框-向导对话框"><a class="markdownIt-Anchor" href="#对话框-向导对话框">#</a> 对话框 - 向导对话框</h1>
+<h1 id="对话框-消息对话框"><a class="markdownIt-Anchor" href="#对话框-消息对话框">#</a> 对话框 - 消息对话框</h1>
+<h1 id="对话框-文件对话框"><a class="markdownIt-Anchor" href="#对话框-文件对话框">#</a> 对话框 - 文件对话框</h1>
+<h1 id="对话框-字体对话框"><a class="markdownIt-Anchor" href="#对话框-字体对话框">#</a> 对话框 - 字体对话框</h1>
+<h1 id="对话框-颜色对话框"><a class="markdownIt-Anchor" href="#对话框-颜色对话框">#</a> 对话框 - 颜色对话框</h1>
+<h1 id="常用控件"><a class="markdownIt-Anchor" href="#常用控件">#</a> 常用控件</h1>
+<p>控件的消息通知</p>
+<p>当控件有事件发生时，他会向父窗口发送通知消息。最常发生的事件就是鼠标单击了，此时控件会向父窗口发送 BN_CLICKED 消息，实际上也就是给父窗口发送 WM_COMMAND 消息，在 wParam 参数中包含有通知消息码（鼠标单击的通知消息码就是 BN_CLICKED）和控件 ID，IParam 参数中包含了控件的句柄。在 MFC 消息映射机制中，消息就是由三部分组成：消息值，wParam 参数，IParam 参数。</p>
+<p>控件消息映射宏的格式：</p>
+<p>ON_通知消息码 <code>(nID, memberFun)</code></p>
+<p>nID 参数是控件的 ID，memberFun 参数是消息处理函数名。</p>
+<p>例如 <code>ON_BN_CLICKED(IDC_PMAC_BUTTON, &amp;LoginDlg::OnBnClickedPmacButton)</code></p>
+<p>消息处理函数声明：</p>
+<p><code>afx_msg void memberFun();</code></p>
+<h2 id="静态文本框-static-text"><a class="markdownIt-Anchor" href="#静态文本框-static-text">#</a> 静态文本框 Static Text</h2>
+<p>如果我们想在程序中<strong>动态创建静态文本框</strong>，而不是像前面那样直接从 Toolbox 中拖到对话框模板上，那么就需要使用 CStatic 类的成员函数 Create。Create 函数的原型如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">virtual</span> BOOL <span class="token function">Create</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  LPCTSTR lpszText<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  DWORD dwStyle<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token keyword">const</span> RECT<span class="token operator">&amp;</span> rect<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  CWnd<span class="token operator">*</span> pParentWnd<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  UINT nID <span class="token operator">=</span> <span class="token number">0xffff</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>
+<p>lpszText：指定要在控件中显示的文字。如果为 NULL 则不会显示任何文字。</p>
+</li>
+<li>
+<p>dwStyle：指定静态控件的风格。静态文本框一般都是对话框或其他窗口的子窗口，而且是可见的，所以应该包含 WS_CHILD 和 WS_VISIBLE 风格，另外，MSDN 中说明，还可以为其设置 “static control styles” 中风格的任意组合。</p>
+<table>
+<thead>
+<tr>
+<th>SS_BITMAP</th>
+<th>一个位图将显示在静态控件中，Create 函数的 lpszText 参数字符串是资源文件中定义的位图名。此风格忽略宽度和高度参数，静态控件自动调整它的尺寸来适应位图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SS_BLACKFRAME</td>
+<td>指定一个具有与窗口边界同色的框，默认为黑色</td>
+</tr>
+<tr>
+<td>SS_BLACKRECT</td>
+<td>指定一个具有与窗口边界同色的实矩形，默认为黑色</td>
+</tr>
+<tr>
+<td>SS_CENTER</td>
+<td>使显示的正文居中对齐，正文可以换行</td>
+</tr>
+<tr>
+<td>SS_GRAYFRAME</td>
+<td>指定一个具有与屏幕背景同色的边框</td>
+</tr>
+<tr>
+<td>SS_GRAYRECT</td>
+<td>指定一个具有与屏幕背景同色的实矩形</td>
+</tr>
+<tr>
+<td>SS_ICON</td>
+<td>使控件显示一个在资源中定义的图标，图标的名字由 Create 函数的 lpszText 参数指定，图标自动调整它的尺寸</td>
+</tr>
+<tr>
+<td>SS_LEFT</td>
+<td>左对齐正文，正文能回绕</td>
+</tr>
+<tr>
+<td>SS_LEFTNOWORDWRAP</td>
+<td>左对齐正文，正文不能回绕</td>
+</tr>
+<tr>
+<td>SS_NOTIFY</td>
+<td>使控件能向父窗口发送鼠标事件消息</td>
+</tr>
+<tr>
+<td>SS_RIGHT</td>
+<td>右对齐正文，可以回绕</td>
+</tr>
+<tr>
+<td>SS_SIMPLE</td>
+<td>使静态正文在运行时不能被改变并使正文显示在单行中</td>
+</tr>
+<tr>
+<td>SS_WHITEFRAME</td>
+<td>指定一个具有与窗口背景同色的框，默认为白色</td>
+</tr>
+<tr>
+<td>SS_WHITERECT</td>
+<td>指定一个具有与窗口背景同色的实心矩形，默认为白色</td>
+</tr>
+</tbody>
+</table>
+<p>我们在对话框模板添加静态文本框时，可以在静态文本框的属性页中设置它的风格，很多都与上面的风格是对应的，例如，Simple 属性就相当于 SS_SIMPLE 风格。</p>
+</li>
+<li>
+<p>rect：指定静态控件的位置和大小，它可以是 RECT 结构体类型，也可以是 CRect 类的对象。</p>
+</li>
+<li>
+<p>pParentWnd：指定静态控件的父窗口，通常是一个 CDialog 对象，不能是 NULL。</p>
+</li>
+<li>
+<p>nID：指定静态控件的 ID。</p>
+</li>
+</ul>
+<h3 id="cstatic类的成员函数"><a class="markdownIt-Anchor" href="#cstatic类的成员函数">#</a> CStatic 类的成员函数</h3>
+<table>
+<thead>
+<tr>
+<th>GetBitmap</th>
+<th>获取由 SetBitmap 函数设置的位图的句柄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetCursor</td>
+<td>获取由 SetCurSor 设置的光标的句柄</td>
+</tr>
+<tr>
+<td>GetEnhMetaFile</td>
+<td>获取由 SetEnhMetaFile 设置的增强图元文件的句柄</td>
+</tr>
+<tr>
+<td>GetIcon</td>
+<td>获取由 SetIcon 设置的图标的句柄</td>
+</tr>
+<tr>
+<td>SetBitmap</td>
+<td>设置要在静态控件中显示的位图</td>
+</tr>
+<tr>
+<td>SetCursor</td>
+<td>设置要在静态控件中显示的光标图片</td>
+</tr>
+<tr>
+<td>SetEnhMetaFile</td>
+<td>设置要在静态控件中显示的增强图元文件</td>
+</tr>
+<tr>
+<td>SetIcon</td>
+<td>设置要在静态控件中显示的图标</td>
+</tr>
+</tbody>
+</table>
+<p>除了上述成员函数外，由于 CStatic 是 CWnd 的派生类，CWnd 的很多成员函数也可以使用，例如，GetWindowText、GetWindowRect、SetWindowText 等。</p>
+<h2 id="编辑框-edit-control"><a class="markdownIt-Anchor" href="#编辑框-edit-control">#</a> 编辑框 Edit Control</h2>
+<h2 id="按钮控件-button-radio-button和check-box"><a class="markdownIt-Anchor" href="#按钮控件-button-radio-button和check-box">#</a> 按钮控件 Button、Radio Button 和 Check Box</h2>
+<p>按钮控件包括：</p>
+<ul>
+<li>命令按钮（Button）</li>
+<li>单选按钮（Radio Button）</li>
+<li>复选框（Check Button）</li>
+</ul>
+<p>按钮控件会向父窗口发送通知消息，例如 <code>BN_CLICKED</code> 、 <code>BN_DOUBLECLICKED</code></p>
+<h3 id="按钮控件的创建"><a class="markdownIt-Anchor" href="#按钮控件的创建">#</a> 按钮控件的创建</h3>
+<p>MFC 提供了 CButton 类封装按钮控件的所有操作。有两种创建方式：</p>
+<ul>
+<li>在对话框模板上直接添加按钮控件资源。</li>
+<li>通过 CButton 类的成员函数 Create 动态创建按钮。</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//Create 函数原型</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">virtual</span> BOOL <span class="token function">Create</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	LPCTSTR lpszCaption<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    DWORD dwStyle<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">const</span> RECT<span class="token operator">&amp;</span> rect<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    CWnd<span class="token operator">*</span> pParentWnd<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    UINT nID</pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>lpszCaption：指定按钮控件显示的文本。</li>
+<li>dwStyle：指定按钮控件的风格，可以设置为以下按钮风格的任意组合
+<ul>
+<li>BS_CHECKBOX：指定在按钮右侧带有标题的选择框</li>
+<li>BS_AUTOCHECKBOX：同 BS_CHECKBOX，不过单击鼠标时按钮会自动反转</li>
+<li>BS_AUTORADIOBUTTON： 同 BS_RADIOBUTTON，不过单击鼠标时按钮会自动反转</li>
+<li>BS_AUTO3STATE ：同 BS_3STATE，不过单击按钮时会改变状态</li>
+<li>BS_DEFPUSHBUTTON：指定默认的命令按钮，这种按钮的周围有一个黑框，用户可以按回车键来快速选择该按钮</li>
+<li>BS_GROUPBOX：指定一个组框</li>
+<li>BS_LEFTTEXT：使控件的标题显示在按钮的左边</li>
+<li>BS_OWNERDRAW：指定一个自绘式按钮</li>
+<li>BS_PUSHBUTTON：指定一个命令按钮</li>
+<li>BS_RADIOBUTTON：指定一个单选按钮，在圆按钮的右边显示正文</li>
+<li>BS_3STATE：同 BS_CHECKBOX，不过控件有 3 种状态 — 选择、未选择和变灰</li>
+</ul>
+</li>
+</ul>
+<p>当然，除了以上列出的风格，一般还会为按钮设置 <code>WS_CHILD</code> 、 <code>WS_VISIBLE</code>  和 <code>WS_TABSTOP</code>  等风格，WS_TABSTOP 风格使按钮控件具有 tab 停止属性，即按 tab 键切换焦点控件时能够将焦点停在按钮控件上。创建一组单选按钮时，第一个按钮的风格应设置为 WS_CHILD|WS_VISIBLE|WS_TABSTOP|WS_GROUP|BS_AUTORADIOBUTTON，其他单选按钮的风格应为 WS_CHILD|WS_VISIBLE|BS_AUTORADIOBUTTON，不包含 WS_TABSTOP 和 WS_GROUP。</p>
+<p>在对话框模板上直接添加按钮控件时，它的属性中包含了上述风格，例如，复选框的 Tri_state 属性实际上代表的就是 BS_3STATE 风格。</p>
+<p>剩下的三个参数与静态文本框的 Create 函数中的相应参数类似</p>
+<h3 id="cbutton类的主要成员函数"><a class="markdownIt-Anchor" href="#cbutton类的主要成员函数">#</a> CButton 类的主要成员函数</h3>
+<ul>
+<li>
+<p>HBITMAP SetBitmap(HBITMAP hBitmap);</p>
+<p>设置要在按钮中显示的位图，参数 nBitmap 为位图的句柄。返回值为按钮原来位图的句柄。</p>
+</li>
+<li>
+<p>HBITMAP GetBitmap() const;</p>
+<p>获取之前由 SetBitmap 函数设置的按钮的位图的句柄。</p>
+</li>
+<li>
+<p>void SetButtonStyle(UINT nStyle, BOOL bRedraw = TRUE);</p>
+<p>设置按钮风格，参数 nStyle 指定按钮的风格，bRedraw 指定按钮是否重绘，为 TRUE 则重绘，否则不重绘，默认为重绘。</p>
+</li>
+<li>
+<p>UINT GetButtonStyle() const;</p>
+<p>获取按钮控件的风格</p>
+</li>
+<li>
+<p>void SetCheck(int cCheck);</p>
+<p>设置按钮的选择状态，参数 nCheck 为 0 表示未选中状态，1 表示选中状态，2 表示不确定状态（仅用于复选框）</p>
+</li>
+<li>
+<p>int GetCheck() const;</p>
+<p>获取按钮的选择状态，返回值的意义同 SetCheck 函数的 nCheck 参数</p>
+</li>
+<li>
+<p>HCURSOR SetCursor(HCURSOR hCursor);</p>
+<p>设置要显示到按钮上的光标图，参数 hCursor 指定了光标的句柄。返回值为按钮原来光标的句柄。</p>
+</li>
+<li>
+<p>HCURSOR GetCursor();</p>
+<p>获取 SetCursor 设置的光标的句柄。</p>
+</li>
+<li>
+<p>HICON SetIcon(HICON hIcon);</p>
+<p>设置要在按钮上显示的图标。参数 hIcon 指定了图标的句柄，返回值为按钮原来图标的句柄。</p>
+</li>
+<li>
+<p>HICON GetIcon() const;</p>
+<p>获取 SetIcon 设置的图标的句柄。</p>
+</li>
+<li>
+<p>void SetState(BOOL bHighlight);</p>
+<p>设置按钮高亮状态，参数 bHighlight 指定按钮是否高亮显示，非 0 则为高亮，否则取消高亮显示状态。</p>
+</li>
+<li>
+<p>UINT GetState() const;</p>
+<p>获取按钮控件的选择状态、高亮状态和焦点状态。我们可以通过将返回值与各个掩码相与来获得各种状态值，掩码与对应的相与结果说明如下：</p>
+<ul>
+<li>掩码 0x0003：用来获取单选按钮或复选框的状态。相与结果为 0 表示未选中，1 表示被选中，2 表示不确定状态（仅用于复选框）。</li>
+<li>掩码 0x0004：用来判断按钮是否是高亮显示。相与结果为非 0 值表示按钮是高亮显示的。当单击按钮并按住鼠标左键时，按钮会呈高亮显示。</li>
+<li>掩码 0x0008：相与结果为非零值表示按钮拥有输入焦点。</li>
+</ul>
+</li>
+</ul>
+<p>下面再列出几个继承自 CWnd 类的成员函数，通过它们获取或设置按钮控件的状态非常方便，只需要知道按钮的 ID。</p>
+<ul>
+<li>
+<p>void CheckDlgButton(int nIDButton,UINT nCheck);</p>
+<p>用来设置按钮的选择状态。参数 nIDButton 指定了按钮的 ID。nCheck 的值为 0 表示按钮未被选择，为 1 表示按钮被选择，为 2 表示按钮处于不确定状态（仅用于复选框）。</p>
+</li>
+<li>
+<p>UINT IsDlgButtonChecked(int nIDButton) const;</p>
+<p>返回复选框或单选按钮的选择状态。返回值为 0 表示按钮未被选择，为 1 表示按钮被选择，为 2 表示按钮处于不确定状态（仅用于复选框）。</p>
+</li>
+<li>
+<p>void CheckRadioButton(int nIDFirstButton,int nIDLastButton,int nIDCheckButton);</p>
+<p>用来选择组中的一个单选按钮。参数 nIDFirstButton 指定了组中第一个按钮的 ID，nIDLastButton 指定了组中最后一个按钮的 ID，nIDCheckButton 指定了要选择的按钮的 ID。</p>
+</li>
+<li>
+<p>int GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton);</p>
+<p>用来获得一组单选按钮中被选中按钮的 ID。参数 nIDFirstButton 说明了组中第一个按钮的 ID，nIDLastButton 说明了组中最后一个按钮的 ID。</p>
+</li>
+</ul>
+<p>​    另外，CWnd 类的成员函数 GetWindowText ()、SetWindowText () 等也可以用来获取或设置按钮中显示的文本。</p>
+<h2 id="列表框控件-listbox"><a class="markdownIt-Anchor" href="#列表框控件-listbox">#</a> 列表框控件 ListBox</h2>
+<h2 id="组合框控件-combo-box"><a class="markdownIt-Anchor" href="#组合框控件-combo-box">#</a> 组合框控件 Combo Box</h2>
+<h2 id="滚动条控件-scroll-bar"><a class="markdownIt-Anchor" href="#滚动条控件-scroll-bar">#</a> 滚动条控件 Scroll Bar</h2>
+<h2 id="图片控件-picture-control"><a class="markdownIt-Anchor" href="#图片控件-picture-control">#</a> 图片控件 Picture Control</h2>
+<h2 id="列表视图控件-list-control"><a class="markdownIt-Anchor" href="#列表视图控件-list-control">#</a> 列表视图控件 List Control</h2>
+<h2 id="树形控件-tree-control"><a class="markdownIt-Anchor" href="#树形控件-tree-control">#</a> 树形控件 Tree Control</h2>
+<h2 id="标签控件-tab-control"><a class="markdownIt-Anchor" href="#标签控件-tab-control">#</a> 标签控件 Tab Control</h2>
+<h1 id="菜单与cmenu类"><a class="markdownIt-Anchor" href="#菜单与cmenu类">#</a> 菜单与 CMenu 类</h1>
+<ul>
+<li>
+<p>下拉式菜单</p>
+<p>一般在窗口标题栏下面显示，通常是由主菜单栏、子菜单及子菜单中的菜单项和分割条组成。</p>
+</li>
+<li>
+<p>弹出式菜单</p>
+<p>一般通过单击鼠标右键显示，它的主菜单不可见，只显示子菜单。</p>
+</li>
+</ul>
+<p>菜单可以在 VS 的 Resource View 资源视图中直接创建编辑。打开资源视图中的 Menu 中 ID 为 IDR_MAINFRAME 的菜单资源。</p>
+<p>点击菜单栏中的某一项会弹出子菜单，子菜单中有多个菜单项和分割条。菜单项中有”…“表示点击后会弹出对话框。带下划线的表示热键</p>
+<h2 id="cmenu类主要成员函数"><a class="markdownIt-Anchor" href="#cmenu类主要成员函数">#</a> CMenu 类主要成员函数</h2>
+<ul>
+<li>
+<p>BOOL LoadMenu(UINT nIDResource);</p>
+<p>加载菜单资源，并将其附加到 CMenu 对象上。参数 nIDResource 指定了要加载的菜单资源的 ID。如果菜单加载成功则返回 TRUE，否则返回 FALSE</p>
+</li>
+<li>
+<p>BOOL DeleteMenu(UINT nPosition, UINT nFlags);</p>
+<p>在菜单中删除一个菜单项。参数 nPosition 指定要删除的菜单项。参数 nFlags 就用来解释 nPosition 的意义，为 MF_BYCOMMAND 时说明 nPosition 表示菜单项的 ID，为 MF_BYPOSITION 时说明 nPosition 表示菜单项的位置，第一个菜单项的位置为 0。如果删除菜单项成功则返回 TRUE，否则返回 FALSE。</p>
+</li>
+<li>
+<p>BOOL TrackPopupMenu(UINT nFlags, int x, int y, CWnd* pWnd, LPCRECT IpRect = 0);</p>
+<p>用来在指定位置显示一个浮动的弹出式菜单。</p>
+</li>
+<li>
+<p>UINT CheckMenuItem(UINT nIDCheckItem, UINT nCheck);</p>
+<p>在弹出的菜单中增加选中标记或移除选中标记。参数 nIDCheckItem 指定要选中或取消选中的菜单项。</p>
+</li>
+<li>
+<p>UINT EnableMenuItem(UINT nIDEnableItem, UINT nEnable);</p>
+<p>激活、禁用菜单项或使其变灰。参数 nIDEnableItem 指定要激活、禁用或变灰的菜单项。参数 nEnable 指定操作的类型。可以是 MF_DISABLED、</p>
+</li>
+<li>
+<p>CMenu* GetSubMenu(int nPos) const;</p>
+</li>
+</ul>
+<h2 id="菜单消息"><a class="markdownIt-Anchor" href="#菜单消息">#</a> 菜单消息</h2>
+<p>菜单主要能发送两种消息：COMMAND 消息和 UPDATE_COMMAND_UI 消息。</p>
+<ul>
+<li>
+<p>COMMAND 消息</p>
+<p>在菜单项被点击时发送该消息。</p>
+</li>
+<li>
+<p>UPDATE_COMMAND_UI 消息</p>
+<p>用来维护菜单项的各项状态，包括激活、禁用、变灰、选中、未选中等。在下拉菜单每次打开的时候，所有菜单项的此消息都会被发送出，如果所属类中为菜单项的该消息添加了处理函数，则执行相应函数更新菜单状态，如果菜单项没有此消息处理函数，也没有 COMMAND 消息的处理函数，那么它就会变灰。</p>
+</li>
+</ul>
+<h1 id="工具栏与ctoolbar类"><a class="markdownIt-Anchor" href="#工具栏与ctoolbar类">#</a> 工具栏与 CToolBar 类</h1>
+<p>打开资源视图中的 ToolBar 中 ID 为 IDR_MAINFRAME 的工具栏资源。</p>
+<h1 id="状态栏"><a class="markdownIt-Anchor" href="#状态栏">#</a> 状态栏</h1>
+<p>状态栏一般在窗口的最底部，用来显示各种状态。</p>
+<p>状态栏实际上也是一个窗口，一般分为几个窗格，每个窗格分别用来显示不同的信息和状态等，如菜单项和工具栏按钮的提示信息。</p>
+<p>用 MFC 向导生成的单文档或多文档程序都会自动创建状态栏，在结果界面中可以看到窗口底部有个状态栏，该状态栏被分为了几个窗格，分别用来显示菜单项和工具栏按钮的提示信息及 Caps Lock、Num Lock、Scroll Lock 键的状态。</p>
+<p><img data-src="image-20230529160507134.png" alt="image-20230529160507134"></p>
+<p>也可以自定义状态栏，加入新的提示信息或指示器。</p>
+<h2 id="cstatusbar类"><a class="markdownIt-Anchor" href="#cstatusbar类">#</a> CStatusBar 类</h2>
+<p>MFC 为状态栏提供了 CStatusBar 类，封装了状态栏的属性和操作。</p>
+<p>CStatusBar 类的几个主要成员函数：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 创建一个状态栏</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">virtual</span> BOOL <span class="token function">Create</span><span class="token punctuation">(</span>CWnd<span class="token operator">*</span> pParentWnd<span class="token punctuation">,</span> DWORD dwStyle <span class="token operator">=</span> WS_CHILD<span class="token operator">|</span>WS_VISIBLE<span class="token operator">|</span>CBRS_BOTTOM<span class="token punctuation">,</span> UINT nID <span class="token operator">=</span> AFX_IDW_STATUS_BAR<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>参数 pParentWnd 为状态栏父窗口指针。</li>
+<li>参数 dwStyle 为状态栏风格，除了标准 windows 风格外它还支持：
+<ul>
+<li>CBRS_TOP：位于框架窗口顶部</li>
+<li>CBRS_BOTTOM：位于框架窗口顶部</li>
+<li>CBRS_NOALIGN：父窗口大小改变时状态栏不会被重新定位</li>
+</ul>
+</li>
+<li>参数 nID 指定状态栏的 ID</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 为每个指示器设置显示文本</span></pre></td></tr><tr><td data-num="2"></td><td><pre>BOOL <span class="token function">SetIndicators</span><span class="token punctuation">(</span><span class="token keyword">const</span> UINT<span class="token operator">*</span> IpIDArray<span class="token punctuation">,</span> <span class="token keyword">int</span> nIDCount<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>用 IpIDArray 数组中的对应元素为每个指示器设置一个 ID，然后加载每个 ID 代表的字符串，设置为这些指示器的显示文本。</p>
+<ul>
+<li>参数 IpIDArray 为指向一个 ID 数组的指针</li>
+<li>参数 nIDCount 为 IpIDArray 数组的元素个数</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>UINT <span class="token function">GetItemID</span><span class="token punctuation">(</span><span class="token keyword">int</span> nIndex<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>获取由 nIndex 指定的指示器的 ID。</p>
+<ul>
+<li>参数 nIndex 为要获取 ID 的指示器索引</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CString <span class="token function">GetPaneText</span><span class="token punctuation">(</span><span class="token keyword">int</span> nIndex<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>获取状态栏窗格中显示的文本。</p>
+<ul>
+<li>参数 nIndex 为要获取文本的窗格索引</li>
+<li>返回值为包含窗格文本的 CString 对象</li>
+</ul>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>BOOL <span class="token function">SetPaneText</span><span class="token punctuation">(</span><span class="token keyword">int</span> nIndex<span class="token punctuation">,</span> LPCTSTR lpszNewText<span class="token punctuation">,</span> BOOL bUpdate <span class="token operator">=</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>设置状态窗格的显示文本。</p>
+<ul>
+<li>参数 nIndex 为要设置文本的窗格索引</li>
+<li>参数 lpszNewText 为指向新的窗格文本的指针</li>
+<li>参数 bUpdate 表示是否设置后立即更新显示</li>
+</ul>
+<h2 id="状态栏创建"><a class="markdownIt-Anchor" href="#状态栏创建">#</a> 状态栏创建</h2>
+<p>在 MainFrm.h 中可以看到，CMainFrame 类的成员变量中创建状态栏使用的是 CMFCStatusBar 类对象。CMFCStatusBar 类和 CStatusBar 类用法类似，功能更加丰富。</p>
+<ol>
+<li>
+<p>构造一个 CMFCStatusBar 类的对象。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CMFCStatusBar     m_wndStatusBar<span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>调用 CMFCStatusBar::Create 函数来创建状态栏窗口。</p>
+<p>在 CMainFrame::OnCreate 函数的实现中，可以找到 CMFCStatusBar::Create 函数的调用</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>m_wndStatusBar<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>		<span class="token function">TRACE0</span><span class="token punctuation">(</span><span class="token string">"未能创建状态栏\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">// 未能创建</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>调用 CMFCStatusBar::SetIndicators 函数为状态栏划分窗格，并为每个指示器设置显示文本。</p>
+<p>该函数需要一个 ID 数组的参数，在 MainFrm.cpp 中定义了如下一个窗格 ID 的数组</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">static</span> UINT indicators<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	ID_SEPARATOR<span class="token punctuation">,</span>           <span class="token comment">// 状态行指示器</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	ID_INDICATOR_CAPS<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	ID_INDICATOR_NUM<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	ID_INDICATOR_SCRL<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>indicators 数组定义了状态栏窗格的划分信息。</p>
+<p>第一个元素一般为 ID_SEPARATOR，对应的窗格用来显示命令提示信息，后三项为指示器文本的字符 ID，可以根据这些 ID 在 String Table 字符串资源中找到相应的字符串。查找方法，在 Resource View 资源视图中，打开 String Table 字符串资源，可以看到 ID、Value 和 Caption 三列，ID 对应的 Caption 列文本就是要查找的字符串。</p>
+<p>划分窗格</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>m_wndStatusBar<span class="token punctuation">.</span><span class="token function">SetIndicators</span><span class="token punctuation">(</span>indicators<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>indicators<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>UINT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>之后我们就可以通过 CMFCStatusBar::SetPaneText 设置窗格文本。</p>
+</li>
+</ol>
+<h2 id="状态栏应用实例-添加时间窗格"><a class="markdownIt-Anchor" href="#状态栏应用实例-添加时间窗格">#</a> 状态栏应用实例 - 添加时间窗格</h2>
+<ol>
+<li>
+<p>在资源视图的 String Table 中添加新的字符串资源，ID 为 ID_INDICATOR_TIME，Caption 为 “00:00:00”。这是为了给时间的显示预留空间，因为状态栏会根据字符串的长度为相应的窗格确定缺省宽度。</p>
+</li>
+<li>
+<p>在 indicators 数组插入 ID_INDICATOR_TIME</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">static</span> UINT indicators<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	ID_SEPARATOR<span class="token punctuation">,</span>           <span class="token comment">// 状态行指示器</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	ID_INDICATOR_CAPS<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	ID_INDICATOR_NUM<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	ID_INDICATOR_SCRL<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	ID_INDICATOR_TIME<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>要实时显示系统时间，就需要一个定时器，每秒钟更新一次时间显示。在 CMainFrame::OnCreate 函数中开启定时器</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token class-name">CMainFrame</span><span class="token double-colon punctuation">::</span><span class="token function">OnCreate</span><span class="token punctuation">(</span>LPCREATESTRUCT lpCreateStruct<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">CFrameWndEx</span><span class="token double-colon punctuation">::</span><span class="token function">OnCreate</span><span class="token punctuation">(</span>lpCreateStruct<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        </pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token comment">// 启动定时器，定时器 ID 为 1，定时时间为 1000ms</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	<span class="token function">SetTimer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>在 Class View 类视图中找到 CMainFrame 类，右键点击属性，然后在属性页中，点工具栏上的 Messages 消息按钮，显示出消息列表，找到 WM_TIMER 消息，添加其消息处理函数 <code>void CMainFrame::OnTimer(UINT_PTR nIDEvent)</code> ，并修改此函数实现：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CMainFrame</span><span class="token double-colon punctuation">::</span><span class="token function">OnTimer</span><span class="token punctuation">(</span>UINT_PTR nIDEvent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token comment">// TODO: 在此添加消息处理程序代码和 / 或调用默认值</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	CString strTime<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token comment">// 获取当前系统时间，并保存到 curTime</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	CTime curTime <span class="token operator">=</span> <span class="token class-name">CTime</span><span class="token double-colon punctuation">::</span><span class="token function">GetCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>	<span class="token comment">// 格式化 curTime, 将字符串保存到 strTime</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	strTime <span class="token operator">=</span> curTime<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"%H:%M:%S"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token comment">// 在状态栏的时间窗格中显示系统时间字符串</span></pre></td></tr><tr><td data-num="11"></td><td><pre>	m_wndStatusBar<span class="token punctuation">.</span><span class="token function">SetPaneText</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> strTime<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>	<span class="token class-name">CFrameWndEx</span><span class="token double-colon punctuation">::</span><span class="token function">OnTimer</span><span class="token punctuation">(</span>nIDEvent<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>测试实现</p>
+</li>
+</ol>
+<h1 id="文档视图框架"><a class="markdownIt-Anchor" href="#文档视图框架">#</a> 文档 / 视图框架</h1>
+<p>MFC 向导自动生成的项目中包含 CxxxDoc 类，CxxxView 类和 CMainFrame 类。</p>
+<p>文档 / 视图结构是 MFC 提供的一种设计，它将数据的处理和显示分开，这样更便于对程序的维护和扩展。</p>
+<ul>
+<li>
+<p>文档</p>
+<p>文档对象用于管理和维护数据，包括保存数据，取出数据以及修改数据等操作，在数据被修改以后，文档可以通知其对应的所有视图更新显示。</p>
+</li>
+<li>
+<p>视图</p>
+<p>视图对象将文档中的数据可视化，负责从文档对象中取出数据显示给用户，并接受用户的输入和编辑，将数据的改变反映给文档对象。视图充当了文档和用户之间媒介的角色。</p>
+</li>
+<li>
+<p>框架</p>
+<p>一个文档可能有多个视图界面，这就需要有框架来管理。框架就是用来管理文档和视图的。框架窗口是应用程序的主窗口，应用程序执行时会先创建一个最顶层的框架窗口。视图窗口是没有菜单和边界的子窗口，它必须包含在框架窗口中，即置于框架窗口的客户区内。</p>
+</li>
+</ul>
+<h2 id="文档模板"><a class="markdownIt-Anchor" href="#文档模板">#</a> 文档模板</h2>
+<p>文档模板中存放了文档、视图和框架相关的信息，应用程序通过文档模板创建文档对象，框架窗口对象和视图对象。另外，文档、视图、框架之间的关系也是文档模板来管理的。</p>
+<p>在 HelloWorld.cpp 中，CHelloWorldApp 应用程序类的成员函数 <code>CHelloWorldApp::InitInstance()</code></p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>BOOL <span class="token class-name">CHelloWorldApp</span><span class="token double-colon punctuation">::</span><span class="token function">InitInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        </pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token comment">// 注册应用程序的文档模板。</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// 文档模板将用作文档、框架窗口和视图之间的连接</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	CSingleDocTemplate<span class="token operator">*</span> pDocTemplate<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	pDocTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">CSingleDocTemplate</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="9"></td><td><pre>		IDR_MAINFRAME<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>		<span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CHelloWorldDoc<span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>		<span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CMainFrame<span class="token punctuation">)</span><span class="token punctuation">,</span>       <span class="token comment">// 主 SDI 框架窗口</span></pre></td></tr><tr><td data-num="12"></td><td><pre>		<span class="token function">RUNTIME_CLASS</span><span class="token punctuation">(</span>CHelloWorldView<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pDocTemplate<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>		<span class="token keyword">return</span> FALSE<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>	<span class="token function">AddDocTemplate</span><span class="token punctuation">(</span>pDocTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    </pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在构造文档模板类 CSingleDocTemplate 的对象时，第一个参数是资源 ID:IDR_MAINFRAME，它包括框架窗口图标等，后面 3 个参数是 RUNTIME_CLASS 宏的调用，RUNTIME_CLASS 用于获取类的运行信息，文档模板可以根据这些动态创建信息来创建相应类的对象，即文档对象、框架窗口对象和视图对象。</p>
+<p>AddDocTemplate (pDocTemplate) 函数用来注册文档模板对象。</p>
+<h2 id="框架类-文档类-视图类"><a class="markdownIt-Anchor" href="#框架类-文档类-视图类">#</a> 框架类、文档类、视图类</h2>
+<ul>
+<li>
+<p>CMainFrame 框架类继承于 CFrameWndEx 类，而 CFrameWndEx 类又继承于 CFrameWnd 类，CFrameWnd 类中用于管理文档和视图的成员函数有：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 获得当前活动视图对象对应文档对象的指针，如果不存在返回 NULL</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">virtual</span> CDocument<span class="token operator">*</span> <span class="token function">GetActiveDocument</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 获得当前活动视图对象的指针</span></pre></td></tr><tr><td data-num="5"></td><td><pre>CView<span class="token operator">*</span> <span class="token function">GetActiveView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 设置活动视图。</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">// 参数 pViewNew 为要激活的视图对象的指针。</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 参数 bNotify 指定视图是否接受激活通知。</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">void</span> <span class="token function">SetActiveView</span><span class="token punctuation">(</span>CView<span class="token operator">*</span> pViewNew<span class="token punctuation">,</span> BOLL bNotify <span class="token operator">=</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>CHelloWorldDoc 文档类继承于 CDocument 类，主要成员函数有：</p>
+<pre><code class="language-cpp">
+</code></pre>
+</li>
+<li>
+<p>CHelloWorldView 视图类继承于 CView 类，CView 类中与文档 / 视图结构相关的成员函数包括：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 获取视图关联的文档对象的指针，如果视图没有关联到文档上则返回 NULL</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CDocument<span class="token operator">*</span> <span class="token function">GetDocument</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="各对象之间关系"><a class="markdownIt-Anchor" href="#各对象之间关系">#</a> 各对象之间关系</h2>
+<p>涉及到的对象包括<strong>应用程序对象</strong>、<strong>文档模板对象</strong>、<strong>文档对象</strong>、<strong>视图对象</strong>和<strong>框架窗口对象</strong>。</p>
+<ol>
+<li>
+<p>应用程序对象保存了一个文档模板的列表。</p>
+<p>在任何对象中调用全局函数 <code>AfxGetApp()</code>  都可以获得应用程序对象的指针。通过调用 <code>CWinAppEx::GetFirstDocTemplatePosition()</code> 、 <code>CWinAppEx::GetNextDocTemplate()</code>  函数可以遍历所有的文档模板。</p>
+</li>
+<li>
+<p>文档模板对象用于维护文档、视图和框架窗口的映射关系，它包含一个已打开文档的列表。</p>
+<p>我们可以通过调用 CDocTemplate::GetFirstDocPosition ()、CDocTemplate::GetNextDoc () 来遍历该文档模板对应的所有文档。</p>
+</li>
+<li>
+<p>框架窗口对象中包含有指向当前活动视图对象的指针。</p>
+<p>AfxGetApp ()-&gt;m_pMainWnd 即为主框架窗口对象的指针，可以通过调用 CFrameWndEx::GetActiveView 来获取当前活动视图对象的指针，并且使用 CFrameWndEx::GetActiveDocument 函数获取当前活动视图对应的文档。</p>
+</li>
+<li>
+<p>文档对象中维护着该文档的视图列表，已经创建该文档的文档模板对象的指针。</p>
+<p>可以通过调用</p>
+</li>
+<li>
+<p>视图是框架窗口的子窗口，它保存有指向对应文档对象的指针。</p>
+<p>可以通过调用 CView::GetParentFrame 获取其所属的框架窗口对象的指针，调用 CView::GetDocument 获取该视图对应的文档对象的指针。</p>
+</li>
+</ol>
+<p>另外，在 MDI 多文档程序中，调用 CMDIFrameWnd::MDIGetActive 可以获取当前活动的 MDI 子窗口。</p>
+<h2 id="分割窗口和csplitterwnd类"><a class="markdownIt-Anchor" href="#分割窗口和csplitterwnd类">#</a> 分割窗口和 CSplitterWnd 类</h2>
+<p>将一个窗口分割成多个窗口，每个窗口都包含视图。</p>
+<p>MFC 分割窗口：动态分割，静态分割。</p>
+<ul>
+<li>动态分割通常用于创建同一文档对应的多个视图，而且这些视图一般都是同一类型的视图，能够在用户编辑文档的不同部分时提供方便。动态分割窗口最多可以有两行两列。</li>
+<li>静态分割比较常见，窗口创建时分割的窗格就已经生成了，而且用户不能改变窗格的数量和顺序。静态分割窗口最多支持 16 行 16 列。通常静态分割的每个窗格中包含不同类的视图，当然也可以包含同一类的视图。</li>
+</ul>
+<h1 id="mfc常用类cstring类"><a class="markdownIt-Anchor" href="#mfc常用类cstring类">#</a> MFC 常用类：CString 类</h1>
+<p>CString 类提供了对字符串的便捷操作。</p>
+<blockquote>
+<p>CStringT 是一个操作可变长度字符串的模板类</p>
+<p>CStringT 模板类有三个实例：CString、CStringA 和 CStringW，分别提供对 TCHAR、char 和 wchar_t 字符类型的字符串的操作。</p>
+<ul>
+<li>char 类型定义的是 ANSI 字符</li>
+<li>wchar_t 类型定义的是 Unicode 字符</li>
+<li>TCHAR 类型取决于字符编码</li>
+</ul>
+</blockquote>
+<ol>
+<li>
+<p>CString 类的构造函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 1. 将一个已经存在的 CString 对象 stringSrc 的内容拷贝到该 CString 对象</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">CString</span><span class="token punctuation">(</span><span class="token keyword">const</span> CString<span class="token operator">&amp;</span> stringSrc<span class="token punctuation">)</span><span class="token punctuation">;</span>  </pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>CString <span class="token function">str1</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"www.xxx.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 将常量字符串拷贝到 str1</span></pre></td></tr><tr><td data-num="5"></td><td><pre>CString <span class="token function">str2</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span><span class="token punctuation">;</span>					<span class="token comment">// 将 str1 拷贝到 str2</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 2. 将字符串 Ipch 中的前 nLength 个字符串拷贝到该 CString 对象</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">CString</span><span class="token punctuation">(</span>LPCTSTR Ipch<span class="token punctuation">,</span> <span class="token keyword">int</span> nLength<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>CString <span class="token function">str</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"www.xxx.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 构造的字符串对象内容为 “www”</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment">// 3. 使用此函数构造的 CString 对象中将含有 nLength 个重复的 ch 字符。</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token function">CString</span><span class="token punctuation">(</span>TCHAR ch<span class="token punctuation">,</span> <span class="token keyword">int</span> nLength <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>CString <span class="token function">str</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token char">'w'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 			<span class="token comment">//str 为 www</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 类的大小写转换及顺序转换函数</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 将字符串中的所有大写字符转换为小写字符</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString<span class="token operator">&amp;</span> <span class="token function">MakeLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 将字符串中的所有小写字符转换为大写字符</span></pre></td></tr><tr><td data-num="4"></td><td><pre>CString<span class="token operator">&amp;</span> <span class="token function">MakeUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 将字符串中的所有字符顺序颠倒</span></pre></td></tr><tr><td data-num="6"></td><td><pre>CString<span class="token operator">&amp;</span> <span class="token function">MakeReverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>CString <span class="token function">str</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"ZiFuChuan"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>str<span class="token punctuation">.</span><span class="token function">MakeLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>str<span class="token punctuation">.</span><span class="token function">MakeUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>str<span class="token punctuation">.</span><span class="token function">MakeReverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 对象的连接</p>
+<p>多个 CSstring 对象可以通过重载运算符 +，+= 实现连接</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CString <span class="token function">str</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"baidu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>				<span class="token comment">//"baidu"</span></pre></td></tr><tr><td data-num="2"></td><td><pre>str <span class="token operator">=</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"www."</span><span class="token punctuation">)</span> <span class="token operator">+</span> str <span class="token operator">+</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">//"www.baidu."</span></pre></td></tr><tr><td data-num="3"></td><td><pre>str <span class="token operator">+=</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>						<span class="token comment">//"www.baidu.com"</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 对象的比较</p>
+<ul>
+<li>
+<p>可以通过 ==、!=、&gt;、&lt;、&gt;=、&lt;= 等重载运算符实现；</p>
+</li>
+<li>
+<p>也可以通过 Compare 和 CompareNoCase 成员函数实现。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 将该 CString 对象与 psz 字符比较，如果相等则返回 0，如果小于 psz 则返回小于 0，如果大于则返回大于 0</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> <span class="token function">Compare</span><span class="token punctuation">(</span>PCXSTR psz<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 功能相同，但不区分大小写</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">int</span> <span class="token function">CompareNoCase</span><span class="token punctuation">(</span>PCXSTR psz<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>
+<p>CString 对象字符串的提取操作</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 1. 提取字符串左边 nCount 个字符的子字符串，并返回一个包含这个子字符串的拷贝的 CString 对象</span></pre></td></tr><tr><td data-num="2"></td><td><pre>CString <span class="token function">Left</span><span class="token punctuation">(</span><span class="token keyword">int</span> nCount<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 2. 提取字符串右边 nCount 个字符的子字符串，并返回一个包含这个子字符串的拷贝的 CString 对象</span></pre></td></tr><tr><td data-num="5"></td><td><pre>CString <span class="token function">Right</span><span class="token punctuation">(</span><span class="token keyword">int</span> nCount<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 3. 提取字符串中以索引 iFirst 位置开始的 nCount 个字符组成的子字符串，并返回一个包含这个子字符串的拷贝的 CString 对象</span></pre></td></tr><tr><td data-num="8"></td><td><pre>CString <span class="token function">Mid</span><span class="token punctuation">(</span><span class="token keyword">int</span> iFirst<span class="token punctuation">,</span> <span class="token keyword">int</span> nCount<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment">// 4. 提取字符串中以索引 iFirst 位置开始至字符串结尾的子字符串，并返回一个包含这个子字符串的拷贝的 CString 对象</span></pre></td></tr><tr><td data-num="11"></td><td><pre>CString <span class="token function">Mid</span><span class="token punctuation">(</span><span class="token keyword">int</span> iFirst<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>CString str1 <span class="token operator">=</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"yigezifuchuan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>CString str2 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">Left</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">// "yig"</span></pre></td></tr><tr><td data-num="15"></td><td><pre>str2 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">Mid</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>					<span class="token comment">// "ige"</span></pre></td></tr><tr><td data-num="16"></td><td><pre>str3 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">Mid</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>						<span class="token comment">// "ifuchuan"</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 对象字符串的查找操作</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 在 CString 对象字符串的 iStart 的索引位置开始，查找字符串 pszSub 或字符 ch 第一次出现的位置，如果没有找到则返回 - 1</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> <span class="token function">Find</span><span class="token punctuation">(</span>PCXSTR pszSub<span class="token punctuation">,</span> <span class="token keyword">int</span> iStart <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">int</span> <span class="token function">Find</span><span class="token punctuation">(</span>XCHAR ch<span class="token punctuation">,</span> <span class="token keyword">int</span> iStart <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 查找字符串 pszCharSet 中任意字符，返回第一次出现的位置，如果没有找到则返回 - 1</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">int</span> <span class="token function">FindOneOf</span><span class="token punctuation">(</span>PCXSTR pszCharSet<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">// 从字符串末尾开始查找指定的字符 ch，返回其位置，找不到则返回 - 1。尽管是从后向前查找，但是位置的索引还是要从开始算起</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">int</span> <span class="token function">ReverseFind</span><span class="token punctuation">(</span>XCHAR ch<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>CString str <span class="token operator">=</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"jizhuomi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">int</span> nIndex1 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"zh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 2</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">int</span> nIndex2 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">FindOneOf</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"mui"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 1</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">int</span> nIndex3 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">ReverseFind</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 7</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 类对象字符串的替换和删除</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CString str <span class="token operator">=</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"jizhuomi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 用字符 chNEW 替换 chOLD，返回替换的字符个数</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">int</span> n1 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">Replace</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token char">'i'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">_T</span><span class="token punctuation">(</span><span class="token char">'j'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">//str 为 "jjzhuomj", n1=2</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">// 从字符串中删除 iIndex 位置开始的 nCount 个字符，返回删除操作后的字符串长度</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">int</span> n2 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">Delete</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>					<span class="token comment">//str 为 "jhuomj", n2=6</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 删除字符串中所有由 chRemove 指定的字符，返回删除的字符个数</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">int</span> n3 <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token char">'j'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>				<span class="token comment">//str 为 "huom", n3=2</span></pre></td></tr></table></figure></li>
+<li>
+<p>CString 类的格式化字符串方法</p>
+<p>使用 CString 类的 Format 成员函数可以将 int，short，long，float，double 等数据类型格式化为字符串对象。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>CString str<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">float</span> b <span class="token operator">=</span> <span class="token number">2.3f</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>str<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token function">_T</span><span class="token punctuation">(</span><span class="token string">"a=%d, b=%f"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">//str 为 "a=1, b=2.300000"</span></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="mfc常用类ctime类和ctimespan类"><a class="markdownIt-Anchor" href="#mfc常用类ctime类和ctimespan类">#</a> MFC 常用类：CTime 类和 CTimeSpan 类</h1>
+<p>CTime 类的对象表示的时间基于格林威治标准时间（GMT）</p>
+<p>CTimeSpan 类的对象表示的是时间间隔。</p>
+<p>CTime 类和 CTimeSpan 类一般不会被继承使用，两者对象的大小都是 8 个字节。</p>
+<p>CTime 表示的日期上限是 3000 年 12 月 31 日，下限是 1970 年 1 月 1 日 12:00:00 AM GMT</p>
+<h2 id="ctime类的主要成员函数"><a class="markdownIt-Anchor" href="#ctime类的主要成员函数">#</a> CTime 类的主要成员函数</h2>
+<h1 id="mfc常用类定时器timer"><a class="markdownIt-Anchor" href="#mfc常用类定时器timer">#</a> MFC 常用类：定时器 Timer</h1>
+<h1 id="图形图像cdc类及其屏幕绘图函数"><a class="markdownIt-Anchor" href="#图形图像cdc类及其屏幕绘图函数">#</a> 图形图像：CDC 类及其屏幕绘图函数</h1>
+<p>CDC 类是一个设备上下文类。（Device Context）</p>
+<p>CDC 类提供了用来处理显示器或者打印机等设备上下文的成员函数，还有处理与窗口客户区关联的显示上下文的成员函数。使用 CDC 的成员函数可以进行所有的绘图操作，包括处理绘图工具、GDI 对象的选择、颜色和调色板的处理、获取和设置绘图属性、映射、窗口范围、坐标转换、剪切以及绘制直线、简单图形、椭圆和多边形等。另外，它还为文本输出、处理字体、使用打印机跳转和滚动等提供了成员函数。</p>
+<p>如上所述，CDC 类几乎封装了所有的 Windows GDI 函数，另外，MFC 中还有几个由 CDC 类派生的子类，包括 CWindowDC、CPaintDC、CClientDC、CMetaFileDC，它们用来进行一些特定的绘图操作。</p>
+<h1 id="图形图像gdi对象之画笔cpen"><a class="markdownIt-Anchor" href="#图形图像gdi对象之画笔cpen">#</a> 图形图像：GDI 对象之画笔 CPen</h1>
+<p>图形设备接口 GDI（Graphics Device Interface）</p>
+<p>在 MFC 中，CGdiObject 类是 GDI 对象的基类，CGdiObject 类有 6 个直接的派生类，GDI 对象主要也是这 6 个，分别是：CBitmap、CBrush、CFont、CPalette、CPen、CRgn。其中最常用的是画笔 CPen 和画刷 CBrush</p>
+<h1 id="图形图像gdi对象之画刷cbrush"><a class="markdownIt-Anchor" href="#图形图像gdi对象之画刷cbrush">#</a> 图形图像：GDI 对象之画刷 CBrush</h1>
+<p>创建 Picture Control 控件，添加 CStatic 变量 mPicColor。创建 “选择颜色” 的按钮控件，添加事件响应函数，功能实现如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token class-name">CBrushExampleDlg</span><span class="token double-colon punctuation">::</span><span class="token function">OnBnClickedBtnColorSelect</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	COLORREF color <span class="token operator">=</span> <span class="token function">RGB</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 颜色对话框的初始颜色</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	CColorDialog <span class="token function">colorDlg</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">// 构造颜色对话框</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>	CRect rectPicture<span class="token punctuation">;</span>		<span class="token comment">// 图片控件的矩形区域坐标</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	CBrush newBrush<span class="token punctuation">;</span>		<span class="token comment">// 创建新画刷</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	CBrush <span class="token operator">*</span>pOldBrush<span class="token punctuation">;</span>		<span class="token comment">// 旧画刷指针</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	CClientDC <span class="token function">clientDC</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 构建客户区的设备上下文对象</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token keyword">if</span> <span class="token punctuation">(</span>IDOK <span class="token operator">==</span> colorDlg<span class="token punctuation">.</span><span class="token function">DoModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>		<span class="token comment">// 如果点击了颜色对话框的确定按钮，则执行下列操作。</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>		<span class="token comment">// 获取颜色对话框中选择的颜色</span></pre></td></tr><tr><td data-num="15"></td><td><pre>		color <span class="token operator">=</span> colorDlg<span class="token punctuation">.</span><span class="token function">GetColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>		<span class="token comment">// 用选择的颜色创建新画刷</span></pre></td></tr><tr><td data-num="17"></td><td><pre>		newBrush<span class="token punctuation">.</span><span class="token function">CreateSolidBrush</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>		<span class="token comment">// 获取图片控件矩形区域屏幕坐标</span></pre></td></tr><tr><td data-num="20"></td><td><pre>		mPicColor<span class="token punctuation">.</span><span class="token function">GetWindowRect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>		<span class="token comment">// 将图片控件矩形区域的屏幕坐标转换为其父窗口即对话框的客户区坐标</span></pre></td></tr><tr><td data-num="22"></td><td><pre>		<span class="token function">ScreenToClient</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre>		<span class="token comment">// 选择新画刷，并保存旧画刷的指针</span></pre></td></tr><tr><td data-num="25"></td><td><pre>		pOldBrush <span class="token operator">=</span> clientDC<span class="token punctuation">.</span><span class="token function">SelectObject</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>newBrush<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>		<span class="token comment">// 以新画刷为图片控件填充颜色</span></pre></td></tr><tr><td data-num="27"></td><td><pre>		clientDC<span class="token punctuation">.</span><span class="token function">Rectangle</span><span class="token punctuation">(</span>rectPicture<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre>		<span class="token comment">// 恢复旧画刷</span></pre></td></tr><tr><td data-num="30"></td><td><pre>		clientDC<span class="token punctuation">.</span><span class="token function">SelectObject</span><span class="token punctuation">(</span>pOldBrush<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>		<span class="token comment">// 删除旧画刷</span></pre></td></tr><tr><td data-num="32"></td><td><pre>		newBrush<span class="token punctuation">.</span><span class="token function">DeleteObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>CClientDC 类是 CDC 类的派生类，它生成的设备上下文对应于窗口的客户区，另一个类 CWindowDC 类也是 CDC 类的派生类，它对应的则包括客户区和非客户区，也就是说，CClientDC 只能在客户区绘图，而 CWindowDC 可以在客户区和非客户区绘图。</p>
+<ul>
+<li>非客户区包括窗口中的标题栏、菜单栏、状态栏、滚动条边框等区域。</li>
+<li>客户区就是除去非客户区之外的主要工作区域</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
+          <a href="/tags/MFC/" rel="tag"><i class="ic i-tag"></i> MFC</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-06-04 19:20:01" itemprop="dateModified" datetime="2023-06-04T19:20:01+08:00">2023-06-04</time>
+  </span>
+  <span id="2023/05/25/MFC/" class="item leancloud_visitors" data-flag-title="MFC" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>AdventureYX <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://adventure-yx.github.io/2023/05/25/MFC/" title="MFC">https://adventure-yx.github.io/2023/05/25/MFC/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/05/04/showimg/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-3b2f6d510326b07dd.jpeg" title="基于Qt的图片浏览器">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Qt</span>
+  <h3>基于Qt的图片浏览器</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-20aaa4da442993f8b8.png" title="MFC 应用程序框架">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>MFC 应用程序框架</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vs%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%B7%A5%E7%A8%8B%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text"> VS 应用程序工程中文件的组成结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> MFC 应用程序框架分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sdk%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> SDK 应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 程序运行流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mfc%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.2.</span> <span class="toc-text"> MFC 应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sdk%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8Cmfc%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AF%B9%E6%AF%94"><span class="toc-number">2.3.</span> <span class="toc-text"> SDK 应用程序和 MFC 应用程序对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mfc%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E4%B8%BB%E8%A6%81%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.4.</span> <span class="toc-text"> MFC 应用程序框架主要类之间的关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text"> MFC 消息映射机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF"><span class="toc-number">3.1.</span> <span class="toc-text"> 什么是消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text"> 什么是消息映射机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E6%B6%88%E6%81%AF%E5%88%86%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text"> Windows 消息分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E8%A1%A8"><span class="toc-number">3.4.</span> <span class="toc-text"> 消息映射表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">3.5.</span> <span class="toc-text"> 添加消息处理函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%A7%8Dwindows%E6%B6%88%E6%81%AF%E7%9A%84%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.</span> <span class="toc-text"> 各种 Windows 消息的消息处理函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">4.</span> <span class="toc-text"> 对话框 - 创建对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E5%92%8C%E6%A3%80%E9%AA%8C"><span class="toc-number">5.</span> <span class="toc-text"> 对话框类的数据交换和检验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E4%B8%BA%E6%8E%A7%E4%BB%B6%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 对话框 - 为控件添加消息处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0-2"><span class="toc-number">6.1.</span> <span class="toc-text"> 添加消息处理函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%9F%E8%83%BD"><span class="toc-number">6.2.</span> <span class="toc-text"> 在消息处理函数中添加自定义功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%8E%A7%E4%BB%B6%E7%9A%84tab%E9%A1%BA%E5%BA%8F"><span class="toc-number">6.3.</span> <span class="toc-text"> 设置控件的 Tab 顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E6%A8%A1%E6%80%81%E4%B8%8E%E9%9D%9E%E6%A8%A1%E6%80%81%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%8F%8A%E5%85%B6%E5%BC%B9%E5%87%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">7.</span> <span class="toc-text"> 对话框 - 模态与非模态对话框及其弹出过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A8%A1%E6%80%81%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%B9%B6%E5%BC%B9%E5%87%BA%E5%AE%83"><span class="toc-number">7.1.</span> <span class="toc-text"> 添加模态对话框并弹出它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%9D%9E%E6%A8%A1%E6%80%81%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%B9%B6%E6%98%BE%E7%A4%BA"><span class="toc-number">7.2.</span> <span class="toc-text"> 添加非模态对话框并显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E5%B1%9E%E6%80%A7%E9%A1%B5%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E7%B1%BB"><span class="toc-number">8.</span> <span class="toc-text"> 对话框 - 属性页对话框及其相关类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E5%90%91%E5%AF%BC%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">9.</span> <span class="toc-text"> 对话框 - 向导对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E6%B6%88%E6%81%AF%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">10.</span> <span class="toc-text"> 对话框 - 消息对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E6%96%87%E4%BB%B6%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">11.</span> <span class="toc-text"> 对话框 - 文件对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E5%AD%97%E4%BD%93%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">12.</span> <span class="toc-text"> 对话框 - 字体对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86-%E9%A2%9C%E8%89%B2%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">13.</span> <span class="toc-text"> 对话框 - 颜色对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6"><span class="toc-number">14.</span> <span class="toc-text"> 常用控件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E6%9C%AC%E6%A1%86-static-text"><span class="toc-number">14.1.</span> <span class="toc-text"> 静态文本框 Static Text</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cstatic%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">14.1.1.</span> <span class="toc-text"> CStatic 类的成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%A1%86-edit-control"><span class="toc-number">14.2.</span> <span class="toc-text"> 编辑框 Edit Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%8E%A7%E4%BB%B6-button-radio-button%E5%92%8Ccheck-box"><span class="toc-number">14.3.</span> <span class="toc-text"> 按钮控件 Button、Radio Button 和 Check Box</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%8E%A7%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">14.3.1.</span> <span class="toc-text"> 按钮控件的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cbutton%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">14.3.2.</span> <span class="toc-text"> CButton 类的主要成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E6%A1%86%E6%8E%A7%E4%BB%B6-listbox"><span class="toc-number">14.4.</span> <span class="toc-text"> 列表框控件 ListBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A1%86%E6%8E%A7%E4%BB%B6-combo-box"><span class="toc-number">14.5.</span> <span class="toc-text"> 组合框控件 Combo Box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%8E%A7%E4%BB%B6-scroll-bar"><span class="toc-number">14.6.</span> <span class="toc-text"> 滚动条控件 Scroll Bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%8E%A7%E4%BB%B6-picture-control"><span class="toc-number">14.7.</span> <span class="toc-text"> 图片控件 Picture Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E8%A7%86%E5%9B%BE%E6%8E%A7%E4%BB%B6-list-control"><span class="toc-number">14.8.</span> <span class="toc-text"> 列表视图控件 List Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E6%8E%A7%E4%BB%B6-tree-control"><span class="toc-number">14.9.</span> <span class="toc-text"> 树形控件 Tree Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E6%8E%A7%E4%BB%B6-tab-control"><span class="toc-number">14.10.</span> <span class="toc-text"> 标签控件 Tab Control</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8F%9C%E5%8D%95%E4%B8%8Ecmenu%E7%B1%BB"><span class="toc-number">15.</span> <span class="toc-text"> 菜单与 CMenu 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmenu%E7%B1%BB%E4%B8%BB%E8%A6%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">15.1.</span> <span class="toc-text"> CMenu 类主要成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8F%9C%E5%8D%95%E6%B6%88%E6%81%AF"><span class="toc-number">15.2.</span> <span class="toc-text"> 菜单消息</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%A0%8F%E4%B8%8Ectoolbar%E7%B1%BB"><span class="toc-number">16.</span> <span class="toc-text"> 工具栏与 CToolBar 类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%A0%8F"><span class="toc-number">17.</span> <span class="toc-text"> 状态栏</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cstatusbar%E7%B1%BB"><span class="toc-number">17.1.</span> <span class="toc-text"> CStatusBar 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%A0%8F%E5%88%9B%E5%BB%BA"><span class="toc-number">17.2.</span> <span class="toc-text"> 状态栏创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%A0%8F%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B-%E6%B7%BB%E5%8A%A0%E6%97%B6%E9%97%B4%E7%AA%97%E6%A0%BC"><span class="toc-number">17.3.</span> <span class="toc-text"> 状态栏应用实例 - 添加时间窗格</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6"><span class="toc-number">18.</span> <span class="toc-text"> 文档 &#x2F; 视图框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF"><span class="toc-number">18.1.</span> <span class="toc-text"> 文档模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E7%B1%BB-%E6%96%87%E6%A1%A3%E7%B1%BB-%E8%A7%86%E5%9B%BE%E7%B1%BB"><span class="toc-number">18.2.</span> <span class="toc-text"> 框架类、文档类、视图类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">18.3.</span> <span class="toc-text"> 各对象之间关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E7%AA%97%E5%8F%A3%E5%92%8Ccsplitterwnd%E7%B1%BB"><span class="toc-number">18.4.</span> <span class="toc-text"> 分割窗口和 CSplitterWnd 类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E5%B8%B8%E7%94%A8%E7%B1%BBcstring%E7%B1%BB"><span class="toc-number">19.</span> <span class="toc-text"> MFC 常用类：CString 类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E5%B8%B8%E7%94%A8%E7%B1%BBctime%E7%B1%BB%E5%92%8Cctimespan%E7%B1%BB"><span class="toc-number">20.</span> <span class="toc-text"> MFC 常用类：CTime 类和 CTimeSpan 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ctime%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">20.1.</span> <span class="toc-text"> CTime 类的主要成员函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%AE%9A%E6%97%B6%E5%99%A8timer"><span class="toc-number">21.</span> <span class="toc-text"> MFC 常用类：定时器 Timer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8Fcdc%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%B1%8F%E5%B9%95%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-number">22.</span> <span class="toc-text"> 图形图像：CDC 类及其屏幕绘图函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8Fgdi%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%94%BB%E7%AC%94cpen"><span class="toc-number">23.</span> <span class="toc-text"> 图形图像：GDI 对象之画笔 CPen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8Fgdi%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%94%BB%E5%88%B7cbrush"><span class="toc-number">24.</span> <span class="toc-text"> 图形图像：GDI 对象之画刷 CBrush</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/02/24/C++Study/" rel="bookmark" title="C++ Study">C++ Study</a></li><li><a href="/2023/03/05/C++%E9%9D%A2%E7%BB%8F/" rel="bookmark" title="C++面经">C++面经</a></li><li><a href="/2023/03/10/STL/" rel="bookmark" title="STL">STL</a></li><li><a href="/2023/04/02/C++11/" rel="bookmark" title="C++11/14/17">C++11/14/17</a></li><li><a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" rel="bookmark" title="MFC 应用程序框架">MFC 应用程序框架</a></li><li class="active"><a href="/2023/05/25/MFC/" rel="bookmark" title="MFC">MFC</a></li><li><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" rel="bookmark" title="MFC 消息映射机制">MFC 消息映射机制</a></li><li><a href="/2023/06/01/MFC%E5%AF%B9%E8%AF%9D%E6%A1%86/" rel="bookmark" title="MFC 对话框">MFC 对话框</a></li><li><a href="/2023/06/02/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/" rel="bookmark" title="字符集与VS中的字符处理">字符集与VS中的字符处理</a></li><li><a href="/2023/06/05/C++Boost%E5%BA%93%20%E5%87%BD%E6%95%B0%E4%B8%8E%E5%9B%9E%E8%B0%83/" rel="bookmark" title="C++Boost库 函数与回调">C++Boost库 函数与回调</a></li><li><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="bookmark" title="C++Boost库 内存管理">C++Boost库 内存管理</a></li><li><a href="/2023/06/09/MFC%E5%B8%B8%E7%94%A8%E7%B1%BB/" rel="bookmark" title="MFC 常用类">MFC 常用类</a></li><li><a href="/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/" rel="bookmark" title="MFC 常用控件">MFC 常用控件</a></li><li><a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" rel="bookmark" title="MFC 文档/视图框架">MFC 文档/视图框架</a></li><li><a href="/2023/06/28/MFC%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/" rel="bookmark" title="MFC 图形图像">MFC 图形图像</a></li><li><a href="/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/" rel="bookmark" title="MFC Debug记录">MFC Debug记录</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">24</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">8</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>friends</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/links/" rel="section"><i class="ic i-magic"></i>links</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/05/04/showimg/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Qt/" title="分类于 Qt">Qt</a>
+</div>
+
+    <span><a href="/2023/04/20/qtchat/" title="基于Qt框架实现网络聊天室">基于Qt框架实现网络聊天室</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" title="MFC 消息映射机制">MFC 消息映射机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/" title="MFC 常用控件">MFC 常用控件</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DataBase/" title="分类于 DataBase">DataBase</a>
+</div>
+
+    <span><a href="/2023/03/06/CMU15-445/" title="CMU15-445（2022Fall）">CMU15-445（2022Fall）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/25/MFC/" title="MFC">MFC</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/07/10/MFC%20Debug%E8%AE%B0%E5%BD%95/" title="MFC Debug记录">MFC Debug记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/25/MFC%E6%96%87%E6%A1%A3%E8%A7%86%E5%9B%BE%E6%A1%86%E6%9E%B6/" title="MFC 文档&#x2F;视图框架">MFC 文档/视图框架</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/03/01/Linux/" title="Linux">Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/06/06/C++Boost%E5%BA%93%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="C++Boost库 内存管理">C++Boost库 内存管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/03/10/STL/" title="STL">STL</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Adventure</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/05/25/MFC/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
