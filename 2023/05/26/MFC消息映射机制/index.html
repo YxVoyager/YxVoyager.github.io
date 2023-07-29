@@ -1,0 +1,527 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://adventure-yx.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://adventure-yx.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://adventure-yx.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="C++,MFC" />
+
+
+<link rel="canonical" href="https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/">
+
+
+
+  <title>
+MFC 消息映射机制 - C++ |
+Adventure =  = 心有所向。日复一日，必有精进</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">MFC 消息映射机制
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-05-26 10:12:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-05-26T10:12:08+08:00">2023-05-26</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Adventure</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-542a9d073b04482e8.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-187e4d08bbd3af08b1.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-99681dcf7dddeea33.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-20aaa4da442993f8b8.png"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-157c501dd887202cec.jpeg"></li>
+          <li class="item" data-background-image="https://img.picgo.net/2023/04/02/sky-134a7b41dbac28cfdf.jpeg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/C/" itemprop="item" rel="index" title="分类于 C++"><span itemprop="name">C++</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="AdventureYX">
+    <meta itemprop="description" content="心有所向。日复一日，必有精进, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="mfc消息映射机制"><a class="markdownIt-Anchor" href="#mfc消息映射机制">#</a> MFC 消息映射机制</h1>
+<p><strong>Windows 应用程序是消息驱动的</strong>。在 MFC 软件开发中，界面操作或者线程之间通信都会用到消息，<strong>通过对消息的处理实现相应的操作</strong>。比较典型的过程是，用户操作窗口，然后有消息产生，送给窗口的消息处理函数处理，对用户的操作做出响应。</p>
+<h1 id="什么是消息"><a class="markdownIt-Anchor" href="#什么是消息">#</a> 什么是消息</h1>
+<p>窗口消息一般由三个部分组成：</p>
+<ul>
+<li>一个无符号整数，是消息值；</li>
+<li>消息附带的 WPARAM 类型的参数；</li>
+<li>消息附带的 LPARAM 类型的参数。</li>
+</ul>
+<p>实际一般所说的是狭义上的消息值，也就是一个无符号整数，经常被定义为宏。</p>
+<h1 id="什么是消息映射机制"><a class="markdownIt-Anchor" href="#什么是消息映射机制">#</a> 什么是消息映射机制</h1>
+<p>MFC 使用一种消息映射机制来处理消息，在应用程序框架中的表现就是，<strong>一个消息与消息处理函数 —— 对应的消息映射表，以及消息处理函数的声明和实现等代码</strong>。</p>
+<p>当窗口收到消息时，会到消息映射表中查找该消息对应的消息处理函数，然后由消息处理函数进行相应的处理。</p>
+<p>SDK 编程时需要在窗口过程中 —— 判断消息值进行相应的处理，相比之下 MFC 的消息映射机制要方便好用的多。</p>
+<h1 id="windows消息分类"><a class="markdownIt-Anchor" href="#windows消息分类">#</a> Windows 消息分类</h1>
+<p>Windows 消息分为<strong>系统消息</strong>和<strong>用户自定义消息</strong>。系统消息有三种：</p>
+<ul>
+<li><strong>标准 Windows 消息</strong>。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。</li>
+<li><strong>命令消息</strong>。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。</li>
+<li><strong>通知消息</strong>。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。</li>
+</ul>
+<p><strong>CWnd 的派生类都可以接收到标准 Windows 消息、通知消息和命令消息。命令消息还可以由文档类等接收。</strong></p>
+<p><strong>用户自定义消息实际上就是用户定义一个宏作为消息，此宏的值应该大于等于 WM_USER，然后宏就可以跟系统消息一样使用，窗口类中可以定义它的处理函数。</strong></p>
+<h1 id="消息映射表"><a class="markdownIt-Anchor" href="#消息映射表">#</a> 消息映射表</h1>
+<p>除了一些没有基类的类或 CObject 的直接派生类外，其他的类都可以自动生成消息映射表。</p>
+<p>消息映射表如下（CMainFrame.cpp）：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">BEGIN_MESSAGE_MAP</span><span class="token punctuation">(</span>CMainFrame<span class="token punctuation">,</span> CFrameWndEx<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token function">ON_WM_CREATE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token function">ON_REGISTERED_MESSAGE</span><span class="token punctuation">(</span>AFX_WM_CREATETOOLBAR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnToolbarCreateNew<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	<span class="token function">ON_UPDATE_COMMAND_UI_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnUpdateApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token function">ON_WM_SETTINGCHANGE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">END_MESSAGE_MAP</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>在 <code>BEGIN_MESSAGE_MAP</code>  和 <code>END_MESSAGE_MAP</code>  之间的内容成为消息映射入口项。</p>
+<p>消息映射除了在 <code>CMainFrame</code>  的实现文件中添加消息映射表外，在类的定义文件 <code>MainFrm.h</code>  中还会添加一个宏调用： <code> DECLEAR_MESSAGE_MAP</code></p>
+<p>一般这个宏调用写在类定义的结尾处。</p>
+<h1 id="添加消息处理函数"><a class="markdownIt-Anchor" href="#添加消息处理函数">#</a> 添加消息处理函数</h1>
+<ol>
+<li>
+<p>在类定义中加入消息处理函数的函数声明，以 <code>afx_msg</code>  打头。例如 MainFrm.h 中的声明：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>afx_msg <span class="token keyword">int</span> <span class="token function">OnCreate</span><span class="token punctuation">(</span>LPCREATESTRUCT lpCreateStruct<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnViewCustomize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>afx_msg LRESULT <span class="token function">OnToolbarCreateNew</span><span class="token punctuation">(</span>WPARAM wp<span class="token punctuation">,</span> LPARAM lp<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnApplicationLook</span><span class="token punctuation">(</span>UINT id<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnUpdateApplicationLook</span><span class="token punctuation">(</span>CCmdUI<span class="token operator">*</span> pCmdUI<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>afx_msg <span class="token keyword">void</span> <span class="token function">OnSettingChange</span><span class="token punctuation">(</span>UINT uFlags<span class="token punctuation">,</span> LPCTSTR lpszSection<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
+<li>
+<p>在类的消息映射表中添加该消息的消息映射入口项。例如 MainFrm.h 中的</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_WM_CREATE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">ON_REGISTERED_MESSAGE</span><span class="token punctuation">(</span>AFX_WM_CREATETOOLBAR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnToolbarCreateNew<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">ON_UPDATE_COMMAND_UI_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnUpdateApplicationLook<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">ON_WM_SETTINGCHANGE</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure></li>
+<li>
+<p>在类的实现中添加消息处理函数的函数实现。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> <span class="token class-name">CMainFrame</span><span class="token double-colon punctuation">::</span><span class="token function">OnCreate</span><span class="token punctuation">(</span>LPCREATESTRUCT lpCreateStruct<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+</ol>
+<p>通过以上 3 个步骤后， <code>WM_CREATE</code>  等消息就可以在窗口类中被消息处理函数处理了。</p>
+<h1 id="各种windows消息的消息处理函数"><a class="markdownIt-Anchor" href="#各种windows消息的消息处理函数">#</a> 各种 Windows 消息的消息处理函数</h1>
+<blockquote>
+<p>标准 Windows 消息。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。</p>
+</blockquote>
+<p>标准 Windows 消息的消息处理函数都与 WM_CREATE 消息类似。</p>
+<blockquote>
+<p>命令消息。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。</p>
+</blockquote>
+<p>命令消息的消息映射入口如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_COMMAND</span><span class="token punctuation">(</span>ID_VIEW_CUSTOMIZE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnViewCustomize<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>消息为 <code>ID_VIEW_CUSTOMIZE</code></li>
+<li>消息处理函数为 <code>OnViewCustomize</code></li>
+</ul>
+<p>如果想用批量处理函数批量处理这些命令消息，则可以像 CMainFrame 消息映射表中的：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_COMMAND_RANGE</span><span class="token punctuation">(</span>ID_VIEW_APPLOOK_WIN_2000<span class="token punctuation">,</span> ID_VIEW_APPLOOK_WINDOWS_7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>CMainFrame<span class="token double-colon punctuation">::</span>OnApplicationLook<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>值在 <code>ID_VIEW_APPLOOK_WIN_2000</code>  到 <code>ID_VIEW_APPLOOK_WINDOWS_7</code>  之间的菜单项等命令消息都由 CMainFrame 的 <code>OnApplicationLook</code>  函数处理。</li>
+<li>函数原型为 <code>afx_msg void OnApplicationLook(UINT id);</code></li>
+<li>参数 id 为用户操作的菜单项等的 ID</li>
+</ul>
+<blockquote>
+<p>通知消息。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。</p>
+</blockquote>
+<p>在操作列表框等控件时往往会给父窗口发送 <code>WM_NOTIFY</code>  通知消息。</p>
+<p><code>WM_NOTIFY</code>  消息的 <code>WPARAM</code>  参数为发送通知消息的控件的 ID； <code> LPARAM</code>  参数指向一个结构体，可能是 NMHDR 结构体，也可能是第一个元素为 NMHDR 结构体变量的其他结构体。</p>
+<p>NMHDR 结构体定义如下：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre>Typedef <span class="token keyword">struct</span> <span class="token class-name">tagNMHDR</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    HWND hwndFrom<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    UINT idFrom<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    UINT code<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span>NMHDR<span class="token punctuation">;</span></pre></td></tr></table></figure><ul>
+<li>hwndFrom 为发送通知消息控件的句柄；</li>
+<li>idFrom 为控件 ID；</li>
+<li>code 为要处理的通知消息的通知码，例如 NM_CLICK</li>
+</ul>
+<p>通知消息的消息映射入口形式如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"><span>p</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">ON_NOTIFY</span><span class="token punctuation">(</span>wNotifyCode<span class="token punctuation">,</span> id<span class="token punctuation">,</span> memberFxn<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<li>wNotifyCode 为要处理的通知消息通知码；</li>
+<li>id 为控件标识 ID；</li>
+<li>memberFxn 为此消息的消息处理函数。</li>
+</ul>
+<blockquote>
+<p>用户自定义消息</p>
+<ol>
+<li>定义消息宏</li>
+<li>在消息映射表中添加消息映射入口项</li>
+<li>在 MainFrm.h 中添加消息处理函数的函数声明</li>
+<li>在 MainFrm.cpp 中实现此函数</li>
+</ol>
+</blockquote>
+<h1 id=""><a class="markdownIt-Anchor" href="#">#</a> </h1>
+
+      <div class="tags">
+          <a href="/tags/C/" rel="tag"><i class="ic i-tag"></i> C++</a>
+          <a href="/tags/MFC/" rel="tag"><i class="ic i-tag"></i> MFC</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-06-04 19:20:01" itemprop="dateModified" datetime="2023-06-04T19:20:01+08:00">2023-06-04</time>
+  </span>
+  <span id="2023/05/26/MFC消息映射机制/" class="item leancloud_visitors" data-flag-title="MFC 消息映射机制" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>AdventureYX <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" title="MFC 消息映射机制">https://adventure-yx.github.io/2023/05/26/MFC消息映射机制/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;img.picgo.net&#x2F;2023&#x2F;04&#x2F;02&#x2F;sky-1683c8e10dd42012a8.jpeg" title="MFC 应用程序框架">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> C++</span>
+  <h3>MFC 应用程序框架</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mfc%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text"> MFC 消息映射机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text"> 什么是消息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text"> 什么是消息映射机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#windows%E6%B6%88%E6%81%AF%E5%88%86%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text"> Windows 消息分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text"> 消息映射表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 添加消息处理函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8Dwindows%E6%B6%88%E6%81%AF%E7%9A%84%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text"> 各种 Windows 消息的消息处理函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text"> </span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/04/02/C++11/" rel="bookmark" title="C++11/14/17">C++11/14/17</a></li><li><a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" rel="bookmark" title="MFC 应用程序框架">MFC 应用程序框架</a></li><li class="active"><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" rel="bookmark" title="MFC 消息映射机制">MFC 消息映射机制</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="AdventureYX"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">AdventureYX</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">3</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">1</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">2</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmVudHVyZS15eA==" title="https:&#x2F;&#x2F;github.com&#x2F;Adventure-yx"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>friends</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/links/" rel="section"><i class="ic i-magic"></i>links</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/" title="MFC 消息映射机制">MFC 消息映射机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/04/02/C++11/" title="C++11&#x2F;14&#x2F;17">C++11/14/17</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/C/" title="分类于 C++">C++</a>
+</div>
+
+    <span><a href="/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/" title="MFC 应用程序框架">MFC 应用程序框架</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AdventureYX @ Adventure</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/05/26/MFC消息映射机制/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

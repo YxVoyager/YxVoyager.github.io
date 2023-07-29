@@ -3,9 +3,106 @@
     <id>https://adventure-yx.github.io</id>
     <title> • Posts by &#34;mfc&#34; tag</title>
     <link href="https://adventure-yx.github.io" />
-    <updated>2023-05-25T02:12:08.000Z</updated>
+    <updated>2023-05-26T02:12:08.000Z</updated>
     <category term="C++" />
     <category term="MFC" />
+    <entry>
+        <id>https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/</id>
+        <title>MFC 消息映射机制</title>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/05/26/MFC%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84%E6%9C%BA%E5%88%B6/"/>
+        <content type="html">&lt;h1 id=&#34;mfc消息映射机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mfc消息映射机制&#34;&gt;#&lt;/a&gt; MFC 消息映射机制&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Windows 应用程序是消息驱动的&lt;/strong&gt;。在 MFC 软件开发中，界面操作或者线程之间通信都会用到消息，&lt;strong&gt;通过对消息的处理实现相应的操作&lt;/strong&gt;。比较典型的过程是，用户操作窗口，然后有消息产生，送给窗口的消息处理函数处理，对用户的操作做出响应。&lt;/p&gt;
+&lt;h1 id=&#34;什么是消息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是消息&#34;&gt;#&lt;/a&gt; 什么是消息&lt;/h1&gt;
+&lt;p&gt;窗口消息一般由三个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个无符号整数，是消息值；&lt;/li&gt;
+&lt;li&gt;消息附带的 WPARAM 类型的参数；&lt;/li&gt;
+&lt;li&gt;消息附带的 LPARAM 类型的参数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实际一般所说的是狭义上的消息值，也就是一个无符号整数，经常被定义为宏。&lt;/p&gt;
+&lt;h1 id=&#34;什么是消息映射机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是消息映射机制&#34;&gt;#&lt;/a&gt; 什么是消息映射机制&lt;/h1&gt;
+&lt;p&gt;MFC 使用一种消息映射机制来处理消息，在应用程序框架中的表现就是，&lt;strong&gt;一个消息与消息处理函数 —— 对应的消息映射表，以及消息处理函数的声明和实现等代码&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;当窗口收到消息时，会到消息映射表中查找该消息对应的消息处理函数，然后由消息处理函数进行相应的处理。&lt;/p&gt;
+&lt;p&gt;SDK 编程时需要在窗口过程中 —— 判断消息值进行相应的处理，相比之下 MFC 的消息映射机制要方便好用的多。&lt;/p&gt;
+&lt;h1 id=&#34;windows消息分类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#windows消息分类&#34;&gt;#&lt;/a&gt; Windows 消息分类&lt;/h1&gt;
+&lt;p&gt;Windows 消息分为&lt;strong&gt;系统消息&lt;/strong&gt;和&lt;strong&gt;用户自定义消息&lt;/strong&gt;。系统消息有三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标准 Windows 消息&lt;/strong&gt;。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;命令消息&lt;/strong&gt;。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;通知消息&lt;/strong&gt;。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CWnd 的派生类都可以接收到标准 Windows 消息、通知消息和命令消息。命令消息还可以由文档类等接收。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用户自定义消息实际上就是用户定义一个宏作为消息，此宏的值应该大于等于 WM_USER，然后宏就可以跟系统消息一样使用，窗口类中可以定义它的处理函数。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;消息映射表&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#消息映射表&#34;&gt;#&lt;/a&gt; 消息映射表&lt;/h1&gt;
+&lt;p&gt;除了一些没有基类的类或 CObject 的直接派生类外，其他的类都可以自动生成消息映射表。&lt;/p&gt;
+&lt;p&gt;消息映射表如下（CMainFrame.cpp）：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;BEGIN_MESSAGE_MAP&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CMainFrame&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; CFrameWndEx&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_WM_CREATE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_COMMAND&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_CUSTOMIZE&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnViewCustomize&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_REGISTERED_MESSAGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;AFX_WM_CREATETOOLBAR&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnToolbarCreateNew&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_COMMAND_RANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_APPLOOK_WIN_2000&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ID_VIEW_APPLOOK_WINDOWS_7&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnApplicationLook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_UPDATE_COMMAND_UI_RANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_APPLOOK_WIN_2000&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ID_VIEW_APPLOOK_WINDOWS_7&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnUpdateApplicationLook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token function&#34;&gt;ON_WM_SETTINGCHANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;END_MESSAGE_MAP&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在 &lt;code&gt;BEGIN_MESSAGE_MAP&lt;/code&gt;  和 &lt;code&gt;END_MESSAGE_MAP&lt;/code&gt;  之间的内容成为消息映射入口项。&lt;/p&gt;
+&lt;p&gt;消息映射除了在 &lt;code&gt;CMainFrame&lt;/code&gt;  的实现文件中添加消息映射表外，在类的定义文件 &lt;code&gt;MainFrm.h&lt;/code&gt;  中还会添加一个宏调用： &lt;code&gt; DECLEAR_MESSAGE_MAP&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;一般这个宏调用写在类定义的结尾处。&lt;/p&gt;
+&lt;h1 id=&#34;添加消息处理函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#添加消息处理函数&#34;&gt;#&lt;/a&gt; 添加消息处理函数&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在类定义中加入消息处理函数的函数声明，以 &lt;code&gt;afx_msg&lt;/code&gt;  打头。例如 MainFrm.h 中的声明：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;OnCreate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;LPCREATESTRUCT lpCreateStruct&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;OnViewCustomize&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg LRESULT &lt;span class=&#34;token function&#34;&gt;OnToolbarCreateNew&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;WPARAM wp&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; LPARAM lp&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;OnApplicationLook&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;UINT id&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;OnUpdateApplicationLook&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CCmdUI&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pCmdUI&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;afx_msg &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;OnSettingChange&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;UINT uFlags&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; LPCTSTR lpszSection&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在类的消息映射表中添加该消息的消息映射入口项。例如 MainFrm.h 中的&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_WM_CREATE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_COMMAND&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_CUSTOMIZE&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnViewCustomize&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_REGISTERED_MESSAGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;AFX_WM_CREATETOOLBAR&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnToolbarCreateNew&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_COMMAND_RANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_APPLOOK_WIN_2000&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ID_VIEW_APPLOOK_WINDOWS_7&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnApplicationLook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_UPDATE_COMMAND_UI_RANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_APPLOOK_WIN_2000&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ID_VIEW_APPLOOK_WINDOWS_7&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnUpdateApplicationLook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_WM_SETTINGCHANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在类的实现中添加消息处理函数的函数实现。&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CMainFrame&lt;/span&gt;&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;OnCreate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;LPCREATESTRUCT lpCreateStruct&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过以上 3 个步骤后， &lt;code&gt;WM_CREATE&lt;/code&gt;  等消息就可以在窗口类中被消息处理函数处理了。&lt;/p&gt;
+&lt;h1 id=&#34;各种windows消息的消息处理函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#各种windows消息的消息处理函数&#34;&gt;#&lt;/a&gt; 各种 Windows 消息的消息处理函数&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;标准 Windows 消息。除 WM_COMMAND 外的 WM_开头的消息是标准消息。例如：WM_CREATE、WM_CLOSE。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;标准 Windows 消息的消息处理函数都与 WM_CREATE 消息类似。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;命令消息。WM_COMMAND，消息中附带了标志符 ID 来区分是来自哪个菜单、工具栏按钮或加速键的消息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;命令消息的消息映射入口如：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_COMMAND&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_CUSTOMIZE&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnViewCustomize&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;消息为 &lt;code&gt;ID_VIEW_CUSTOMIZE&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;消息处理函数为 &lt;code&gt;OnViewCustomize&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果想用批量处理函数批量处理这些命令消息，则可以像 CMainFrame 消息映射表中的：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_COMMAND_RANGE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ID_VIEW_APPLOOK_WIN_2000&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ID_VIEW_APPLOOK_WINDOWS_7&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;CMainFrame&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;OnApplicationLook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;值在 &lt;code&gt;ID_VIEW_APPLOOK_WIN_2000&lt;/code&gt;  到 &lt;code&gt;ID_VIEW_APPLOOK_WINDOWS_7&lt;/code&gt;  之间的菜单项等命令消息都由 CMainFrame 的 &lt;code&gt;OnApplicationLook&lt;/code&gt;  函数处理。&lt;/li&gt;
+&lt;li&gt;函数原型为 &lt;code&gt;afx_msg void OnApplicationLook(UINT id);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;参数 id 为用户操作的菜单项等的 ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通知消息。通知消息一般由列表框等子窗口发送给父窗口，消息名也是 WM_COMMAND，其中附带了控件通知码来区分控件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在操作列表框等控件时往往会给父窗口发送 &lt;code&gt;WM_NOTIFY&lt;/code&gt;  通知消息。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WM_NOTIFY&lt;/code&gt;  消息的 &lt;code&gt;WPARAM&lt;/code&gt;  参数为发送通知消息的控件的 ID； &lt;code&gt; LPARAM&lt;/code&gt;  参数指向一个结构体，可能是 NMHDR 结构体，也可能是第一个元素为 NMHDR 结构体变量的其他结构体。&lt;/p&gt;
+&lt;p&gt;NMHDR 结构体定义如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Typedef &lt;span class=&#34;token keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;tagNMHDR&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    HWND hwndFrom&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    UINT idFrom&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    UINT code&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;NMHDR&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;hwndFrom 为发送通知消息控件的句柄；&lt;/li&gt;
+&lt;li&gt;idFrom 为控件 ID；&lt;/li&gt;
+&lt;li&gt;code 为要处理的通知消息的通知码，例如 NM_CLICK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通知消息的消息映射入口形式如：&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;span&gt;p&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ON_NOTIFY&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;wNotifyCode&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; id&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; memberFxn&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;wNotifyCode 为要处理的通知消息通知码；&lt;/li&gt;
+&lt;li&gt;id 为控件标识 ID；&lt;/li&gt;
+&lt;li&gt;memberFxn 为此消息的消息处理函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用户自定义消息&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;定义消息宏&lt;/li&gt;
+&lt;li&gt;在消息映射表中添加消息映射入口项&lt;/li&gt;
+&lt;li&gt;在 MainFrm.h 中添加消息处理函数的函数声明&lt;/li&gt;
+&lt;li&gt;在 MainFrm.cpp 中实现此函数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#&#34;&gt;#&lt;/a&gt; &lt;/h1&gt;
+</content>
+        <category term="C++" />
+        <category term="MFC" />
+        <updated>2023-05-26T02:12:08.000Z</updated>
+    </entry>
     <entry>
         <id>https://adventure-yx.github.io/2023/05/25/MFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6/</id>
         <title>MFC 应用程序框架</title>
