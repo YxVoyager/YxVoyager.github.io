@@ -11,8 +11,8 @@
     <category term="MFC" />
     <category term="Qt" />
     <category term="QML" />
-    <category term="STL" />
     <category term="XML" />
+    <category term="STL" />
     <category term="操作系统" />
     <category term="算法" />
     <category term="计算机网络" />
@@ -206,9 +206,9 @@
         <updated>2023-06-25T00:50:08.000Z</updated>
     </entry>
     <entry>
-        <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</id>
+        <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</id>
         <title>MFC 常用控件</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/"/>
         <content type="html">&lt;h1 id=&#34;常用控件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常用控件&#34;&gt;#&lt;/a&gt; 常用控件&lt;/h1&gt;
 &lt;p&gt;控件的消息通知&lt;/p&gt;
 &lt;p&gt;当控件有事件发生时，他会向父窗口发送通知消息。最常发生的事件就是鼠标单击了，此时控件会向父窗口发送 BN_CLICKED 消息，实际上也就是给父窗口发送 WM_COMMAND 消息，在 wParam 参数中包含有通知消息码（鼠标单击的通知消息码就是 BN_CLICKED）和控件 ID，IParam 参数中包含了控件的句柄。在 MFC 消息映射机制中，消息就是由三部分组成：消息值，wParam 参数，IParam 参数。&lt;/p&gt;
@@ -596,9 +596,9 @@
         <updated>2023-06-10T03:12:08.000Z</updated>
     </entry>
     <entry>
-        <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</id>
+        <id>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</id>
         <title>MFC 常用控件</title>
-        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/"/>
+        <link rel="alternate" href="https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/"/>
         <content type="html">&lt;h1 id=&#34;常用控件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常用控件&#34;&gt;#&lt;/a&gt; 常用控件&lt;/h1&gt;
 &lt;p&gt;控件的消息通知&lt;/p&gt;
 &lt;p&gt;当控件有事件发生时，他会向父窗口发送通知消息。最常发生的事件就是鼠标单击了，此时控件会向父窗口发送 BN_CLICKED 消息，实际上也就是给父窗口发送 WM_COMMAND 消息，在 wParam 参数中包含有通知消息码（鼠标单击的通知消息码就是 BN_CLICKED）和控件 ID，IParam 参数中包含了控件的句柄。在 MFC 消息映射机制中，消息就是由三部分组成：消息值，wParam 参数，IParam 参数。&lt;/p&gt;

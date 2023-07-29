@@ -14,8 +14,8 @@
         <category>MFC</category>
         <category>Qt</category>
         <category>QML</category>
-        <category>STL</category>
         <category>XML</category>
+        <category>STL</category>
         <category>操作系统</category>
         <category>算法</category>
         <category>计算机网络</category>
@@ -209,9 +209,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</guid>
             <title>MFC 常用控件</title>
-            <link>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</link>
+            <link>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</link>
             <category>C++</category>
             <category>MFC</category>
             <pubDate>Sat, 10 Jun 2023 11:12:08 +0800</pubDate>
@@ -599,9 +599,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</guid>
+            <guid isPermalink="true">https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</guid>
             <title>MFC 常用控件</title>
-            <link>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B60/</link>
+            <link>https://adventure-yx.github.io/2023/06/10/MFC%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/</link>
             <category>C++</category>
             <category>MFC</category>
             <pubDate>Sat, 10 Jun 2023 11:12:08 +0800</pubDate>
